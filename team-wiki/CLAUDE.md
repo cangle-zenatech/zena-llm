@@ -24,6 +24,9 @@ This file is a map. Detailed instructions live in `INDEX.md` files inside the fo
 - `raw/` is read-only. Never edit, move, or delete anything in it.
 - Never copy passwords, API keys, tokens, or customer personal data into `knowledge/`.
 - Never silently overwrite information. Flag contradictions on the page and in chat.
+- `README.md` files are the human's private notes, in any folder and any letter case
+  (`README.md`, `readme.md`, `ReadMe.md`). Never open, read, search, edit, move, delete, summarize,
+  or link to them. If one shows up in search results, ignore it and don't quote it.
 
 ## Folder map
 

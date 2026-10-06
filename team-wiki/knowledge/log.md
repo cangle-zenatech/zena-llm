@@ -2,6 +2,7 @@
 
 One line per change, newest first.
 
+2026-10-06 · updated · [[CLAUDE]] · hard rule: never read README.md files (human's private notes)
 2026-10-05 · updated · [[INDEX]] · child work items now link to Jira URLs
 2026-10-05 · updated · [[2026-06-18-PRO2-2|PRO2-2]] · child ticket links changed to Jira URLs
 2026-10-05 · updated · [[INDEX]] · Jira source is always the ticket URL; created dates looked up in Jira, not raw/docs/jira/
