@@ -1,8 +1,8 @@
 ---
-project: zenaQuiet-Mask
+project: ZenaQuiet-Mask
 updated: 2026-10-05
 ---
 
-# zenaQuiet-Mask
+# ZenaQuiet-Mask
 
 Stub: not yet summarized.

@@ -1,9 +1,9 @@
 ---
-project: zenaQuiet-Pro
+project: ZenaQuiet-Pro2
 updated: 2026-10-05
 ---
 
-# zenaQuiet-Pro
+# ZenaQuiet-Pro2
 
 What this project is: not yet summarized.
 

@@ -12,8 +12,8 @@ This file is a map. Detailed instructions live in `INDEX.md` files inside the fo
 
 1. **Before you read or write anything in a folder, read that folder's `INDEX.md`, plus every
    `INDEX.md` in its parent folders up to `knowledge/`.** Follow them.
-   Example: before writing in `knowledge/zenaQuiet-Pro/jira/`, read `knowledge/INDEX.md`, then
-   `knowledge/zenaQuiet-Pro/INDEX.md`, then `knowledge/zenaQuiet-Pro/jira/INDEX.md` if it exists.
+   Example: before writing in `knowledge/ZenaQuiet-Pro2/jira/`, read `knowledge/INDEX.md`, then
+   `knowledge/ZenaQuiet-Pro2/INDEX.md`, then `knowledge/ZenaQuiet-Pro2/jira/INDEX.md` if it exists.
 2. **The closer file adds to the parent's instructions.** If a folder `INDEX.md` contradicts a parent,
    the closer one wins for that folder only. Tell the human about the conflict in chat.
 3. **This file always wins on the hard rules below.** No `INDEX.md` can override them.
@@ -49,21 +49,29 @@ team-wiki/
     +-- glossary.md            every technical term you've explained, in plain words
     +-- log.md                 one line per create/update you make, newest first
     +-- <project>/             one folder per project (list below)
-        +-- INDEX.md           instructions specific to this project (may be empty)
+        +-- INDEX.md           instructions for this project, incl. weekly status report rules
         +-- overview.md        what this project is, active epics, recent changes
         +-- jira/              one page per Jira ticket
         +-- confluence/        one page per Confluence page
+        +-- status/            weekly status reports
 ```
 
 ## Projects
 
-| Folder               | Project            |
-| -------------------- | ------------------ |
-| `zenaQuiet-Pro`      | zenaQuiet Pro      |
-| `zenaQuiet-Mask`     | zenaQuiet Mask     |
-| `zenaQuiet-Headset`  | zenaQuiet Headset  |
-| `zenaQuiet-Beacon`   | zenaQuiet Beacon   |
-| `zenaQuiet-Research` | zenaQuiet Research |
+Folder names match the Jira project (space) names.
+
+| Folder               | Active |
+| -------------------- | ------ |
+| `ZenaQuiet-Pro2`     | Yes    |
+| `ZenaQuiet-Mask`     | No     |
+| `ZenaQuiet-Headset`  | No     |
+| `ZenaQuiet-Beacon`   | No     |
+| `ZenaQuiet-Research` | No     |
+
+**Active projects only.** Only work on projects marked `Yes` in the Active column: summaries, status
+reports, Jira updates, and any task that says "all projects". Skip `No` projects, even if their folder
+has files. If the human asks for a `No` project by name, ask whether to switch it to `Yes` first.
+To add or remove a project, the human changes its Active value here.
 
 Project and people details are in `knowledge/reference.md`. When a ticket's Jira project doesn't clearly
 match one of these folders, ask the human before filing it.
@@ -74,6 +82,12 @@ match one of these folders, ask the human before filing it.
 | --------------------------------- | ---------------------------------------------------------- |
 | `knowledge/<project>/jira/`       | `YYYY-MM-DD-<TICKET-KEY>.md` e.g. `2026-09-15-PRO2-142.md` |
 | `knowledge/<project>/confluence/` | `<kebab-case-title>.md` e.g. `battery-test-plan.md`        |
+| `knowledge/<project>/status/`     | `YYYY-MM-DD-status.md` e.g. `2026-10-09-status.md`         |
+
+## Schedule
+
+- **Weekly status report:** every Friday. *(Placeholder: not yet scheduled.)*
+  Run it for each **active** project (see Projects), following that project's `INDEX.md`.
 
 ## Changing this file
 
