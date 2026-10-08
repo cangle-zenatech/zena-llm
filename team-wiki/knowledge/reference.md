@@ -1,7 +1,33 @@
 ## People
 
-- Cang Le — Technical Manager and Software Engineer for Acoustic team in Vietnam
-- Hung Pham Nguyen — unknown
+### Owner
+
+> **Cang Le** is the owner of this AI module (the team wiki and its instructions).
+>
+> - **Role:** Technical Manager (TM) and Software Engineer, Acoustic team, Vietnam
+> - **Email:** Cang.Le@zenatech.com
+> - **Jira name:** Cang Le
+> - "The human", "the TM" and "the owner" in any instruction file all mean Cang Le.
+
+## VN-Team contacts
+
+Confirmed by the human, 2026-10-08. "Jira name" is the name on Jira tickets; "Microsoft Teams name" is
+the name in Outlook / Teams. Team names match `## Teams`.
+
+| Jira name         | Microsoft Teams name | Email                           | Team                  |
+| ----------------- | -------------------- | ------------------------------- | --------------------- |
+| KhuongNguyen      | Khuong Dinh Nguyen   | khuong.dinh.nguyen@zenatech.com | Firmware              |
+| Nguyen Minh Thien | Thien Minh Nguyen    | thien.minh.nguyen@zenatech.com  | Firmware              |
+| Phi Tuong         | Tuong Phi Lau        | tuong.phi.lau@zenatech.com      | Firmware              |
+| Huỳnh Thái Hòa    | Hoa Huynh            | Hoa.Huynh@zenatech.com          | Acoustic              |
+| Nguyen Binh Minh  | Minh Nguyen          | Minh.Nguyen@zenatech.com        | Acoustic              |
+| Elly Nhi Nguyen   | Elly Nguyen          | Elly.Nguyen@zenatech.com        | Industrial_Design     |
+| Chico Ly          | Chi Co Ly            | chi.co.ly@zenatech.com          | Industrial_Design     |
+| Phong.ngoc.nguyen | Phong Ngoc Nguyen    | Phong.Ngoc.Nguyen@zenatech.com  | Electronic_Electrical |
+| Nguyen Manh Tuan  | Tuan Manh Nguyen     | tuan.manh.nguyen@zenatech.com   | Electronic_Electrical |
+| Hung Pham Nguyen  | Pham Nguyen Ngoc     | Hung.Pham.Nguyen@zenatech.com   | Electronic_Electrical |
+| Nguyen Trung Tin  | Tin Trung Nguyen     | TinTrung.Nguyen@zenatech.com    | Mechanical            |
+| Duy Nguyen        | Duy Cong Nguyen      | DuyCong.Nguyen@zenatech.com     | Mechanical            |
 
 ## Projects
 
@@ -17,9 +43,9 @@
 
 Wiki folder names match the Jira project (space) names.
 
-| Jira key | Jira name / wiki folder | Note                       |
-| -------- | ----------------------- | -------------------------- |
-| PRO2     | ZenaQuiet-Pro2          |                            |
+| Jira key | Jira name / wiki folder | Note                          |
+| -------- | ----------------------- | ----------------------------- |
+| PRO2     | ZenaQuiet-Pro2          |                               |
 | unknown  | ZenaQuiet-Mask          | Key not confirmed in Jira yet |
 | unknown  | ZenaQuiet-Headset       | Key not confirmed in Jira yet |
 | unknown  | ZenaQuiet-Beacon        | Key not confirmed in Jira yet |
@@ -57,15 +83,15 @@ no stage schedule. All four products are in PVT/MP together from Sep to Nov 2027
 Each Subtask names its team twice: the code as a title prefix (e.g. `[ME] …`) and the team name as a
 Jira label (e.g. `Mechanical`). Checked on [PRO2-252](https://epazz.atlassian.net/browse/PRO2-252).
 
-| Code  | Team (Jira label)     |
-| ----- | --------------------- |
-| FW    | Firmware              |
-| ME    | Mechanical            |
-| EE    | Electronic_Electrical |
-| SW    | Software              |
-| ID    | Industrial_Design     |
-| AC    | Acoustic              |
-| FA    | Factory               |
+| Code | Team (Jira label)     |
+| ---- | --------------------- |
+| FW   | Firmware              |
+| ME   | Mechanical            |
+| EE   | Electronic_Electrical |
+| SW   | Software              |
+| ID   | Industrial_Design     |
+| AC   | Acoustic              |
+| FA   | Factory               |
 
 ## Jira structure
 

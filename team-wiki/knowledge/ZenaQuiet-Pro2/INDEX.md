@@ -25,11 +25,11 @@ Update this block when settings change. All logic below refers to it.
 
 ```yaml
 product: ZenaQuiet-Pro2
-project_key: PRO2              # Jira name: ZenaQuiet-Pro2
-today: ""                      # ISO date, e.g. 2026-10-07. If blank, use the system date.
-lookahead_days: 14             # "due soon" window
-stale_days: 14                 # no update for this many days = stale
-overload_factor: 1.5           # team load above this × its average = overloaded
+project_key: PRO2 # Jira name: ZenaQuiet-Pro2
+today: "" # ISO date, e.g. 2026-10-07. If blank, use the system date.
+lookahead_days: 14 # "due soon" window
+stale_days: 14 # no update for this many days = stale
+overload_factor: 1.5 # team load above this × its average = overloaded
 ```
 
 Stage windows: `reference.md` → `## Stage schedule`, ZenaQuiet-Pro2 column.
@@ -43,8 +43,8 @@ in the report's "Data Gaps" section and continue.
 
 1. Confirm that project `PRO2` is visible in Jira.
 2. Get the field metadata for Epic, Story and Subtask. Find the field IDs for
-   **Start date** and **Due date**. Start date is usually a custom field, so
-   never assume its ID.
+   **Start date**, **Due date** and **Sprint**. Start date and Sprint are
+   usually custom fields, so never assume their IDs.
 3. Find how Story → Epic is linked: `parent` or the legacy "Epic Link" field.
 
 ### Step 2: Extract
@@ -58,8 +58,9 @@ project = PRO2 AND issuetype in (Epic, Story, Sub-task) ORDER BY key ASC
 (Use the project's real Subtask issue-type name.)
 
 Fields to fetch: key, summary, description, issuetype, status,
-statusCategory, assignee, {start_date_field}, duedate, parent, issuelinks,
-created, updated, resolutiondate, labels.
+statusCategory, assignee, reporter, {start_date_field}, duedate,
+{sprint_field}, parent, subtasks, issuelinks, created, updated,
+resolutiondate, labels.
 
 Record the totals per issue type. Verify that the retrieved count equals the
 JQL total. If it doesn't, note this in Data Gaps.
@@ -94,7 +95,7 @@ dates, delta in days.
 | D3 Story outside stage window | story.start < stage.start OR story.due > stage.end |
 | D4 Inverted dates             | start > due                                        |
 | D5 Missing dates              | start or due is empty                              |
-| D6 Epic beyond MP             | epic.due > ZenaQuiet-Pro2 MP end                    |
+| D6 Epic beyond MP             | epic.due > ZenaQuiet-Pro2 MP end                   |
 
 ### Step 6: Risk detection
 
@@ -185,8 +186,31 @@ and add a line to `knowledge/log.md`. Use this exact structure:
 
 ## 1. Executive Summary
 | Current Stage | Next Gate | Days to Gate | Gate Readiness | Health |
-- Top 3 risks (one line each, with ticket keys)
-- Key cross-team concern (e.g., team overload)
+
+Health: one sentence on why.
+
+### Top 3 risks
+
+**1. {Short risk name}**
+
+- **What:** one short sentence.
+- **Tickets:**
+  - [PRO2-397](https://epazz.atlassian.net/browse/PRO2-397) — {ticket title or short note}
+  - [PRO2-396](https://epazz.atlassian.net/browse/PRO2-396) — {ticket title or short note}
+- **Impact:** one short sentence.
+
+**2. …** (same layout)
+
+**3. …** (same layout)
+
+### Key cross-team concern
+
+**{Short concern name}**
+
+- **What:** one short sentence.
+- **Tickets:**
+  - [PRO2-11](https://epazz.atlassian.net/browse/PRO2-11) — {ticket title or short note}
+- **Impact:** one short sentence.
 
 ## 2. Product Detail
 **Purpose:** …
@@ -204,7 +228,8 @@ and add a line to `knowledge/log.md`. Use this exact structure:
 | Team | {current month} | … | Nov-27 |   (mark overloaded cells with ⚠)
 
 ## 5. Data Hygiene
-| Key | Rule (D1–D6 / prefix / orphan) | Detail |
+| Key | Rule (D1–D6 / prefix / orphan) | Detail | Reporter | Assignee |
+(one row per ticket and rule; write "Unassigned" if no assignee, "unknown" if no reporter)
 
 ## 6. Recommendations for TM
 3–5 concrete actions, each tied to specific ticket keys and owners.
@@ -212,6 +237,20 @@ and add a line to `knowledge/log.md`. Use this exact structure:
 ## 7. Data Gaps & Assumptions
 - What couldn't be retrieved or verified, and the field IDs used.
 ```
+
+### Executive Summary layout rules
+
+These apply to section 1 only. Other sections keep plain ticket keys.
+
+1. Give each risk and the cross-team concern its own block: a bold heading, then
+   **What**, **Tickets** and **Impact** bullets. Leave a blank line between blocks.
+2. Keep **What** and **Impact** to one short sentence each (under 20 words). Put no
+   ticket keys in them; tickets go only in **Tickets**.
+3. List each ticket on its own line as a link:
+   `[PRO2-123](https://epazz.atlassian.net/browse/PRO2-123) — short title or note`.
+   Never use shortened keys like `-11` or ranges like `PRO2-422…437`.
+4. Show at most 5 tickets per block. If there are more, list the 5 most important and
+   end with "+ N more (see Risk Register)".
 
 ## 5. Rules of conduct
 

@@ -2,6 +2,14 @@
 
 One line per change, newest first.
 
+2026-10-08 · updated · [[reference]] · People: added Owner block — Cang Le, TM and Software Engineer, owner of this AI module
+2026-10-08 · updated · [[reference]] · VN-Team contacts replaced with the human's confirmed list (Jira name, Teams name, email, team; 12 people); Jira people table cut to 4 non-VN-Team people; Tuong Phi Lau spelling resolved
+2026-10-08 · updated · [[reference]] · added Jira people table: 13 PRO2 reporters/assignees matched to Outlook emails; flagged Tuong Phu/Phi Lau spelling
+2026-10-08 · updated · [[reference]] · added VN-Team contacts (10 people: name, email, team) under People, from the human's list
+2026-10-08 · updated · [[ZenaQuiet-Pro2/status/2026-10-08-status]] · Data Hygiene now one row per ticket, with Reporter and Assignee
+2026-10-08 · updated · ZenaQuiet-Pro2/INDEX.md · Data Hygiene table adds Reporter and Assignee columns; one row per ticket and rule
+2026-10-08 · created · [[ZenaQuiet-Pro2/status/2026-10-08-status]] · weekly status report from live Jira (259 issues; EVT, 123d to gate, AMBER; 1 HIGH, 39 MEDIUM, 9 LOW); new Executive Summary layout
+2026-10-08 · updated · ZenaQuiet-Pro2/INDEX.md · Executive Summary: one block per risk (What / Tickets / Impact), each ticket on its own line with Jira URL
 2026-10-07 · created · [[ZenaQuiet-Pro2/status/2026-10-07-status]] · weekly status report from live Jira (259 issues; EVT, 124d to gate, AMBER; 1 HIGH, 39 MEDIUM, 9 LOW)
 2026-10-07 · updated · [[reference]] · Teams: kept existing names (human decision); code = Subtask title prefix, team name = Jira label (checked PRO2-252); removed resolved contradiction note
 2026-10-07 · updated · [[CLAUDE]], [[INDEX]], ZenaQuiet-Pro2/INDEX.md, [[ZenaQuiet-Pro2/overview]], [[2026-06-18-PRO2-2|PRO2-2]], [[ZenaQuiet-Mask/overview]] · renamed zenaQuiet-* to Jira space names (zenaQuiet-Pro → ZenaQuiet-Pro2); CLAUDE.md Projects table merged Folder/Project columns
