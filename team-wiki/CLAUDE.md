@@ -82,11 +82,10 @@ match one of these folders, ask the human before filing it.
 | --------------------------------- | ---------------------------------------------------------- |
 | `knowledge/<project>/jira/`       | `YYYY-MM-DD-<TICKET-KEY>.md` e.g. `2026-09-15-PRO2-142.md` |
 | `knowledge/<project>/confluence/` | `<kebab-case-title>.md` e.g. `battery-test-plan.md`        |
-| `knowledge/<project>/status/`     | `YYYY-MM-DD-status.md` e.g. `2026-10-09-status.md`         |
 
 ## Schedule
 
-- **Weekly status report:** every Friday. *(Placeholder: not yet scheduled.)*
+- **Weekly status report:** every Friday. _(Placeholder: not yet scheduled.)_
   Run it for each **active** project (see Projects), following that project's `INDEX.md`.
 
 ## Changing this file

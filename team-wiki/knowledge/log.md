@@ -2,6 +2,9 @@
 
 One line per change, newest first.
 
+2026-10-08 · created · [[ZenaQuiet-Pro2/jira/2026-10-08-jira]] · status report re-run from live Jira (259 issues, no changes since earlier run; AMBER); saved to jira/ per ZenaQuiet-Pro2/INDEX.md
+2026-10-08 · updated · [[ZenaQuiet-Pro2/status/2026-10-08-status]] · Data Hygiene: added reporter Email column (131 rows, all matched)
+2026-10-08 · updated · ZenaQuiet-Pro2/INDEX.md · Data Hygiene table adds Email (reporter's email from reference.md ## People)
 2026-10-08 · updated · [[reference]] · People: added Owner block — Cang Le, TM and Software Engineer, owner of this AI module
 2026-10-08 · updated · [[reference]] · VN-Team contacts replaced with the human's confirmed list (Jira name, Teams name, email, team; 12 people); Jira people table cut to 4 non-VN-Team people; Tuong Phi Lau spelling resolved
 2026-10-08 · updated · [[reference]] · added Jira people table: 13 PRO2 reporters/assignees matched to Outlook emails; flagged Tuong Phu/Phi Lau spelling

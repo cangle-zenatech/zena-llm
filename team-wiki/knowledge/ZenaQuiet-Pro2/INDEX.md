@@ -178,7 +178,7 @@ Read the Epic titles and descriptions and the Story and Subtask titles. Write:
 
 ## 4. Output
 
-Save the report as `knowledge/ZenaQuiet-Pro2/status/YYYY-MM-DD-status.md` (date = `today`)
+Save the report as `knowledge/ZenaQuiet-Pro2/jira/YYYY-MM-DD-jira.md` (date = `today`)
 and add a line to `knowledge/log.md`. Use this exact structure:
 
 ```
@@ -228,8 +228,10 @@ Health: one sentence on why.
 | Team | {current month} | … | Nov-27 |   (mark overloaded cells with ⚠)
 
 ## 5. Data Hygiene
-| Key | Rule (D1–D6 / prefix / orphan) | Detail | Reporter | Assignee |
-(one row per ticket and rule; write "Unassigned" if no assignee, "unknown" if no reporter)
+| Key | Rule (D1–D6 / prefix / orphan) | Detail | Reporter | Email | Assignee |
+(one row per ticket and rule; write "Unassigned" if no assignee, "unknown" if no reporter.
+Email = the Reporter's email: match the Jira name in reference.md → ## People;
+write "not in reference.md" if there's no match. Never guess an email.)
 
 ## 6. Recommendations for TM
 3–5 concrete actions, each tied to specific ticket keys and owners.
