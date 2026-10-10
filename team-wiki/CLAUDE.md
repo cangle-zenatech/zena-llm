@@ -65,7 +65,7 @@ Folder names match the Jira project (space) names.
 | `ZenaQuiet-Pro2`     | Yes    |
 | `ZenaQuiet-Mask`     | No     |
 | `ZenaQuiet-Headset`  | No     |
-| `ZenaQuiet-Beacon`   | No     |
+| `ZenaQuiet-Beacon`   | Yes    |
 | `ZenaQuiet-Research` | No     |
 
 **Active projects only.** Only work on projects marked `Yes` in the Active column: summaries, status

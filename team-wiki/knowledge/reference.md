@@ -1,5 +1,3 @@
-## People
-
 ### Owner
 
 > **Cang Le** is the owner of this AI module (the team wiki and its instructions).
@@ -48,7 +46,7 @@ Wiki folder names match the Jira project (space) names.
 | PRO2     | ZenaQuiet-Pro2          |                               |
 | unknown  | ZenaQuiet-Mask          | Key not confirmed in Jira yet |
 | unknown  | ZenaQuiet-Headset       | Key not confirmed in Jira yet |
-| unknown  | ZenaQuiet-Beacon        | Key not confirmed in Jira yet |
+| BC       | ZenaQuiet-Beacon        | Confirmed in Jira 2026-10-10  |
 | unknown  | ZenaQuiet-Research      | Key not confirmed in Jira yet |
 
 ## Development stages (in order)

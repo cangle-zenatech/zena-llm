@@ -2,6 +2,10 @@
 
 One line per change, newest first.
 
+2026-10-10 · created · [[ZenaQuiet-Beacon/jira/2026-10-10-jira]] · first Beacon weekly report from live Jira (134 issues; EVT, 121d to gate, AMBER; 0 HIGH, 27 MEDIUM, 3 LOW)
+2026-10-10 · created · [[ZenaQuiet-Pro2/jira/2026-10-10-jira]] · weekly status report from live Jira (323 issues; EVT, 121d to gate, AMBER; 1 HIGH, 62 MEDIUM, 9 LOW)
+2026-10-10 · updated · [[reference]] · Jira projects: ZenaQuiet-Beacon key confirmed as BC
+2026-10-10 · updated · ZenaQuiet-Beacon/INDEX.md · copied from ZenaQuiet-Pro2/INDEX.md, adapted to ZenaQuiet-Beacon (Jira key BC)
 2026-10-08 · created · [[ZenaQuiet-Pro2/jira/2026-10-08-jira]] · status report re-run from live Jira (259 issues, no changes since earlier run; AMBER); saved to jira/ per ZenaQuiet-Pro2/INDEX.md
 2026-10-08 · updated · [[ZenaQuiet-Pro2/status/2026-10-08-status]] · Data Hygiene: added reporter Email column (131 rows, all matched)
 2026-10-08 · updated · ZenaQuiet-Pro2/INDEX.md · Data Hygiene table adds Email (reporter's email from reference.md ## People)
