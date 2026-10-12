@@ -53,7 +53,6 @@ team-wiki/
         +-- overview.md        what this project is, active epics, recent changes
         +-- jira/              one page per Jira ticket
         +-- confluence/        one page per Confluence page
-        +-- status/            weekly status reports
 ```
 
 ## Projects
@@ -63,9 +62,9 @@ Folder names match the Jira project (space) names.
 | Folder               | Active |
 | -------------------- | ------ |
 | `ZenaQuiet-Pro2`     | Yes    |
-| `ZenaQuiet-Mask`     | No     |
+| `ZenaQuiet-Mask`     | Yes    |
 | `ZenaQuiet-Headset`  | No     |
-| `ZenaQuiet-Beacon`   | Yes    |
+| `ZenaQuiet-Beacon`   | No     |
 | `ZenaQuiet-Research` | No     |
 
 **Active projects only.** Only work on projects marked `Yes` in the Active column: summaries, status
@@ -82,11 +81,6 @@ match one of these folders, ask the human before filing it.
 | --------------------------------- | ---------------------------------------------------------- |
 | `knowledge/<project>/jira/`       | `YYYY-MM-DD-<TICKET-KEY>.md` e.g. `2026-09-15-PRO2-142.md` |
 | `knowledge/<project>/confluence/` | `<kebab-case-title>.md` e.g. `battery-test-plan.md`        |
-
-## Schedule
-
-- **Weekly status report:** every Friday. _(Placeholder: not yet scheduled.)_
-  Run it for each **active** project (see Projects), following that project's `INDEX.md`.
 
 ## Changing this file
 

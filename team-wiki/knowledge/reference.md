@@ -1,3 +1,7 @@
+## People
+
+Everyone the wiki needs to identify: the owner, then team contacts. Match Jira names here.
+
 ### Owner
 
 > **Cang Le** is the owner of this AI module (the team wiki and its instructions).
@@ -7,7 +11,7 @@
 > - **Jira name:** Cang Le
 > - "The human", "the TM" and "the owner" in any instruction file all mean Cang Le.
 
-## VN-Team contacts
+### VN-Team contacts
 
 Confirmed by the human, 2026-10-08. "Jira name" is the name on Jira tickets; "Microsoft Teams name" is
 the name in Outlook / Teams. Team names match `## Teams`.
@@ -44,10 +48,10 @@ Wiki folder names match the Jira project (space) names.
 | Jira key | Jira name / wiki folder | Note                          |
 | -------- | ----------------------- | ----------------------------- |
 | PRO2     | ZenaQuiet-Pro2          |                               |
-| unknown  | ZenaQuiet-Mask          | Key not confirmed in Jira yet |
-| unknown  | ZenaQuiet-Headset       | Key not confirmed in Jira yet |
+| MK       | ZenaQuiet-Mask          | Confirmed in Jira 2026-10-12  |
+| HS       | ZenaQuiet-Headset       | Confirmed in Jira 2026-10-12  |
 | BC       | ZenaQuiet-Beacon        | Confirmed in Jira 2026-10-10  |
-| unknown  | ZenaQuiet-Research      | Key not confirmed in Jira yet |
+| RS       | ZenaQuiet-Research      | Confirmed in Jira 2026-10-12  |
 
 ## Development stages (in order)
 
