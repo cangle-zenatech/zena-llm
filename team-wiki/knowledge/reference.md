@@ -1,3 +1,16 @@
+# Reference
+
+Stable reference facts: people, projects, stages and Jira conventions.
+
+**Contents**
+
+1. [People](#people) — owner and team contacts
+2. [Projects](#projects) and [Jira projects](#jira-projects)
+3. [Development stages](#development-stages-in-order) and [Stage schedule](#stage-schedule-per-product)
+4. [Teams](#teams) and [Jira structure](#jira-structure)
+
+---
+
 ## People
 
 Everyone the wiki needs to identify: the owner, then team contacts. Match Jira names here.
@@ -31,6 +44,19 @@ the name in Outlook / Teams. Team names match `## Teams`.
 | Nguyen Trung Tin  | Tin Trung Nguyen     | TinTrung.Nguyen@zenatech.com    | Mechanical            |
 | Duy Nguyen        | Duy Cong Nguyen      | DuyCong.Nguyen@zenatech.com     | Mechanical            |
 
+#### Added 2026-10-12 — not yet confirmed
+
+These rows were added 2026-10-12 from the Microsoft 365 company directory (job title: Industrial
+Designer), not yet confirmed by the human. Found as Pro2 assignees on ID tickets (e.g. PRO2-40, PRO2-308, PRO2-400).
+
+| Jira name                  | Microsoft Teams name | Email                          | Team              |
+| -------------------------- | -------------------- | ------------------------------ | ----------------- |
+| Bui Minh Tuan (Steve .Bui) | Tuan Minh Bui        | tuan.minh.bui@zenatech.com     | Industrial_Design |
+| Khanh Duong                | Khanh Duong          | Khanh.Duong@zenatech.com       | Industrial_Design |
+| Phan Thi Anh Nhut          | Phan Thi Anh Nhut    | Phan.Thi.Anh.Nhut@zenatech.com | Industrial_Design |
+
+---
+
 ## Projects
 
 - [[ZenaQuiet-Pro2/overview|ZenaQuiet-Pro2]] —
@@ -45,13 +71,15 @@ the name in Outlook / Teams. Team names match `## Teams`.
 
 Wiki folder names match the Jira project (space) names.
 
-| Jira key | Jira name / wiki folder | Note                          |
-| -------- | ----------------------- | ----------------------------- |
-| PRO2     | ZenaQuiet-Pro2          |                               |
-| MK       | ZenaQuiet-Mask          | Confirmed in Jira 2026-10-12  |
-| HS       | ZenaQuiet-Headset       | Confirmed in Jira 2026-10-12  |
-| BC       | ZenaQuiet-Beacon        | Confirmed in Jira 2026-10-10  |
-| RS       | ZenaQuiet-Research      | Confirmed in Jira 2026-10-12  |
+| Jira key | Jira name / wiki folder | Note                         |
+| -------- | ----------------------- | ---------------------------- |
+| PRO2     | ZenaQuiet-Pro2          |                              |
+| MK       | ZenaQuiet-Mask          | Confirmed in Jira 2026-10-12 |
+| HS       | ZenaQuiet-Headset       | Confirmed in Jira 2026-10-12 |
+| BC       | ZenaQuiet-Beacon        | Confirmed in Jira 2026-10-10 |
+| RS       | ZenaQuiet-Research      | Confirmed in Jira 2026-10-12 |
+
+---
 
 ## Development stages (in order)
 
@@ -79,6 +107,8 @@ Each window is `start → end`. A stage's end date is the next stage's start dat
 
 Headset uses the same schedule as Mask; Beacon uses the same schedule as Pro2. ZenaQuiet-Research has
 no stage schedule. All four products are in PVT/MP together from Sep to Nov 2027.
+
+---
 
 ## Teams
 

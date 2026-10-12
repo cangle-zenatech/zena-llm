@@ -2,6 +2,13 @@
 
 One line per change, newest first.
 
+2026-10-12 · updated · [[reference]] · layout only (human asked): title, contents, section dividers, aligned tables, unconfirmed people in own table; no facts changed
+
+2026-10-12 · updated · [[reference]] · People: added Bui Minh Tuan, Khanh Duong, Phan Thi Anh Nhut (Industrial_Design; from M365 directory, unconfirmed)
+
+2026-10-12 · created · [[ZenaQuiet-Mask/jira/2026-10-12-jira]] · first weekly status report from live Jira (38 issues); POC, 119 days to gate, readiness 7%, AMBER
+2026-10-12 · created · [[ZenaQuiet-Pro2/jira/2026-10-12-jira]] · weekly status report from live Jira (329 issues, +6 Subtasks); EVT, 119 days to gate, readiness 3%, AMBER
+
 2026-10-12 · updated · [[glossary]] · added KN95
 2026-10-12 · created · [[overview]] · one paragraph each for the active projects, Pro2 and Mask
 2026-10-12 · updated · [[ZenaQuiet-Mask/overview]] · written from live Jira (38 issues, 9 Epics); replaces stub

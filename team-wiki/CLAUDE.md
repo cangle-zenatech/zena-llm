@@ -51,7 +51,7 @@ team-wiki/
     +-- <project>/             one folder per project (list below)
         +-- INDEX.md           instructions for this project, incl. weekly status report rules
         +-- overview.md        what this project is, active epics, recent changes
-        +-- jira/              one page per Jira ticket
+        +-- jira/              weekly status reports
         +-- confluence/        one page per Confluence page
 ```
 
@@ -77,10 +77,10 @@ match one of these folders, ask the human before filing it.
 
 ## File names
 
-| Folder                            | File name                                                  |
-| --------------------------------- | ---------------------------------------------------------- |
-| `knowledge/<project>/jira/`       | `YYYY-MM-DD-<TICKET-KEY>.md` e.g. `2026-09-15-PRO2-142.md` |
-| `knowledge/<project>/confluence/` | `<kebab-case-title>.md` e.g. `battery-test-plan.md`        |
+| Folder                            | File name                                           |
+| --------------------------------- | --------------------------------------------------- |
+| `knowledge/<project>/jira/`       | `YYYY-MM-DD-jira.md` e.g. `2026-09-15-jira.md`      |
+| `knowledge/<project>/confluence/` | `<kebab-case-title>.md` e.g. `battery-test-plan.md` |
 
 ## Changing this file
 
