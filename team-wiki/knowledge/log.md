@@ -2,6 +2,16 @@
 
 One line per change, newest first.
 
+2026-10-12 · updated · [[reference]] · People: added Huynh Minh Tuan, CaoTienDat (Electronic_Electrical; from M365 directory, unconfirmed)
+2026-10-12 · created · [[ZenaQuiet-Research/jira/2026-10-12-jira]] · first weekly report (20 issues); support team, link coverage 0%, AMBER
+2026-10-12 · created · [[ZenaQuiet-Beacon/jira/2026-10-12-jira]] · weekly report (134 issues, no change in count); EVT, 119 days to gate, readiness 5%, AMBER
+2026-10-12 · created · [[ZenaQuiet-Headset/jira/2026-10-12-jira]] · first weekly report (558 issues); POC, 119 days to gate, readiness 21%, RED (one HIGH: HS-326)
+2026-10-12 · note · CLAUDE.md · human set all five projects to Active Yes; first multi-project run with one helper per project
+
+2026-10-12 · created · data/ZenaQuiet-Pro2/2026-10-12.json, data/ZenaQuiet-Mask/2026-10-12.json · first Jira snapshots (from today's report runs)
+2026-10-12 · created · tools/wiki_jira.py, tools/INDEX.md · shared normalize/analyze/diff script; reproduces today's Pro2 and Mask counts, severities and health
+2026-10-12 · updated · CLAUDE.md · added ## Running many projects (one helper per project, summary format), tools/ and data/ in folder map, tools/INDEX.md in How instructions work
+
 2026-10-12 · updated · [[reference]] · layout only (human asked): title, contents, section dividers, aligned tables, unconfirmed people in own table; no facts changed
 
 2026-10-12 · updated · [[reference]] · People: added Bui Minh Tuan, Khanh Duong, Phan Thi Anh Nhut (Industrial_Design; from M365 directory, unconfirmed)

@@ -11,7 +11,8 @@ This file is a map. Detailed instructions live in `INDEX.md` files inside the fo
 ## How instructions work
 
 1. **Before you read or write anything in a folder, read that folder's `INDEX.md`, plus every
-   `INDEX.md` in its parent folders up to `knowledge/`.** Follow them.
+   `INDEX.md` in its parent folders up to `knowledge/`.** Follow them. Before running a script in
+   `tools/`, read `tools/INDEX.md`.
    Example: before writing in `knowledge/ZenaQuiet-Pro2/jira/`, read `knowledge/INDEX.md`, then
    `knowledge/ZenaQuiet-Pro2/INDEX.md`, then `knowledge/ZenaQuiet-Pro2/jira/INDEX.md` if it exists.
 2. **The closer file adds to the parent's instructions.** If a folder `INDEX.md` contradicts a parent,
@@ -39,6 +40,11 @@ team-wiki/
 |   +-- docs/                  PRDs, specs, reports, Confluence exports
 |                              (Jira is read live; Jira pages cite the ticket URL)
 |   +-- assets/                images referenced by sources
++-- tools/                     shared scripts for the weekly reports
+|   +-- INDEX.md               how to run them; read it before using a script
+|   +-- wiki_jira.py           normalize, analyze, diff (Steps 3-7 of a project INDEX.md)
++-- data/                      Jira snapshots, one per project per weekly run
+|   +-- <project>/YYYY-MM-DD.json   written by wiki_jira.py; no descriptions; never edit
 +-- knowledge/                 everything you write, linked with [[wikilinks]]
     +-- INDEX.md               instructions for all of knowledge/: frontmatter,
     |                          writing rules, Jira page template
@@ -63,9 +69,9 @@ Folder names match the Jira project (space) names.
 | -------------------- | ------ |
 | `ZenaQuiet-Pro2`     | Yes    |
 | `ZenaQuiet-Mask`     | Yes    |
-| `ZenaQuiet-Headset`  | No     |
-| `ZenaQuiet-Beacon`   | No     |
-| `ZenaQuiet-Research` | No     |
+| `ZenaQuiet-Headset`  | Yes    |
+| `ZenaQuiet-Beacon`   | Yes    |
+| `ZenaQuiet-Research` | Yes    |
 
 **Active projects only.** Only work on projects marked `Yes` in the Active column: summaries, status
 reports, Jira updates, and any task that says "all projects". Skip `No` projects, even if their folder
@@ -74,6 +80,48 @@ To add or remove a project, the human changes its Active value here.
 
 Project and people details are in `knowledge/reference.md`. When a ticket's Jira project doesn't clearly
 match one of these folders, ask the human before filing it.
+
+## Running many projects
+
+Any task that covers more than one project (weekly status reports, "all projects") runs as one
+helper agent per active project, so no single session holds every project's Jira data.
+
+**Main session**
+
+1. Read this file and find the `Yes` projects.
+2. Start one helper per project, all in parallel. Give each one: the project folder, the date, and
+   the rules below. Helpers remember nothing from earlier sessions, so the brief must be complete.
+3. When all helpers are done:
+   - add the `knowledge/log.md` lines;
+   - apply the helpers' suggested edits to shared files (`reference.md` → `## People` directly;
+     anything else in `reference.md` only when the human agrees);
+   - look across projects: the same person overloaded on several products, shared PVT/MP crunch,
+     cross-project links;
+   - give the human one combined summary, with every flag and conflict.
+4. If a helper fails, retry it once. If it fails again, finish the others and report the failure.
+
+**Each helper**
+
+1. Works only on its own project. Follows this file's hard rules and the `INDEX.md` chain for its
+   folder, plus `tools/INDEX.md`.
+2. Saves Jira results to files and does all counting and date maths with `tools/wiki_jira.py`, never
+   by hand.
+3. Writes only inside `knowledge/<project>/` and `data/<project>/`. Never edits `log.md`,
+   `reference.md`, `glossary.md` or `knowledge/overview.md`; suggests changes to them instead.
+4. Returns only this summary, no raw data:
+
+```text
+PROJECT: <folder> (<key>) · report: <path>
+STATUS: OK | PARTIAL | FAILED (reason)
+ROW: <stage> · gate <date> · <n>d · readiness <x>% · <health>
+COUNTS: JQL <n> = retrieved <n> (<per type>) · vs last snapshot: <changes>
+TOP RISKS: 1) … 2) … 3) …          one line each, with ticket keys
+CROSS-TEAM: one line
+PEOPLE NOT IN reference.md: names (+ email only if found in the company directory)
+SUGGESTED EDITS TO SHARED FILES: file · change · reason
+CONFLICTS / CONTRADICTIONS: one line each
+SELF-CHECK: n/6 pass (list failures)
+```
 
 ## File names
 

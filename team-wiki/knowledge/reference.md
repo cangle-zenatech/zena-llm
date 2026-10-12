@@ -54,6 +54,11 @@ Designer), not yet confirmed by the human. Found as Pro2 assignees on ID tickets
 | Bui Minh Tuan (Steve .Bui) | Tuan Minh Bui        | tuan.minh.bui@zenatech.com     | Industrial_Design |
 | Khanh Duong                | Khanh Duong          | Khanh.Duong@zenatech.com       | Industrial_Design |
 | Phan Thi Anh Nhut          | Phan Thi Anh Nhut    | Phan.Thi.Anh.Nhut@zenatech.com | Industrial_Design |
+| Huynh Minh Tuan            | Huynh Minh Tuan      | Huynh.Minh.Tuan@zenatech.com   | Electronic_Electrical |
+| CaoTienDat                 | Cao Tien Dat         | Cao.Tien.Dat@zenatech.com      | Electronic_Electrical |
+
+Huynh Minh Tuan (directory: Electronics Engineer) is on HS-581 and owns BC-38. CaoTienDat (directory: Electrical
+Engineer) reported BC-42 to BC-49; the Jira-to-directory name match is inferred. Team for both inferred from job title.
 
 ---
 

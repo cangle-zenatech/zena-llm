@@ -1,0 +1,3317 @@
+{
+"project": "ZenaQuiet-Beacon",
+"date": "2026-10-12",
+"start_field": "customfield_10015",
+"sprint_field": "customfield_10020",
+"count": 134,
+"issues": [
+{
+"key": "BC-23",
+"summary": "Product Industrial Design",
+"type": "Epic",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Chico Ly",
+"reporter": "Chico Ly",
+"start": "2026-06-29",
+"due": "2027-09-06",
+"sprints": [
+[
+"[POC] Sprint 1",
+"active"
+]
+],
+"parent": null,
+"subtasks": [],
+"links": [],
+"created": "2026-06-17",
+"updated": "2026-10-08",
+"resolved": null,
+"labels": [
+"Design"
+]
+},
+{
+"key": "BC-28",
+"summary": "[POC:ID] 2/6 Concept Development",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Bui Minh Tuan (Steve .Bui)",
+"reporter": "Bui Minh Tuan (Steve .Bui)",
+"start": "2026-06-01",
+"due": "2026-06-14",
+"sprints": [
+[
+"[POC] Sprint 1",
+"active"
+]
+],
+"parent": "BC-23",
+"subtasks": [
+"BC-116"
+],
+"links": [
+{
+"dir": "in",
+"label": "is tested by",
+"type": "AgileTest",
+"key": "PRO2-40",
+"scat": "done"
+}
+],
+"created": "2026-06-17",
+"updated": "2026-08-11",
+"resolved": "2026-06-29",
+"labels": [
+"IndustrialDesign"
+]
+},
+{
+"key": "BC-38",
+"summary": "Connectivity & Ports",
+"type": "Epic",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Huynh Minh Tuan",
+"reporter": "CaoTienDat",
+"start": "2026-06-29",
+"due": "2027-09-06",
+"sprints": [
+[
+"[POC] Sprint 1",
+"active"
+]
+],
+"parent": null,
+"subtasks": [],
+"links": [],
+"created": "2026-06-25",
+"updated": "2026-10-08",
+"resolved": null,
+"labels": [
+"Firmware",
+"Hardware"
+]
+},
+{
+"key": "BC-42",
+"summary": "[POC:EE] Component Selection for Beacon",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "CaoTienDat",
+"reporter": "CaoTienDat",
+"start": null,
+"due": "2026-06-30",
+"sprints": [
+[
+"[POC] Sprint 1",
+"active"
+]
+],
+"parent": "BC-38",
+"subtasks": [
+"BC-44",
+"BC-43"
+],
+"links": [],
+"created": "2026-06-25",
+"updated": "2026-09-21",
+"resolved": "2026-07-06",
+"labels": []
+},
+{
+"key": "BC-43",
+"summary": "Create Symbol for PCB components",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "CaoTienDat",
+"reporter": "CaoTienDat",
+"start": null,
+"due": "2026-07-02",
+"sprints": [
+[
+"[POC] Sprint 1",
+"active"
+]
+],
+"parent": "BC-42",
+"subtasks": [],
+"links": [],
+"created": "2026-06-25",
+"updated": "2026-07-27",
+"resolved": "2026-07-06",
+"labels": []
+},
+{
+"key": "BC-44",
+"summary": "Create Footprint for PCB components",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "CaoTienDat",
+"reporter": "CaoTienDat",
+"start": null,
+"due": "2026-07-06",
+"sprints": [
+[
+"[POC] Sprint 1",
+"active"
+]
+],
+"parent": "BC-42",
+"subtasks": [],
+"links": [],
+"created": "2026-06-25",
+"updated": "2026-07-27",
+"resolved": "2026-07-06",
+"labels": []
+},
+{
+"key": "BC-45",
+"summary": "Create Schematic & Layout for POE feature",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Huynh Minh Tuan",
+"reporter": "CaoTienDat",
+"start": null,
+"due": "2026-07-09",
+"sprints": [
+[
+"[POC] Sprint 2",
+"future"
+]
+],
+"parent": "BC-123",
+"subtasks": [],
+"links": [],
+"created": "2026-06-25",
+"updated": "2026-07-27",
+"resolved": "2026-07-10",
+"labels": []
+},
+{
+"key": "BC-46",
+"summary": "Create Schematic & Layout for RAM",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Huynh Minh Tuan",
+"reporter": "CaoTienDat",
+"start": "2026-07-06",
+"due": "2026-07-15",
+"sprints": [
+[
+"[POC] Sprint 1",
+"active"
+]
+],
+"parent": "BC-129",
+"subtasks": [],
+"links": [],
+"created": "2026-06-25",
+"updated": "2026-07-27",
+"resolved": "2026-07-10",
+"labels": []
+},
+{
+"key": "BC-47",
+"summary": "Finalize Layout and Design Rule Check",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Huynh Minh Tuan",
+"reporter": "CaoTienDat",
+"start": null,
+"due": "2026-07-20",
+"sprints": [
+[
+"[POC] Sprint 2",
+"future"
+]
+],
+"parent": "BC-130",
+"subtasks": [],
+"links": [],
+"created": "2026-06-26",
+"updated": "2026-07-27",
+"resolved": "2026-07-21",
+"labels": []
+},
+{
+"key": "BC-48",
+"summary": "Export Manufacturing files, 3D PCB file & Prepare Order",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Huynh Minh Tuan",
+"reporter": "CaoTienDat",
+"start": null,
+"due": "2026-07-22",
+"sprints": [
+[
+"[POC] Sprint 2",
+"future"
+]
+],
+"parent": "BC-130",
+"subtasks": [],
+"links": [],
+"created": "2026-06-26",
+"updated": "2026-07-27",
+"resolved": "2026-07-22",
+"labels": []
+},
+{
+"key": "BC-49",
+"summary": "Hardware testing & Component test for Beacon PCB",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Huynh Minh Tuan",
+"reporter": "CaoTienDat",
+"start": null,
+"due": "2026-08-28",
+"sprints": [
+[
+"[POC] Sprint 2",
+"future"
+]
+],
+"parent": "BC-130",
+"subtasks": [],
+"links": [],
+"created": "2026-06-26",
+"updated": "2026-08-28",
+"resolved": "2026-08-28",
+"labels": []
+},
+{
+"key": "BC-50",
+"summary": "Mechanical Structure (Product Enclosure)",
+"type": "Epic",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Nguyen Trung Tin",
+"reporter": "Duy Nguyen",
+"start": "2026-06-29",
+"due": "2027-09-06",
+"sprints": [],
+"parent": null,
+"subtasks": [],
+"links": [],
+"created": "2026-06-26",
+"updated": "2026-10-01",
+"resolved": null,
+"labels": [
+"Mechanical"
+]
+},
+{
+"key": "BC-51",
+"summary": "[POC:ME] Ceiling Mount Stability and Mic Port Geometry",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Trung Tin",
+"reporter": "Duy Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 2",
+"future"
+]
+],
+"parent": "BC-50",
+"subtasks": [],
+"links": [],
+"created": "2026-06-26",
+"updated": "2026-10-06",
+"resolved": "2026-07-27",
+"labels": [
+"Mechanical"
+]
+},
+{
+"key": "BC-53",
+"summary": "[POC:ME] Integrated Assembly",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Trung Tin",
+"reporter": "Duy Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 4",
+"future"
+]
+],
+"parent": "BC-50",
+"subtasks": [
+"BC-143"
+],
+"links": [],
+"created": "2026-06-26",
+"updated": "2026-10-06",
+"resolved": "2026-09-07",
+"labels": [
+"Mechanical"
+]
+},
+{
+"key": "BC-56",
+"summary": "[POC:ID] 1/6 Translate Brief",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Chico Ly",
+"reporter": "Chico Ly",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 1",
+"active"
+]
+],
+"parent": "BC-23",
+"subtasks": [],
+"links": [
+{
+"dir": "in",
+"label": "relates to",
+"type": "Relates",
+"key": "PRO2-39",
+"scat": "done"
+}
+],
+"created": "2026-06-26",
+"updated": "2026-08-11",
+"resolved": "2026-06-26",
+"labels": [
+"IndustrialDesign"
+]
+},
+{
+"key": "BC-57",
+"summary": "[POC:ID] 4/6 Prototying",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Bui Minh Tuan (Steve .Bui)",
+"reporter": "Chico Ly",
+"start": "2026-07-07",
+"due": "2026-07-28",
+"sprints": [
+[
+"[POC] Sprint 5",
+"future"
+]
+],
+"parent": "BC-23",
+"subtasks": [
+"BC-154"
+],
+"links": [],
+"created": "2026-06-26",
+"updated": "2026-09-21",
+"resolved": "2026-09-04",
+"labels": [
+"Design"
+]
+},
+{
+"key": "BC-58",
+"summary": "[POC:ME] 3D print the housings & ceiling mounting mechanism - For Prototyping Stage",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Trung Tin",
+"reporter": "Duy Nguyen",
+"start": "2026-07-06",
+"due": "2026-07-10",
+"sprints": [
+[
+"[POC] Sprint 1",
+"active"
+]
+],
+"parent": "BC-50",
+"subtasks": [],
+"links": [],
+"created": "2026-06-26",
+"updated": "2026-10-06",
+"resolved": "2026-07-10",
+"labels": [
+"Mechanical"
+]
+},
+{
+"key": "BC-59",
+"summary": "[POC:ME] 3D Modelling: Beacon Mechanical Enclosure & Ceiling mount mechanism - For Prototyping Stage",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Trung Tin",
+"reporter": "Duy Nguyen",
+"start": "2026-07-06",
+"due": "2026-07-10",
+"sprints": [
+[
+"[POC] Sprint 1",
+"active"
+]
+],
+"parent": "BC-50",
+"subtasks": [],
+"links": [
+{
+"dir": "out",
+"label": "tests",
+"type": "AgileTest",
+"key": "BC-116",
+"scat": "done"
+}
+],
+"created": "2026-06-26",
+"updated": "2026-10-06",
+"resolved": "2026-07-10",
+"labels": []
+},
+{
+"key": "BC-72",
+"summary": "[POC:ID] 3/6 Design Development",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Chico Ly",
+"reporter": "Chico Ly",
+"start": "2026-06-14",
+"due": "2026-06-24",
+"sprints": [
+[
+"[POC] Sprint 1",
+"active"
+]
+],
+"parent": "BC-23",
+"subtasks": [
+"BC-119",
+"BC-121"
+],
+"links": [],
+"created": "2026-07-09",
+"updated": "2026-08-11",
+"resolved": "2026-07-09",
+"labels": [
+"IndustrialDesign"
+]
+},
+{
+"key": "BC-76",
+"summary": "[POC:FW] Create the protocol for communicate between PRO and Beacon",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 2",
+"future"
+]
+],
+"parent": "BC-107",
+"subtasks": [],
+"links": [],
+"created": "2026-07-09",
+"updated": "2026-09-21",
+"resolved": "2026-07-09",
+"labels": [
+"Firmware"
+]
+},
+{
+"key": "BC-82",
+"summary": "[POC:FW] use STM32 dev board (Ethernet) to connect with cloud for data exchange",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Phi Tuong",
+"reporter": "Phi Tuong",
+"start": "2026-07-16",
+"due": "2026-08-24",
+"sprints": [
+[
+"[POC] Sprint 2",
+"future"
+]
+],
+"parent": "BC-106",
+"subtasks": [
+"BC-105",
+"BC-108",
+"BC-122"
+],
+"links": [],
+"created": "2026-07-16",
+"updated": "2026-10-06",
+"resolved": "2026-08-03",
+"labels": [
+"Firmware"
+]
+},
+{
+"key": "BC-83",
+"summary": "[POC:ME] 3D Printing Physical to find the conflict that improve 2nd Printing",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Trung Tin",
+"reporter": "Nguyen Trung Tin",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 3",
+"future"
+]
+],
+"parent": "BC-50",
+"subtasks": [],
+"links": [],
+"created": "2026-07-16",
+"updated": "2026-10-06",
+"resolved": "2026-08-10",
+"labels": []
+},
+{
+"key": "BC-97",
+"summary": "[POC:FW]  Firmware architecture design (first version)",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Phi Tuong",
+"reporter": "Cang Le",
+"start": "2026-06-10",
+"due": "2026-08-24",
+"sprints": [
+[
+"[POC] Sprint 3",
+"future"
+]
+],
+"parent": "BC-106",
+"subtasks": [
+"BC-98",
+"BC-99",
+"BC-102",
+"BC-104",
+"BC-109"
+],
+"links": [],
+"created": "2026-07-21",
+"updated": "2026-08-10",
+"resolved": "2026-08-03",
+"labels": [
+"Firmware"
+]
+},
+{
+"key": "BC-98",
+"summary": "[FW] Setup coding environment (build/compile/flash)",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Cang Le",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 3",
+"future"
+]
+],
+"parent": "BC-97",
+"subtasks": [],
+"links": [],
+"created": "2026-07-21",
+"updated": "2026-07-21",
+"resolved": "2026-07-21",
+"labels": []
+},
+{
+"key": "BC-99",
+"summary": "[FW] Select dev board, MCU",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Phi Tuong",
+"reporter": "Phi Tuong",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 3",
+"future"
+]
+],
+"parent": "BC-97",
+"subtasks": [],
+"links": [],
+"created": "2026-07-21",
+"updated": "2026-07-21",
+"resolved": "2026-07-21",
+"labels": []
+},
+{
+"key": "BC-100",
+"summary": "[POC:FW] Create the protocol for communicate between PRO and Beacon",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 2",
+"future"
+]
+],
+"parent": "BC-107",
+"subtasks": [],
+"links": [],
+"created": "2026-07-21",
+"updated": "2026-07-27",
+"resolved": "2026-07-21",
+"labels": []
+},
+{
+"key": "BC-101",
+"summary": "[POC:FW] PRO Endpoint Registration & Removal",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 2",
+"future"
+]
+],
+"parent": "BC-107",
+"subtasks": [],
+"links": [],
+"created": "2026-07-21",
+"updated": "2026-07-29",
+"resolved": "2026-07-29",
+"labels": []
+},
+{
+"key": "BC-102",
+"summary": "[FW] Design beacon software architecture (Zena Quiet Architecture - Beacon)",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Phi Tuong",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 3",
+"future"
+]
+],
+"parent": "BC-97",
+"subtasks": [],
+"links": [],
+"created": "2026-07-21",
+"updated": "2026-07-21",
+"resolved": "2026-07-21",
+"labels": []
+},
+{
+"key": "BC-103",
+"summary": "[POC:FW] Configure & Synchronize a Zone",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 2",
+"future"
+]
+],
+"parent": "BC-107",
+"subtasks": [],
+"links": [],
+"created": "2026-07-21",
+"updated": "2026-08-05",
+"resolved": "2026-07-29",
+"labels": []
+},
+{
+"key": "BC-104",
+"summary": "[FW] Build firmware architecture on a RTOS platform",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Phi Tuong",
+"reporter": "Phi Tuong",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 3",
+"future"
+]
+],
+"parent": "BC-97",
+"subtasks": [],
+"links": [],
+"created": "2026-07-21",
+"updated": "2026-07-22",
+"resolved": "2026-07-21",
+"labels": []
+},
+{
+"key": "BC-105",
+"summary": "[FW] Create code firmware for cloud connectivity via Ethernet",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Phi Tuong",
+"reporter": "Phi Tuong",
+"start": "2026-07-17",
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 2",
+"future"
+]
+],
+"parent": "BC-82",
+"subtasks": [],
+"links": [],
+"created": "2026-07-21",
+"updated": "2026-08-05",
+"resolved": "2026-07-22",
+"labels": [
+"Firmware"
+]
+},
+{
+"key": "BC-106",
+"summary": "Connectivity between Cloud & Beacon",
+"type": "Epic",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": null,
+"reporter": "Cang Le",
+"start": "2026-06-29",
+"due": "2027-09-06",
+"sprints": [
+[
+"[POC] Sprint 3",
+"future"
+]
+],
+"parent": null,
+"subtasks": [],
+"links": [],
+"created": "2026-07-21",
+"updated": "2026-10-08",
+"resolved": null,
+"labels": [
+"Firmware"
+]
+},
+{
+"key": "BC-107",
+"summary": "Connectivity between Pro & Beacon",
+"type": "Epic",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": null,
+"reporter": "Cang Le",
+"start": "2026-06-29",
+"due": "2027-09-06",
+"sprints": [
+[
+"[POC] Sprint 2",
+"future"
+]
+],
+"parent": null,
+"subtasks": [],
+"links": [],
+"created": "2026-07-21",
+"updated": "2026-10-08",
+"resolved": null,
+"labels": []
+},
+{
+"key": "BC-108",
+"summary": "[FW] Test firmware code for cloud connectivity on MQTTX via Ethernet",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Phi Tuong",
+"reporter": "Phi Tuong",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 2",
+"future"
+]
+],
+"parent": "BC-82",
+"subtasks": [],
+"links": [],
+"created": "2026-07-22",
+"updated": "2026-08-03",
+"resolved": "2026-07-27",
+"labels": []
+},
+{
+"key": "BC-109",
+"summary": "[FW] Test RTOS-based firmware architecture for cloud connectivity",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Phi Tuong",
+"reporter": "Phi Tuong",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 3",
+"future"
+]
+],
+"parent": "BC-97",
+"subtasks": [],
+"links": [],
+"created": "2026-07-22",
+"updated": "2026-08-03",
+"resolved": "2026-08-03",
+"labels": []
+},
+{
+"key": "BC-113",
+"summary": "[EVT-1:FW+SW] Connect, authenticate, and manage multiple devices",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": null,
+"reporter": "Hung Pham Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[EVT] Sprint 7",
+"future"
+]
+],
+"parent": "BC-107",
+"subtasks": [],
+"links": [],
+"created": "2026-07-22",
+"updated": "2026-10-06",
+"resolved": null,
+"labels": []
+},
+{
+"key": "BC-114",
+"summary": "[EVT-1:FW+SW] Relay control commands and collect status",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": null,
+"reporter": "Hung Pham Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[EVT] Sprint 7",
+"future"
+]
+],
+"parent": "BC-107",
+"subtasks": [],
+"links": [],
+"created": "2026-07-22",
+"updated": "2026-10-06",
+"resolved": null,
+"labels": []
+},
+{
+"key": "BC-115",
+"summary": "[EVT-1:FW] Direct connections for a session",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": null,
+"reporter": "Hung Pham Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[EVT] Sprint 7",
+"future"
+]
+],
+"parent": "BC-107",
+"subtasks": [],
+"links": [],
+"created": "2026-07-22",
+"updated": "2026-10-06",
+"resolved": null,
+"labels": []
+},
+{
+"key": "BC-116",
+"summary": "Finish Draft Products BEA-V0",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Chico Ly",
+"reporter": "Chico Ly",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 1",
+"active"
+]
+],
+"parent": "BC-28",
+"subtasks": [],
+"links": [
+{
+"dir": "in",
+"label": "is tested by",
+"type": "AgileTest",
+"key": "BC-59",
+"scat": "done"
+}
+],
+"created": "2026-07-22",
+"updated": "2026-08-11",
+"resolved": "2026-07-22",
+"labels": [
+"IndustrialDesign"
+]
+},
+{
+"key": "BC-117",
+"summary": "[EVT-1:ALL] Local room-noise sensing and Instruct to adjust audio",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": null,
+"reporter": "Hung Pham Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[EVT] Sprint 7",
+"future"
+]
+],
+"parent": "BC-107",
+"subtasks": [],
+"links": [],
+"created": "2026-07-22",
+"updated": "2026-10-06",
+"resolved": null,
+"labels": []
+},
+{
+"key": "BC-119",
+"summary": "Finish BEA-v0 3DM files for ME hand over ",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Chico Ly",
+"reporter": "Chico Ly",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 1",
+"active"
+]
+],
+"parent": "BC-72",
+"subtasks": [],
+"links": [],
+"created": "2026-07-22",
+"updated": "2026-08-11",
+"resolved": "2026-07-22",
+"labels": [
+"IndustrialDesign"
+]
+},
+{
+"key": "BC-121",
+"summary": "Refine the BEA-V1 CMF solution",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Chico Ly",
+"reporter": "Chico Ly",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 1",
+"active"
+]
+],
+"parent": "BC-72",
+"subtasks": [],
+"links": [],
+"created": "2026-07-22",
+"updated": "2026-09-04",
+"resolved": "2026-09-04",
+"labels": [
+"IndustrialDesign"
+]
+},
+{
+"key": "BC-122",
+"summary": "[FW] Test firmware code for cloud connectivity on dashboard via Ethernet",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Phi Tuong",
+"reporter": "Phi Tuong",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 2",
+"future"
+]
+],
+"parent": "BC-82",
+"subtasks": [],
+"links": [],
+"created": "2026-07-22",
+"updated": "2026-08-03",
+"resolved": "2026-08-03",
+"labels": []
+},
+{
+"key": "BC-123",
+"summary": "[POC:EE] RJ45 port for PoE power and Ethernet communication",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Huynh Minh Tuan",
+"reporter": "Hung Pham Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 2",
+"future"
+]
+],
+"parent": "BC-38",
+"subtasks": [
+"BC-45",
+"BC-131",
+"BC-132"
+],
+"links": [],
+"created": "2026-07-23",
+"updated": "2026-10-06",
+"resolved": "2026-07-27",
+"labels": []
+},
+{
+"key": "BC-124",
+"summary": "[POC:EE] USB-C 2.0 port for backup power and debug",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Huynh Minh Tuan",
+"reporter": "Hung Pham Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 2",
+"future"
+]
+],
+"parent": "BC-38",
+"subtasks": [
+"BC-127",
+"BC-128",
+"BC-133"
+],
+"links": [],
+"created": "2026-07-23",
+"updated": "2026-10-06",
+"resolved": "2026-07-27",
+"labels": []
+},
+{
+"key": "BC-125",
+"summary": "[POC:EE] Wi-Fi and Bluetooth connectivity",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Huynh Minh Tuan",
+"reporter": "Hung Pham Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 3",
+"future"
+]
+],
+"parent": "BC-38",
+"subtasks": [],
+"links": [],
+"created": "2026-07-23",
+"updated": "2026-10-06",
+"resolved": "2026-07-30",
+"labels": []
+},
+{
+"key": "BC-127",
+"summary": "Design USB-C interface (USB 2.0 + 5V + debug/update)",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Huynh Minh Tuan",
+"reporter": "Huynh Minh Tuan",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 2",
+"future"
+]
+],
+"parent": "BC-124",
+"subtasks": [],
+"links": [],
+"created": "2026-07-27",
+"updated": "2026-07-27",
+"resolved": "2026-07-27",
+"labels": []
+},
+{
+"key": "BC-128",
+"summary": "Design USB-C power delivery and protection",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Huynh Minh Tuan",
+"reporter": "Huynh Minh Tuan",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 2",
+"future"
+]
+],
+"parent": "BC-124",
+"subtasks": [],
+"links": [],
+"created": "2026-07-27",
+"updated": "2026-07-27",
+"resolved": "2026-07-27",
+"labels": []
+},
+{
+"key": "BC-129",
+"summary": "[POC:EE] SDRAM and Flash connectivity",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Huynh Minh Tuan",
+"reporter": "Huynh Minh Tuan",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 1",
+"active"
+]
+],
+"parent": "BC-38",
+"subtasks": [
+"BC-46",
+"BC-134"
+],
+"links": [],
+"created": "2026-07-27",
+"updated": "2026-10-06",
+"resolved": "2026-07-27",
+"labels": []
+},
+{
+"key": "BC-130",
+"summary": "[POC:EE] Beacon PCB Layout finalization",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Huynh Minh Tuan",
+"reporter": "Huynh Minh Tuan",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 2",
+"future"
+]
+],
+"parent": "BC-38",
+"subtasks": [
+"BC-47",
+"BC-48",
+"BC-49"
+],
+"links": [],
+"created": "2026-07-27",
+"updated": "2026-10-06",
+"resolved": "2026-07-27",
+"labels": []
+},
+{
+"key": "BC-131",
+"summary": "Create Ethernet protocol interface",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Huynh Minh Tuan",
+"reporter": "Huynh Minh Tuan",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 2",
+"future"
+]
+],
+"parent": "BC-123",
+"subtasks": [],
+"links": [],
+"created": "2026-07-27",
+"updated": "2026-07-27",
+"resolved": "2026-07-27",
+"labels": []
+},
+{
+"key": "BC-132",
+"summary": "Tuning matching Length for Ethernet port to SoC",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Huynh Minh Tuan",
+"reporter": "Huynh Minh Tuan",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 2",
+"future"
+]
+],
+"parent": "BC-123",
+"subtasks": [],
+"links": [],
+"created": "2026-07-27",
+"updated": "2026-07-27",
+"resolved": "2026-07-27",
+"labels": []
+},
+{
+"key": "BC-133",
+"summary": "Tuning Length matching for USB-C port with SoC",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Huynh Minh Tuan",
+"reporter": "Huynh Minh Tuan",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 2",
+"future"
+]
+],
+"parent": "BC-124",
+"subtasks": [],
+"links": [],
+"created": "2026-07-27",
+"updated": "2026-07-27",
+"resolved": "2026-07-27",
+"labels": []
+},
+{
+"key": "BC-134",
+"summary": "Tuning Length matching for SDRAM with SoC",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Huynh Minh Tuan",
+"reporter": "Huynh Minh Tuan",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 1",
+"active"
+]
+],
+"parent": "BC-129",
+"subtasks": [],
+"links": [],
+"created": "2026-07-27",
+"updated": "2026-07-27",
+"resolved": "2026-07-27",
+"labels": []
+},
+{
+"key": "BC-137",
+"summary": "[FW] Test firmware code for cloud connectivity on MQTTX and dashboard via WiFi",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Phi Tuong",
+"reporter": "Phi Tuong",
+"start": null,
+"due": null,
+"sprints": [],
+"parent": "BC-185",
+"subtasks": [],
+"links": [],
+"created": "2026-08-03",
+"updated": "2026-10-06",
+"resolved": "2026-08-05",
+"labels": []
+},
+{
+"key": "BC-138",
+"summary": "[FW] Setup env and create code firmware for cloud connectivity via WiFi",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Phi Tuong",
+"reporter": "Phi Tuong",
+"start": null,
+"due": null,
+"sprints": [],
+"parent": "BC-185",
+"subtasks": [],
+"links": [],
+"created": "2026-08-03",
+"updated": "2026-10-06",
+"resolved": "2026-08-05",
+"labels": []
+},
+{
+"key": "BC-139",
+"summary": "[POC:FW] Study communication protocols for PRO endpoints and Beacon",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Phi Tuong",
+"reporter": "Phi Tuong",
+"start": "2026-08-06",
+"due": "2026-08-31",
+"sprints": [
+[
+"[POC] Sprint 4",
+"future"
+]
+],
+"parent": "BC-107",
+"subtasks": [
+"BC-140"
+],
+"links": [],
+"created": "2026-08-06",
+"updated": "2026-10-06",
+"resolved": "2026-08-25",
+"labels": [
+"Firmware"
+]
+},
+{
+"key": "BC-140",
+"summary": "[FW] Design ultra-lightweight MQTT broker with cloud bridge",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Phi Tuong",
+"reporter": "Phi Tuong",
+"start": "2026-08-07",
+"due": "2026-09-01",
+"sprints": [
+[
+"[POC] Sprint 4",
+"future"
+]
+],
+"parent": "BC-139",
+"subtasks": [],
+"links": [],
+"created": "2026-08-07",
+"updated": "2026-08-25",
+"resolved": "2026-08-25",
+"labels": [
+"Firmware",
+"Software"
+]
+},
+{
+"key": "BC-141",
+"summary": "BEA V1 Model Design",
+"type": "Subtask",
+"status": "To Do",
+"scat": "new",
+"assignee": "Chico Ly",
+"reporter": "Chico Ly",
+"start": "2026-10-05",
+"due": null,
+"sprints": [
+[
+"[EVT] Sprint 8",
+"future"
+]
+],
+"parent": "BC-153",
+"subtasks": [],
+"links": [],
+"created": "2026-08-17",
+"updated": "2026-09-21",
+"resolved": null,
+"labels": [
+"IndustrialDesign"
+]
+},
+{
+"key": "BC-142",
+"summary": "LED line",
+"type": "Subtask",
+"status": "To Do",
+"scat": "new",
+"assignee": "Chico Ly",
+"reporter": "Chico Ly",
+"start": "2026-10-05",
+"due": null,
+"sprints": [
+[
+"[EVT] Sprint 8",
+"future"
+]
+],
+"parent": "BC-153",
+"subtasks": [],
+"links": [],
+"created": "2026-08-17",
+"updated": "2026-09-21",
+"resolved": null,
+"labels": [
+"Design"
+]
+},
+{
+"key": "BC-143",
+"summary": "Build integrated RP-3 prototype units",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Trung Tin",
+"reporter": "Nguyen Trung Tin",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 4",
+"future"
+]
+],
+"parent": "BC-53",
+"subtasks": [],
+"links": [],
+"created": "2026-08-25",
+"updated": "2026-08-25",
+"resolved": "2026-08-25",
+"labels": []
+},
+{
+"key": "BC-144",
+"summary": "[POC:ME] PoC Documentation Package",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Trung Tin",
+"reporter": "Duy Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 4",
+"future"
+]
+],
+"parent": "BC-50",
+"subtasks": [
+"BC-145",
+"BC-146",
+"BC-147",
+"BC-148",
+"BC-149",
+"BC-150",
+"BC-151",
+"BC-152"
+],
+"links": [],
+"created": "2026-09-03",
+"updated": "2026-10-06",
+"resolved": "2026-09-14",
+"labels": []
+},
+{
+"key": "BC-145",
+"summary": " [ME] Design Definition Package: CAD, Drawings, STEP files...",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Trung Tin",
+"reporter": "Duy Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 4",
+"future"
+]
+],
+"parent": "BC-144",
+"subtasks": [],
+"links": [],
+"created": "2026-09-03",
+"updated": "2026-09-03",
+"resolved": "2026-09-03",
+"labels": []
+},
+{
+"key": "BC-146",
+"summary": "[ME] Design Rationale / Assumptions Record",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Trung Tin",
+"reporter": "Duy Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 4",
+"future"
+]
+],
+"parent": "BC-144",
+"subtasks": [],
+"links": [],
+"created": "2026-09-03",
+"updated": "2026-09-04",
+"resolved": "2026-09-04",
+"labels": []
+},
+{
+"key": "BC-147",
+"summary": "[ME] As-Built / Test Evidence",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Trung Tin",
+"reporter": "Duy Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 4",
+"future"
+]
+],
+"parent": "BC-144",
+"subtasks": [],
+"links": [],
+"created": "2026-09-03",
+"updated": "2026-09-07",
+"resolved": "2026-09-07",
+"labels": []
+},
+{
+"key": "BC-148",
+"summary": "[ME] Mechanical Interfaces",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Trung Tin",
+"reporter": "Duy Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 4",
+"future"
+]
+],
+"parent": "BC-144",
+"subtasks": [],
+"links": [],
+"created": "2026-09-03",
+"updated": "2026-09-14",
+"resolved": "2026-09-14",
+"labels": []
+},
+{
+"key": "BC-149",
+"summary": "[ME] Mechanical BOM",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Trung Tin",
+"reporter": "Duy Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 4",
+"future"
+]
+],
+"parent": "BC-144",
+"subtasks": [],
+"links": [],
+"created": "2026-09-03",
+"updated": "2026-09-04",
+"resolved": "2026-09-03",
+"labels": []
+},
+{
+"key": "BC-150",
+"summary": "[ME] Open Issues / Known Gaps",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Trung Tin",
+"reporter": "Duy Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 4",
+"future"
+]
+],
+"parent": "BC-144",
+"subtasks": [],
+"links": [],
+"created": "2026-09-03",
+"updated": "2026-09-14",
+"resolved": "2026-09-14",
+"labels": []
+},
+{
+"key": "BC-151",
+"summary": "[ME] Build / Assembly Notes",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Trung Tin",
+"reporter": "Duy Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 4",
+"future"
+]
+],
+"parent": "BC-144",
+"subtasks": [],
+"links": [],
+"created": "2026-09-03",
+"updated": "2026-09-14",
+"resolved": "2026-09-14",
+"labels": []
+},
+{
+"key": "BC-152",
+"summary": "[ME] Specification Compliance & Deviation Tracking",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Trung Tin",
+"reporter": "Duy Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 4",
+"future"
+]
+],
+"parent": "BC-144",
+"subtasks": [],
+"links": [],
+"created": "2026-09-03",
+"updated": "2026-09-14",
+"resolved": "2026-09-14",
+"labels": []
+},
+{
+"key": "BC-153",
+"summary": "[EVT-1:ID] 5/6 Design Refinement",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Chico Ly",
+"reporter": "Chico Ly",
+"start": "2026-10-05",
+"due": null,
+"sprints": [
+[
+"[EVT] Sprint 8",
+"future"
+]
+],
+"parent": "BC-23",
+"subtasks": [
+"BC-141",
+"BC-142"
+],
+"links": [],
+"created": "2026-09-21",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [
+"IndustrialDesign"
+]
+},
+{
+"key": "BC-154",
+"summary": "Collect design feedbacks & revise solutions from Prototypes",
+"type": "Subtask",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Chico Ly",
+"reporter": "Chico Ly",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 5",
+"future"
+]
+],
+"parent": "BC-57",
+"subtasks": [],
+"links": [
+{
+"dir": "in",
+"label": "is tested by",
+"type": "AgileTest",
+"key": "PRO2-234",
+"scat": "done"
+}
+],
+"created": "2026-09-21",
+"updated": "2026-09-21",
+"resolved": null,
+"labels": [
+"IndustrialDesign"
+]
+},
+{
+"key": "BC-155",
+"summary": "[EVT-1:ME] Design Boss/Lip/Groove to meet with new PCB",
+"type": "Story",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Nguyen Trung Tin",
+"reporter": "Cang Le",
+"start": "2026-10-06",
+"due": "2026-11-27",
+"sprints": [
+[
+"[EVT] Sprint 8",
+"future"
+]
+],
+"parent": "BC-50",
+"subtasks": [
+"BC-166",
+"BC-167",
+"BC-168",
+"BC-169",
+"BC-170"
+],
+"links": [],
+"created": "2026-10-01",
+"updated": "2026-10-06",
+"resolved": null,
+"labels": [
+"Mechanical"
+]
+},
+{
+"key": "BC-156",
+"summary": "[EVT-1:ME] Ceiling Fixture For FW Testing",
+"type": "Story",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Nguyen Trung Tin",
+"reporter": "Cang Le",
+"start": "2026-12-22",
+"due": "2027-01-30",
+"sprints": [],
+"parent": "BC-50",
+"subtasks": [
+"BC-173",
+"BC-174",
+"BC-172",
+"BC-175",
+"BC-176",
+"BC-177"
+],
+"links": [],
+"created": "2026-10-01",
+"updated": "2026-10-06",
+"resolved": null,
+"labels": [
+"Mechanical"
+]
+},
+{
+"key": "BC-157",
+"summary": "[EVT-1:ME] Material Selection Validation (per component)",
+"type": "Story",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Nguyen Trung Tin",
+"reporter": "Cang Le",
+"start": "2026-10-06",
+"due": "2026-10-20",
+"sprints": [
+[
+"[EVT] Sprint 8",
+"future"
+]
+],
+"parent": "BC-50",
+"subtasks": [],
+"links": [],
+"created": "2026-10-01",
+"updated": "2026-10-06",
+"resolved": null,
+"labels": [
+"IndustrialDesign",
+"Mechanical"
+]
+},
+{
+"key": "BC-158",
+"summary": "[EVT-1:ME] Finish & Cosmetic Consistency",
+"type": "Story",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Nguyen Trung Tin",
+"reporter": "Cang Le",
+"start": "2026-10-06",
+"due": "2026-11-27",
+"sprints": [],
+"parent": "BC-50",
+"subtasks": [],
+"links": [],
+"created": "2026-10-01",
+"updated": "2026-10-06",
+"resolved": null,
+"labels": [
+"IndustrialDesign",
+"Mechanical"
+]
+},
+{
+"key": "BC-159",
+"summary": "[EVT-1:ME] Port Cutout & Panel Design (per connector) ",
+"type": "Story",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Nguyen Trung Tin",
+"reporter": "Cang Le",
+"start": "2026-10-20",
+"due": "2026-11-27",
+"sprints": [
+[
+"[EVT] Sprint 8",
+"future"
+]
+],
+"parent": "BC-50",
+"subtasks": [],
+"links": [],
+"created": "2026-10-01",
+"updated": "2026-10-06",
+"resolved": null,
+"labels": [
+"Mechanical"
+]
+},
+{
+"key": "BC-160",
+"summary": "[EVT-1:ME] PCB-to-Panel Alignment ",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Nguyen Trung Tin",
+"reporter": "Cang Le",
+"start": "2026-10-06",
+"due": "2026-11-27",
+"sprints": [],
+"parent": "BC-50",
+"subtasks": [
+"BC-178",
+"BC-179",
+"BC-180",
+"BC-181",
+"BC-182",
+"BC-183",
+"BC-184"
+],
+"links": [],
+"created": "2026-10-01",
+"updated": "2026-10-06",
+"resolved": null,
+"labels": [
+"Mechanical"
+]
+},
+{
+"key": "BC-161",
+"summary": "[EVT-1:ME] Wireless & Bluetooth Antenna Clearance ",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Nguyen Trung Tin",
+"reporter": "Cang Le",
+"start": "2026-11-27",
+"due": "2026-12-21",
+"sprints": [],
+"parent": "BC-50",
+"subtasks": [],
+"links": [],
+"created": "2026-10-01",
+"updated": "2026-10-06",
+"resolved": null,
+"labels": [
+"Electronics",
+"Mechanical"
+]
+},
+{
+"key": "BC-162",
+"summary": "[EVT-1:ME] Thermal Considerations (PoE+ Power Input) ",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Nguyen Trung Tin",
+"reporter": "Cang Le",
+"start": "2026-12-01",
+"due": "2026-12-30",
+"sprints": [],
+"parent": "BC-50",
+"subtasks": [],
+"links": [],
+"created": "2026-10-01",
+"updated": "2026-10-06",
+"resolved": null,
+"labels": [
+"Electronics",
+"Mechanical"
+]
+},
+{
+"key": "BC-163",
+"summary": "[EVT-1:ME] Joint ME/EE Deliverable for EVT ",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Nguyen Trung Tin",
+"reporter": "Cang Le",
+"start": "2027-01-12",
+"due": "2027-01-29",
+"sprints": [],
+"parent": "BC-50",
+"subtasks": [],
+"links": [],
+"created": "2026-10-01",
+"updated": "2026-10-06",
+"resolved": null,
+"labels": []
+},
+{
+"key": "BC-164",
+"summary": "Beacon firmware development",
+"type": "Epic",
+"status": "To Do",
+"scat": "new",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Cang Le",
+"start": "2026-10-05",
+"due": "2027-09-06",
+"sprints": [],
+"parent": null,
+"subtasks": [],
+"links": [],
+"created": "2026-10-02",
+"updated": "2026-10-08",
+"resolved": null,
+"labels": []
+},
+{
+"key": "BC-165",
+"summary": "Field Test+RC",
+"type": "Epic",
+"status": "To Do",
+"scat": "new",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Cang Le",
+"start": "2027-02-08",
+"due": "2027-09-06",
+"sprints": [],
+"parent": null,
+"subtasks": [],
+"links": [],
+"created": "2026-10-02",
+"updated": "2026-10-05",
+"resolved": null,
+"labels": []
+},
+{
+"key": "BC-166",
+"summary": "[EVT-1:ME]Update enclosure CAD for new PCB mounting features",
+"type": "Subtask",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Nguyen Trung Tin",
+"reporter": "Nguyen Trung Tin",
+"start": "2026-10-06",
+"due": "2026-11-27",
+"sprints": [
+[
+"[EVT] Sprint 8",
+"future"
+]
+],
+"parent": "BC-155",
+"subtasks": [],
+"links": [],
+"created": "2026-10-05",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [
+"Mechanical"
+]
+},
+{
+"key": "BC-167",
+"summary": "[EVT-1:ME]Perform PCB-to-enclosure fit and interference check",
+"type": "Subtask",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Nguyen Trung Tin",
+"reporter": "Nguyen Trung Tin",
+"start": "2026-10-06",
+"due": "2026-12-04",
+"sprints": [
+[
+"[EVT] Sprint 8",
+"future"
+]
+],
+"parent": "BC-155",
+"subtasks": [],
+"links": [],
+"created": "2026-10-05",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [
+"Mechanical"
+]
+},
+{
+"key": "BC-168",
+"summary": "[EVT-1:ME]Review mounting tolerance stack-up and retention clearances",
+"type": "Subtask",
+"status": "To Do",
+"scat": "new",
+"assignee": "Nguyen Trung Tin",
+"reporter": "Nguyen Trung Tin",
+"start": "2026-10-20",
+"due": "2026-11-27",
+"sprints": [
+[
+"[EVT] Sprint 8",
+"future"
+]
+],
+"parent": "BC-155",
+"subtasks": [],
+"links": [],
+"created": "2026-10-05",
+"updated": "2026-10-06",
+"resolved": null,
+"labels": [
+"Mechanical"
+]
+},
+{
+"key": "BC-169",
+"summary": "[EVT-1:ME]Validate assembly and serviceability with revised PCB fit",
+"type": "Subtask",
+"status": "To Do",
+"scat": "new",
+"assignee": "Nguyen Trung Tin",
+"reporter": "Nguyen Trung Tin",
+"start": "2026-10-20",
+"due": "2026-11-27",
+"sprints": [
+[
+"[EVT] Sprint 8",
+"future"
+]
+],
+"parent": "BC-155",
+"subtasks": [],
+"links": [],
+"created": "2026-10-05",
+"updated": "2026-10-06",
+"resolved": null,
+"labels": [
+"Mechanical"
+]
+},
+{
+"key": "BC-170",
+"summary": "[EVT-1:ME]Prototype or sample-fit the revised mounting features",
+"type": "Subtask",
+"status": "To Do",
+"scat": "new",
+"assignee": "Nguyen Trung Tin",
+"reporter": "Nguyen Trung Tin",
+"start": "2026-10-22",
+"due": "2026-11-27",
+"sprints": [
+[
+"[EVT] Sprint 8",
+"future"
+]
+],
+"parent": "BC-155",
+"subtasks": [],
+"links": [],
+"created": "2026-10-05",
+"updated": "2026-10-06",
+"resolved": null,
+"labels": []
+},
+{
+"key": "BC-172",
+"summary": "[EVT-1:ME] Validate fixture stability and load capacity",
+"type": "Subtask",
+"status": "To Do",
+"scat": "new",
+"assignee": "Nguyen Trung Tin",
+"reporter": "Nguyen Trung Tin",
+"start": null,
+"due": "2026-12-25",
+"sprints": [],
+"parent": "BC-156",
+"subtasks": [],
+"links": [],
+"created": "2026-10-06",
+"updated": "2026-10-06",
+"resolved": null,
+"labels": []
+},
+{
+"key": "BC-173",
+"summary": "[EVT-1:ME] Define fixture mechanical requirements and test interfaces",
+"type": "Subtask",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Nguyen Trung Tin",
+"reporter": "Nguyen Trung Tin",
+"start": "2026-10-06",
+"due": "2026-11-27",
+"sprints": [],
+"parent": "BC-156",
+"subtasks": [],
+"links": [],
+"created": "2026-10-06",
+"updated": "2026-10-06",
+"resolved": null,
+"labels": []
+},
+{
+"key": "BC-174",
+"summary": "[EVT-1:ME] Design adjustable ceiling-fixture concept and CAD",
+"type": "Subtask",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Nguyen Trung Tin",
+"reporter": "Nguyen Trung Tin",
+"start": "2026-10-08",
+"due": "2026-12-31",
+"sprints": [],
+"parent": "BC-156",
+"subtasks": [],
+"links": [],
+"created": "2026-10-06",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": []
+},
+{
+"key": "BC-175",
+"summary": "[EVT-1:ME] Add drop-ceiling tile clip and drywall screw mount adapters",
+"type": "Subtask",
+"status": "To Do",
+"scat": "new",
+"assignee": "Nguyen Trung Tin",
+"reporter": "Nguyen Trung Tin",
+"start": null,
+"due": "2026-12-25",
+"sprints": [],
+"parent": "BC-156",
+"subtasks": [],
+"links": [],
+"created": "2026-10-06",
+"updated": "2026-10-06",
+"resolved": null,
+"labels": []
+},
+{
+"key": "BC-176",
+"summary": "[EVT-1:ME] Prototype and bench-test fixture repeatability",
+"type": "Subtask",
+"status": "To Do",
+"scat": "new",
+"assignee": "Nguyen Trung Tin",
+"reporter": "Nguyen Trung Tin",
+"start": null,
+"due": "2026-12-25",
+"sprints": [],
+"parent": "BC-156",
+"subtasks": [],
+"links": [],
+"created": "2026-10-06",
+"updated": "2026-10-06",
+"resolved": null,
+"labels": []
+},
+{
+"key": "BC-177",
+"summary": "[EVT-1:ME] Verify acoustic transparency and non-reflective fixture materials",
+"type": "Subtask",
+"status": "To Do",
+"scat": "new",
+"assignee": "Nguyen Trung Tin",
+"reporter": "Nguyen Trung Tin",
+"start": null,
+"due": "2026-12-25",
+"sprints": [],
+"parent": "BC-156",
+"subtasks": [],
+"links": [],
+"created": "2026-10-06",
+"updated": "2026-10-06",
+"resolved": null,
+"labels": []
+},
+{
+"key": "BC-178",
+"summary": "[EVT-1:ME] Confirm PCB connector datum and enclosure reference dimensions",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Trung Tin",
+"reporter": "Nguyen Trung Tin",
+"start": "2026-10-06",
+"due": "2026-10-09",
+"sprints": [],
+"parent": "BC-160",
+"subtasks": [],
+"links": [],
+"created": "2026-10-06",
+"updated": "2026-10-06",
+"resolved": "2026-10-06",
+"labels": [
+"Mechanical"
+]
+},
+{
+"key": "BC-179",
+"summary": "[EVT-1:ME] Update panel cutout CAD for LAN, USB-C, and reset access",
+"type": "Subtask",
+"status": "To Do",
+"scat": "new",
+"assignee": "Nguyen Trung Tin",
+"reporter": "Nguyen Trung Tin",
+"start": "2026-10-20",
+"due": "2026-10-30",
+"sprints": [],
+"parent": "BC-160",
+"subtasks": [],
+"links": [],
+"created": "2026-10-06",
+"updated": "2026-10-06",
+"resolved": null,
+"labels": [
+"Mechanical"
+]
+},
+{
+"key": "BC-180",
+"summary": "[EVT-1:ME] Check enclosure-to-PCB interference across assembly variations",
+"type": "Subtask",
+"status": "To Do",
+"scat": "new",
+"assignee": "Nguyen Trung Tin",
+"reporter": "Nguyen Trung Tin",
+"start": "2026-10-20",
+"due": "2026-11-10",
+"sprints": [],
+"parent": "BC-160",
+"subtasks": [],
+"links": [],
+"created": "2026-10-06",
+"updated": "2026-10-06",
+"resolved": null,
+"labels": []
+},
+{
+"key": "BC-181",
+"summary": "[EVT-1:ME] Prototype or sample-fit the connector opening alignment",
+"type": "Subtask",
+"status": "To Do",
+"scat": "new",
+"assignee": "Nguyen Trung Tin",
+"reporter": "Nguyen Trung Tin",
+"start": "2026-11-20",
+"due": "2026-11-27",
+"sprints": [],
+"parent": "BC-160",
+"subtasks": [],
+"links": [],
+"created": "2026-10-06",
+"updated": "2026-10-06",
+"resolved": null,
+"labels": [
+"Mechanical"
+]
+},
+{
+"key": "BC-182",
+"summary": "[EVT-1:ME] Review assembly and service access for connector installation",
+"type": "Subtask",
+"status": "To Do",
+"scat": "new",
+"assignee": "Nguyen Trung Tin",
+"reporter": "Nguyen Trung Tin",
+"start": "2026-11-02",
+"due": "2026-11-27",
+"sprints": [],
+"parent": "BC-160",
+"subtasks": [],
+"links": [],
+"created": "2026-10-06",
+"updated": "2026-10-06",
+"resolved": null,
+"labels": [
+"Mechanical"
+]
+},
+{
+"key": "BC-183",
+"summary": "[EVT-1:ME] Perform connector tolerance stack-up analysis",
+"type": "Subtask",
+"status": "To Do",
+"scat": "new",
+"assignee": "Nguyen Trung Tin",
+"reporter": "Nguyen Trung Tin",
+"start": "2026-11-20",
+"due": "2026-11-27",
+"sprints": [],
+"parent": "BC-160",
+"subtasks": [],
+"links": [],
+"created": "2026-10-06",
+"updated": "2026-10-06",
+"resolved": null,
+"labels": []
+},
+{
+"key": "BC-184",
+"summary": "[EVT-1:ME] Validate reset-button actuation and access through the enclosure",
+"type": "Subtask",
+"status": "To Do",
+"scat": "new",
+"assignee": "Nguyen Trung Tin",
+"reporter": "Nguyen Trung Tin",
+"start": "2026-11-20",
+"due": "2026-11-27",
+"sprints": [],
+"parent": "BC-160",
+"subtasks": [],
+"links": [],
+"created": "2026-10-06",
+"updated": "2026-10-06",
+"resolved": null,
+"labels": [
+"Mechanical"
+]
+},
+{
+"key": "BC-185",
+"summary": "[POC:FW] use RW612 dev board (WiFi+BLE) to connect with cloud for data exchange",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Phi Tuong",
+"reporter": "Cang Le",
+"start": "2026-07-25",
+"due": null,
+"sprints": [],
+"parent": "BC-106",
+"subtasks": [
+"BC-137",
+"BC-138"
+],
+"links": [],
+"created": "2026-10-06",
+"updated": "2026-10-06",
+"resolved": "2026-10-06",
+"labels": []
+},
+{
+"key": "BC-186",
+"summary": "[EVT-1] Hardware architecture",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Phong.ngoc.nguyen",
+"reporter": "Cang Le",
+"start": "2026-09-30",
+"due": "2026-10-02",
+"sprints": [],
+"parent": "BC-38",
+"subtasks": [],
+"links": [],
+"created": "2026-10-08",
+"updated": "2026-10-08",
+"resolved": "2026-10-08",
+"labels": []
+},
+{
+"key": "BC-187",
+"summary": "[EVT-1] Power management for system",
+"type": "Story",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Nguyen Manh Tuan",
+"reporter": "Cang Le",
+"start": "2026-10-05",
+"due": "2026-10-16",
+"sprints": [],
+"parent": "BC-38",
+"subtasks": [],
+"links": [],
+"created": "2026-10-08",
+"updated": "2026-10-08",
+"resolved": null,
+"labels": []
+},
+{
+"key": "BC-188",
+"summary": "[EVT-1] Ethernet and wireless connectivity (WiFi, Bluetooth)",
+"type": "Story",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Phong.ngoc.nguyen",
+"reporter": "Cang Le",
+"start": "2026-10-05",
+"due": "2026-10-09",
+"sprints": [],
+"parent": "BC-38",
+"subtasks": [],
+"links": [],
+"created": "2026-10-08",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": []
+},
+{
+"key": "BC-189",
+"summary": "[EVT-1] Memory storage",
+"type": "Story",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Phong.ngoc.nguyen",
+"reporter": "Cang Le",
+"start": "2026-10-12",
+"due": "2026-10-23",
+"sprints": [],
+"parent": "BC-38",
+"subtasks": [],
+"links": [],
+"created": "2026-10-08",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": []
+},
+{
+"key": "BC-190",
+"summary": "[EVT-1] Remain functions",
+"type": "Story",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Phong.ngoc.nguyen",
+"reporter": "Cang Le",
+"start": "2026-10-26",
+"due": "2026-10-30",
+"sprints": [],
+"parent": "BC-38",
+"subtasks": [],
+"links": [],
+"created": "2026-10-08",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": []
+},
+{
+"key": "BC-191",
+"summary": "[EVT-1] Sound masking module",
+"type": "Story",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Nguyen Manh Tuan",
+"reporter": "Cang Le",
+"start": "2026-10-19",
+"due": "2026-10-30",
+"sprints": [],
+"parent": "BC-38",
+"subtasks": [],
+"links": [],
+"created": "2026-10-08",
+"updated": "2026-10-08",
+"resolved": null,
+"labels": []
+},
+{
+"key": "BC-192",
+"summary": "Portable firmware architecture and Zephyr port on NUCLEO-H743ZI",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": "2026-06-30",
+"due": "2026-07-25",
+"sprints": [
+[
+"[POC] Sprint 2",
+"future"
+]
+],
+"parent": "BC-164",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-12",
+"resolved": "2026-10-09",
+"labels": [
+"architecture",
+"zenaquiet-beacon",
+"zephyr"
+]
+},
+{
+"key": "BC-193",
+"summary": "Custom ZenaQuiet Beacon V0 board bring-up",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": "2026-09-18",
+"due": "2026-10-04",
+"sprints": [
+[
+"[EVT] Sprint 7",
+"future"
+]
+],
+"parent": "BC-164",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-12",
+"resolved": "2026-10-09",
+"labels": [
+"bsp",
+"hw",
+"zenaquiet-beacon"
+]
+},
+{
+"key": "BC-194",
+"summary": "OLIC-Z southbound server: mutual TLS 1.3 on port 18920",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": "2026-06-30",
+"due": "2026-07-29",
+"sprints": [
+[
+"[POC] Sprint 3",
+"future"
+]
+],
+"parent": "BC-164",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-12",
+"resolved": "2026-10-09",
+"labels": [
+"olicz",
+"security",
+"zenaquiet-beacon"
+]
+},
+{
+"key": "BC-195",
+"summary": "mDNS/DNS-SD discovery of the Beacon",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": "2026-07-27",
+"due": "2026-07-29",
+"sprints": [
+[
+"[POC] Sprint 3",
+"future"
+]
+],
+"parent": "BC-164",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-12",
+"resolved": "2026-10-09",
+"labels": [
+"discovery",
+"network",
+"zenaquiet-beacon"
+]
+},
+{
+"key": "BC-196",
+"summary": "Zone management: roster, seats, floor policy and Pro telemetry",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": "2026-06-30",
+"due": "2026-07-29",
+"sprints": [
+[
+"[POC] Sprint 3",
+"future"
+]
+],
+"parent": "BC-164",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-12",
+"resolved": "2026-10-09",
+"labels": [
+"app",
+"zenaquiet-beacon",
+"zone"
+]
+},
+{
+"key": "BC-197",
+"summary": "Voiceprint consent and crypto-erase",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": "2026-10-09",
+"due": "2026-07-29",
+"sprints": [
+[
+"[POC] Sprint 3",
+"future"
+]
+],
+"parent": "BC-164",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-12",
+"resolved": "2026-10-09",
+"labels": [
+"consent",
+"security",
+"zenaquiet-beacon"
+]
+},
+{
+"key": "BC-198",
+"summary": "Northbound MQTT 3.1.1 link to the cloud broker over TLS",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": "2026-08-26",
+"due": "2026-09-11",
+"sprints": [],
+"parent": "BC-164",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-09",
+"resolved": "2026-10-09",
+"labels": [
+"cloud",
+"mqtt",
+"zenaquiet-beacon"
+]
+},
+{
+"key": "BC-199",
+"summary": "Relay cloud commands to Pros and publish the OLIC-Z endpoint",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": "2026-08-26",
+"due": "2026-10-06",
+"sprints": [
+[
+"[EVT] Sprint 8",
+"future"
+]
+],
+"parent": "BC-164",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-12",
+"resolved": "2026-10-09",
+"labels": [
+"mqtt",
+"relay",
+"zenaquiet-beacon"
+]
+},
+{
+"key": "BC-200",
+"summary": "Status LEDs and WS2812B ring effects with MQTT control",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": null,
+"due": "2026-10-05",
+"sprints": [
+[
+"[EVT] Sprint 8",
+"future"
+]
+],
+"parent": "BC-164",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-12",
+"resolved": "2026-10-09",
+"labels": [
+"hw",
+"led",
+"zenaquiet-beacon"
+]
+},
+{
+"key": "BC-201",
+"summary": "Buzzer control and volume level",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": "2026-10-02",
+"due": "2026-10-02",
+"sprints": [
+[
+"[EVT] Sprint 7",
+"future"
+]
+],
+"parent": "BC-164",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-12",
+"resolved": "2026-10-09",
+"labels": [
+"buzzer",
+"hw",
+"zenaquiet-beacon"
+]
+},
+{
+"key": "BC-202",
+"summary": "Error handling task and recovery logic",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": "2026-10-04",
+"due": "2026-10-05",
+"sprints": [
+[
+"[EVT] Sprint 8",
+"future"
+]
+],
+"parent": "BC-164",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-12",
+"resolved": "2026-10-09",
+"labels": [
+"reliability",
+"runtime",
+"zenaquiet-beacon"
+]
+},
+{
+"key": "BC-203",
+"summary": "MCUboot signed boot with image confirm and rollback",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": "2026-07-29",
+"due": "2026-07-29",
+"sprints": [
+[
+"[POC] Sprint 3",
+"future"
+]
+],
+"parent": "BC-164",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-12",
+"resolved": "2026-10-09",
+"labels": [
+"mcuboot",
+"ota",
+"zenaquiet-beacon"
+]
+},
+{
+"key": "BC-204",
+"summary": "SSH shell over Ethernet for test builds",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": "2026-10-05",
+"due": "2026-10-06",
+"sprints": [
+[
+"[EVT] Sprint 8",
+"future"
+]
+],
+"parent": "BC-164",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-12",
+"resolved": "2026-10-09",
+"labels": [
+"debug",
+"ssh",
+"zenaquiet-beacon"
+]
+},
+{
+"key": "BC-205",
+"summary": "Test tools: Pro simulator, GUI console, MQTT probe broker, test PKI",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": "2026-06-30",
+"due": "2026-07-25",
+"sprints": [
+[
+"[POC] Sprint 2",
+"future"
+]
+],
+"parent": "BC-164",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-12",
+"resolved": "2026-10-09",
+"labels": [
+"test",
+"tools",
+"zenaquiet-beacon"
+]
+},
+{
+"key": "BC-206",
+"summary": "Production ECDSA-P256 image signing key",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": "2026-10-12",
+"due": "2026-10-16",
+"sprints": [
+[
+"[EVT] Sprint 8",
+"future"
+]
+],
+"parent": "BC-164",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [
+"ota",
+"security",
+"zenaquiet-beacon"
+]
+},
+{
+"key": "BC-207",
+"summary": "On-target OTA test: flash, swap, confirm and rollback",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": "2026-10-19",
+"due": "2026-10-23",
+"sprints": [],
+"parent": "BC-164",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-09",
+"resolved": null,
+"labels": [
+"ota",
+"test",
+"zenaquiet-beacon"
+]
+},
+{
+"key": "BC-208",
+"summary": "Relay task timeout and result correlation",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": "2026-10-19",
+"due": "2026-10-23",
+"sprints": [],
+"parent": "BC-164",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-09",
+"resolved": null,
+"labels": [
+"relay",
+"reliability",
+"zenaquiet-beacon"
+]
+},
+{
+"key": "BC-209",
+"summary": "Production hardening: disable SSH and provision production PKI",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": "2026-10-26",
+"due": "2026-10-30",
+"sprints": [],
+"parent": "BC-164",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-09",
+"resolved": null,
+"labels": [
+"provisioning",
+"security",
+"zenaquiet-beacon"
+]
+},
+{
+"key": "BC-210",
+"summary": "OTA firmware download over MQTT",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": "2026-10-26",
+"due": "2026-11-06",
+"sprints": [],
+"parent": "BC-164",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-09",
+"resolved": null,
+"labels": [
+"mqtt",
+"ota",
+"zenaquiet-beacon"
+]
+},
+{
+"key": "BC-211",
+"summary": "Beacon field test plan and RC build definition",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": "2026-11-09",
+"due": "2026-11-13",
+"sprints": [],
+"parent": "BC-165",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-09",
+"resolved": null,
+"labels": [
+"field-test",
+"rc",
+"zenaquiet-beacon"
+]
+},
+{
+"key": "BC-212",
+"summary": "Field test: Pro discovery, mTLS join, zone membership and reconnection",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": "2026-11-16",
+"due": "2026-11-20",
+"sprints": [],
+"parent": "BC-165",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-09",
+"resolved": null,
+"labels": [
+"field-test",
+"olicz",
+"zenaquiet-beacon"
+]
+},
+{
+"key": "BC-213",
+"summary": "Field test: MQTT commands, relay, telemetry and availability",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": "2026-11-16",
+"due": "2026-11-20",
+"sprints": [],
+"parent": "BC-165",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-09",
+"resolved": null,
+"labels": [
+"field-test",
+"mqtt",
+"zenaquiet-beacon"
+]
+},
+{
+"key": "BC-214",
+"summary": "Field test: consent withdrawal and crypto-erase across the zone",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": "2026-11-23",
+"due": "2026-11-27",
+"sprints": [],
+"parent": "BC-165",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-09",
+"resolved": null,
+"labels": [
+"consent",
+"field-test",
+"zenaquiet-beacon"
+]
+},
+{
+"key": "BC-215",
+"summary": "Field test: extended operation and recovery",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": "2026-11-16",
+"due": "2026-11-27",
+"sprints": [],
+"parent": "BC-165",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-09",
+"resolved": null,
+"labels": [
+"field-test",
+"stability",
+"zenaquiet-beacon"
+]
+},
+{
+"key": "BC-216",
+"summary": "Field test: signed-image boot and rollback",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": "2026-11-23",
+"due": "2026-11-27",
+"sprints": [],
+"parent": "BC-165",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-09",
+"resolved": null,
+"labels": [
+"field-test",
+"ota",
+"zenaquiet-beacon"
+]
+},
+{
+"key": "BC-217",
+"summary": "Beacon RC validation report and Go/No-Go",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": "2026-11-30",
+"due": "2026-12-04",
+"sprints": [],
+"parent": "BC-165",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-09",
+"resolved": null,
+"labels": [
+"field-test",
+"rc",
+"zenaquiet-beacon"
+]
+}
+]
+}
