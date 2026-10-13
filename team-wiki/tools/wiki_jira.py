@@ -20,6 +20,9 @@ Commands (run with python3 -I):
       heatmap.md, epics.md, stages.md, notes.md (things for a human look, not rule hits), summary.txt
   diff --project ZenaQuiet-Pro2 --work WORK [--date D]
       Compares the snapshot for D with the newest earlier snapshot; writes WORK/diff.md
+  rollup --work WORK [--date D]
+      Portfolio roll-up across every active product with a stage schedule (settings: yaml block in
+      knowledge/portfolio/INDEX.md); writes WORK/rollup*.md, rollup.json, rollup_summary.txt
 """
 import argparse, calendar, glob, json, os, re, sys
 from collections import Counter, defaultdict
@@ -522,6 +525,7 @@ def cmd_analyze(a):
                epics=ep, stages=stg, months=mon, heat=heat, undated=dict(undated), inverted_excluded=inverted,
                orphans=orph, notes=notes, people_not_in_reference=people, risk_rows=len(rows), hygiene_rows=len(dd) + len(hyg),
                open_by_assignee=Counter(o['assignee'] or 'Unassigned' for o in openi).most_common(),
+               issue_stage={o['key']: o['stage'] for o in I},
                risks={k: dict(sev=sev[k], rules=R[k], info=info[k]) for k in rows})
     json.dump(res, open(os.path.join(W, 'results.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=1, default=str)
     sc = res['severity']
@@ -570,12 +574,309 @@ def cmd_diff(a):
     print(msg)
 
 
+# ----------------------------------------------------------------- rollup
+def active_folders():
+    """Folders marked Yes in the CLAUDE.md ## Projects table."""
+    text = open(os.path.join(ROOT, 'CLAUDE.md'), encoding='utf-8').read()
+    out = []
+    for head, rows in md_tables(text):
+        if rows and rows[0][:2] == ['Folder', 'Active']:
+            out += [r[0].strip('`') for r in rows[1:] if r[1].strip().lower() == 'yes']
+    return out
+
+
+def snap_on_or_before(folder, day):
+    fs = sorted(os.path.basename(f)[:10] for f in glob.glob(os.path.join(DATA, folder, '*.json')))
+    ok = [f for f in fs if f <= day]
+    return ok[-1] if ok else None
+
+
+def snap_on_or_after(folder, day):
+    fs = sorted(os.path.basename(f)[:10] for f in glob.glob(os.path.join(DATA, folder, '*.json')))
+    ok = [f for f in fs if f >= day]
+    return ok[0] if ok else None
+
+
+def cmd_rollup(a):
+    """Portfolio roll-up: every active product with a stage schedule, from snapshots only.
+    Slip is measured against the stage schedule in reference.md (the plan), never against a snapshot.
+    Settings: the yaml block in knowledge/portfolio/INDEX.md (bulk_redate_share, pace_min_done,
+    pace_min_days, exclude_same_day_closed, lookahead_days). Writes WORK/rollup*.md, rollup.json, rollup_summary.txt."""
+    import contextlib, io
+    cfg = load_config('portfolio')
+    BULK = float(cfg.get('bulk_redate_share') or 0.2)
+    PMIN_DONE = int(cfg.get('pace_min_done') or 5)
+    PMIN_DAYS = int(cfg.get('pace_min_days') or 28)
+    LOOK = int(cfg.get('lookahead_days') or 14)
+    SAMEDAY = (cfg.get('exclude_same_day_closed') or 'true').lower() != 'false'
+    TODAY = D(a.date)
+    W = a.work
+    os.makedirs(W, exist_ok=True)
+    act = active_folders()
+    products, support, P, flags = [], [], {}, []
+    for f in act:
+        (products if load_reference(f)[0] else support).append(f)
+
+    for f in products:
+        STG = load_reference(f)[0]
+        sd = snap_on_or_before(f, a.date)
+        if not sd:
+            flags.append(f'{f}: no snapshot on or before {a.date}; left out'); continue
+        if sd != a.date:
+            flags.append(f'{f}: newest snapshot is {sd}, not {a.date} (stale)')
+        sub = os.path.join(W, f)
+        with contextlib.redirect_stdout(io.StringIO()):
+            cmd_analyze(argparse.Namespace(project=f, date=sd, work=sub))
+        res = json.load(open(os.path.join(sub, 'results.json'), encoding='utf-8'))
+        I = load_snapshot(f, sd)
+        by = {o['key']: o for o in I}
+        stage = res['issue_stage']
+        state = lambda o: {'done': 'Done', 'indeterminate': 'In Progress', 'new': 'To Do'}[o['scat']]
+        stories = [o for o in I if o['type'] == 'Story']
+        subtype = next((o['type'] for o in I if o['type'].lower().replace('-', '') == 'subtask'), 'Subtask')
+        cur, nxt, gate = res['current_stage'], res['next_stage'], D(res['gate']) if res['gate'] else None
+
+        def adjusted_done(s, s0):
+            """Done Story that counts as progress in its stage, and why not if it doesn't."""
+            if state(s) != 'Done': return False, None
+            kids = [by[k] for k in s['subtasks'] if k in by]
+            if any(state(k) != 'Done' for k in kids): return False, 'Done with open Subtasks'
+            if s['resolved'] and D(s['resolved']) < s0: return False, 'closed before the stage started'
+            if SAMEDAY and s['resolved'] and s['created'] and (D(s['resolved']) - D(s['created'])).days <= 1:
+                return False, 'created and closed within a day (logged after the fact)'
+            return True, None
+
+        stages = []
+        for st in ORDER:
+            if st not in STG: continue
+            s0, s1 = STG[st]
+            ch = [s for s in stories if stage.get(s['key']) == st]
+            done = [s for s in ch if state(s) == 'Done']
+            adj, excl = [], Counter()
+            for s in ch:
+                ok, why = adjusted_done(s, s0)
+                if ok: adj.append(s)
+                elif why: excl[why] += 1
+            n = len(ch)
+            exp = 100.0 if TODAY > s1 else (0.0 if TODAY < s0 else 100 * (TODAY - s0).days / max((s1 - s0).days, 1))
+            raw_p = round(100 * len(done) / n, 1) if n else None
+            adj_p = round(100 * len(adj) / n, 1) if n else None
+            openst = [s for s in ch if state(s) != 'Done']
+            planned = [s for s in ch if s['assignee'] and any(by[k]['start'] and by[k]['due'] for k in s['subtasks'] if k in by)]
+            cov = round(100 * len(planned) / n, 1) if n else None
+            row = dict(stage=st, start=str(s0), end=str(s1), stories=n, done=len(done), adj_done=len(adj),
+                       in_progress=sum(state(s) == 'In Progress' for s in ch), expected=round(exp, 1), raw=raw_p, adj=adj_p,
+                       excluded=dict(excl), planned=len(planned), coverage=cov,
+                       unowned=sorted([s['key'] for s in openst if not s['assignee']], key=lambda k: int(k.split('-')[1])),
+                       no_subtasks=sorted([s['key'] for s in openst if not s['subtasks']], key=lambda k: int(k.split('-')[1])))
+            if TODAY > s1:
+                row['status'] = 'Done' if not openst else f'Carryover ({len(openst)} open)'
+            elif TODAY < s0:
+                row['status'] = 'Not started'
+            else:
+                gap = exp - (adj_p or 0)
+                # pace: adjusted Stories closed inside this stage window, per day elapsed
+                el = max((TODAY - s0).days, 1)
+                rate = len(adj) / el
+                conf = len(adj) >= PMIN_DONE and el >= PMIN_DAYS
+                fc = (TODAY + timedelta(days=round(len(openst) / rate))) if rate > 0 else None
+                row.update(gap=round(gap, 1), pace_per_week=round(rate * 7, 2), pace_confident=conf,
+                           forecast=str(fc) if fc else None,
+                           forecast_slip=((fc - s1).days if fc else None))
+                late = conf and fc and fc > s1
+                row['status'] = 'Behind' if (gap > 25 or late) else ('At risk' if gap >= 15 else 'On track')
+            # slip vs the planned stage end (reference.md ## Stage schedule)
+            if TODAY > s1 and not openst and done:
+                fin = max((D(s['resolved']) for s in done if s['resolved']), default=None)
+                row['slip_days'] = max(0, (fin - s1).days) if fin else None
+                row['slip_note'] = (f"finished {fin}" + (f", +{(fin - s1).days}d late" if fin > s1 else ', on time')) if fin else 'finish date unknown'
+            elif TODAY > s1 and openst:
+                row['slip_days'] = (TODAY - s1).days
+                row['slip_note'] = f"{len(openst)} Stories still open, +{(TODAY - s1).days}d past plan so far"
+            elif s0 <= TODAY <= s1:
+                fs = row.get('forecast_slip')
+                row['slip_days'] = fs if (fs is not None and row.get('pace_confident')) else None
+                row['slip_note'] = ('forecast ' + ('+' if fs > 0 else '') + f"{fs}d" + ('' if row.get('pace_confident') else ' (low confidence)')) if fs is not None else 'no forecast yet'
+            else:
+                row['slip_days'], row['slip_note'] = None, '—'
+            stages.append(row)
+
+        # ticket slip vs the plan: open Stories/Subtasks due after their stage's planned end; Epics due after MP end
+        slip = []
+        for o in I:
+            if o['scat'] == 'done' or not o['due']: continue
+            st = stage.get(o['key'])
+            end = STG['MP'][1] if o['type'] == 'Epic' else (STG[st][1] if st in STG else None)
+            if end and D(o['due']) > end:
+                slip.append(dict(key=o['key'], type=o['type'], stage='Epic→MP' if o['type'] == 'Epic' else st,
+                                 due=o['due'], plan_end=str(end), days=(D(o['due']) - end).days))
+        slip.sort(key=lambda x: (-x['days'], int(x['key'].split('-')[1])))
+        prev = [x for x in sorted(os.path.basename(p)[:10] for p in glob.glob(os.path.join(DATA, f, '*.json'))) if x < sd]
+        redate = None
+        if prev:
+            old = {o['key']: o for o in load_snapshot(f, prev[-1])}
+            op = [o for o in I if o['scat'] != 'done' and o['key'] in old]
+            ch = [o for o in op if (o['start'], o['due']) != (old[o['key']]['start'], old[o['key']]['due'])]
+            share = len(ch) / len(op) if op else 0
+            later = sorted([dict(key=o['key'], type=o['type'], was=old[o['key']]['due'], now=o['due'], days=(D(o['due']) - D(old[o['key']]['due'])).days)
+                            for o in op if o['due'] and old[o['key']]['due'] and D(o['due']) > D(old[o['key']]['due'])], key=lambda x: -x['days'])
+            redate = dict(since=prev[-1], changed=len(ch), open=len(op), share=round(100 * share, 1), bulk=share > BULK, later=later)
+            if share > BULK:
+                flags.append(f'{f}: {len(ch)} of {len(op)} open items ({round(100*share)}%) re-dated since {prev[-1]} (bulk re-plan?)')
+        # outlook to MP: current-stage forecast slip carried forward; later stages assumed to keep their length
+        cs = next((s for s in stages if s['stage'] == cur), None)
+        if cs and cs.get('pace_confident') and cs.get('forecast_slip') is not None:
+            mp = dict(kind='forecast', slip=max(0, cs['forecast_slip']), date=str(STG['MP'][1] + timedelta(days=max(0, cs['forecast_slip']))))
+        else:
+            mp = dict(kind='not enough data', slip=None, date=None)
+        carry = [s for s in stages if s['status'].startswith('Carryover')]
+        ns = next((s for s in stages if s['stage'] == nxt), None)
+        if cs is None: outlook = 'n/a'
+        elif cs['status'] == 'Behind' or (mp['slip'] or 0) > 0: outlook = 'Behind'
+        elif cs['status'] == 'At risk' or carry: outlook = 'At risk'
+        else: outlook = 'On track'
+        if outlook == 'On track' and mp['kind'] != 'forecast': outlook = 'On track (early, low confidence)'
+        openi = [o for o in I if o['scat'] != 'done']
+        P[f] = dict(folder=f, key=I[0]['key'].split('-')[0] if I else '', snapshot=sd, current=cur, next=nxt,
+                    gate=res['gate'], days_to_gate=res['days_to_gate'], health=res['health'], severity=res['severity'],
+                    stages=stages, slip=slip, redate=redate, mp=mp, outlook=outlook,
+                    next_coverage=ns['coverage'] if ns else None, mp_end=str(STG['MP'][1]),
+                    open_by_assignee=Counter(o['assignee'] for o in openi if o['assignee']),
+                    unassigned=sum(1 for o in openi if not o['assignee']))
+
+    # people across products
+    people = defaultdict(dict)
+    for f, p in P.items():
+        for n, c in p['open_by_assignee'].items(): people[n][f] = c
+    multi = sorted([(n, d) for n, d in people.items() if len(d) >= 2], key=lambda x: -sum(x[1].values()))
+    # shared gates
+    gates = defaultdict(list)
+    for f, p in P.items():
+        if p['gate']: gates[p['gate']].append(f'{f} ({p["current"]})')
+    # support projects (Research): open items, product links, due soon
+    sup = {}
+    pkeys = {p['key'] for p in P.values()}
+    for f in support:
+        sd = snap_on_or_before(f, a.date)
+        if not sd: continue
+        I = load_snapshot(f, sd)
+        op = [o for o in I if o['scat'] != 'done']
+        linked = [o for o in op if any(l['key'].split('-')[0] in pkeys for l in o['links'])]
+        soon = [o for o in op if o['due'] and TODAY <= D(o['due']) <= TODAY + timedelta(LOOK)]
+        over = [o for o in op if o['due'] and D(o['due']) < TODAY]
+        sup[f] = dict(snapshot=sd, open=len(op), linked=len(linked), unlinked=len(op) - len(linked),
+                      due_soon=[(o['key'], o['due'], o['summary'].strip()) for o in soon],
+                      overdue=[(o['key'], o['due'], o['summary'].strip()) for o in over])
+
+    # ---- outputs
+    kk = lambda k: int(k.split('-')[1])
+    url = lambda k: f'[{k}]({BROWSE}{k})'
+    final = max((D(p['mp_end']) for p in P.values()), default=None)
+    on = [f for f, p in P.items() if p['outlook'].startswith('On track')]
+    fc = [(p['mp']['slip'], f) for f, p in P.items() if p['mp']['slip'] is not None]
+    worst = max(fc) if fc else None
+    nextgate = min(gates) if gates else None
+    kpi = [f'- Days to final deadline ({final}): {(final - TODAY).days}' if final else '- Final deadline: n/a',
+           f'- On track for MP: {len(on)} of {len(P)}' + (' (' + ', '.join(f + (' — low confidence' if P[f]['outlook'] != 'On track' else '') for f in on) + ')' if on else ''),
+           f'- Worst MP forecast slip: ' + (f'{worst[1]} +{worst[0]}d' if worst and worst[0] > 0 else
+                                            ('none' if fc else 'not enough data yet (pace needs more closed Stories or more time)')),
+           f'- Next gate: {nextgate} ({(D(nextgate) - TODAY).days}d): ' + ', '.join(gates[nextgate]) if nextgate else '- Next gate: n/a']
+    open(os.path.join(W, 'rollup_kpi.md'), 'w', encoding='utf-8').write('\n'.join(kpi) + '\n')
+
+    L = ['| Product | Stage | Gate (days) | Readiness raw / adjusted | Expected | Stage status | Pace forecast for gate | MP outlook | Slip vs schedule | Next stage planned | HIGH / MED | Health |',
+         '| --- ' * 12 + '|']
+    for f, p in P.items():
+        cs = next((s for s in p['stages'] if s['stage'] == p['current']), {})
+        if cs.get('forecast'):
+            pf = f"{cs['forecast']} ({'+' if cs['forecast_slip'] > 0 else ''}{cs['forecast_slip']}d)" + ('' if cs['pace_confident'] else ', low confidence')
+        else:
+            pf = 'no adjusted progress yet'
+        sl = f"{len(p['slip'])} open items past stage end, max +{p['slip'][0]['days']}d" if p['slip'] else 'none past stage end'
+        mpo = p['outlook'] + (f", MP {p['mp']['date']}" if p['mp']['date'] else ', forecast n/a')
+        sev = p['severity']
+        L.append(f"| {f} | {p['current']} | {p['gate']} ({p['days_to_gate']}) | {cs.get('raw')}% / {cs.get('adj')}% | {cs.get('expected')}% | {cs.get('status')} | {pf} | {mpo} | {sl} | "
+                 f"{str(p['next_coverage']) + '%' if p['next_coverage'] is not None else 'n/a'} | {sev.get('HIGH', 0)} / {sev.get('MEDIUM', 0)} | {p['health']} |")
+    open(os.path.join(W, 'rollup_products.md'), 'w', encoding='utf-8').write('\n'.join(L) + '\n')
+
+    S = []
+    for f, p in P.items():
+        S += [f'### {f}', '', '| Stage | Planned window | Stories done (adjusted) / total | Expected | Raw | Adjusted | Planned (owner + dated Subtasks) | Status | Slip vs plan |', '| --- ' * 9 + '|']
+        for s in p['stages']:
+            S.append(f"| {s['stage']} | {s['start']} → {s['end']} | {s['done']} ({s['adj_done']}) / {s['stories']} | {s['expected']}% | "
+                     f"{s['raw'] if s['raw'] is not None else '—'}% | {s['adj'] if s['adj'] is not None else '—'}% | {s['planned']}/{s['stories']} | {s['status']} | {s['slip_note']} |")
+        cs = next((s for s in p['stages'] if s['stage'] == p['current']), None)
+        if cs and cs['excluded']:
+            S.append(''); S.append('Not counted in adjusted readiness: ' + '; '.join(f'{v} {k}' for k, v in cs['excluded'].items()) + '.')
+        if cs:
+            S.append(''); S.append(f"Pace in {cs['stage']}: {cs.get('pace_per_week')} adjusted Stories/week" +
+                                   ('' if cs.get('pace_confident') else f' (low confidence: needs ≥{PMIN_DONE} closed and ≥{PMIN_DAYS} days in stage)') + '.')
+            if cs['unowned']: S.append(f"Open {cs['stage']} Stories with no owner ({len(cs['unowned'])}): " + ', '.join(cs['unowned'][:10]) + (' …' if len(cs['unowned']) > 10 else '') + '.')
+            if cs['no_subtasks']: S.append(f"Open {cs['stage']} Stories with no Subtasks ({len(cs['no_subtasks'])}): " + ', '.join(cs['no_subtasks'][:10]) + (' …' if len(cs['no_subtasks']) > 10 else '') + '.')
+        S.append('')
+    open(os.path.join(W, 'rollup_stages.md'), 'w', encoding='utf-8').write('\n'.join(S) + '\n')
+
+    G = ['```mermaid', 'gantt', '    dateFormat YYYY-MM-DD', '    axisFormat %b %y', f'    todayMarker on']
+    for f, p in P.items():
+        G.append(f'    section {f.replace("ZenaQuiet-", "")}')
+        for s in p['stages']:
+            tag = 'done' if s['status'] == 'Done' else ('crit' if s['status'].startswith(('Behind', 'Carryover')) else
+                                                         ('active' if s['status'] in ('On track', 'At risk') else ''))
+            lab = f"{s['stage']} {s['status']}" + (f" {s['adj']}%" if s['status'] in ('On track', 'At risk', 'Behind') else '')
+            G.append(f"    {lab.replace(':', '')} :{tag + ', ' if tag else ''}{f[10:].lower()}{s['stage'].lower()}, {s['start']}, {s['end']}")
+    G.append('```')
+    open(os.path.join(W, 'rollup_timeline.md'), 'w', encoding='utf-8').write('\n'.join(G) + '\n')
+
+    X = []
+    for f, p in P.items():
+        X.append(f"### {f}")
+        X.append(f"Open items due after their stage's planned end ([[reference#Stage schedule (per product)]]): " +
+                 (f"{len(p['slip'])}." if p['slip'] else 'none.'))
+        for s_ in p['slip'][:10]:
+            X.append(f"- {url(s_['key'])} ({s_['type']}, {s_['stage']}): due {s_['due']}, plan end {s_['plan_end']} (+{s_['days']}d)")
+        if len(p['slip']) > 10: X.append(f"- + {len(p['slip']) - 10} more")
+        r = p['redate']
+        if r:
+            X.append(f"Dates moved since {r['since']}: {r['changed']} of {r['open']} open items ({r['share']}%)" + (' — BULK RE-DATE' if r['bulk'] else '') +
+                     f"; {len(r['later'])} now due later.")
+            for m in r['later'][:5]:
+                X.append(f"- {url(m['key'])} ({m['type']}): {m['was']} → {m['now']} (+{m['days']}d)")
+            if len(r['later']) > 5: X.append(f"- + {len(r['later']) - 5} more")
+        X.append('')
+    open(os.path.join(W, 'rollup_slip.md'), 'w', encoding='utf-8').write('\n'.join(X) + '\n')
+
+    short = lambda f: f.replace('ZenaQuiet-', '')
+    Q = ['| Person | Open items | By product |', '| --- | --- | --- |']
+    for n, d in multi:
+        Q.append(f"| {n} | {sum(d.values())} | " + ', '.join(f'{short(k)} {v}' for k, v in sorted(d.items(), key=lambda x: -x[1])) + ' |')
+    Q.append(''); Q.append('Unassigned open items: ' + ', '.join(f"{short(f)} {p['unassigned']}" for f, p in P.items()) + '.')
+    open(os.path.join(W, 'rollup_people.md'), 'w', encoding='utf-8').write('\n'.join(Q) + '\n')
+
+    R_ = []
+    for f, s in sup.items():
+        R_.append(f"### {f} (snapshot {s['snapshot']})")
+        R_.append(f"Open {s['open']}; linked to a product ticket {s['linked']}; unlinked {s['unlinked']}.")
+        for k, d_, t in s['overdue']: R_.append(f'- Overdue: {url(k)} due {d_} — {t}')
+        for k, d_, t in s['due_soon']: R_.append(f'- Due within {LOOK}d: {url(k)} due {d_} — {t}')
+        R_.append('')
+    open(os.path.join(W, 'rollup_support.md'), 'w', encoding='utf-8').write('\n'.join(R_) + '\n')
+
+    out = dict(date=a.date, slip_reference='reference.md ## Stage schedule', products=P, support=sup, people_multi=multi, gates=dict(gates), flags=flags)
+    json.dump(out, open(os.path.join(W, 'rollup.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=1, default=str)
+    summ = [f'ROLLUP {a.date} · slip vs stage schedule · products {len(P)} · support {", ".join(sup) or "none"}'] + kpi + \
+           [f"{f}: {p['current']} · {p['outlook']} · adj {next((s['adj'] for s in p['stages'] if s['stage'] == p['current']), None)}% vs exp "
+            f"{next((s['expected'] for s in p['stages'] if s['stage'] == p['current']), None)}% · health {p['health']}" for f, p in P.items()] + \
+           [f'FLAG: {x}' for x in flags]
+    open(os.path.join(W, 'rollup_summary.txt'), 'w', encoding='utf-8').write('\n'.join(summ) + '\n')
+    print('\n'.join(summ))
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sp = ap.add_subparsers(dest='cmd', required=True)
-    for name in ('normalize', 'analyze', 'diff'):
+    for name in ('normalize', 'analyze', 'diff', 'rollup'):
         p = sp.add_parser(name)
-        p.add_argument('--project', required=True, help='wiki folder name, e.g. ZenaQuiet-Pro2')
+        if name != 'rollup':
+            p.add_argument('--project', required=True, help='wiki folder name, e.g. ZenaQuiet-Pro2')
         p.add_argument('--date', default=None, help='ISO date; default = INDEX.md today, else system date')
         if name == 'normalize':
             p.add_argument('--raw-dir', required=True)
@@ -584,6 +885,9 @@ def main():
         else:
             p.add_argument('--work', required=True)
     a = ap.parse_args()
+    if a.cmd == 'rollup':
+        a.date = a.date or load_config('portfolio').get('today') or date.today().isoformat()
+        return cmd_rollup(a)
     if not os.path.isdir(os.path.join(KNOW, a.project)):
         sys.exit(f'Unknown project folder: {a.project}')
     a.date = a.date or load_config(a.project).get('today') or date.today().isoformat()

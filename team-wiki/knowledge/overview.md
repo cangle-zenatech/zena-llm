@@ -5,6 +5,8 @@ updated: 2026-10-13
 
 # Projects Overview
 
+**Portfolio (2026-10-13):** 0 of 4 products clearly on track for 2027-11-15. Pro2, Beacon and Mask are at risk because none of their finished work counts as tracked progress yet, and Headset is on track only at low confidence. See [[portfolio/2026-10-13-rollup]].
+
 One paragraph per active project: what it is and where it stands. Details are on each project's overview page and in its latest weekly report.
 
 ## ZenaQuiet-Pro2

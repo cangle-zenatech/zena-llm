@@ -42,7 +42,8 @@ team-wiki/
 |   +-- assets/                images referenced by sources
 +-- tools/                     shared scripts for the weekly reports
 |   +-- INDEX.md               how to run them; read it before using a script
-|   +-- wiki_jira.py           normalize, analyze, diff (Steps 3-7 of a project INDEX.md)
+|   +-- wiki_jira.py           normalize, analyze, diff (Steps 3-7 of a project INDEX.md);
+|                              rollup (all products, for knowledge/portfolio/)
 +-- data/                      Jira snapshots, one per project per weekly run
 |   +-- <project>/YYYY-MM-DD.json   written by wiki_jira.py; no descriptions; never edit
 +-- knowledge/                 everything you write, linked with [[wikilinks]]
@@ -51,7 +52,11 @@ team-wiki/
     +-- reference.md           stable reference facts: projects and people.
     |                          Add new people under ## People yourself;
     |                          change anything else only when the human agrees
-    +-- overview.md            one paragraph per project: what it is, current state
+    +-- overview.md            one paragraph per project: what it is, current state;
+    |                          one portfolio line at the top
+    +-- portfolio/             main session only: cross-product deadline roll-up
+    |   +-- INDEX.md           roll-up instructions, plan = stage schedule, metrics
+    |   +-- YYYY-MM-DD-rollup.md   one page per weekly run
     +-- glossary.md            every technical term you've explained, in plain words
     +-- log.md                 one line per create/update you make, newest first
     +-- <project>/             one folder per project (list below)
@@ -97,6 +102,9 @@ helper agent per active project, so no single session holds every project's Jira
      anything else in `reference.md` only when the human agrees);
    - look across projects: the same person overloaded on several products, shared PVT/MP crunch,
      cross-project links;
+   - write the portfolio roll-up: follow `knowledge/portfolio/INDEX.md` (runs
+     `tools/wiki_jira.py rollup`, writes `knowledge/portfolio/YYYY-MM-DD-rollup.md` and the
+     portfolio line in `knowledge/overview.md`);
    - give the human one combined summary, with every flag and conflict.
 4. If a helper fails, retry it once. If it fails again, finish the others and report the failure.
 
@@ -129,6 +137,7 @@ SELF-CHECK: n/6 pass (list failures)
 | --------------------------------- | --------------------------------------------------- |
 | `knowledge/<project>/jira/`       | `YYYY-MM-DD-jira.md` e.g. `2026-09-15-jira.md`      |
 | `knowledge/<project>/confluence/` | `<kebab-case-title>.md` e.g. `battery-test-plan.md` |
+| `knowledge/portfolio/`            | `YYYY-MM-DD-rollup.md` e.g. `2026-10-13-rollup.md`  |
 
 ## Changing this file
 

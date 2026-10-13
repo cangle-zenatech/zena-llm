@@ -41,6 +41,17 @@ Paths below are bash paths; `WORK` is a temporary folder (e.g. `outputs/work-<ke
 - Field IDs default to `customfield_10015` (Start date) and `customfield_10020` (Sprint). Pass
   others if Step 1 finds different ones.
 
+### Portfolio roll-up (main session, after all helpers)
+
+`python3 -I tools/wiki_jira.py rollup --work WORK [--date D]`
+
+Reads the newest snapshot (on or before D) of every active project that has a stage schedule, plus
+the stage schedule in `reference.md` (the plan slip is measured against) and the settings in the yaml block of `knowledge/portfolio/INDEX.md`. It re-runs
+`analyze` per product into `WORK/<project>/` and writes `rollup_summary.txt`, `rollup.json`,
+`rollup_kpi.md`, `rollup_products.md`, `rollup_stages.md`, `rollup_timeline.md` (Mermaid gantt),
+`rollup_slip.md`, `rollup_people.md` and `rollup_support.md` (Research). Metric definitions are in
+`knowledge/portfolio/INDEX.md`. Lines starting `FLAG:` must go on the page and in chat.
+
 ## data/ (snapshots)
 
 `data/<Folder>/<YYYY-MM-DD>.json` — one per weekly run, written by `normalize`. Used only for

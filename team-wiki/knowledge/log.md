@@ -2,6 +2,13 @@
 
 One line per change, newest first.
 
+2026-10-13 · updated · [[portfolio/2026-10-13-rollup]], [[portfolio/INDEX]], tools/wiki_jira.py, tools/INDEX.md, CLAUDE.md · human agreed: slip now measured against the stage schedule in [[reference]] (plan), not a 2026-10-13 snapshot; baseline setting removed; stage rows show slip vs plan (Pro2 POC +16d, Beacon POC +15d); snapshot comparison kept as "dates moved this week" warning; page regenerated
+
+2026-10-13 · created · [[portfolio/2026-10-13-rollup]] · first portfolio roll-up (baseline week): Pro2, Beacon, Mask At risk; Headset On track at low confidence; shared gate 2027-02-08; added portfolio line to [[overview]]
+2026-10-13 · created · [[portfolio/INDEX]] · roll-up instructions, baseline 2026-10-13 (re-planned dates, human chose), metric definitions, page template, self-check
+2026-10-13 · updated · CLAUDE.md · human agreed: portfolio/ in folder map and file-name table; main session step 3 now writes the roll-up
+2026-10-13 · updated · tools/wiki_jira.py, tools/INDEX.md · human agreed: new `rollup` command; analyze results.json gains issue_stage (other outputs unchanged, checked on all 5 snapshots)
+
 2026-10-13 · updated · tools/wiki_jira.py, tools/INDEX.md · human agreed: register Team column shows Subtask teams/label (not issue type); gate-impact text is stage-aware (later-stage work no longer "threatens gate"); diff adds title and assignee changes; Research team load counted from labels. Product results unchanged (checked on all 5 snapshots); reported duplicate HS-320 register row not reproduced
 2026-10-13 · updated · [[ZenaQuiet-Headset/jira/2026-10-13-jira]] · reassignments corrected 17 → 14 (new diff output)
 2026-10-13 · updated · [[reference]] · human agreed: filled ## Projects lines for Beacon, Headset, Mask (from project overviews); Beacon cluster size 12 vs 16 flagged
