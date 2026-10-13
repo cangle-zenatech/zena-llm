@@ -2,6 +2,15 @@
 
 One line per change, newest first.
 
+2026-10-13 · updated · [[portfolio/2026-10-13-rollup]], [[portfolio/INDEX]] · human asked: added "What the numbers mean" note (Raw, Adjusted, Expected, with examples) under the Products table; template now requires it; online copy republished with the same note
+
+2026-10-13 · updated · [[portfolio/INDEX]], [[portfolio/2026-10-13-rollup]], [[overview]] · human decided same-day-closed Stories count as progress (exclude_same_day_closed: false); roll-up re-run: Pro2 0% → 27.9%, Beacon 2.8% → 44.4%, Mask 0% → 6.9%, all four On track (low confidence); online copy republished
+
+2026-10-13 · updated · [[portfolio/2026-10-13-rollup]], [[overview]] · human asked for a redo: rollup re-run on today's snapshots (numbers unchanged), page rewritten in one pass per [[portfolio/INDEX]]; overview line now in the INDEX format (2 of 4 on track, low confidence)
+
+2026-10-13 · updated · [[portfolio/2026-10-13-rollup]], [[overview]] · regenerated from the new Beacon snapshot: Beacon At risk → On track (low confidence), adjusted 0% → 2.8%, POC slip +15d → on time (only because BC-82, BC-97, BC-185 left Jira); earlier figures kept in Data Gaps
+2026-10-13 · updated · [[ZenaQuiet-Beacon/jira/2026-10-13-jira]], [[ZenaQuiet-Beacon/overview]], data/ZenaQuiet-Beacon/2026-10-13.json · human asked for a redo; Jira changed during the day (Epic BC-106 tree and BC-113 to BC-117 removed, BC-233 added, BC-206 to BC-210 started, BC-209 Done): 149 → 132 issues, readiness 38.5% → 44.4%, AMBER; changes listed in the report's section 7
+
 2026-10-13 · updated · [[portfolio/2026-10-13-rollup]], [[portfolio/INDEX]], tools/wiki_jira.py, tools/INDEX.md, CLAUDE.md · human agreed: slip now measured against the stage schedule in [[reference]] (plan), not a 2026-10-13 snapshot; baseline setting removed; stage rows show slip vs plan (Pro2 POC +16d, Beacon POC +15d); snapshot comparison kept as "dates moved this week" warning; page regenerated
 
 2026-10-13 · created · [[portfolio/2026-10-13-rollup]] · first portfolio roll-up (baseline week): Pro2, Beacon, Mask At risk; Headset On track at low confidence; shared gate 2027-02-08; added portfolio line to [[overview]]

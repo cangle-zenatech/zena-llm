@@ -3,7 +3,7 @@
 "date": "2026-10-13",
 "start_field": "customfield_10015",
 "sprint_field": "customfield_10020",
-"count": 149,
+"count": 132,
 "issues": [
 {
 "key": "BC-23",
@@ -540,36 +540,6 @@
 ]
 },
 {
-"key": "BC-82",
-"summary": "[POC] use STM32 dev board (Ethernet) to connect with cloud for data exchange",
-"type": "Story",
-"status": "Done",
-"scat": "done",
-"assignee": "Phi Tuong",
-"reporter": "Phi Tuong",
-"start": "2026-06-29",
-"due": "2026-09-21",
-"sprints": [
-[
-"[POC] Sprint 2",
-"future"
-]
-],
-"parent": "BC-106",
-"subtasks": [
-"BC-105",
-"BC-108",
-"BC-122"
-],
-"links": [],
-"created": "2026-07-16",
-"updated": "2026-10-12",
-"resolved": "2026-08-03",
-"labels": [
-"Firmware"
-]
-},
-{
 "key": "BC-83",
 "summary": "[POC] 3D Printing Physical to find the conflict that improve 2nd Printing",
 "type": "Story",
@@ -591,86 +561,6 @@
 "created": "2026-07-16",
 "updated": "2026-10-12",
 "resolved": "2026-08-10",
-"labels": []
-},
-{
-"key": "BC-97",
-"summary": "[POC]  Firmware architecture design (first version)",
-"type": "Story",
-"status": "Done",
-"scat": "done",
-"assignee": "Phi Tuong",
-"reporter": "Cang Le",
-"start": "2026-06-29",
-"due": "2026-09-21",
-"sprints": [
-[
-"[POC] Sprint 3",
-"future"
-]
-],
-"parent": "BC-106",
-"subtasks": [
-"BC-98",
-"BC-99",
-"BC-102",
-"BC-104",
-"BC-109"
-],
-"links": [],
-"created": "2026-07-21",
-"updated": "2026-10-12",
-"resolved": "2026-08-03",
-"labels": [
-"Firmware"
-]
-},
-{
-"key": "BC-98",
-"summary": "[FW] Setup coding environment (build/compile/flash)",
-"type": "Subtask",
-"status": "Done",
-"scat": "done",
-"assignee": "Nguyen Minh Thien",
-"reporter": "Cang Le",
-"start": null,
-"due": null,
-"sprints": [
-[
-"[POC] Sprint 3",
-"future"
-]
-],
-"parent": "BC-97",
-"subtasks": [],
-"links": [],
-"created": "2026-07-21",
-"updated": "2026-07-21",
-"resolved": "2026-07-21",
-"labels": []
-},
-{
-"key": "BC-99",
-"summary": "[FW] Select dev board, MCU",
-"type": "Subtask",
-"status": "Done",
-"scat": "done",
-"assignee": "Phi Tuong",
-"reporter": "Phi Tuong",
-"start": null,
-"due": null,
-"sprints": [
-[
-"[POC] Sprint 3",
-"future"
-]
-],
-"parent": "BC-97",
-"subtasks": [],
-"links": [],
-"created": "2026-07-21",
-"updated": "2026-07-21",
-"resolved": "2026-07-21",
 "labels": []
 },
 {
@@ -722,30 +612,6 @@
 "labels": []
 },
 {
-"key": "BC-102",
-"summary": "[FW] Design beacon software architecture (Zena Quiet Architecture - Beacon)",
-"type": "Subtask",
-"status": "Done",
-"scat": "done",
-"assignee": "Nguyen Minh Thien",
-"reporter": "Phi Tuong",
-"start": null,
-"due": null,
-"sprints": [
-[
-"[POC] Sprint 3",
-"future"
-]
-],
-"parent": "BC-97",
-"subtasks": [],
-"links": [],
-"created": "2026-07-21",
-"updated": "2026-07-21",
-"resolved": "2026-07-21",
-"labels": []
-},
-{
 "key": "BC-103",
 "summary": "[POC] Configure & Synchronize a Zone",
 "type": "Story",
@@ -770,82 +636,6 @@
 "labels": []
 },
 {
-"key": "BC-104",
-"summary": "[FW] Build firmware architecture on a RTOS platform",
-"type": "Subtask",
-"status": "Done",
-"scat": "done",
-"assignee": "Phi Tuong",
-"reporter": "Phi Tuong",
-"start": null,
-"due": null,
-"sprints": [
-[
-"[POC] Sprint 3",
-"future"
-]
-],
-"parent": "BC-97",
-"subtasks": [],
-"links": [],
-"created": "2026-07-21",
-"updated": "2026-07-22",
-"resolved": "2026-07-21",
-"labels": []
-},
-{
-"key": "BC-105",
-"summary": "[FW] Create code firmware for cloud connectivity via Ethernet",
-"type": "Subtask",
-"status": "Done",
-"scat": "done",
-"assignee": "Phi Tuong",
-"reporter": "Phi Tuong",
-"start": "2026-07-17",
-"due": null,
-"sprints": [
-[
-"[POC] Sprint 2",
-"future"
-]
-],
-"parent": "BC-82",
-"subtasks": [],
-"links": [],
-"created": "2026-07-21",
-"updated": "2026-08-05",
-"resolved": "2026-07-22",
-"labels": [
-"Firmware"
-]
-},
-{
-"key": "BC-106",
-"summary": "Connectivity between Cloud & Beacon",
-"type": "Epic",
-"status": "In Progress",
-"scat": "indeterminate",
-"assignee": null,
-"reporter": "Cang Le",
-"start": "2026-06-29",
-"due": "2027-11-15",
-"sprints": [
-[
-"[POC] Sprint 3",
-"future"
-]
-],
-"parent": null,
-"subtasks": [],
-"links": [],
-"created": "2026-07-21",
-"updated": "2026-10-12",
-"resolved": null,
-"labels": [
-"Firmware"
-]
-},
-{
 "key": "BC-107",
 "summary": "Connectivity between Pro & Beacon",
 "type": "Epic",
@@ -865,126 +655,6 @@
 "subtasks": [],
 "links": [],
 "created": "2026-07-21",
-"updated": "2026-10-12",
-"resolved": null,
-"labels": []
-},
-{
-"key": "BC-108",
-"summary": "[FW] Test firmware code for cloud connectivity on MQTTX via Ethernet",
-"type": "Subtask",
-"status": "Done",
-"scat": "done",
-"assignee": "Phi Tuong",
-"reporter": "Phi Tuong",
-"start": null,
-"due": null,
-"sprints": [
-[
-"[POC] Sprint 2",
-"future"
-]
-],
-"parent": "BC-82",
-"subtasks": [],
-"links": [],
-"created": "2026-07-22",
-"updated": "2026-08-03",
-"resolved": "2026-07-27",
-"labels": []
-},
-{
-"key": "BC-109",
-"summary": "[FW] Test RTOS-based firmware architecture for cloud connectivity",
-"type": "Subtask",
-"status": "Done",
-"scat": "done",
-"assignee": "Phi Tuong",
-"reporter": "Phi Tuong",
-"start": null,
-"due": null,
-"sprints": [
-[
-"[POC] Sprint 3",
-"future"
-]
-],
-"parent": "BC-97",
-"subtasks": [],
-"links": [],
-"created": "2026-07-22",
-"updated": "2026-08-03",
-"resolved": "2026-08-03",
-"labels": []
-},
-{
-"key": "BC-113",
-"summary": "[EVT-1] Connect, authenticate, and manage multiple devices",
-"type": "Story",
-"status": "To Do",
-"scat": "new",
-"assignee": null,
-"reporter": "Hung Pham Nguyen",
-"start": "2026-09-21",
-"due": "2027-02-08",
-"sprints": [
-[
-"[EVT] Sprint 7",
-"future"
-]
-],
-"parent": "BC-107",
-"subtasks": [],
-"links": [],
-"created": "2026-07-22",
-"updated": "2026-10-12",
-"resolved": null,
-"labels": []
-},
-{
-"key": "BC-114",
-"summary": "[EVT-1] Relay control commands and collect status",
-"type": "Story",
-"status": "To Do",
-"scat": "new",
-"assignee": null,
-"reporter": "Hung Pham Nguyen",
-"start": "2026-09-21",
-"due": "2027-02-08",
-"sprints": [
-[
-"[EVT] Sprint 7",
-"future"
-]
-],
-"parent": "BC-107",
-"subtasks": [],
-"links": [],
-"created": "2026-07-22",
-"updated": "2026-10-12",
-"resolved": null,
-"labels": []
-},
-{
-"key": "BC-115",
-"summary": "[EVT-1] Direct connections for a session",
-"type": "Story",
-"status": "To Do",
-"scat": "new",
-"assignee": null,
-"reporter": "Hung Pham Nguyen",
-"start": "2026-09-21",
-"due": "2027-02-08",
-"sprints": [
-[
-"[EVT] Sprint 7",
-"future"
-]
-],
-"parent": "BC-107",
-"subtasks": [],
-"links": [],
-"created": "2026-07-22",
 "updated": "2026-10-12",
 "resolved": null,
 "labels": []
@@ -1022,30 +692,6 @@
 "labels": [
 "IndustrialDesign"
 ]
-},
-{
-"key": "BC-117",
-"summary": "[EVT-1] Local room-noise sensing and Instruct to adjust audio",
-"type": "Story",
-"status": "To Do",
-"scat": "new",
-"assignee": null,
-"reporter": "Hung Pham Nguyen",
-"start": "2026-09-21",
-"due": "2027-02-08",
-"sprints": [
-[
-"[EVT] Sprint 7",
-"future"
-]
-],
-"parent": "BC-107",
-"subtasks": [],
-"links": [],
-"created": "2026-07-22",
-"updated": "2026-10-12",
-"resolved": null,
-"labels": []
 },
 {
 "key": "BC-119",
@@ -1098,30 +744,6 @@
 "labels": [
 "IndustrialDesign"
 ]
-},
-{
-"key": "BC-122",
-"summary": "[FW] Test firmware code for cloud connectivity on dashboard via Ethernet",
-"type": "Subtask",
-"status": "Done",
-"scat": "done",
-"assignee": "Phi Tuong",
-"reporter": "Phi Tuong",
-"start": null,
-"due": null,
-"sprints": [
-[
-"[POC] Sprint 2",
-"future"
-]
-],
-"parent": "BC-82",
-"subtasks": [],
-"links": [],
-"created": "2026-07-22",
-"updated": "2026-08-03",
-"resolved": "2026-08-03",
-"labels": []
 },
 {
 "key": "BC-123",
@@ -1400,44 +1022,6 @@
 "created": "2026-07-27",
 "updated": "2026-07-27",
 "resolved": "2026-07-27",
-"labels": []
-},
-{
-"key": "BC-137",
-"summary": "[FW] Test firmware code for cloud connectivity on MQTTX and dashboard via WiFi",
-"type": "Subtask",
-"status": "Done",
-"scat": "done",
-"assignee": "Phi Tuong",
-"reporter": "Phi Tuong",
-"start": null,
-"due": null,
-"sprints": [],
-"parent": "BC-185",
-"subtasks": [],
-"links": [],
-"created": "2026-08-03",
-"updated": "2026-10-06",
-"resolved": "2026-08-05",
-"labels": []
-},
-{
-"key": "BC-138",
-"summary": "[FW] Setup env and create code firmware for cloud connectivity via WiFi",
-"type": "Subtask",
-"status": "Done",
-"scat": "done",
-"assignee": "Phi Tuong",
-"reporter": "Phi Tuong",
-"start": null,
-"due": null,
-"sprints": [],
-"parent": "BC-185",
-"subtasks": [],
-"links": [],
-"created": "2026-08-03",
-"updated": "2026-10-06",
-"resolved": "2026-08-05",
 "labels": []
 },
 {
@@ -2510,28 +2094,6 @@
 ]
 },
 {
-"key": "BC-185",
-"summary": "[POC] use RW612 dev board (WiFi+BLE) to connect with cloud for data exchange",
-"type": "Story",
-"status": "Done",
-"scat": "done",
-"assignee": "Phi Tuong",
-"reporter": "Cang Le",
-"start": "2026-06-29",
-"due": "2026-09-21",
-"sprints": [],
-"parent": "BC-106",
-"subtasks": [
-"BC-137",
-"BC-138"
-],
-"links": [],
-"created": "2026-10-06",
-"updated": "2026-10-12",
-"resolved": "2026-10-06",
-"labels": []
-},
-{
 "key": "BC-186",
 "summary": "[EVT-1] Hardware architecture",
 "type": "Story",
@@ -2569,9 +2131,11 @@
 ],
 "links": [],
 "created": "2026-10-08",
-"updated": "2026-10-12",
+"updated": "2026-10-13",
 "resolved": null,
-"labels": []
+"labels": [
+"Electronic_Electrical"
+]
 },
 {
 "key": "BC-188",
@@ -2592,9 +2156,11 @@
 ],
 "links": [],
 "created": "2026-10-08",
-"updated": "2026-10-12",
+"updated": "2026-10-13",
 "resolved": null,
-"labels": []
+"labels": [
+"Electronic_Electrical"
+]
 },
 {
 "key": "BC-189",
@@ -2615,9 +2181,11 @@
 ],
 "links": [],
 "created": "2026-10-08",
-"updated": "2026-10-12",
+"updated": "2026-10-13",
 "resolved": null,
-"labels": []
+"labels": [
+"Electronic_Electrical"
+]
 },
 {
 "key": "BC-190",
@@ -2638,9 +2206,11 @@
 ],
 "links": [],
 "created": "2026-10-08",
-"updated": "2026-10-12",
+"updated": "2026-10-13",
 "resolved": null,
-"labels": []
+"labels": [
+"Electronic_Electrical"
+]
 },
 {
 "key": "BC-191",
@@ -2661,9 +2231,11 @@
 ],
 "links": [],
 "created": "2026-10-08",
-"updated": "2026-10-12",
+"updated": "2026-10-13",
 "resolved": null,
-"labels": []
+"labels": [
+"Electronic_Electrical"
+]
 },
 {
 "key": "BC-192",
@@ -3056,8 +2628,8 @@
 "key": "BC-206",
 "summary": "[EVT-1] Production ECDSA-P256 image signing key",
 "type": "Story",
-"status": "To Do",
-"scat": "new",
+"status": "In Progress",
+"scat": "indeterminate",
 "assignee": "Nguyen Minh Thien",
 "reporter": "Nguyen Minh Thien",
 "start": "2026-09-21",
@@ -3072,9 +2644,10 @@
 "subtasks": [],
 "links": [],
 "created": "2026-10-09",
-"updated": "2026-10-12",
+"updated": "2026-10-13",
 "resolved": null,
 "labels": [
+"Firmware",
 "ota",
 "security",
 "zenaquiet-beacon"
@@ -3084,8 +2657,8 @@
 "key": "BC-207",
 "summary": "[EVT-1] On-target OTA test: flash, swap, confirm and rollback",
 "type": "Story",
-"status": "To Do",
-"scat": "new",
+"status": "In Progress",
+"scat": "indeterminate",
 "assignee": "Nguyen Minh Thien",
 "reporter": "Nguyen Minh Thien",
 "start": "2026-09-21",
@@ -3095,9 +2668,10 @@
 "subtasks": [],
 "links": [],
 "created": "2026-10-09",
-"updated": "2026-10-12",
+"updated": "2026-10-13",
 "resolved": null,
 "labels": [
+"Firmware",
 "ota",
 "test",
 "zenaquiet-beacon"
@@ -3107,8 +2681,8 @@
 "key": "BC-208",
 "summary": "[EVT-1] Relay task timeout and result correlation",
 "type": "Story",
-"status": "To Do",
-"scat": "new",
+"status": "In Progress",
+"scat": "indeterminate",
 "assignee": "Nguyen Minh Thien",
 "reporter": "Nguyen Minh Thien",
 "start": "2026-09-21",
@@ -3118,9 +2692,10 @@
 "subtasks": [],
 "links": [],
 "created": "2026-10-09",
-"updated": "2026-10-12",
+"updated": "2026-10-13",
 "resolved": null,
 "labels": [
+"Firmware",
 "relay",
 "reliability",
 "zenaquiet-beacon"
@@ -3130,8 +2705,8 @@
 "key": "BC-209",
 "summary": "[EVT-1] Production hardening: disable SSH and provision production PKI",
 "type": "Story",
-"status": "To Do",
-"scat": "new",
+"status": "Done",
+"scat": "done",
 "assignee": "Nguyen Minh Thien",
 "reporter": "Nguyen Minh Thien",
 "start": "2026-09-21",
@@ -3141,9 +2716,10 @@
 "subtasks": [],
 "links": [],
 "created": "2026-10-09",
-"updated": "2026-10-12",
-"resolved": null,
+"updated": "2026-10-13",
+"resolved": "2026-10-13",
 "labels": [
+"Firmware",
 "provisioning",
 "security",
 "zenaquiet-beacon"
@@ -3151,10 +2727,10 @@
 },
 {
 "key": "BC-210",
-"summary": "[EVT-1] OTA firmware download over MQTT",
+"summary": "[EVT-1] OTA firmware download over multi net",
 "type": "Story",
-"status": "To Do",
-"scat": "new",
+"status": "In Progress",
+"scat": "indeterminate",
 "assignee": "Nguyen Minh Thien",
 "reporter": "Nguyen Minh Thien",
 "start": "2026-09-21",
@@ -3164,9 +2740,10 @@
 "subtasks": [],
 "links": [],
 "created": "2026-10-09",
-"updated": "2026-10-12",
+"updated": "2026-10-13",
 "resolved": null,
 "labels": [
+"Firmware",
 "mqtt",
 "ota",
 "zenaquiet-beacon"
@@ -3611,6 +3188,25 @@
 "due": "2026-10-30",
 "sprints": [],
 "parent": "BC-191",
+"subtasks": [],
+"links": [],
+"created": "2026-10-13",
+"updated": "2026-10-13",
+"resolved": null,
+"labels": []
+},
+{
+"key": "BC-233",
+"summary": "[EVT-1] Local room-noise sensing and Instruct to adjust audio",
+"type": "Story",
+"status": "In Testing",
+"scat": "indeterminate",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": null,
+"due": null,
+"sprints": [],
+"parent": "BC-164",
 "subtasks": [],
 "links": [],
 "created": "2026-10-13",

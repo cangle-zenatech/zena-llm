@@ -5,7 +5,7 @@ updated: 2026-10-13
 
 # Projects Overview
 
-**Portfolio (2026-10-13):** 0 of 4 products clearly on track for 2027-11-15. Pro2, Beacon and Mask are at risk because none of their finished work counts as tracked progress yet, and Headset is on track only at low confidence. See [[portfolio/2026-10-13-rollup]].
+**Portfolio (2026-10-13):** 4 of 4 products on track for 2027-11-15, all at low confidence (stages only 22 days old). Pro2 and Beacon are ahead; Mask is the weakest, with most POC work unowned and a pace that would finish POC about 179 days late. See [[portfolio/2026-10-13-rollup]].
 
 One paragraph per active project: what it is and where it stands. Details are on each project's overview page and in its latest weekly report.
 
@@ -15,7 +15,7 @@ A desk unit that keeps private call audio private without a headset ("Voice Lock
 
 ## ZenaQuiet-Beacon
 
-A ceiling unit, powered over the network cable, that coordinates a cluster of Pro units on a floor. It handles voice-consent rules, relays cloud commands and keeps zone settings in sync. **As of 2026-10-13:** in EVT, gate 2027-02-08 (118 days). 38.5% of EVT work items are finished, though most of that jump comes from re-labelling already-finished firmware items, not new work. Health AMBER. Pro-to-Beacon connection work still has no owner. See [[ZenaQuiet-Beacon/overview]] and [[ZenaQuiet-Beacon/jira/2026-10-13-jira|2026-10-13 report]].
+A ceiling unit, powered over the network cable, that coordinates a cluster of Pro units on a floor. It handles voice-consent rules, relays cloud commands and keeps zone settings in sync. **As of 2026-10-13:** in EVT, gate 2027-02-08 (118 days). 44% of EVT work items are finished, though almost all of them were finished firmware items logged in Jira afterwards, not new work. Health AMBER. On 2026-10-13 the cloud-connectivity part of the plan (Epic BC-106) and four unowned Pro-to-Beacon work items were removed from Jira, with no clear replacement yet. See [[ZenaQuiet-Beacon/overview]] and [[ZenaQuiet-Beacon/jira/2026-10-13-jira|2026-10-13 report]].
 
 ## ZenaQuiet-Headset
 

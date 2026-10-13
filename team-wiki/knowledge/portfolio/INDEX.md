@@ -22,7 +22,7 @@ Update this block only when the human agrees. `tools/wiki_jira.py rollup` reads 
 bulk_redate_share: 0.2 # flag a product when more than this share of its open items are re-dated in one week
 pace_min_done: 5 # a pace forecast needs at least this many adjusted Stories closed in the current stage
 pace_min_days: 28 # ...and at least this many days elapsed in the current stage
-exclude_same_day_closed: true # adjusted readiness ignores Stories created and closed within one day
+exclude_same_day_closed: false # human decided 2026-10-13: same-day-closed Stories count as progress
 lookahead_days: 14 # "due soon" window for Research items
 today: "" # ISO date. If blank, use the system date.
 ```
@@ -93,6 +93,9 @@ sources: data/<project>/{snapshot}.json for each product
 
 ## 2. Products
 {rollup_products.md}
+A "What the numbers mean" note under the table: one plain sentence each for Raw, Adjusted and
+Expected, each with a worked example from this week's numbers, plus the At risk / Behind thresholds.
+Keep the same note on the online copy of the page.
 One line per product under the table: the main reason for its status, with ticket keys and a link
 to its weekly report.
 

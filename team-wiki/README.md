@@ -18,10 +18,15 @@
 
 | Goal                    | What to type                                                                |
 | ----------------------- | --------------------------------------------------------------------------- |
-| Weekly reports          | `write weekly status reports` (all projects marked Yes)                     |
+| Weekly reports          | `write weekly status reports` (all projects marked Yes, then the portfolio roll-up) |
 |                         | `write the status report for Pro2 only`                                     |
-|                         | `redo today's Mask report` (replaces it and lists what changed)             |
-| Ask questions           | `what changed in Beacon since last week?`                                   |
+|                         | `redo today's Mask report` (replaces it, lists what changed, refreshes the roll-up) |
+| Portfolio roll-up       | `write the portfolio roll-up` (all 4 products vs the stage schedule; uses this week's snapshots) |
+|                         | `redo today's portfolio roll-up`                                            |
+| Ask questions           | `which products are behind schedule?`                                       |
+|                         | `will we make the Nov 15, 2027 deadline?`                                   |
+|                         | `how much has Pro2 slipped against the plan?`                               |
+|                         | `what changed in Beacon since last week?`                                   |
 |                         | `who is overloaded across all projects?`                                    |
 |                         | `what is blocking the Headset POC gate?`                                    |
 |                         | `explain why Headset is RED`                                                |
@@ -36,9 +41,13 @@
 | Change settings         | `set stale_days to 21 for Mask`                                             |
 |                         | `switch Research to No` (or edit the Active table in CLAUDE.md yourself)    |
 |                         | `update the script so it <change>` (I'll show you the change before saving) |
+|                         | `count same-day-closed Stories as progress` (portfolio setting)             |
+|                         | `change the stage schedule for Mask` (edits reference.md; I'll ask first)   |
 | Automate                | `run the weekly reports every Monday at 8am`                                |
 | Understand it           | `explain how the health rating works`                                       |
 |                         | `which file controls <thing>?`                                              |
+|                         | `explain how slip is measured`                                              |
+|                         | `explain the roll-up columns`                                               |
 
 ---
 
@@ -56,12 +65,14 @@
    - No silent overwrites; contradictions get flagged.
    - README files are your private notes, and I never touch them.
 4. **What lives where.** A folder map: `raw/` for sources, `tools/` for the script, `data/` for
-   snapshots, `knowledge/` for the pages I write.
+   snapshots, `knowledge/` for the pages I write. `knowledge/portfolio/` holds the weekly
+   cross-product roll-up (`YYYY-MM-DD-rollup.md`); its rules and settings are in its `INDEX.md`.
 5. **Which projects to work on.** The Active table is your on/off switch for each project. I skip any
    project marked No.
 6. **How to handle many projects at once.** One helper per project, running in parallel. Each helper
    sends back a short summary in a fixed format, and the main session updates the shared files and
-   gives you one combined answer.
+   gives you one combined answer. It then writes the portfolio roll-up, which checks every product
+   against the stage schedule and the Nov 15, 2027 deadline.
 
 ---
 
