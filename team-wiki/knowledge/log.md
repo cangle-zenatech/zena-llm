@@ -2,6 +2,18 @@
 
 One line per change, newest first.
 
+2026-10-13 · updated · tools/wiki_jira.py, tools/INDEX.md · human agreed: register Team column shows Subtask teams/label (not issue type); gate-impact text is stage-aware (later-stage work no longer "threatens gate"); diff adds title and assignee changes; Research team load counted from labels. Product results unchanged (checked on all 5 snapshots); reported duplicate HS-320 register row not reproduced
+2026-10-13 · updated · [[ZenaQuiet-Headset/jira/2026-10-13-jira]] · reassignments corrected 17 → 14 (new diff output)
+2026-10-13 · updated · [[reference]] · human agreed: filled ## Projects lines for Beacon, Headset, Mask (from project overviews); Beacon cluster size 12 vs 16 flagged
+
+2026-10-13 · created · [[overview]] · was empty; one paragraph per active project from the 2026-10-13 reports
+2026-10-13 · created · [[ZenaQuiet-Research/jira/2026-10-13-jira]] · weekly report (20 issues, no change); 0% product links, AMBER; filled [[ZenaQuiet-Research/overview]] (was empty)
+2026-10-13 · created · [[ZenaQuiet-Beacon/jira/2026-10-13-jira]] · weekly report (149 issues, +15 EE Subtasks); EVT, 118 days to gate, readiness 38.5% (re-tagging), AMBER; filled [[ZenaQuiet-Beacon/overview]] (was empty)
+2026-10-13 · created · [[ZenaQuiet-Headset/jira/2026-10-13-jira]] · weekly report (558 issues, no change in count); POC, 118 days to gate, readiness 21%, AMBER (was RED; HS-326 re-dated, not delivered); filled [[ZenaQuiet-Headset/overview]] (was empty)
+2026-10-13 · created · [[ZenaQuiet-Mask/jira/2026-10-13-jira]] · weekly report (38 issues, no change in count); POC, 118 days to gate, readiness 7%, AMBER; bulk date reset flagged; updated [[ZenaQuiet-Mask/overview]]
+2026-10-13 · created · [[ZenaQuiet-Pro2/jira/2026-10-13-jira]] · weekly report (329 issues, no change in count); EVT, 118 days to gate, readiness 28% (re-tagging), AMBER; PARTIAL raw capture (see Data Gaps); updated [[ZenaQuiet-Pro2/overview]]
+2026-10-13 · created · data/<project>/2026-10-13.json × 5 · weekly Jira snapshots
+
 2026-10-12 · updated · [[reference]] · People: added Huynh Minh Tuan, CaoTienDat (Electronic_Electrical; from M365 directory, unconfirmed)
 2026-10-12 · created · [[ZenaQuiet-Research/jira/2026-10-12-jira]] · first weekly report (20 issues); support team, link coverage 0%, AMBER
 2026-10-12 · created · [[ZenaQuiet-Beacon/jira/2026-10-12-jira]] · weekly report (134 issues, no change in count); EVT, 119 days to gate, readiness 5%, AMBER

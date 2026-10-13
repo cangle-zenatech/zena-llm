@@ -243,6 +243,21 @@ def cmd_analyze(a):
     epics = [o for o in I if o['type'] == 'Epic']
     for s in stories:
         s['kids'] = [by[k] for k in s['subtasks'] if k in by]
+    # team shown in the register, and the team used for load when there are no Subtasks to count.
+    # Subtask: its title prefix. Story: its Subtasks' teams; else its team label; else its title prefix.
+    # Epic: its team label, else '—'. Labels map to codes through reference.md ## Teams.
+    LABEL2CODE = {v.lower(): k for k, v in TEAMMAP.items()}
+    def label_team(o):
+        return next((LABEL2CODE[l.lower()] for l in o.get('labels') or [] if l.lower() in LABEL2CODE), None)
+    for o in I:
+        if o['type'] == subtype:
+            o['tdisp'] = o['team']
+        elif o['type'] == 'Story':
+            kt = sorted({s['team'] for s in o['kids'] if s['team'] != 'UNKNOWN'})
+            pt = team_of(o['summary'])[0]
+            o['tdisp'] = ', '.join(kt) if kt else (label_team(o) or (pt if pt != 'UNKNOWN' else '—'))
+        else:
+            o['tdisp'] = label_team(o) or '—'
     # notes: not D/R rules, but worth a human look; the agent decides what goes in the report
     notes = []
     pkey = I[0]['key'].split('-')[0] if I else ''
@@ -385,15 +400,24 @@ def cmd_analyze(a):
             stg.append(dict(stage=st, stories_done=sum(s['state'] == 'Done' for s in ch), stories=len(ch),
                             subs_done=sum(x['state'] == 'Done' for x in sb), subs=len(sb), in_progress=sum(s['state'] == 'In Progress' for s in ch)))
     # team load
+    # Products: open Subtasks, current month → MP end (project INDEX.md Step 7).
+    # No stage schedule (Research): open items of every type, team from label or title prefix,
+    # current month → the last due date (ZenaQuiet-Research/INDEX.md Team load).
+    if has_stages:
+        load_items = [(s, s['team']) for s in subs if s['state'] != 'Done']
+        end = MP_END
+    else:
+        load_items = [(o, o['tdisp'] if o['tdisp'] in TEAMS else 'UNKNOWN') for o in openi]
+        dues = [o['du'] for o, _ in load_items if o['du'] and o['du'] >= TODAY]
+        end = max(dues) if dues else TODAY + timedelta(days=180)
     months, (y, m) = [], (TODAY.year, TODAY.month)
-    end = MP_END or (TODAY + timedelta(days=180))
     while (y, m) <= (end.year, end.month):
         months.append((y, m)); m += 1
         if m == 13: y, m = y + 1, 1
     teams = sorted(TEAMS) + ['UNKNOWN']
     heat, undated, inverted = {t: [0] * len(months) for t in teams}, Counter(), []
-    for s in subs:
-        if s['state'] == 'Done': continue
+    for s, tm in load_items:
+        s = dict(s, team=tm)
         if not (s['st'] and s['du']): undated[s['team']] += 1; continue
         if s['st'] > s['du']: inverted.append(s['key']); continue
         for i, (yy, mm) in enumerate(months):
@@ -425,11 +449,23 @@ def cmd_analyze(a):
             what = f"Story {o['parent']} / Epic {e}" if o['type'] == subtype else f'Epic {e}'
             kids_due = [s['du'] for s in o.get('kids', []) if s['du']]
             last = max(kids_due + ([o['du']] if o['du'] else [])) if (kids_due or o['du']) else None
-            if gate and last:
-                slip = max(dl.get(o['key'], 0), (last - o['du']).days if o['du'] else 0)
-                parts.append(f"holds up {what}; ≈{slip}d slip; " + ('threatens gate' if last > gate else f'gate buffer {(gate-last).days}d → no gate threat'))
-            else:
+            st = o['stage']
+            rank = lambda s_: ORDER.index(s_) if s_ in ORDER else None
+            if not gate:
+                parts.append(f'holds up {what}; no stage gate for this project, so gate impact is not measured here')
+            elif not last:
                 parts.append(f'holds up {what}; no due date, gate threat not measurable')
+            else:
+                slip = max(dl.get(o['key'], 0), (last - o['du']).days if o['du'] else 0)
+                if rank(st) is not None and rank(cur) is not None and rank(st) > rank(cur):
+                    # later-stage work: it cannot threaten the current gate; say whether it overruns its own stage
+                    own = STG[st][1]
+                    g = f'{st} work, current gate {gate} not affected' + (f'; runs {(last-own).days}d past {st} end {own}' if last > own else f'; inside {st} window')
+                elif rank(st) is not None and rank(cur) is not None and rank(st) < rank(cur):
+                    g = f'{st} gate already passed ({STG[st][1]})' + ('; threatens current gate' if last > gate else '')
+                else:
+                    g = f'threatens gate {gate} by {(last-gate).days}d' if last > gate else f'gate buffer {(gate-last).days}d → no gate threat'
+                parts.append(f'holds up {what}; ≈{slip}d slip; {g}')
             sib = by.get(o['parent']) if o['type'] == subtype else o
             ts = sorted({s['team'] for s in sib.get('kids', []) if s['key'] != o['key'] and s['state'] != 'Done' and s['team'] not in (o['team'], 'UNKNOWN')}) if sib else []
             if ts: parts.append('teams waiting: ' + ', '.join(ts))
@@ -454,7 +490,7 @@ def cmd_analyze(a):
     L = ['| Sev | Key | Title | Team | Stage | Rules | Days late | Story → Epic | Gate impact | Suggested action |', '| --- ' * 10 + '|']
     for k in rows:
         o = by[k]
-        L.append(f"| {sev[k]} | {url(k)} | {short(o['summary'])} | {o['team']} | {o['stage']} | {', '.join(R[k])} | {dl.get(k, 0)} | {chain(o)} | {impact(o)} | {action(o, R[k])} |")
+        L.append(f"| {sev[k]} | {url(k)} | {short(o['summary'])} | {o['tdisp']} | {o['stage']} | {', '.join(R[k])} | {dl.get(k, 0)} | {chain(o)} | {impact(o)} | {action(o, R[k])} |")
     open(os.path.join(W, 'register.md'), 'w', encoding='utf-8').write('\n'.join(L) + '\n')
     em = lambda r: EMAIL.get(r, 'not in reference.md') if r else 'unknown'
     H = ['| Key | Rule (D1–D6 / prefix / orphan) | Detail | Reporter | Email | Assignee |', '| --- ' * 6 + '|']
@@ -514,14 +550,20 @@ def cmd_diff(a):
         new = {o['key']: o for o in load_snapshot(a.project, a.date)}
         added = sorted(set(new) - set(old), key=lambda x: int(x.split('-')[1]))
         removed = sorted(set(old) - set(new), key=lambda x: int(x.split('-')[1]))
-        moved, redated = [], []
+        moved, redated, retitled, reassigned = [], [], [], []
         for k in sorted(set(new) & set(old), key=lambda x: int(x.split('-')[1])):
             if new[k]['status'] != old[k]['status']: moved.append(f"{k}: {old[k]['status']} → {new[k]['status']}")
             for f in ('start', 'due'):
                 if new[k][f] != old[k][f]: redated.append(f"{k}: {f} {old[k][f]} → {new[k][f]}")
-        lines = [f'Compared with snapshot {p}: {len(old)} → {len(new)} issues.',
-                 f"Added ({len(added)}): {', '.join(added) or 'none'}", f"Removed ({len(removed)}): {', '.join(removed) or 'none'}",
-                 f'Status changes ({len(moved)}):'] + [f'- {x}' for x in moved] + [f'Date changes ({len(redated)}):'] + [f'- {x}' for x in redated]
+            if new[k]['summary'] != old[k]['summary']:
+                retitled.append(f"{k}: \"{old[k]['summary'].strip()}\" → \"{new[k]['summary'].strip()}\"")
+            if new[k].get('assignee') != old[k].get('assignee'):
+                reassigned.append(f"{k}: {old[k].get('assignee') or 'Unassigned'} → {new[k].get('assignee') or 'Unassigned'}")
+        lines = ([f'Compared with snapshot {p}: {len(old)} → {len(new)} issues.',
+                  f"Added ({len(added)}): {', '.join(added) or 'none'}", f"Removed ({len(removed)}): {', '.join(removed) or 'none'}",
+                  f'Status changes ({len(moved)}):'] + [f'- {x}' for x in moved] + [f'Date changes ({len(redated)}):'] + [f'- {x}' for x in redated]
+                 + [f'Title changes ({len(retitled)}):'] + [f'- {x}' for x in retitled]
+                 + [f'Assignee changes ({len(reassigned)}):'] + [f'- {x}' for x in reassigned])
         msg = '\n'.join(lines)
     os.makedirs(a.work, exist_ok=True)
     open(os.path.join(a.work, 'diff.md'), 'w', encoding='utf-8').write(msg + '\n')

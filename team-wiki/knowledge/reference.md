@@ -68,8 +68,15 @@ Engineer) reported BC-42 to BC-49; the Jira-to-directory name match is inferred.
   - Voice Lock — headset-free private call audio: TSE-cleaned customer speech via a
     directional speaker. Layer 1 (PRO2-2) In Progress; directional-speaker POC leading.
 - [[ZenaQuiet-Beacon/overview|ZenaQuiet-Beacon]] —
+  - Ceiling-mounted PoE coordinator for a floor cluster of Pro units: voiceprint consent, MQTT
+    relay to the cloud, zone coordination. Cluster size open: up to 12 Pros (BC-101, BC-106,
+    BC-107) vs up to 16 (BC-50). EVT.
 - [[ZenaQuiet-Headset/overview|ZenaQuiet-Headset]] —
+  - Call-centre (BPO) headset: voice capture for Voice Lock, hybrid ANC, magnetic Arc masking;
+    USB-C and Bluetooth. POC.
 - [[ZenaQuiet-Mask/overview|ZenaQuiet-Mask]] —
+  - Wearable face mask that filters air and keeps the wearer's conversations private; heavy voice
+    processing runs on the paired phone. POC.
 - [[ZenaQuiet-Research/overview|ZenaQuiet-Research]] — Acoustic team engage in research in acoustic technologies/concepts/issues to support firmware team
 
 ## Jira projects

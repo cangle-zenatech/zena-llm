@@ -33,7 +33,10 @@ Paths below are bash paths; `WORK` is a temporary folder (e.g. `outputs/work-<ke
 ### Limits
 
 - ZenaQuiet-Research has no stage schedule; stage checks are skipped. Its extra rules (D7, R11–R13
-  in its `INDEX.md`) are not in the script yet: apply them by hand.
+  in its `INDEX.md`) are not in the script yet: apply them by hand. Its team load is in the
+  script: open items of every type, team from the Jira label (else title prefix), current month →
+  last due date.
+- `diff` reports added/removed issues and status, date, title and assignee changes.
 - If a project's `INDEX.md` changes a rule, the script does not know. Flag the difference in chat.
 - Field IDs default to `customfield_10015` (Start date) and `customfield_10020` (Sprint). Pass
   others if Step 1 finds different ones.

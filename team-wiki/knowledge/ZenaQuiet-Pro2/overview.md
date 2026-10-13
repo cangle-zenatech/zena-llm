@@ -1,7 +1,7 @@
 ---
 type: overview
 project: ZenaQuiet-Pro2
-updated: 2026-10-12
+updated: 2026-10-13
 ---
 
 # ZenaQuiet-Pro2
@@ -17,8 +17,13 @@ voice only to the agent's seat, so neighbours can't follow the call
 
 - **Stage:** EVT (engineering tests of early working units), 2026-09-21 → 2027-02-08
   ([[reference#Stage schedule (per product)]]).
-- **Health on 2026-10-10:** AMBER. 1 of 39 EVT Stories Done, 11 In Progress; much near-term work not
-  started yet ([[ZenaQuiet-Pro2/jira/2026-10-10-jira|report]]).
+- **Health on 2026-10-13:** AMBER. 17 of 61 EVT Stories Done, 13 In Progress, 118 days to the
+  EVT → DVT gate (2027-02-08). The jump from 1 of 39 comes from tagging 22 firmware Stories as
+  EVT-1 (16 already Done), not from new finished work
+  ([[ZenaQuiet-Pro2/jira/2026-10-13-jira|report]]).
+- **Dates reset on 2026-10-12:** every Story now spans its whole stage window, and every Epic runs
+  to 2027-11-15 (MP end). Before, most Epics were due 2027-09-06. Flagged in the
+  [[ZenaQuiet-Pro2/jira/2026-10-13-jira|2026-10-13 report]]; not yet confirmed as intended.
 
 ## Active epics
 
@@ -29,10 +34,14 @@ voice only to the agent's seat, so neighbours can't follow the call
 - [PRO2-8](https://epazz.atlassian.net/browse/PRO2-8) — Mechanical Structure: the casing, weight and drop tests.
 - [PRO2-172](https://epazz.atlassian.net/browse/PRO2-172) — Industrial Design: at step 5 of 6 (design refinement).
 - [PRO2-449](https://epazz.atlassian.net/browse/PRO2-449) — Pro application: the software running on the device.
-- [PRO2-450](https://epazz.atlassian.net/browse/PRO2-450) — Field Test + Release Candidate (starts 2027-02-08).
+- [PRO2-450](https://epazz.atlassian.net/browse/PRO2-450) — Field Test + Release Candidate. Was
+  dated to start 2027-02-08; Jira now says 2026-06-29 → 2027-11-15 (changed 2026-10-12), while its
+  Stories run Nov–Dec 2026. Contradiction flagged, not resolved.
 
 ## Recent changes
 
+- 2026-10-13 — Weekly report: no issues added or closed; 96 issues re-dated on 2026-10-12; EVT
+  readiness 28% after the firmware Stories PRO2-467 to PRO2-488 were re-tagged EVT-1.
 - 2026-10-12 — Added "What this project is", "Where it stands" and the other Epics, from the
   2026-10-10 status report.
 - 2026-10-10 — 41 Stories and 23 Subtasks added since 2026-10-08 (323 issues now).

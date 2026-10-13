@@ -1,0 +1,445 @@
+{
+"project": "ZenaQuiet-Research",
+"date": "2026-10-13",
+"start_field": "customfield_10015",
+"sprint_field": "customfield_10020",
+"count": 20,
+"issues": [
+{
+"key": "RS-1",
+"summary": "Chip eval + decision",
+"type": "Epic",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Nguyen Binh Minh",
+"reporter": "Nguyen Binh Minh",
+"start": "2026-09-28",
+"due": "2026-10-16",
+"sprints": [],
+"parent": null,
+"subtasks": [],
+"links": [],
+"created": "2026-10-01",
+"updated": "2026-10-08",
+"resolved": null,
+"labels": []
+},
+{
+"key": "RS-2",
+"summary": "[POC] Evaluate TSE on Imx95 NPU",
+"type": "Story",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Nguyen Binh Minh",
+"reporter": "Nguyen Binh Minh",
+"start": "2026-09-28",
+"due": "2026-10-16",
+"sprints": [
+[
+"RS Sprint 2",
+"future"
+]
+],
+"parent": "RS-1",
+"subtasks": [],
+"links": [],
+"created": "2026-10-01",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [
+"Acoustic"
+]
+},
+{
+"key": "RS-3",
+"summary": "[POC] Survey about good components for ultrasonic loudspeaker and layout",
+"type": "Story",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Huỳnh Thái Hòa",
+"reporter": "Huỳnh Thái Hòa",
+"start": null,
+"due": null,
+"sprints": [
+[
+"RS Sprint 2",
+"future"
+]
+],
+"parent": "RS-4",
+"subtasks": [],
+"links": [],
+"created": "2026-10-02",
+"updated": "2026-10-08",
+"resolved": null,
+"labels": [
+"Acoustic"
+]
+},
+{
+"key": "RS-4",
+"summary": "Survey about good components for ultrasonic loudspeaker and best layout",
+"type": "Epic",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Huỳnh Thái Hòa",
+"reporter": "Huỳnh Thái Hòa",
+"start": "2026-09-14",
+"due": "2026-10-23",
+"sprints": [],
+"parent": null,
+"subtasks": [],
+"links": [
+{
+"dir": "out",
+"label": "connects to",
+"type": "Discovery - Connected",
+"key": "RS-14",
+"scat": "new"
+}
+],
+"created": "2026-10-02",
+"updated": "2026-10-06",
+"resolved": null,
+"labels": []
+},
+{
+"key": "RS-7",
+"summary": "Drone propeller ANC",
+"type": "Epic",
+"status": "To Do",
+"scat": "new",
+"assignee": "Nguyen Binh Minh",
+"reporter": "Cang Le",
+"start": null,
+"due": null,
+"sprints": [],
+"parent": null,
+"subtasks": [],
+"links": [],
+"created": "2026-10-02",
+"updated": "2026-10-02",
+"resolved": null,
+"labels": []
+},
+{
+"key": "RS-8",
+"summary": "Headset mic beamforming",
+"type": "Epic",
+"status": "To Do",
+"scat": "new",
+"assignee": "Nguyen Binh Minh",
+"reporter": "Cang Le",
+"start": null,
+"due": null,
+"sprints": [],
+"parent": null,
+"subtasks": [],
+"links": [],
+"created": "2026-10-02",
+"updated": "2026-10-02",
+"resolved": null,
+"labels": []
+},
+{
+"key": "RS-9",
+"summary": "Android mobile app",
+"type": "Epic",
+"status": "To Do",
+"scat": "new",
+"assignee": "Nguyen Binh Minh",
+"reporter": "Cang Le",
+"start": null,
+"due": null,
+"sprints": [],
+"parent": null,
+"subtasks": [],
+"links": [],
+"created": "2026-10-02",
+"updated": "2026-10-02",
+"resolved": null,
+"labels": []
+},
+{
+"key": "RS-10",
+"summary": "Sound masking impl",
+"type": "Epic",
+"status": "To Do",
+"scat": "new",
+"assignee": "Nguyen Binh Minh",
+"reporter": "Cang Le",
+"start": null,
+"due": null,
+"sprints": [],
+"parent": null,
+"subtasks": [],
+"links": [],
+"created": "2026-10-02",
+"updated": "2026-10-02",
+"resolved": null,
+"labels": []
+},
+{
+"key": "RS-11",
+"summary": "Layer 2: Office Acoustics",
+"type": "Epic",
+"status": "To Do",
+"scat": "new",
+"assignee": "Huỳnh Thái Hòa",
+"reporter": "Cang Le",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [],
+"parent": null,
+"subtasks": [],
+"links": [],
+"created": "2026-10-02",
+"updated": "2026-10-09",
+"resolved": null,
+"labels": []
+},
+{
+"key": "RS-14",
+"summary": "Ultrasonic array",
+"type": "Epic",
+"status": "To Do",
+"scat": "new",
+"assignee": "Huỳnh Thái Hòa",
+"reporter": "Cang Le",
+"start": null,
+"due": null,
+"sprints": [],
+"parent": null,
+"subtasks": [],
+"links": [
+{
+"dir": "in",
+"label": "is connected to",
+"type": "Discovery - Connected",
+"key": "RS-4",
+"scat": "indeterminate"
+}
+],
+"created": "2026-10-02",
+"updated": "2026-10-05",
+"resolved": null,
+"labels": []
+},
+{
+"key": "RS-15",
+"summary": "Qt multi-unit app",
+"type": "Epic",
+"status": "To Do",
+"scat": "new",
+"assignee": "Huỳnh Thái Hòa",
+"reporter": "Cang Le",
+"start": "2027-01-01",
+"due": "2027-03-31",
+"sprints": [],
+"parent": null,
+"subtasks": [],
+"links": [],
+"created": "2026-10-02",
+"updated": "2026-10-06",
+"resolved": null,
+"labels": []
+},
+{
+"key": "RS-16",
+"summary": "[POC] Cover: Prototype pink/white noise sound masking in the Beacon",
+"type": "Story",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Huỳnh Thái Hòa",
+"reporter": "Huỳnh Thái Hòa",
+"start": "2026-10-05",
+"due": "2026-10-30",
+"sprints": [
+[
+"RS Sprint 2",
+"future"
+]
+],
+"parent": "RS-11",
+"subtasks": [],
+"links": [],
+"created": "2026-10-05",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [
+"Acoustic"
+]
+},
+{
+"key": "RS-18",
+"summary": "[POC] Familiarize with QT framework",
+"type": "Story",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Huỳnh Thái Hòa",
+"reporter": "Huỳnh Thái Hòa",
+"start": null,
+"due": null,
+"sprints": [
+[
+"RS Sprint 2",
+"future"
+]
+],
+"parent": "RS-15",
+"subtasks": [],
+"links": [],
+"created": "2026-10-05",
+"updated": "2026-10-08",
+"resolved": null,
+"labels": [
+"Acoustic"
+]
+},
+{
+"key": "RS-19",
+"summary": "[POC] Implement the Phased Array Technique on Ultrasound Loudspeaker when the PCB version 2 is ready",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Huỳnh Thái Hòa",
+"reporter": "Huỳnh Thái Hòa",
+"start": "2026-10-26",
+"due": "2026-11-30",
+"sprints": [],
+"parent": "RS-14",
+"subtasks": [],
+"links": [],
+"created": "2026-10-06",
+"updated": "2026-10-08",
+"resolved": null,
+"labels": [
+"Acoustic"
+]
+},
+{
+"key": "RS-20",
+"summary": "Create a new TSE module that can handle sound masking(white, pink, and brown noise)",
+"type": "Epic",
+"status": "To Do",
+"scat": "new",
+"assignee": "KhuongNguyen",
+"reporter": "Cang Le",
+"start": null,
+"due": null,
+"sprints": [],
+"parent": null,
+"subtasks": [],
+"links": [],
+"created": "2026-10-06",
+"updated": "2026-10-06",
+"resolved": null,
+"labels": []
+},
+{
+"key": "RS-21",
+"summary": "[POC] Absorb: Research sound-absorbing materials (ceiling tiles, wall panels, workstation covers)",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Huỳnh Thái Hòa",
+"reporter": "Cang Le",
+"start": "2026-10-26",
+"due": "2026-11-02",
+"sprints": [],
+"parent": "RS-11",
+"subtasks": [],
+"links": [],
+"created": "2026-10-08",
+"updated": "2026-10-09",
+"resolved": null,
+"labels": [
+"Acoustic"
+]
+},
+{
+"key": "RS-22",
+"summary": "[POC] ANC in the personal headset",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Huỳnh Thái Hòa",
+"reporter": "Cang Le",
+"start": "2026-10-05",
+"due": "2026-11-02",
+"sprints": [],
+"parent": "RS-11",
+"subtasks": [],
+"links": [],
+"created": "2026-10-08",
+"updated": "2026-10-09",
+"resolved": null,
+"labels": [
+"Acoustic"
+]
+},
+{
+"key": "RS-23",
+"summary": "[POC] Block: Research office layout and seating plan to reduce noise",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Huỳnh Thái Hòa",
+"reporter": "Cang Le",
+"start": "2026-10-05",
+"due": "2026-11-02",
+"sprints": [],
+"parent": "RS-11",
+"subtasks": [],
+"links": [],
+"created": "2026-10-08",
+"updated": "2026-10-09",
+"resolved": null,
+"labels": [
+"Acoustic"
+]
+},
+{
+"key": "RS-24",
+"summary": "[POC] Measure baseline floor acoustics before treatment",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Huỳnh Thái Hòa",
+"reporter": "Cang Le",
+"start": "2026-10-05",
+"due": "2026-11-02",
+"sprints": [],
+"parent": "RS-11",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-09",
+"resolved": null,
+"labels": [
+"Acoustic"
+]
+},
+{
+"key": "RS-25",
+"summary": "[POC] Block: Research desk-height screens and partitions to block speech between desks",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Huỳnh Thái Hòa",
+"reporter": "Cang Le",
+"start": "2026-11-02",
+"due": "2026-10-26",
+"sprints": [],
+"parent": "RS-11",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-09",
+"resolved": null,
+"labels": [
+"Acoustic"
+]
+}
+]
+}

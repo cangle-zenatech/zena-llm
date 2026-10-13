@@ -10,8 +10,8 @@
 
 ### Key words to start
 
-1. Connect the folder `C:\Users\Admin\Documents\zena-llm`
-2. `read team-wiki/CLAUDE.md and follow it.`
+1. Connect the folder C:\Users\Admin\Documents\zena-llm
+2. read team-wiki/CLAUDE.md and follow it.
 3. `<task>.` Then replace `<task>` with one of these:
 
 ### Tasks
