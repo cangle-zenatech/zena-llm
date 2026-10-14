@@ -60,6 +60,16 @@ Designer), not yet confirmed by the human. Found as Pro2 assignees on ID tickets
 Huynh Minh Tuan (directory: Electronics Engineer) is on HS-581 and owns BC-38. CaoTienDat (directory: Electrical
 Engineer) reported BC-42 to BC-49; the Jira-to-directory name match is inferred. Team for both inferred from job title.
 
+#### Added 2026-10-14 — not yet confirmed
+
+Found in Jira; not found in the Microsoft 365 company directory (searched 2026-10-14). Email and team unknown.
+
+| Jira name  | Microsoft Teams name | Email   | Team    |
+| ---------- | -------------------- | ------- | ------- |
+| Thang Pham | not found            | unknown | unknown |
+
+Thang Pham is the reporter of HS-47.
+
 ---
 
 ## Projects

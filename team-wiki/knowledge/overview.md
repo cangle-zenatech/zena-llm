@@ -1,11 +1,11 @@
 ---
 type: overview
-updated: 2026-10-13
+updated: 2026-10-14
 ---
 
 # Projects Overview
 
-**Portfolio (2026-10-13):** 4 of 4 products on track for 2027-11-15, all at low confidence (stages only 22 days old). Pro2 and Beacon are ahead; Mask is the weakest, with most POC work unowned and a pace that would finish POC about 179 days late. See [[portfolio/2026-10-13-rollup]].
+**Portfolio (2026-10-14):** 4 of 4 products on track for 2027-11-15, all at low confidence (stages only 23 days old). Mask is the weakest: 17 POC Stories unowned and a pace that would finish POC about 193 days late. See [[portfolio/2026-10-14-rollup]].
 
 One paragraph per active project: what it is and where it stands. Details are on each project's overview page and in its latest weekly report.
 

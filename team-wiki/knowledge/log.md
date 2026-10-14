@@ -2,6 +2,14 @@
 
 One line per change, newest first.
 
+2026-10-14 · created · [[portfolio/2026-10-14-rollup]] · weekly roll-up: 4 of 4 on track (all low confidence); Mask POC forecast +193d, Headset +101d; no FLAG lines; updated portfolio line in [[overview]]
+2026-10-14 · updated · [[reference]] · added Thang Pham (reporter of HS-47) under ## People, not in company directory
+2026-10-14 · created · [[ZenaQuiet-Research/jira/2026-10-14-jira]], data/ZenaQuiet-Research/2026-10-14.json · weekly report (20 issues, no change); 0 product links, RS-1/RS-2 chip decision due 2026-10-16, AMBER
+2026-10-14 · created · [[ZenaQuiet-Beacon/jira/2026-10-14-jira]], data/ZenaQuiet-Beacon/2026-10-14.json · weekly report (132 issues); EVT, 117 days to gate, readiness 44.4%, AMBER; BC-164 started, BC-229 +5d, BC-107 renamed
+2026-10-14 · created · [[ZenaQuiet-Headset/jira/2026-10-14-jira]], data/ZenaQuiet-Headset/2026-10-14.json · weekly report (558 issues, no change); POC, 117 days to gate, readiness 20.8% raw, AMBER
+2026-10-14 · created · [[ZenaQuiet-Mask/jira/2026-10-14-jira]], data/ZenaQuiet-Mask/2026-10-14.json · weekly report (38 issues, no change); POC, 117 days to gate, readiness 6.9%, AMBER
+2026-10-14 · created · [[ZenaQuiet-Pro2/jira/2026-10-14-jira]], data/ZenaQuiet-Pro2/2026-10-14.json · weekly report (329 issues, no change); EVT, 117 days to gate, readiness 27.9%, AMBER
+
 2026-10-13 · updated · [[portfolio/2026-10-13-rollup]], [[portfolio/INDEX]] · human asked: added "What the numbers mean" note (Raw, Adjusted, Expected, with examples) under the Products table; template now requires it; online copy republished with the same note
 
 2026-10-13 · updated · [[portfolio/INDEX]], [[portfolio/2026-10-13-rollup]], [[overview]] · human decided same-day-closed Stories count as progress (exclude_same_day_closed: false); roll-up re-run: Pro2 0% → 27.9%, Beacon 2.8% → 44.4%, Mask 0% → 6.9%, all four On track (low confidence); online copy republished
