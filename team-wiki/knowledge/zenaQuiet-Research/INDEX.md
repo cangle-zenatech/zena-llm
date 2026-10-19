@@ -77,6 +77,27 @@ resolutiondate, labels.
 For every link to a ticket in `product_keys`, also fetch that ticket's summary, status, due date
 and project. Record totals per issue type and check they match the JQL total.
 
+### Step 2b: Read sources
+
+Read every file in `raw/threads/` and `raw/transcripts/` (rules: `CLAUDE.md` → `## Sources beyond
+Jira`). Keep each item about Research work: purchase requests (item, requester, cost, status,
+dates given, quoted lead time, open questions) and other blockers, open decisions or promised
+dates. For each item, find the RS ticket it belongs to and the product ticket that needs it
+(label a title match "(inferred)"). Save the items to `WORK/sources.json` and run
+`tools/wiki_jira.py sources` for the dates (format in `tools/INDEX.md`).
+
+For every item also write, in plain words:
+
+- **impact**: what slips if this is late (the Jira item and what it is), e.g. "Hinge bench test
+  (PRO2-420)".
+- **root cause step**: one of `waiting approval` · `purchasing` · `supplier lead time` ·
+  `open decision` · `not requested` · `capacity` · `other`, plus a short detail from the source.
+- **fix**: one concrete action that would remove the risk.
+
+The script turns these into one plain sentence per risk with the delay in working days
+(`sources_plain.md`). Put that table in the report under the Risk Register, headed
+"Risks from team threads (plain)".
+
 ### Step 3: Normalize
 
 For each issue:
@@ -128,6 +149,12 @@ Flag issues that are not Done:
 **Impact tracing (HIGH and MEDIUM)**: in 1–2 sentences say what is late, which product ticket
 waits on it, and whether that product's next stage deadline is at risk and by about how many days.
 For inferred or unlinked items, say the impact can't be traced.
+
+**Source risks** (from Step 2b; working days, `reference.md` lead times): P1–P5 and S1 as defined
+in the product `INDEX.md` files (e.g. `knowledge/ZenaQuiet-Pro2/INDEX.md` → Step 6). The only
+difference: "needed by" comes from the product ticket the RS item supports (rule D7). Severity:
+**HIGH** for P1 when that product ticket sits before its product's next stage end, or P1 + P3;
+**MEDIUM** for other P1, P2, P3, P4, S1; **LOW** for P5 alone. Source risks count toward health.
 
 ### Step 6: Metrics
 
@@ -185,6 +212,11 @@ Health: one sentence on why.
 
 ## 3. Risk Register
 | Sev | Key | Title | Team | Product | Rules | Days late | Story → Epic | Product impact | Suggested action |
+(Jira and source risks together; for source risks Key = source reference, e.g.
+`threads/2026-10-19-purchase.md · REQUEST 1`.)
+
+### Order this week
+| Item | Needed for | Needed by | Order by | Lead time (wd) | Status | Source |
 
 ## 4. Team Load
 | Team | {current month} | … |
@@ -198,6 +230,7 @@ write "not in reference.md" if there's no match. Never guess an email.)
 3–5 concrete actions, each tied to ticket keys and owners.
 
 ## 7. Data Gaps & Assumptions
+- Source files read, and which items used default lead times instead of dates from the source.
 ```
 
 Executive Summary rules: one block per risk with **What**, **Tickets**, **Impact**; What and Impact
@@ -220,3 +253,5 @@ per block, then "+ N more (see Risk Register)".
 - [ ] Every HIGH/MEDIUM risk has an impact sentence
 - [ ] Every finding cites a ticket key
 - [ ] Data Gaps section is filled in, even if it says "None"
+- [ ] Every file in `raw/threads/` and `raw/transcripts/` was read; every source risk cites file
+      and message

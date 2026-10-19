@@ -20,6 +20,10 @@ Commands (run with python3 -I):
       heatmap.md, epics.md, stages.md, notes.md (things for a human look, not rule hits), summary.txt
   diff --project ZenaQuiet-Pro2 --work WORK [--date D]
       Compares the snapshot for D with the newest earlier snapshot; writes WORK/diff.md
+  sources --project ZenaQuiet-Pro2 --work WORK [--date D]
+      Source risks P1-P5, S1 from WORK/sources.json (threads/transcripts items the helper extracted);
+      working days and holidays from reference.md; writes sources_register.md, order_this_week.md,
+      sources_summary.txt and adds source_risks + health_with_sources to WORK/results.json
   rollup --work WORK [--date D]
       Portfolio roll-up across every active product with a stage schedule (settings: yaml block in
       knowledge/portfolio/INDEX.md); writes WORK/rollup*.md, rollup.json, rollup_summary.txt
@@ -586,6 +590,220 @@ def cmd_diff(a):
     print(msg)
 
 
+# ----------------------------------------------------------------- sources (threads / transcripts)
+def load_purchasing():
+    """Lead times (working days) and holidays from reference.md."""
+    text = open(os.path.join(KNOW, 'reference.md'), encoding='utf-8').read()
+    lead = dict(approval=14, purchasing=3, supplier=5)
+    hol = set()
+    for head, rows in md_tables(text):
+        if head.startswith('Purchasing lead times'):
+            for r in rows[1:]:
+                n = re.search(r'\d+', r[1] if len(r) > 1 else '')
+                k = r[0].lower()
+                if not n or 'total' in k: continue
+                if 'approv' in k: lead['approval'] = int(n.group())
+                elif 'purchas' in k: lead['purchasing'] = int(n.group())
+                elif 'supplier' in k or 'deliver' in k: lead['supplier'] = int(n.group())
+        elif head.startswith('Holidays'):
+            for r in rows[1:]:
+                ds = re.findall(r'\d{4}-\d{2}-\d{2}', r[0])
+                if len(ds) == 1: hol.add(D(ds[0]))
+                elif len(ds) >= 2:
+                    d0, d1 = D(ds[0]), D(ds[1])
+                    while d0 <= d1: hol.add(d0); d0 += timedelta(days=1)
+    return lead, hol
+
+
+def cmd_sources(a):
+    """Source risks P1-P5 and S1 from WORK/sources.json (written by the helper from Step 2b)."""
+    folder = a.project
+    lead, HOL = load_purchasing()
+    STG = load_reference(folder)[0]
+    TODAY = D(a.date)
+    W = a.work
+    src = json.load(open(os.path.join(W, 'sources.json'), encoding='utf-8'))
+    snap = {o['key']: o for o in load_snapshot(folder, a.date)}
+    rp = os.path.join(W, 'results.json')
+    res = json.load(open(rp, encoding='utf-8')) if os.path.exists(rp) else {}
+    istage = res.get('issue_stage', {})
+    isw = lambda d: d.weekday() < 5 and d not in HOL
+
+    def add_wd(d, n):
+        while n > 0:
+            d += timedelta(days=1)
+            if isw(d): n -= 1
+        return d
+
+    def sub_wd(d, n):
+        while n > 0:
+            d -= timedelta(days=1)
+            if isw(d): n -= 1
+        return d
+
+    def wd_between(d0, d1):
+        n, d = 0, d0
+        while d < d1:
+            d += timedelta(days=1)
+            if isw(d): n += 1
+        return n
+
+    def supplier_wd(q):
+        """Quoted lead -> (min, max) working days; None -> default."""
+        if not q: return lead['supplier'], lead['supplier'], 'default'
+        u = (q.get('unit') or 'working_days').lower()
+        f = {'working_days': 1, 'weeks': 5}.get(u)
+        mn, mx = q.get('min'), q.get('max', q.get('min'))
+        if f: return round(mn * f), round(mx * f), 'quoted'
+        if u in ('days', 'calendar_days'):   # convert calendar days to working days from today
+            return wd_between(TODAY, TODAY + timedelta(days=mn)), wd_between(TODAY, TODAY + timedelta(days=mx)), 'quoted'
+        return lead['supplier'], lead['supplier'], 'default'
+
+    rows, order = [], []
+    pvt_start = STG['PVT'][0] if 'PVT' in STG else None
+    for it in src:
+        kind = it.get('kind', 'purchase')
+        st = (it.get('status') or '').lower()
+        dt = {k: (D(v) if v else None) for k, v in (it.get('dates') or {}).items()}
+        need_key = it.get('needed_for')
+        tgt = snap.get(need_key) if need_key else None
+        need_by = D(tgt['start'] or tgt['due']) if tgt and (tgt['start'] or tgt['due']) else None
+        stage = istage.get(need_key) if need_key else None
+        stage_end = STG[stage][1] if stage in STG else None
+        rules, notes, arr_min = [], [], None
+        arr, waited, why_unknown = None, None, None
+        if kind == 'purchase' and st != 'delivered':
+            smin, smax, ssrc = supplier_wd(it.get('quoted_lead'))
+            total = lead['approval'] + lead['purchasing'] + smax
+            if dt.get('ordered'):
+                base, rem = dt['ordered'], (smin, smax)
+            elif st in ('ordered',):
+                base, rem = TODAY, (smin, smax); notes.append('order date unknown, counted from today')
+            elif st == 'approved' or dt.get('approved'):
+                base = dt.get('approved') or TODAY
+                if not dt.get('approved'): notes.append('approval date unknown, counted from today')
+                rem = (lead['purchasing'] + smin, lead['purchasing'] + smax)
+            else:  # waiting for approval
+                if dt.get('requested'):
+                    due_appr = add_wd(dt['requested'], lead['approval'])
+                    waited = wd_between(dt['requested'], TODAY)
+                    if waited > lead['approval']: rules.append('P2'); notes.append(f'waiting {waited} wd for approval')
+                    base = max(due_appr, TODAY)
+                else:
+                    base = add_wd(TODAY, lead['approval']); notes.append('request date unknown, approval counted from today')
+                rem = (lead['purchasing'] + smin, lead['purchasing'] + smax)
+            arr_min, arr = add_wd(base, rem[0]), add_wd(base, rem[1])
+            if ssrc == 'default': notes.append(f"supplier lead = default {lead['supplier']} wd")
+            order_by = sub_wd(need_by, total) if need_by else None
+            if arr and need_by and arr > need_by: rules.append('P1')
+            if it.get('open_question'): rules.append('P3')
+            if total > 20 and order_by and order_by <= add_wd(TODAY, 10): rules.append('P4')
+            if order_by and order_by <= add_wd(TODAY, 10):
+                order.append(dict(item=it.get('item'), needed_for=need_key, needed_by=str(need_by), order_by=str(order_by),
+                                  lead_wd=total, status=st, ref=it.get('ref')))
+        else:
+            total, order_by = None, None
+            if kind != 'purchase': rules.append('S1')
+            if kind == 'purchase' and st == 'delivered': why_unknown = 'already delivered'
+            if it.get('open_question') and kind == 'purchase': rules.append('P3')
+        if not need_key: rules.append('P5')
+        elif need_key not in snap: rules.append('P5'); notes.append(f'{need_key} not in this snapshot')
+        rules = list(dict.fromkeys(rules))
+        if 'P1' in rules and (('P3' in rules) or (stage_end and arr and arr > stage_end) or (pvt_start and arr and arr > pvt_start)):
+            sev = 'HIGH'
+        elif any(r in rules for r in ('P1', 'P2', 'P3', 'P4', 'S1')):
+            sev = 'MEDIUM'
+        elif rules:
+            sev = 'LOW'
+        else:
+            sev = None
+        late = (arr - need_by).days if (arr and need_by and arr > need_by) else 0
+        # delay in working days for the plain sentence
+        d_min = d_max = None
+        if arr and need_by:
+            d_max = wd_between(need_by, arr) if arr > need_by else 0
+            lo = arr_min or arr
+            d_min = wd_between(need_by, lo) if lo > need_by else 0
+        elif why_unknown is None:
+            if kind != 'purchase':
+                why_unknown = {'open decision': 'waiting on a decision', 'capacity': 'no one has time set aside for it',
+                               'purchasing': 'waiting on a purchase', 'waiting approval': 'waiting for approval',
+                               'supplier lead time': 'waiting on a supplier', 'not requested': 'nothing requested yet'
+                               }.get((it.get('root_cause_step') or '').lower(), 'no date in the sources')
+            elif not need_key or need_key not in snap: why_unknown = 'no dated Jira item needs it yet'
+            elif not need_by: why_unknown = f'{need_key} has no dates'
+            else: why_unknown = 'not ordered yet, so no arrival date'
+        rows.append(dict(ref=it.get('ref'), item=it.get('item'), kind=kind, status=st, needed_for=need_key,
+                         needed_for_inferred=bool(it.get('needed_for_inferred')), stage=stage, needed_by=str(need_by) if need_by else None,
+                         arrival=(f'{arr_min} → {arr}' if arr_min and arr and arr_min != arr else (str(arr) if arr else None)),
+                         order_by=str(order_by) if order_by else None, lead_wd=total, rules=rules, sev=sev,
+                         days_late=late, open_question=it.get('open_question'), notes=notes,
+                         gate_hit=bool(stage_end and arr and arr > stage_end), delay_min=d_min, delay_max=d_max,
+                         why_unknown=why_unknown, waited=waited, requested=str(dt['requested']) if dt.get('requested') else None,
+                         impact=it.get('impact') or it.get('item'), root_cause_step=it.get('root_cause_step'),
+                         root_cause=it.get('root_cause'), fix=it.get('fix'), arr_min=str(arr_min) if arr_min else None,
+                         arr_max=str(arr) if arr else None))
+    SO = {'HIGH': 0, 'MEDIUM': 1, 'LOW': 2, None: 3}
+    rows.sort(key=lambda r: (SO[r['sev']], r['delay_max'] is None, -(r['delay_max'] or 0), -r['days_late']))
+    url = lambda k: f'[{k}]({BROWSE}{k})' if k else '—'
+    L = ['| Sev | Source | Item | Status | Needed for | Needed by | Forecast arrival | Order by | Lead (wd) | Rules | Days late | Notes |', '| --- ' * 12 + '|']
+    for r in rows:
+        nf = url(r['needed_for']) + (' (inferred)' if r['needed_for'] and r['needed_for_inferred'] else '')
+        L.append(f"| {r['sev'] or '—'} | {r['ref']} | {r['item']} | {r['status'] or '—'} | {nf} | {r['needed_by'] or '—'} | {r['arrival'] or '—'} | "
+                 f"{r['order_by'] or '—'} | {r['lead_wd'] or '—'} | {', '.join(r['rules']) or '—'} | {r['days_late']} | "
+                 f"{'; '.join(r['notes'] + ([('Open question: ' + r['open_question'])] if r['open_question'] else [])) or '—'} |")
+    open(os.path.join(W, 'sources_register.md'), 'w', encoding='utf-8').write('\n'.join(L) + '\n')
+    # plain-sentence table
+    def sentence(r):
+        what = r['impact'] or r['item']
+        if r['delay_max'] is not None:
+            if r['delay_max'] == 0:
+                txt = f"{what} is not delayed: needed {r['needed_by']}, arrives {r['arr_max']}."
+            else:
+                rng = f"{r['delay_min']}–{r['delay_max']}" if r['delay_min'] != r['delay_max'] else f"{r['delay_max']}"
+                arrv = f"{r['arr_min']} → {r['arr_max']}" if r['arr_min'] and r['arr_min'] != r['arr_max'] else r['arr_max']
+                txt = f"{what} starts {rng} working days late: planned {r['needed_by']}, arrives {arrv}."
+        else:
+            txt = f"{what}: delay unknown ({r['why_unknown'] or 'no dates'})."
+        if r['waited'] is not None:
+            txt += f" Waiting for CTO approval since {r['requested']} ({r['waited']} of {lead['approval']} working days)."
+        return txt
+    cause_word = {'waiting approval': 'Waiting for CTO approval', 'purchasing': 'In Purchasing', 'supplier lead time': 'Supplier lead time',
+                  'open decision': 'Open decision', 'not requested': 'Not requested yet', 'capacity': 'Capacity', 'other': 'Other'}
+    lvl = {'HIGH': 'High', 'MEDIUM': 'Medium', 'LOW': 'Low', None: '—'}
+    PL = ["| Level | What's at risk | Root cause | What would fix it | Source |", '| --- ' * 5 + '|']
+    for r in rows:
+        cause = cause_word.get((r['root_cause_step'] or '').lower(), r['root_cause_step'] or '')
+        cause = (cause + (': ' if cause and r['root_cause'] else '') + (r['root_cause'] or '')) or '—'
+        PL.append(f"| {lvl[r['sev']]} | {sentence(r)} | {cause} | {r['fix'] or '—'} | {r['ref']} |")
+    if len(PL) == 2: PL.append('| — | No risks from threads or transcripts for this project. | | | |')
+    open(os.path.join(W, 'sources_plain.md'), 'w', encoding='utf-8').write('\n'.join(PL) + '\n')
+    O = ['| Item | Needed for | Needed by | Order by | Lead time (wd) | Status | Source |', '| --- ' * 7 + '|']
+    for o in sorted(order, key=lambda x: x['order_by']):
+        O.append(f"| {o['item']} | {url(o['needed_for'])} | {o['needed_by']} | {o['order_by']} | {o['lead_wd']} | {o['status']} | {o['ref']} |")
+    if len(O) == 2: O.append('| none | | | | | | |')
+    open(os.path.join(W, 'order_this_week.md'), 'w', encoding='utf-8').write('\n'.join(O) + '\n')
+    # health with source risks (same rules as Step 7: a HIGH on the current stage -> RED, any HIGH or > 3 MEDIUM -> AMBER)
+    sc = Counter(r['sev'] for r in rows if r['sev'])
+    cur = res.get('current_stage')
+    base_h = res.get('health')
+    jsev = res.get('severity', {})
+    h_rank = {'GREEN': 0, 'AMBER': 1, 'RED': 2}
+    new = 'GREEN'
+    if any(r['sev'] == 'HIGH' and (r['stage'] == cur or not cur) for r in rows): new = 'RED'
+    elif sc.get('HIGH') or (jsev.get('MEDIUM', 0) + sc.get('MEDIUM', 0)) > 3 or jsev.get('HIGH'): new = 'AMBER'
+    health = max([h for h in (base_h, new) if h], key=lambda h: h_rank[h]) if base_h else new
+    if res:
+        res['source_risks'] = rows
+        res['health_with_sources'] = health
+        json.dump(res, open(rp, 'w', encoding='utf-8'), ensure_ascii=False, indent=1, default=str)
+    summ = (f"SOURCE RISKS: {len(rows)} items (" + ' · '.join(f"{k} {sum(k in r['rules'] for r in rows)}" for k in ('P1', 'P2', 'P3', 'P4', 'P5', 'S1')) +
+            f") · HIGH {sc.get('HIGH', 0)} MEDIUM {sc.get('MEDIUM', 0)} LOW {sc.get('LOW', 0)} · health with sources {health} (Jira only {base_h or 'n/a'})"
+            f" · lead times {lead['approval']}+{lead['purchasing']}+{lead['supplier']} wd · holidays {len(HOL)} days")
+    open(os.path.join(W, 'sources_summary.txt'), 'w', encoding='utf-8').write(summ + '\n')
+    print(summ)
+
+
 # ----------------------------------------------------------------- rollup
 def active_folders():
     """Folders marked Yes in the CLAUDE.md ## Projects table."""
@@ -885,7 +1103,7 @@ def cmd_rollup(a):
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sp = ap.add_subparsers(dest='cmd', required=True)
-    for name in ('normalize', 'analyze', 'diff', 'rollup'):
+    for name in ('normalize', 'analyze', 'diff', 'sources', 'rollup'):
         p = sp.add_parser(name)
         if name != 'rollup':
             p.add_argument('--project', required=True, help='wiki folder name, e.g. ZenaQuiet-Pro2')
@@ -903,7 +1121,7 @@ def main():
     if not os.path.isdir(os.path.join(KNOW, a.project)):
         sys.exit(f'Unknown project folder: {a.project}')
     a.date = a.date or load_config(a.project).get('today') or date.today().isoformat()
-    {'normalize': cmd_normalize, 'analyze': cmd_analyze, 'diff': cmd_diff}[a.cmd](a)
+    {'normalize': cmd_normalize, 'analyze': cmd_analyze, 'diff': cmd_diff, 'sources': cmd_sources}[a.cmd](a)
 
 
 if __name__ == '__main__':

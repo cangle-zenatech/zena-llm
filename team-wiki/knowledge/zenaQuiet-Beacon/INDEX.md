@@ -65,6 +65,31 @@ resolutiondate, labels.
 Record the totals per issue type. Verify that the retrieved count equals the
 JQL total. If it doesn't, note this in Data Gaps.
 
+### Step 2b: Read sources
+
+Read every file in `raw/threads/` and `raw/transcripts/` (rules: `CLAUDE.md` → `## Sources beyond
+Jira`). Keep each item about this product:
+
+- purchase requests: item, requester, cost, status (waiting approval / approved / ordered /
+  delivered), dates given, quoted lead time, open questions;
+- other blockers, open decisions or promised dates that affect planned work.
+
+For each item, find the Jira Story or Subtask that needs it (from the source or from ticket
+titles; label a title match "(inferred)"). Save the items to `WORK/sources.json` and run
+`tools/wiki_jira.py sources` for the dates (format in `tools/INDEX.md`).
+
+For every item also write, in plain words:
+
+- **impact**: what slips if this is late (the Jira item and what it is), e.g. "Hinge bench test
+  (PRO2-420)".
+- **root cause step**: one of `waiting approval` · `purchasing` · `supplier lead time` ·
+  `open decision` · `not requested` · `capacity` · `other`, plus a short detail from the source.
+- **fix**: one concrete action that would remove the risk.
+
+The script turns these into one plain sentence per risk with the delay in working days
+(`sources_plain.md`). Put that table in the report under the Risk Register, headed
+"Risks from team threads (plain)".
+
 ### Step 3: Normalize
 
 For each issue:
@@ -132,6 +157,25 @@ write 1–2 sentences that cover:
   (the max of the slip and the overrun),
 - which other teams wait on it (from links or from sibling Subtasks in the
   same Story).
+
+**Source risks** (from Step 2b; working days, `reference.md` lead times)
+
+| ID  | Risk                      | Condition                                                                                        |
+| --- | ------------------------- | ------------------------------------------------------------------------------------------------ |
+| P1  | Arrives after it's needed | forecast arrival > needed-by date of the linked Jira item                                        |
+| P2  | Approval overdue          | waiting for approval longer than 14 working days                                                 |
+| P3  | Blocked by a decision     | an open question stops the order (e.g. sourcing rule unclear)                                    |
+| P4  | Long-lead item            | total lead time > 20 working days and order-by date is within 10 working days or already passed  |
+| P5  | Can't trace               | no linked Jira item                                                                              |
+| S1  | Blocker from sources      | a thread or transcript names a blocker or open decision with no matching Jira ticket            |
+
+Source-risk severity:
+- **HIGH**: P1 where arrival is after the linked item's stage end or after PVT start; P1 + P3.
+- **MEDIUM**: other P1; P2; P3; P4; S1.
+- **LOW**: P5 alone.
+
+Source risks count toward the health rating like Jira risks. Impact tracing applies to HIGH and
+MEDIUM source risks too.
 
 ### Step 7: Metrics
 
@@ -222,7 +266,13 @@ Health: one sentence on why.
 
 ## 3. Risk Register
 | Sev | Key | Title | Team | Stage | Rules | Days late | Story → Epic | Gate impact | Suggested action |
-(sorted by severity, then days late)
+(sorted by severity, then days late. Jira and source risks together. For source risks,
+Key = source reference, e.g. `threads/2026-10-19-purchase.md · REQUEST 4`; Story → Epic = the
+linked Jira item.)
+
+### Order this week
+| Item | Needed for | Needed by | Order by | Lead time (wd) | Status | Source |
+(items whose order-by date is in the next 10 working days or already passed)
 
 ## 4. Team Load Heatmap
 | Team | {current month} | … | Nov-27 |   (mark overloaded cells with ⚠)
@@ -238,6 +288,7 @@ write "not in reference.md" if there's no match. Never guess an email.)
 
 ## 7. Data Gaps & Assumptions
 - What couldn't be retrieved or verified, and the field IDs used.
+- Source files read, and which items used default lead times instead of dates from the source.
 ```
 
 ### Executive Summary layout rules
@@ -274,3 +325,5 @@ These apply to section 1 only. Other sections keep plain ticket keys.
 - [ ] Every finding cites a ticket key
 - [ ] Health rating follows the rules in Step 7
 - [ ] Data Gaps section is filled in, even if it says "None"
+- [ ] Every file in `raw/threads/` and `raw/transcripts/` was read; every source risk cites file
+      and message

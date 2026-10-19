@@ -113,6 +113,25 @@ to its weekly report.
 - People across products: {rollup_people.md}
 - Research and other support work products wait on: {rollup_support.md}
 
+## 6b. Risks from team threads
+One row per risk, highest impact first. Plain sentences, no rule codes (P1–P5, S1 stay in the
+project reports). Build it from each helper's `sources_plain.md` and SOURCE RISKS lines; merge rows
+that describe the same risk in several products.
+
+| # | Product | What's at risk | Root cause | What would fix it | Level |
+
+- What's at risk: what slips and by how much, in working days, with the Jira key and both
+  dates. E.g. "Voice-capture work (HS-144) starts about 38 working days late: planned 21 Sep,
+  boards arrive around 12 Nov." If the delay can't be measured, write "delay unknown" and why.
+- Root cause: the step that holds it, in plain words: waiting for CTO approval · in
+  Purchasing · supplier lead time · open decision · not requested yet · capacity. Add the specific
+  detail (e.g. "wrong option paid, supplier stopped the order").
+- What would fix it: one concrete action.
+- Level: High / Medium / Low, from the project report.
+- Sort: High first, then by delay (largest first), then "delay unknown".
+- Below the table, one line: *Not placed yet:* source items with no clear product.
+- Describe steps, not people (e.g. "waiting for CTO approval since 5 Oct", never judgments).
+
 ## 7. Recommendations
 3–5 actions across products, each tied to ticket keys or people.
 

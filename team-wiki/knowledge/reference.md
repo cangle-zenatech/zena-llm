@@ -70,6 +70,15 @@ Found in Jira; not found in the Microsoft 365 company directory (searched 2026-1
 
 Thang Pham is the reporter of HS-47.
 
+#### Added 2026-10-19 — not yet confirmed
+
+Named in `raw/threads/` and `raw/transcripts/`, not in Jira. Email from the Microsoft 365 company
+directory (found by the Headset helper, 2026-10-19).
+
+| Jira name   | Microsoft Teams name | Email               | Team / role                       |
+| ----------- | -------------------- | ------------------- | --------------------------------- |
+| not in Jira | Sajjad Asif          | sajjad@zenatech.com | CTO; approves purchase requests   |
+
 ---
 
 ## Projects
@@ -130,6 +139,48 @@ Each window is `start → end`. A stage's end date is the next stage's start dat
 
 Headset uses the same schedule as Mask; Beacon uses the same schedule as Pro2. ZenaQuiet-Research has
 no stage schedule. All four products are in PVT/MP together from Sep to Nov 2027.
+
+---
+
+## Purchasing lead times
+
+Engineering raises a request in the team chat; the CTO approves; the Purchasing team passes it to
+Accounting, which places the order. Purchases are not tracked in Jira. All values are **working
+days** (Mon–Fri, minus `## Holidays`). A lead time quoted in a source replaces the default.
+
+| Step                                   | Default (working days) |
+| -------------------------------------- | ---------------------- |
+| Approval (CTO)                         | 14                     |
+| Purchasing → order placed (Accounting) | 3                      |
+| Supplier delivery                      | 5                      |
+| **Total, standard item**               | **22**                 |
+
+Supplier delivery: the human gave "1 week"; 5 working days is used here.
+
+**Order-by date** = needed-by date − total lead time (working days).
+**Needed-by date** = start date of the linked Jira item; if it has none, its due date.
+
+## Holidays
+
+Non-working days used for lead-time maths. To confirm with HR each year. Rows without an ISO date
+are not used until a date is filled in.
+
+| Date(s)                               | Holiday                  | Applies to                      |
+| ------------------------------------- | ------------------------ | ------------------------------- |
+| 2027-01-01                            | New Year's Day           | Vietnam team                    |
+| 2027-02-04 → 2027-02-12 (assumed; TBC) | Lunar New Year (Tết)     | Vietnam team, suppliers in Asia |
+| TBC                                   | Hung Kings Commemoration | Vietnam team                    |
+| 2027-04-30                            | Reunification Day        | Vietnam team                    |
+| 2027-05-01                            | Labour Day               | Vietnam team                    |
+| 2027-09-02 (+1 day TBC)               | National Day             | Vietnam team                    |
+
+Tết falls on the shared 2027-02-08 gate. The 2027-02-04 → 2027-02-12 range is an assumption until
+the official dates are set.
+
+## Sourcing rules
+
+- No components from China (CTO). Open question: does Hong Kong count?
+  (`threads/2026-10-19-purchase.md · REQUEST 3`)
 
 ---
 

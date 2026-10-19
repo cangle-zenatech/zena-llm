@@ -37,12 +37,14 @@ team-wiki/
 +-- raw/                       original sources, read only
 |   +-- transcripts/           meeting recordings, call notes
 |   +-- threads/               exported Slack, email, Microsoft Teams threads
+|                              (e.g. YYYY-MM-DD-purchase.md: purchase requests and approvals)
 |   +-- docs/                  PRDs, specs, reports, Confluence exports
 |                              (Jira is read live; Jira pages cite the ticket URL)
 |   +-- assets/                images referenced by sources
 +-- tools/                     shared scripts for the weekly reports
 |   +-- INDEX.md               how to run them; read it before using a script
 |   +-- wiki_jira.py           normalize, analyze, diff (Steps 3-7 of a project INDEX.md);
+|                              sources (risks from threads/transcripts);
 |                              rollup (all products, for knowledge/portfolio/)
 +-- data/                      Jira snapshots, one per project per weekly run
 |   +-- <project>/YYYY-MM-DD.json   written by wiki_jira.py; no descriptions; never edit
@@ -86,6 +88,23 @@ To add or remove a project, the human changes its Active value here.
 Project and people details are in `knowledge/reference.md`. When a ticket's Jira project doesn't clearly
 match one of these folders, ask the human before filing it.
 
+## Sources beyond Jira
+
+Jira shows planned work, not everything that can delay it. Purchase approvals, supplier lead
+times, open decisions and blockers live in `raw/threads/` and `raw/transcripts/`. Every status
+report reads both folders and turns what they say into risks (rules P1–P5 and S1 in each project
+`INDEX.md`).
+
+- Read every file in both folders, oldest first. A later message can close or change an earlier
+  item (e.g. a request marked APPROVED).
+- Cite every finding by file and message, e.g. `threads/2026-10-19-purchase.md · REQUEST 4`.
+- Label anything not stated outright "(inferred)". Never invent dates; when a source gives none,
+  use the standard lead times in `reference.md` → `## Purchasing lead times` and say so.
+- Describe delays as process steps ("CTO approval: 14 working days"), never as judgments about
+  people.
+- If an item's product isn't clear, don't guess: list it under "Unassigned source items" and ask
+  the human.
+
 ## Running many projects
 
 Any task that covers more than one project (weekly status reports, "all projects") runs as one
@@ -102,6 +121,8 @@ helper agent per active project, so no single session holds every project's Jira
      anything else in `reference.md` only when the human agrees);
    - look across projects: the same person overloaded on several products, shared PVT/MP crunch,
      cross-project links;
+   - collect "unassigned source items" from all helpers and ask the human which product each
+     belongs to;
    - write the portfolio roll-up: follow `knowledge/portfolio/INDEX.md` (runs
      `tools/wiki_jira.py rollup`, writes `knowledge/portfolio/YYYY-MM-DD-rollup.md` and the
      portfolio line in `knowledge/overview.md`);
@@ -114,9 +135,12 @@ helper agent per active project, so no single session holds every project's Jira
    folder, plus `tools/INDEX.md`.
 2. Saves Jira results to files and does all counting and date maths with `tools/wiki_jira.py`, never
    by hand.
-3. Writes only inside `knowledge/<project>/` and `data/<project>/`. Never edits `log.md`,
+3. Reads `raw/threads/` and `raw/transcripts/` (see `## Sources beyond Jira`), keeps only items
+   about its own product, saves them to `WORK/sources.json` and lets `tools/wiki_jira.py sources`
+   do the working-day and order-by date maths.
+4. Writes only inside `knowledge/<project>/` and `data/<project>/`. Never edits `log.md`,
    `reference.md`, `glossary.md` or `knowledge/overview.md`; suggests changes to them instead.
-4. Returns only this summary, no raw data:
+5. Returns only this summary, no raw data:
 
 ```text
 PROJECT: <folder> (<key>) · report: <path>
@@ -125,10 +149,12 @@ ROW: <stage> · gate <date> · <n>d · readiness <x>% · <health>
 COUNTS: JQL <n> = retrieved <n> (<per type>) · vs last snapshot: <changes>
 TOP RISKS: 1) … 2) … 3) …          one line each, with ticket keys
 CROSS-TEAM: one line
+SOURCE RISKS: one line per risk, highest first: <Level> · <what slips> by <n> working days (or "delay unknown: why") · cause: <step + detail> · fix: <action> · <source ref>
+UNASSIGNED SOURCE ITEMS: …
 PEOPLE NOT IN reference.md: names (+ email only if found in the company directory)
 SUGGESTED EDITS TO SHARED FILES: file · change · reason
 CONFLICTS / CONTRADICTIONS: one line each
-SELF-CHECK: n/6 pass (list failures)
+SELF-CHECK: n/N pass (list failures)
 ```
 
 ## File names

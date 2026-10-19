@@ -1,0 +1,8786 @@
+{
+"project": "ZenaQuiet-Pro2",
+"date": "2026-10-19",
+"start_field": "customfield_10015",
+"sprint_field": "customfield_10020",
+"count": 350,
+"issues": [
+{
+"key": "PRO2-1",
+"summary": "Layer 3  — Voice Lock: Inbound TSE(agent voice capture) ",
+"type": "Epic",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-06-29",
+"due": "2027-11-15",
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": null,
+"subtasks": [],
+"links": [
+{
+"dir": "out",
+"label": "tests",
+"type": "AgileTest",
+"key": "MK-2",
+"scat": "done"
+}
+],
+"created": "2026-06-18",
+"updated": "2026-10-15",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-2",
+"summary": "Layer 1  —  Voice Lock: Outbound TSE (sound bubble)",
+"type": "Epic",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Cang Le",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-06-29",
+"due": "2027-11-15",
+"sprints": [
+[
+"[POC] Sprint 2",
+"active"
+]
+],
+"parent": null,
+"subtasks": [],
+"links": [],
+"created": "2026-06-18",
+"updated": "2026-10-15",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-3",
+"summary": "Connectivity & Ports",
+"type": "Epic",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": null,
+"reporter": "Hung Pham Nguyen",
+"start": "2026-06-29",
+"due": "2027-11-15",
+"sprints": [
+[
+"[POC] Sprint 1",
+"active"
+]
+],
+"parent": null,
+"subtasks": [],
+"links": [],
+"created": "2026-06-18",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-4",
+"summary": "User Interface (Control and Status)",
+"type": "Epic",
+"status": "To Do",
+"scat": "new",
+"assignee": null,
+"reporter": "Hung Pham Nguyen",
+"start": "2026-06-29",
+"due": "2027-11-15",
+"sprints": [
+[
+"[POC] Sprint 1",
+"active"
+]
+],
+"parent": null,
+"subtasks": [],
+"links": [],
+"created": "2026-06-18",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-8",
+"summary": "Mechanical Structure (Product Enclosure)",
+"type": "Epic",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Duy Nguyen",
+"reporter": "Cang Le",
+"start": "2026-06-29",
+"due": "2027-11-15",
+"sprints": [
+[
+"[POC] Sprint 2",
+"active"
+]
+],
+"parent": null,
+"subtasks": [],
+"links": [],
+"created": "2026-06-18",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-11",
+"summary": "[EVT-1] Mic Array Port Geometry and MEMS Alignment",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-1",
+"subtasks": [
+"PRO2-12",
+"PRO2-13",
+"PRO2-14",
+"PRO2-15",
+"PRO2-16"
+],
+"links": [],
+"created": "2026-06-18",
+"updated": "2026-10-19",
+"resolved": "2026-10-19",
+"labels": [
+"Acoustic",
+"Mechanical"
+]
+},
+{
+"key": "PRO2-12",
+"summary": "Define port tube diameter (target 1.5 mm), minimum length, and centreline alignment tolerance to MEMS package port (±0.2 mm)",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-10-19",
+"due": "2026-10-20",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-11",
+"subtasks": [],
+"links": [],
+"created": "2026-06-19",
+"updated": "2026-10-19",
+"resolved": "2026-10-19",
+"labels": []
+},
+{
+"key": "PRO2-13",
+"summary": "Specify protective mesh for each exterior port opening: 316 SS 400-mesh (35 µm aperture) for IP30 dust protection; confirm insertion loss ≤1 dB on mesh sample before committing to BOM.",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-10-19",
+"due": "2026-10-20",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-11",
+"subtasks": [],
+"links": [],
+"created": "2026-06-19",
+"updated": "2026-10-16",
+"resolved": "2026-10-16",
+"labels": []
+},
+{
+"key": "PRO2-14",
+"summary": "Design gasket layer between array PCB and chassis wall to seal each port tube individually — prevents cross-talk between adjacent port cavities.",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-10-19",
+"due": "2026-10-20",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-11",
+"subtasks": [],
+"links": [],
+"created": "2026-06-19",
+"updated": "2026-10-19",
+"resolved": "2026-10-19",
+"labels": []
+},
+{
+"key": "PRO2-15",
+"summary": "DELETED",
+"type": "Subtask",
+"status": "To Do",
+"scat": "new",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-11",
+"subtasks": [],
+"links": [],
+"created": "2026-06-19",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-16",
+"summary": "DELETED",
+"type": "Subtask",
+"status": "To Do",
+"scat": "new",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-11",
+"subtasks": [],
+"links": [],
+"created": "2026-06-19",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-22",
+"summary": "[EVT-1] Mic Array PCB Vibration Isolation",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Duy Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-11-16",
+"due": "2026-11-17",
+"sprints": [
+[
+"[EVT-1] Sprint 11",
+"future"
+]
+],
+"parent": "PRO2-1",
+"subtasks": [
+"PRO2-23",
+"PRO2-24",
+"PRO2-25",
+"PRO2-26",
+"PRO2-27",
+"PRO2-28"
+],
+"links": [],
+"created": "2026-06-18",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": [
+"Mechanical"
+]
+},
+{
+"key": "PRO2-23",
+"summary": "Specify silicone standoff material, stiffness, and placement to decouple array PCB from chassis; target standoff resonant frequency <30 Hz.",
+"type": "Subtask",
+"status": "To Do",
+"scat": "new",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-10-26",
+"due": "2026-10-27",
+"sprints": [
+[
+"[EVT-1] Sprint 11",
+"future"
+]
+],
+"parent": "PRO2-22",
+"subtasks": [],
+"links": [],
+"created": "2026-06-19",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-24",
+"summary": "Confirm no rigid metal path exists between panel sub-PCBs and array PCB through the chassis structure.",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-10-19",
+"due": "2026-10-20",
+"sprints": [
+[
+"[EVT-1] Sprint 11",
+"future"
+]
+],
+"parent": "PRO2-22",
+"subtasks": [],
+"links": [],
+"created": "2026-06-19",
+"updated": "2026-10-19",
+"resolved": "2026-10-19",
+"labels": []
+},
+{
+"key": "PRO2-25",
+"summary": " Perform resonant mode analysis of base front lip (FEM or experimental modal analysis); confirm no chassis resonance in 100 Hz–4 kHz mic band.",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-10-19",
+"due": "2026-10-20",
+"sprints": [
+[
+"[EVT-1] Sprint 11",
+"future"
+]
+],
+"parent": "PRO2-22",
+"subtasks": [],
+"links": [],
+"created": "2026-06-19",
+"updated": "2026-10-19",
+"resolved": "2026-10-19",
+"labels": []
+},
+{
+"key": "PRO2-26",
+"summary": "Measure structure-borne noise floor on EVT-1 units: all internal components active, no external acoustic source, calibrated mic at array port position.",
+"type": "Subtask",
+"status": "To Do",
+"scat": "new",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-10-19",
+"due": "2026-10-21",
+"sprints": [
+[
+"[EVT-1] Sprint 11",
+"future"
+]
+],
+"parent": "PRO2-22",
+"subtasks": [],
+"links": [],
+"created": "2026-06-19",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-27",
+"summary": "-",
+"type": "Subtask",
+"status": "To Do",
+"scat": "new",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[EVT-1] Sprint 11",
+"future"
+]
+],
+"parent": "PRO2-22",
+"subtasks": [],
+"links": [],
+"created": "2026-06-19",
+"updated": "2026-06-26",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-28",
+"summary": "-",
+"type": "Subtask",
+"status": "To Do",
+"scat": "new",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[EVT-1] Sprint 11",
+"future"
+]
+],
+"parent": "PRO2-22",
+"subtasks": [],
+"links": [],
+"created": "2026-06-19",
+"updated": "2026-06-26",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-39",
+"summary": "[POC] 1/6 Translate Brief ",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Chico Ly",
+"reporter": "Chico Ly",
+"start": "2026-06-29",
+"due": "2026-09-21",
+"sprints": [
+[
+"[POC] Sprint 1",
+"active"
+]
+],
+"parent": "PRO2-172",
+"subtasks": [],
+"links": [
+{
+"dir": "out",
+"label": "relates to",
+"type": "Relates",
+"key": "BC-56",
+"scat": "done"
+},
+{
+"dir": "out",
+"label": "tests",
+"type": "AgileTest",
+"key": "HS-327",
+"scat": "done"
+},
+{
+"dir": "out",
+"label": "tests",
+"type": "AgileTest",
+"key": "HAL-78",
+"scat": "done"
+}
+],
+"created": "2026-06-18",
+"updated": "2026-10-12",
+"resolved": "2026-06-26",
+"labels": [
+"Industrial_Design"
+]
+},
+{
+"key": "PRO2-40",
+"summary": "[POC] 2/6 Concept Development",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Bui Minh Tuan (Steve .Bui)",
+"reporter": "Chico Ly",
+"start": "2026-06-29",
+"due": "2026-09-21",
+"sprints": [
+[
+"[POC] Sprint 2",
+"active"
+]
+],
+"parent": "PRO2-172",
+"subtasks": [
+"PRO2-307",
+"PRO2-305",
+"PRO2-306"
+],
+"links": [
+{
+"dir": "out",
+"label": "tests",
+"type": "AgileTest",
+"key": "BC-28",
+"scat": "done"
+}
+],
+"created": "2026-06-18",
+"updated": "2026-10-12",
+"resolved": "2026-06-29",
+"labels": [
+"Industrial_Design"
+]
+},
+{
+"key": "PRO2-109",
+"summary": "Collect minimum inputs before opening CAD:",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Trung Tin",
+"reporter": "Duy Nguyen",
+"start": "2026-07-13",
+"due": "2026-07-27",
+"sprints": [
+[
+"[POC] Sprint 3",
+"active"
+]
+],
+"parent": "PRO2-285",
+"subtasks": [],
+"links": [],
+"created": "2026-06-19",
+"updated": "2026-10-07",
+"resolved": "2026-07-13",
+"labels": []
+},
+{
+"key": "PRO2-110",
+"summary": "Model two-part housing shell (top and bottom halves): internal cavity sized to PCB envelope + 3 mm clearance all faces; wall thickness 2.5 mm; no surface detailing or strain relief at this stage.",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Trung Tin",
+"reporter": "Duy Nguyen",
+"start": "2026-07-13",
+"due": "2026-07-27",
+"sprints": [
+[
+"[POC] Sprint 3",
+"active"
+]
+],
+"parent": "PRO2-285",
+"subtasks": [],
+"links": [],
+"created": "2026-06-19",
+"updated": "2026-10-07",
+"resolved": "2026-07-13",
+"labels": []
+},
+{
+"key": "PRO2-111",
+"summary": "Open IEC C8 inlet cutout at confirmed position on housing end face; rectangular cutout matching C8 panel mount dimensions.",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Trung Tin",
+"reporter": "Duy Nguyen",
+"start": "2026-07-13",
+"due": "2026-07-27",
+"sprints": [
+[
+"[POC] Sprint 3",
+"active"
+]
+],
+"parent": "PRO2-285",
+"subtasks": [],
+"links": [],
+"created": "2026-06-19",
+"updated": "2026-10-07",
+"resolved": "2026-07-13",
+"labels": []
+},
+{
+"key": "PRO2-112",
+"summary": " Open DC barrel jack cutout at confirmed position on opposite end face; circular cutout matching barrel jack body diameter.",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Trung Tin",
+"reporter": "Duy Nguyen",
+"start": "2026-07-13",
+"due": "2026-07-27",
+"sprints": [
+[
+"[POC] Sprint 3",
+"active"
+]
+],
+"parent": "PRO2-285",
+"subtasks": [],
+"links": [],
+"created": "2026-06-19",
+"updated": "2026-10-07",
+"resolved": "2026-07-13",
+"labels": []
+},
+{
+"key": "PRO2-113",
+"summary": "Open cable exit hole on housing side face at confirmed diameter (cable OD + 0.5 mm clearance); straight through-hole, no strain relief geometry at this stage.",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Trung Tin",
+"reporter": "Duy Nguyen",
+"start": "2026-07-13",
+"due": "2026-07-27",
+"sprints": [
+[
+"[POC] Sprint 3",
+"active"
+]
+],
+"parent": "PRO2-285",
+"subtasks": [],
+"links": [],
+"created": "2026-06-19",
+"updated": "2026-10-07",
+"resolved": "2026-07-13",
+"labels": []
+},
+{
+"key": "PRO2-150",
+"summary": "[NEED Confirming] [EVT-1] Acoustic Baffling Around Mic Array",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-11-02",
+"due": "2027-02-08",
+"sprints": [
+[
+"[EVT-1] Sprint 10",
+"future"
+]
+],
+"parent": "PRO2-1",
+"subtasks": [
+"PRO2-153",
+"PRO2-154",
+"PRO2-155"
+],
+"links": [],
+"created": "2026-06-26",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": [
+"Acoustic",
+"Mechanical"
+]
+},
+{
+"key": "PRO2-153",
+"summary": "Map reflection paths from parametric arrays to mic array via desk surface, monitor, and agent body; identify dominant reflection angles.",
+"type": "Subtask",
+"status": "To Do",
+"scat": "new",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-11-02",
+"due": "2026-11-13",
+"sprints": [
+[
+"[EVT-1] Sprint 10",
+"future"
+]
+],
+"parent": "PRO2-150",
+"subtasks": [],
+"links": [],
+"created": "2026-06-26",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-154",
+"summary": "Specify absorptive foam strips on base front face adjacent to port array; define foam NRC, thickness, and bonding method.",
+"type": "Subtask",
+"status": "To Do",
+"scat": "new",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-11-02",
+"due": "2026-11-13",
+"sprints": [
+[
+"[EVT-1] Sprint 10",
+"future"
+]
+],
+"parent": "PRO2-150",
+"subtasks": [],
+"links": [],
+"created": "2026-06-26",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-155",
+"summary": "Validate baffle effectiveness on EVT-1: measure masking wash level at mic array position with and without baffling; confirm >30 dB below voice level.",
+"type": "Subtask",
+"status": "To Do",
+"scat": "new",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-11-02",
+"due": "2026-11-13",
+"sprints": [
+[
+"[EVT-1] Sprint 10",
+"future"
+]
+],
+"parent": "PRO2-150",
+"subtasks": [],
+"links": [],
+"created": "2026-06-26",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-156",
+"summary": "[EVT-1] Acoustic Side Baffle Design for Speaker Panel",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-11-02",
+"due": "2027-02-08",
+"sprints": [
+[
+"[EVT-1] Sprint 10",
+"future"
+]
+],
+"parent": "PRO2-2",
+"subtasks": [
+"PRO2-157",
+"PRO2-158",
+"PRO2-159",
+"PRO2-160"
+],
+"links": [],
+"created": "2026-06-26",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": [
+"Acoustic",
+"Mechanical"
+]
+},
+{
+"key": "PRO2-157",
+"summary": "Define baffle geometry on inner panel faces: angled profile to direct diffraction away from mic array; produce drawing with foam thickness and angle callouts.",
+"type": "Subtask",
+"status": "To Do",
+"scat": "new",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-11-02",
+"due": "2026-11-13",
+"sprints": [
+[
+"[EVT-1] Sprint 10",
+"future"
+]
+],
+"parent": "PRO2-156",
+"subtasks": [],
+"links": [],
+"created": "2026-06-26",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-158",
+"summary": "Specify open-cell acoustic foam material for baffles; confirm NRC ≥0.85 at 1 kHz on production sample.",
+"type": "Subtask",
+"status": "To Do",
+"scat": "new",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-11-02",
+"due": null,
+"sprints": [
+[
+"[EVT-1] Sprint 10",
+"future"
+]
+],
+"parent": "PRO2-156",
+"subtasks": [],
+"links": [],
+"created": "2026-06-26",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-159",
+"summary": "Confirm baffle edge clearance from nearest transducer element: minimum 15 mm to prevent diffraction interaction with array aperture.",
+"type": "Subtask",
+"status": "To Do",
+"scat": "new",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-11-02",
+"due": "2026-11-13",
+"sprints": [
+[
+"[EVT-1] Sprint 10",
+"future"
+]
+],
+"parent": "PRO2-156",
+"subtasks": [],
+"links": [],
+"created": "2026-06-26",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-160",
+"summary": "Measure masking-wash buildup at agent ear plane on EVT-1 floor setup (16 units, Beacon-coordinated); confirm <3 dB above single-unit baseline.",
+"type": "Subtask",
+"status": "To Do",
+"scat": "new",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-11-02",
+"due": "2026-11-13",
+"sprints": [
+[
+"[EVT-1] Sprint 10",
+"future"
+]
+],
+"parent": "PRO2-156",
+"subtasks": [],
+"links": [],
+"created": "2026-06-26",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-172",
+"summary": "PRO Industrial Design",
+"type": "Epic",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Chico Ly",
+"reporter": "Chico Ly",
+"start": "2026-06-29",
+"due": "2027-11-15",
+"sprints": [
+[
+"[POC] Sprint 2",
+"active"
+]
+],
+"parent": null,
+"subtasks": [],
+"links": [],
+"created": "2026-06-26",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [
+"Design"
+]
+},
+{
+"key": "PRO2-173",
+"summary": "[POC] 4/6 Design Prototyping",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Bui Minh Tuan (Steve .Bui)",
+"reporter": "Chico Ly",
+"start": "2026-06-29",
+"due": "2026-09-21",
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-172",
+"subtasks": [
+"PRO2-232",
+"PRO2-230",
+"PRO2-309",
+"PRO2-311",
+"PRO2-228"
+],
+"links": [],
+"created": "2026-06-26",
+"updated": "2026-10-12",
+"resolved": "2026-09-04",
+"labels": [
+"Industrial_Design"
+]
+},
+{
+"key": "PRO2-185",
+"summary": "Add 4 temporary snap-fit tabs at housing parting line to hold top and bottom halves together for RP-1 fit check; no production parting line geometry.",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Trung Tin",
+"reporter": "Duy Nguyen",
+"start": "2026-07-13",
+"due": "2026-07-27",
+"sprints": [
+[
+"[POC] Sprint 3",
+"active"
+]
+],
+"parent": "PRO2-285",
+"subtasks": [],
+"links": [],
+"created": "2026-06-26",
+"updated": "2026-10-07",
+"resolved": "2026-07-13",
+"labels": []
+},
+{
+"key": "PRO2-186",
+"summary": "Export STL files for top half and bottom half; send to printer; confirm print starts by end of Day 3.",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Trung Tin",
+"reporter": "Duy Nguyen",
+"start": "2026-07-13",
+"due": "2026-07-27",
+"sprints": [
+[
+"[POC] Sprint 3",
+"active"
+]
+],
+"parent": "PRO2-285",
+"subtasks": [],
+"links": [],
+"created": "2026-06-26",
+"updated": "2026-10-07",
+"resolved": "2026-07-20",
+"labels": []
+},
+{
+"key": "PRO2-191",
+"summary": "[DVT-1] 3D Modelling of Microphone Panel - Production Ready Model",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2027-02-08",
+"due": "2027-09-06",
+"sprints": [],
+"parent": "PRO2-1",
+"subtasks": [],
+"links": [],
+"created": "2026-06-26",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [
+"Mechanical"
+]
+},
+{
+"key": "PRO2-193",
+"summary": "[DVT-1] 3D Modelling of the Directional Speaker Panel - Production Ready Model",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2027-02-08",
+"due": "2027-09-06",
+"sprints": [],
+"parent": "PRO2-2",
+"subtasks": [],
+"links": [],
+"created": "2026-06-26",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [
+"Mechanical"
+]
+},
+{
+"key": "PRO2-195",
+"summary": "[DVT-1] 3D Modelling of the Main Body - Production Ready Model",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2027-02-08",
+"due": "2027-09-06",
+"sprints": [],
+"parent": "PRO2-8",
+"subtasks": [],
+"links": [],
+"created": "2026-06-26",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [
+"Mechanical"
+]
+},
+{
+"key": "PRO2-196",
+"summary": "[DVT-1] Engineering Drawing Package Release",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2027-02-08",
+"due": "2027-09-06",
+"sprints": [],
+"parent": "PRO2-8",
+"subtasks": [],
+"links": [],
+"created": "2026-06-26",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [
+"Mechanical"
+]
+},
+{
+"key": "PRO2-197",
+"summary": "[DVT-1] BOM Compilation and Cost Validation - DVT Stage",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2027-02-08",
+"due": "2027-09-06",
+"sprints": [],
+"parent": "PRO2-8",
+"subtasks": [],
+"links": [],
+"created": "2026-06-26",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [
+"Mechanical"
+]
+},
+{
+"key": "PRO2-198",
+"summary": "[DVT-1] ODM-A Quotation and Tooling Order - DVT Stage",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2027-02-08",
+"due": "2027-09-06",
+"sprints": [],
+"parent": "PRO2-8",
+"subtasks": [],
+"links": [],
+"created": "2026-06-26",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [
+"Mechanical"
+]
+},
+{
+"key": "PRO2-199",
+"summary": "[DVT-1] First Article Inspection (FAI)",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": null,
+"reporter": "Duy Nguyen",
+"start": "2027-02-08",
+"due": "2027-09-06",
+"sprints": [],
+"parent": "PRO2-8",
+"subtasks": [],
+"links": [],
+"created": "2026-06-26",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [
+"Factory"
+]
+},
+{
+"key": "PRO2-200",
+"summary": "[DVT-1] Build Oversight and Incoming Quality Check",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": null,
+"reporter": "Duy Nguyen",
+"start": "2027-02-08",
+"due": "2027-09-06",
+"sprints": [],
+"parent": "PRO2-8",
+"subtasks": [],
+"links": [],
+"created": "2026-06-26",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [
+"Factory"
+]
+},
+{
+"key": "PRO2-209",
+"summary": "[EE] Define specifications",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Manh Tuan",
+"reporter": "Nguyen Manh Tuan",
+"start": "2026-07-13",
+"due": "2026-07-27",
+"sprints": [
+[
+"[POC] Sprint 3",
+"active"
+]
+],
+"parent": "PRO2-285",
+"subtasks": [],
+"links": [],
+"created": "2026-07-09",
+"updated": "2026-10-07",
+"resolved": "2026-07-09",
+"labels": []
+},
+{
+"key": "PRO2-210",
+"summary": "[EE] Define specifications for PSU 72W",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Manh Tuan",
+"reporter": "Nguyen Manh Tuan",
+"start": "2026-07-13",
+"due": "2026-07-27",
+"sprints": [
+[
+"[POC] Sprint 3",
+"active"
+]
+],
+"parent": "PRO2-285",
+"subtasks": [],
+"links": [],
+"created": "2026-07-09",
+"updated": "2026-10-07",
+"resolved": "2026-07-09",
+"labels": [
+"Design"
+]
+},
+{
+"key": "PRO2-211",
+"summary": "[EE] Topology & IC Selection for PSU 72W - UC3842 vs INN3270C",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Manh Tuan",
+"reporter": "Nguyen Manh Tuan",
+"start": "2026-07-13",
+"due": "2026-07-27",
+"sprints": [
+[
+"[POC] Sprint 3",
+"active"
+]
+],
+"parent": "PRO2-285",
+"subtasks": [],
+"links": [],
+"created": "2026-07-09",
+"updated": "2026-10-07",
+"resolved": "2026-07-09",
+"labels": []
+},
+{
+"key": "PRO2-212",
+"summary": "[EE] AC rectifier + bulk capacitor selection and design",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Manh Tuan",
+"reporter": "Nguyen Manh Tuan",
+"start": "2026-07-13",
+"due": "2026-07-27",
+"sprints": [
+[
+"[POC] Sprint 3",
+"active"
+]
+],
+"parent": "PRO2-285",
+"subtasks": [],
+"links": [],
+"created": "2026-07-09",
+"updated": "2026-10-07",
+"resolved": "2026-07-09",
+"labels": []
+},
+{
+"key": "PRO2-213",
+"summary": "[EE] EMI Filter Design",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Manh Tuan",
+"reporter": "Nguyen Manh Tuan",
+"start": "2026-07-13",
+"due": "2026-07-27",
+"sprints": [
+[
+"[POC] Sprint 3",
+"active"
+]
+],
+"parent": "PRO2-285",
+"subtasks": [],
+"links": [],
+"created": "2026-07-09",
+"updated": "2026-10-07",
+"resolved": "2026-07-09",
+"labels": []
+},
+{
+"key": "PRO2-214",
+"summary": "[EE] Transformer Design",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Manh Tuan",
+"reporter": "Nguyen Trung Tin",
+"start": "2026-07-13",
+"due": "2026-07-27",
+"sprints": [
+[
+"[POC] Sprint 3",
+"active"
+]
+],
+"parent": "PRO2-285",
+"subtasks": [],
+"links": [],
+"created": "2026-07-09",
+"updated": "2026-10-07",
+"resolved": "2026-07-09",
+"labels": []
+},
+{
+"key": "PRO2-215",
+"summary": "[EE] RCD Snubber Circuit Analysis and Calculation",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Manh Tuan",
+"reporter": "Nguyen Manh Tuan",
+"start": "2026-07-13",
+"due": "2026-07-27",
+"sprints": [
+[
+"[POC] Sprint 3",
+"active"
+]
+],
+"parent": "PRO2-285",
+"subtasks": [],
+"links": [],
+"created": "2026-07-09",
+"updated": "2026-10-07",
+"resolved": "2026-07-09",
+"labels": []
+},
+{
+"key": "PRO2-216",
+"summary": "[EE] Output Diode Calculation and Selection",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Manh Tuan",
+"reporter": "Nguyen Manh Tuan",
+"start": "2026-07-13",
+"due": "2026-07-27",
+"sprints": [
+[
+"[POC] Sprint 3",
+"active"
+]
+],
+"parent": "PRO2-285",
+"subtasks": [],
+"links": [],
+"created": "2026-07-09",
+"updated": "2026-10-07",
+"resolved": "2026-07-09",
+"labels": []
+},
+{
+"key": "PRO2-217",
+"summary": "[EE] Output Capacitor Calculation and Selection",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Manh Tuan",
+"reporter": "Nguyen Manh Tuan",
+"start": "2026-07-13",
+"due": "2026-07-27",
+"sprints": [
+[
+"[POC] Sprint 3",
+"active"
+]
+],
+"parent": "PRO2-285",
+"subtasks": [],
+"links": [],
+"created": "2026-07-09",
+"updated": "2026-10-07",
+"resolved": "2026-07-09",
+"labels": []
+},
+{
+"key": "PRO2-218",
+"summary": "[EE] PCB Design Adapter Power Input Circuitry using INN3270C",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Manh Tuan",
+"reporter": "Nguyen Manh Tuan",
+"start": "2026-07-13",
+"due": "2026-07-27",
+"sprints": [
+[
+"[POC] Sprint 3",
+"active"
+]
+],
+"parent": "PRO2-285",
+"subtasks": [],
+"links": [],
+"created": "2026-07-09",
+"updated": "2026-10-07",
+"resolved": "2026-07-13",
+"labels": []
+},
+{
+"key": "PRO2-219",
+"summary": "[POC] 3/6 Design Development",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Chico Ly",
+"reporter": "Cang Le",
+"start": "2026-06-29",
+"due": "2026-09-21",
+"sprints": [
+[
+"[POC] Sprint 2",
+"active"
+]
+],
+"parent": "PRO2-172",
+"subtasks": [
+"PRO2-235",
+"PRO2-227",
+"PRO2-236",
+"PRO2-378"
+],
+"links": [],
+"created": "2026-07-09",
+"updated": "2026-10-12",
+"resolved": "2026-07-27",
+"labels": [
+"Industrial_Design"
+]
+},
+{
+"key": "PRO2-227",
+"summary": "Finish PRO v1a STL files for 3d Printing Sprint 2",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Chico Ly",
+"reporter": "Chico Ly",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 2",
+"active"
+]
+],
+"parent": "PRO2-219",
+"subtasks": [],
+"links": [],
+"created": "2026-07-10",
+"updated": "2026-07-17",
+"resolved": "2026-07-10",
+"labels": []
+},
+{
+"key": "PRO2-228",
+"summary": "NDAs for venders",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Bui Minh Tuan (Steve .Bui)",
+"reporter": "Chico Ly",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-173",
+"subtasks": [],
+"links": [],
+"created": "2026-07-10",
+"updated": "2026-07-17",
+"resolved": "2026-07-10",
+"labels": [
+"Design"
+]
+},
+{
+"key": "PRO2-230",
+"summary": "Bring PRO-v1a back",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Chico Ly",
+"reporter": "Chico Ly",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-173",
+"subtasks": [],
+"links": [],
+"created": "2026-07-10",
+"updated": "2026-08-31",
+"resolved": "2026-08-31",
+"labels": []
+},
+{
+"key": "PRO2-232",
+"summary": "Bring PRO-v1b back",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Chico Ly",
+"reporter": "Chico Ly",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-173",
+"subtasks": [],
+"links": [],
+"created": "2026-07-10",
+"updated": "2026-08-31",
+"resolved": "2026-08-31",
+"labels": []
+},
+{
+"key": "PRO2-234",
+"summary": "Collect design feedbacks & revise solutions from Prototypes",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Bui Minh Tuan (Steve .Bui)",
+"reporter": "Chico Ly",
+"start": "2026-09-21",
+"due": null,
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-304",
+"subtasks": [],
+"links": [
+{
+"dir": "out",
+"label": "tests",
+"type": "AgileTest",
+"key": "BC-154",
+"scat": "done"
+}
+],
+"created": "2026-07-10",
+"updated": "2026-10-07",
+"resolved": "2026-10-07",
+"labels": [
+"IndustrialDesign"
+]
+},
+{
+"key": "PRO2-235",
+"summary": "Finish PRO v1b STL files for 3d Printing Sprint 2",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Chico Ly",
+"reporter": "Chico Ly",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 2",
+"active"
+]
+],
+"parent": "PRO2-219",
+"subtasks": [],
+"links": [],
+"created": "2026-07-10",
+"updated": "2026-07-17",
+"resolved": "2026-07-17",
+"labels": [
+"Design"
+]
+},
+{
+"key": "PRO2-236",
+"summary": "Finish PRO v1 3DM files for ME hand over ",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Chico Ly",
+"reporter": "Chico Ly",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 2",
+"active"
+]
+],
+"parent": "PRO2-219",
+"subtasks": [],
+"links": [],
+"created": "2026-07-10",
+"updated": "2026-07-17",
+"resolved": "2026-07-10",
+"labels": []
+},
+{
+"key": "PRO2-237",
+"summary": "Design UI control led with EE",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Chico Ly",
+"reporter": "Chico Ly",
+"start": "2026-09-21",
+"due": "2026-10-16",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-304",
+"subtasks": [],
+"links": [],
+"created": "2026-07-10",
+"updated": "2026-10-19",
+"resolved": "2026-10-19",
+"labels": []
+},
+{
+"key": "PRO2-239",
+"summary": "[EE] Implement Power Protection Functions",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Manh Tuan",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-07-13",
+"due": "2026-07-27",
+"sprints": [
+[
+"[POC] Sprint 3",
+"active"
+]
+],
+"parent": "PRO2-285",
+"subtasks": [],
+"links": [],
+"created": "2026-07-13",
+"updated": "2026-10-07",
+"resolved": "2026-07-13",
+"labels": []
+},
+{
+"key": "PRO2-240",
+"summary": "[EE] Schematic Design Adapter Power Input Circuitry using INN3270C",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Manh Tuan",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-07-13",
+"due": "2026-07-27",
+"sprints": [
+[
+"[POC] Sprint 3",
+"active"
+]
+],
+"parent": "PRO2-285",
+"subtasks": [],
+"links": [],
+"created": "2026-07-13",
+"updated": "2026-10-07",
+"resolved": "2026-07-13",
+"labels": []
+},
+{
+"key": "PRO2-241",
+"summary": "[DVT-1] 3D Modelling of Mechanical Housing for Power Adapter - Production Ready Model",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Nguyen Trung Tin",
+"reporter": "Duy Nguyen",
+"start": "2027-02-08",
+"due": "2027-09-06",
+"sprints": [],
+"parent": "PRO2-3",
+"subtasks": [],
+"links": [],
+"created": "2026-07-13",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [
+"Mechanical"
+]
+},
+{
+"key": "PRO2-244",
+"summary": "[POC] Use 8 microphone to capture audio at 80° front-facing",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": null,
+"reporter": "Hung Pham Nguyen",
+"start": "2026-06-29",
+"due": "2026-09-21",
+"sprints": [
+[
+"[POC] Sprint 3",
+"active"
+]
+],
+"parent": "PRO2-1",
+"subtasks": [
+"PRO2-255",
+"PRO2-256",
+"PRO2-257",
+"PRO2-258",
+"PRO2-259",
+"PRO2-260",
+"PRO2-396"
+],
+"links": [],
+"created": "2026-07-15",
+"updated": "2026-10-12",
+"resolved": "2026-08-11",
+"labels": [
+"Acoustic",
+"Electronic_Electrical"
+]
+},
+{
+"key": "PRO2-245",
+"summary": "[POC] Isolate and record agent's voice",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "KhuongNguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-06-29",
+"due": "2026-09-21",
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-1",
+"subtasks": [
+"PRO2-261",
+"PRO2-262",
+"PRO2-263",
+"PRO2-264",
+"PRO2-276",
+"PRO2-278",
+"PRO2-279",
+"PRO2-374",
+"PRO2-375",
+"PRO2-376",
+"PRO2-377",
+"PRO2-380",
+"PRO2-394",
+"PRO2-398",
+"PRO2-402",
+"PRO2-403",
+"PRO2-413",
+"PRO2-414",
+"PRO2-415"
+],
+"links": [],
+"created": "2026-07-15",
+"updated": "2026-10-12",
+"resolved": "2026-09-22",
+"labels": [
+"Electronic_Electrical",
+"Firmware"
+]
+},
+{
+"key": "PRO2-246",
+"summary": "[POC] Adjustable recording angle",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-06-29",
+"due": "2026-09-21",
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-1",
+"subtasks": [
+"PRO2-254",
+"PRO2-251",
+"PRO2-265",
+"PRO2-293",
+"PRO2-294",
+"PRO2-301",
+"PRO2-302",
+"PRO2-313",
+"PRO2-369"
+],
+"links": [],
+"created": "2026-07-15",
+"updated": "2026-10-12",
+"resolved": "2026-08-17",
+"labels": [
+"Mechanical"
+]
+},
+{
+"key": "PRO2-247",
+"summary": "[POC] Ensure recording quality",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": null,
+"reporter": "Hung Pham Nguyen",
+"start": "2026-06-29",
+"due": "2026-09-21",
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-1",
+"subtasks": [
+"PRO2-266",
+"PRO2-267",
+"PRO2-280",
+"PRO2-282",
+"PRO2-283"
+],
+"links": [],
+"created": "2026-07-15",
+"updated": "2026-10-12",
+"resolved": "2026-08-17",
+"labels": [
+"Electronic_Electrical",
+"Firmware",
+"Mechanical"
+]
+},
+{
+"key": "PRO2-248",
+"summary": "[POC] Sufficient volume at a distance of 1 meter",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": null,
+"reporter": "Hung Pham Nguyen",
+"start": "2026-06-29",
+"due": "2026-09-21",
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-2",
+"subtasks": [
+"PRO2-268",
+"PRO2-269",
+"PRO2-270",
+"PRO2-271",
+"PRO2-272",
+"PRO2-273",
+"PRO2-297"
+],
+"links": [],
+"created": "2026-07-15",
+"updated": "2026-10-12",
+"resolved": "2026-10-07",
+"labels": [
+"Electronic_Electrical",
+"Firmware"
+]
+},
+{
+"key": "PRO2-249",
+"summary": "[POC] Emit only for listeners positioned at 120° in front.",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": null,
+"reporter": "Hung Pham Nguyen",
+"start": "2026-06-29",
+"due": "2026-09-21",
+"sprints": [
+[
+"[POC] Sprint 2",
+"active"
+]
+],
+"parent": "PRO2-2",
+"subtasks": [
+"PRO2-274",
+"PRO2-275",
+"PRO2-277",
+"PRO2-397"
+],
+"links": [],
+"created": "2026-07-15",
+"updated": "2026-10-12",
+"resolved": "2026-07-22",
+"labels": [
+"Acoustic",
+"Electronic_Electrical"
+]
+},
+{
+"key": "PRO2-250",
+"summary": "[POC] Adjustable emitting sound angle",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": null,
+"reporter": "Hung Pham Nguyen",
+"start": "2026-06-29",
+"due": "2026-09-21",
+"sprints": [
+[
+"[POC] Sprint 3",
+"active"
+]
+],
+"parent": "PRO2-2",
+"subtasks": [
+"PRO2-252",
+"PRO2-253",
+"PRO2-391",
+"PRO2-281",
+"PRO2-314",
+"PRO2-370"
+],
+"links": [],
+"created": "2026-07-15",
+"updated": "2026-10-12",
+"resolved": "2026-08-13",
+"labels": [
+"Electronic_Electrical",
+"Mechanical"
+]
+},
+{
+"key": "PRO2-251",
+"summary": "[ME] 3D Modelling of the Microphone Panel - 1st Prototype",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-08-10",
+"due": "2026-08-24",
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-246",
+"subtasks": [],
+"links": [],
+"created": "2026-07-15",
+"updated": "2026-10-07",
+"resolved": "2026-07-15",
+"labels": [
+"Mechanical"
+]
+},
+{
+"key": "PRO2-252",
+"summary": "[ME] Select POC material for the Directional Speaker Panel",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-07-27",
+"due": "2026-08-10",
+"sprints": [
+[
+"[POC] Sprint 3",
+"active"
+]
+],
+"parent": "PRO2-250",
+"subtasks": [],
+"links": [],
+"created": "2026-07-15",
+"updated": "2026-10-07",
+"resolved": "2026-10-06",
+"labels": [
+"Mechanical"
+]
+},
+{
+"key": "PRO2-253",
+"summary": "[ME] 3D Modelling of the Directional Speaker Panel - 1st Prototype",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-07-27",
+"due": "2026-08-10",
+"sprints": [
+[
+"[POC] Sprint 3",
+"active"
+]
+],
+"parent": "PRO2-250",
+"subtasks": [],
+"links": [],
+"created": "2026-07-15",
+"updated": "2026-10-07",
+"resolved": "2026-07-15",
+"labels": [
+"Mechanical"
+]
+},
+{
+"key": "PRO2-254",
+"summary": "[ME] Select POC material for the Microphone Panel",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Trung Tin",
+"reporter": "Duy Nguyen",
+"start": "2026-08-10",
+"due": "2026-08-24",
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-246",
+"subtasks": [],
+"links": [],
+"created": "2026-07-15",
+"updated": "2026-10-07",
+"resolved": "2026-07-15",
+"labels": [
+"Mechanical"
+]
+},
+{
+"key": "PRO2-255",
+"summary": "[EE] Define mic panel schematic (8 channels)",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-07-27",
+"due": "2026-08-10",
+"sprints": [
+[
+"[POC] Sprint 3",
+"active"
+]
+],
+"parent": "PRO2-244",
+"subtasks": [],
+"links": [],
+"created": "2026-07-16",
+"updated": "2026-10-07",
+"resolved": "2026-07-16",
+"labels": []
+},
+{
+"key": "PRO2-256",
+"summary": "[EE] Design FFC interface (Mic panel ↔ Main)",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-07-27",
+"due": "2026-08-10",
+"sprints": [
+[
+"[POC] Sprint 3",
+"active"
+]
+],
+"parent": "PRO2-244",
+"subtasks": [],
+"links": [],
+"created": "2026-07-16",
+"updated": "2026-10-07",
+"resolved": "2026-07-16",
+"labels": []
+},
+{
+"key": "PRO2-257",
+"summary": "[EE] Design clock & sync distribution for mic array",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-07-27",
+"due": "2026-08-10",
+"sprints": [
+[
+"[POC] Sprint 3",
+"active"
+]
+],
+"parent": "PRO2-244",
+"subtasks": [],
+"links": [],
+"created": "2026-07-16",
+"updated": "2026-10-07",
+"resolved": "2026-07-16",
+"labels": []
+},
+{
+"key": "PRO2-258",
+"summary": "[EE] Lay out mic panel PCB",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-07-27",
+"due": "2026-08-10",
+"sprints": [
+[
+"[POC] Sprint 3",
+"active"
+]
+],
+"parent": "PRO2-244",
+"subtasks": [],
+"links": [],
+"created": "2026-07-16",
+"updated": "2026-10-07",
+"resolved": "2026-07-16",
+"labels": []
+},
+{
+"key": "PRO2-259",
+"summary": "[EE] Design power & decoupling for mic panel",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-07-27",
+"due": "2026-08-10",
+"sprints": [
+[
+"[POC] Sprint 3",
+"active"
+]
+],
+"parent": "PRO2-244",
+"subtasks": [],
+"links": [],
+"created": "2026-07-16",
+"updated": "2026-10-07",
+"resolved": "2026-07-16",
+"labels": []
+},
+{
+"key": "PRO2-260",
+"summary": "[EE] Design Main-side capture interface",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-07-27",
+"due": "2026-08-10",
+"sprints": [
+[
+"[POC] Sprint 3",
+"active"
+]
+],
+"parent": "PRO2-244",
+"subtasks": [],
+"links": [],
+"created": "2026-07-16",
+"updated": "2026-10-07",
+"resolved": "2026-07-16",
+"labels": []
+},
+{
+"key": "PRO2-261",
+"summary": "[EE] Minimize inter-channel crosstalk",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-08-10",
+"due": "2026-08-24",
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-245",
+"subtasks": [],
+"links": [],
+"created": "2026-07-16",
+"updated": "2026-10-07",
+"resolved": "2026-07-16",
+"labels": []
+},
+{
+"key": "PRO2-262",
+"summary": "[EE] Design low-noise front-end",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-08-10",
+"due": "2026-08-24",
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-245",
+"subtasks": [],
+"links": [],
+"created": "2026-07-16",
+"updated": "2026-10-07",
+"resolved": "2026-07-16",
+"labels": []
+},
+{
+"key": "PRO2-263",
+"summary": "[EE] Ensure signal integrity over FFC",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-08-10",
+"due": "2026-08-24",
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-245",
+"subtasks": [],
+"links": [],
+"created": "2026-07-16",
+"updated": "2026-10-07",
+"resolved": "2026-07-16",
+"labels": []
+},
+{
+"key": "PRO2-264",
+"summary": "[EE] Integrate SE050 secure element on mic panel",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-08-10",
+"due": "2026-08-24",
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-245",
+"subtasks": [],
+"links": [],
+"created": "2026-07-16",
+"updated": "2026-10-07",
+"resolved": "2026-07-16",
+"labels": []
+},
+{
+"key": "PRO2-265",
+"summary": "[EE] Validate mic pitch & geometry",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-08-10",
+"due": "2026-08-24",
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-246",
+"subtasks": [],
+"links": [],
+"created": "2026-07-16",
+"updated": "2026-10-07",
+"resolved": "2026-07-16",
+"labels": []
+},
+{
+"key": "PRO2-266",
+"summary": "[EE] Review power noise & decoupling",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-08-10",
+"due": "2026-08-24",
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-247",
+"subtasks": [],
+"links": [],
+"created": "2026-07-16",
+"updated": "2026-10-07",
+"resolved": "2026-07-16",
+"labels": []
+},
+{
+"key": "PRO2-267",
+"summary": "[EE] Check FFC signal integrity",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-08-10",
+"due": "2026-08-24",
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-247",
+"subtasks": [],
+"links": [],
+"created": "2026-07-16",
+"updated": "2026-10-07",
+"resolved": "2026-07-16",
+"labels": []
+},
+{
+"key": "PRO2-268",
+"summary": "[EE] Define speaker panel schematic (36 transducers)",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-08-10",
+"due": "2026-08-26",
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-248",
+"subtasks": [],
+"links": [],
+"created": "2026-07-16",
+"updated": "2026-10-07",
+"resolved": "2026-07-16",
+"labels": []
+},
+{
+"key": "PRO2-269",
+"summary": "[EE] Design ultrasonic driver / amplifier",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-08-10",
+"due": "2026-08-26",
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-248",
+"subtasks": [],
+"links": [],
+"created": "2026-07-16",
+"updated": "2026-10-07",
+"resolved": "2026-07-16",
+"labels": []
+},
+{
+"key": "PRO2-270",
+"summary": "[EE] Design power budget & supply",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-08-10",
+"due": "2026-08-26",
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-248",
+"subtasks": [],
+"links": [],
+"created": "2026-07-16",
+"updated": "2026-10-07",
+"resolved": "2026-07-16",
+"labels": []
+},
+{
+"key": "PRO2-271",
+"summary": "[EE] Design FFC interface (Speaker panel ↔ Main)",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-08-10",
+"due": "2026-08-26",
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-248",
+"subtasks": [],
+"links": [],
+"created": "2026-07-16",
+"updated": "2026-10-07",
+"resolved": "2026-07-16",
+"labels": []
+},
+{
+"key": "PRO2-272",
+"summary": "[EE] Lay out speaker panel PCB",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-08-10",
+"due": "2026-08-26",
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-248",
+"subtasks": [],
+"links": [],
+"created": "2026-07-16",
+"updated": "2026-10-07",
+"resolved": "2026-07-16",
+"labels": []
+},
+{
+"key": "PRO2-273",
+"summary": "[EE] Bring-up & SPL measurement",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-08-10",
+"due": "2026-08-26",
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-248",
+"subtasks": [],
+"links": [],
+"created": "2026-07-16",
+"updated": "2026-10-07",
+"resolved": "2026-07-16",
+"labels": []
+},
+{
+"key": "PRO2-274",
+"summary": "[EE] Define array drive architecture",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-07-13",
+"due": "2026-07-27",
+"sprints": [
+[
+"[POC] Sprint 2",
+"active"
+]
+],
+"parent": "PRO2-249",
+"subtasks": [],
+"links": [],
+"created": "2026-07-16",
+"updated": "2026-10-07",
+"resolved": "2026-07-16",
+"labels": []
+},
+{
+"key": "PRO2-275",
+"summary": "[EE] Channel drive matching",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-07-13",
+"due": "2026-07-20",
+"sprints": [
+[
+"[POC] Sprint 2",
+"active"
+]
+],
+"parent": "PRO2-249",
+"subtasks": [],
+"links": [],
+"created": "2026-07-16",
+"updated": "2026-10-07",
+"resolved": "2026-07-16",
+"labels": []
+},
+{
+"key": "PRO2-276",
+"summary": "[FW] TSE Model reseach and choose models",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "KhuongNguyen",
+"reporter": "KhuongNguyen",
+"start": "2026-08-10",
+"due": "2026-08-24",
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-245",
+"subtasks": [],
+"links": [],
+"created": "2026-07-16",
+"updated": "2026-10-07",
+"resolved": "2026-07-16",
+"labels": []
+},
+{
+"key": "PRO2-277",
+"summary": "[EE] Ultrasonic carrier signal integrity",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-07-13",
+"due": "2026-07-20",
+"sprints": [
+[
+"[POC] Sprint 2",
+"active"
+]
+],
+"parent": "PRO2-249",
+"subtasks": [],
+"links": [],
+"created": "2026-07-16",
+"updated": "2026-10-07",
+"resolved": "2026-07-16",
+"labels": []
+},
+{
+"key": "PRO2-278",
+"summary": "[FW] TSE Model first training ",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "KhuongNguyen",
+"reporter": "KhuongNguyen",
+"start": "2026-08-10",
+"due": "2026-08-24",
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-245",
+"subtasks": [],
+"links": [],
+"created": "2026-07-16",
+"updated": "2026-10-07",
+"resolved": "2026-07-16",
+"labels": []
+},
+{
+"key": "PRO2-279",
+"summary": "[FW] TSE Model improvement ",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "KhuongNguyen",
+"reporter": "KhuongNguyen",
+"start": "2026-08-10",
+"due": "2026-08-24",
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-245",
+"subtasks": [],
+"links": [],
+"created": "2026-07-16",
+"updated": "2026-10-07",
+"resolved": "2026-09-21",
+"labels": []
+},
+{
+"key": "PRO2-280",
+"summary": "[FW] Beamforming algorithm software handling (MVDR)",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "KhuongNguyen",
+"reporter": "KhuongNguyen",
+"start": "2026-08-10",
+"due": "2026-08-24",
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-247",
+"subtasks": [],
+"links": [],
+"created": "2026-07-16",
+"updated": "2026-10-07",
+"resolved": "2026-10-07",
+"labels": []
+},
+{
+"key": "PRO2-281",
+"summary": "[EE] Define timing / phase resolution",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-07-27",
+"due": "2026-08-10",
+"sprints": [
+[
+"[POC] Sprint 3",
+"active"
+]
+],
+"parent": "PRO2-250",
+"subtasks": [],
+"links": [],
+"created": "2026-07-16",
+"updated": "2026-10-07",
+"resolved": "2026-07-16",
+"labels": []
+},
+{
+"key": "PRO2-282",
+"summary": "[FW] Hardware setup for beamforming algorithm validation",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": "2026-08-10",
+"due": "2026-08-24",
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-247",
+"subtasks": [],
+"links": [],
+"created": "2026-07-16",
+"updated": "2026-10-07",
+"resolved": "2026-07-16",
+"labels": []
+},
+{
+"key": "PRO2-283",
+"summary": "[FW] Beam forming approaching - Firmware Implement Test base on stm32f407 devkit",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": "2026-08-10",
+"due": "2026-08-24",
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-247",
+"subtasks": [],
+"links": [],
+"created": "2026-07-16",
+"updated": "2026-10-07",
+"resolved": "2026-07-20",
+"labels": [
+"Firmware"
+]
+},
+{
+"key": "PRO2-285",
+"summary": "[POC] Have external DC power supply adapter 24V 72W",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": null,
+"reporter": "Hung Pham Nguyen",
+"start": "2026-06-29",
+"due": "2026-09-21",
+"sprints": [
+[
+"[POC] Sprint 3",
+"active"
+]
+],
+"parent": "PRO2-3",
+"subtasks": [
+"PRO2-109",
+"PRO2-110",
+"PRO2-111",
+"PRO2-112",
+"PRO2-113",
+"PRO2-185",
+"PRO2-186",
+"PRO2-209",
+"PRO2-210",
+"PRO2-211",
+"PRO2-212",
+"PRO2-213",
+"PRO2-214",
+"PRO2-215",
+"PRO2-216",
+"PRO2-217",
+"PRO2-218",
+"PRO2-239",
+"PRO2-240",
+"PRO2-310",
+"PRO2-312"
+],
+"links": [],
+"created": "2026-07-16",
+"updated": "2026-10-12",
+"resolved": "2026-08-10",
+"labels": [
+"Electronic_Electrical",
+"Mechanical"
+]
+},
+{
+"key": "PRO2-286",
+"summary": "[POC] Use power from the DC port to supply power to all electrical components",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": null,
+"reporter": "Hung Pham Nguyen",
+"start": "2026-06-29",
+"due": "2026-09-21",
+"sprints": [
+[
+"[POC] Sprint 2",
+"active"
+]
+],
+"parent": "PRO2-3",
+"subtasks": [
+"PRO2-319",
+"PRO2-320",
+"PRO2-321",
+"PRO2-322",
+"PRO2-323",
+"PRO2-324"
+],
+"links": [],
+"created": "2026-07-16",
+"updated": "2026-10-12",
+"resolved": "2026-07-27",
+"labels": [
+"Electronic_Electrical"
+]
+},
+{
+"key": "PRO2-288",
+"summary": "[POC] 2 USB ports power, connect and communicate external devices",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": null,
+"reporter": "Hung Pham Nguyen",
+"start": "2026-06-29",
+"due": "2026-09-21",
+"sprints": [
+[
+"[POC] Sprint 2",
+"active"
+]
+],
+"parent": "PRO2-3",
+"subtasks": [
+"PRO2-335",
+"PRO2-336",
+"PRO2-337",
+"PRO2-338",
+"PRO2-339"
+],
+"links": [],
+"created": "2026-07-16",
+"updated": "2026-10-12",
+"resolved": "2026-07-27",
+"labels": [
+"Electronic_Electrical"
+]
+},
+{
+"key": "PRO2-293",
+"summary": "[ME] 3D-print a simple adjustable Microphone Panel mechanism WITHOUT DETENT in FDM PLA holding the mic panel at three fixed test angles: 0°, 15°, and 30° — bolt-through slots, no hinge at PoC",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-08-10",
+"due": "2026-08-24",
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-246",
+"subtasks": [],
+"links": [],
+"created": "2026-07-16",
+"updated": "2026-10-07",
+"resolved": "2026-08-12",
+"labels": [
+"Mechanical"
+]
+},
+{
+"key": "PRO2-294",
+"summary": "[ME] 3D-print a simple adjustable Microphone Panel mechanism WITH DETENT in FDM PLA holding the mic panel at three fixed test angles: 0°, 15°, and 30° — bolt-through slots, no hinge at PoC",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-08-10",
+"due": "2026-08-24",
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-246",
+"subtasks": [],
+"links": [],
+"created": "2026-07-16",
+"updated": "2026-10-07",
+"resolved": "2026-08-17",
+"labels": []
+},
+{
+"key": "PRO2-295",
+"summary": "[POC] Internet connecting through LAN cable, wireless function",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": null,
+"reporter": "Hung Pham Nguyen",
+"start": "2026-06-29",
+"due": "2026-09-21",
+"sprints": [
+[
+"[POC] Sprint 2",
+"active"
+]
+],
+"parent": "PRO2-3",
+"subtasks": [
+"PRO2-340",
+"PRO2-341"
+],
+"links": [],
+"created": "2026-07-16",
+"updated": "2026-10-12",
+"resolved": "2026-07-27",
+"labels": [
+"Electronic_Electrical"
+]
+},
+{
+"key": "PRO2-297",
+"summary": "[FW] Reduce noise from customer side from AI Model in NPU ",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "KhuongNguyen",
+"reporter": "KhuongNguyen",
+"start": "2026-08-10",
+"due": "2026-08-26",
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-248",
+"subtasks": [],
+"links": [],
+"created": "2026-07-16",
+"updated": "2026-10-07",
+"resolved": "2026-09-21",
+"labels": []
+},
+{
+"key": "PRO2-298",
+"summary": "[EVT-1] Touch sensors controlling product states",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-4",
+"subtasks": [
+"PRO2-328",
+"PRO2-329",
+"PRO2-330",
+"PRO2-331",
+"PRO2-326",
+"PRO2-327",
+"PRO2-381",
+"PRO2-382",
+"PRO2-383",
+"PRO2-384",
+"PRO2-385"
+],
+"links": [],
+"created": "2026-07-16",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": [
+"Electronic_Electrical",
+"Mechanical"
+]
+},
+{
+"key": "PRO2-299",
+"summary": "[EVT-1] Ring of light represent different states",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": null,
+"reporter": "Hung Pham Nguyen",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"[EVT-1] Sprint 11",
+"future"
+]
+],
+"parent": "PRO2-4",
+"subtasks": [
+"PRO2-332",
+"PRO2-333",
+"PRO2-334",
+"PRO2-318",
+"PRO2-386",
+"PRO2-387",
+"PRO2-388",
+"PRO2-389"
+],
+"links": [],
+"created": "2026-07-16",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [
+"Electronic_Electrical",
+"Mechanical"
+]
+},
+{
+"key": "PRO2-300",
+"summary": "[EVT-1] Lock anti-theft tether",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Duy Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-4",
+"subtasks": [
+"PRO2-315",
+"PRO2-316",
+"PRO2-317"
+],
+"links": [],
+"created": "2026-07-16",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": [
+"Mechanical"
+]
+},
+{
+"key": "PRO2-301",
+"summary": "[ME] Simple FEA of Panel Non-Detent Mechanism",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-08-10",
+"due": "2026-08-24",
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-246",
+"subtasks": [],
+"links": [],
+"created": "2026-07-16",
+"updated": "2026-10-07",
+"resolved": "2026-07-21",
+"labels": [
+"Mechanical"
+]
+},
+{
+"key": "PRO2-302",
+"summary": "[ME] Simple FEA of Panel Detent Mechanism",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-08-10",
+"due": "2026-08-24",
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-246",
+"subtasks": [],
+"links": [],
+"created": "2026-07-16",
+"updated": "2026-10-07",
+"resolved": "2026-07-30",
+"labels": [
+"Mechanical"
+]
+},
+{
+"key": "PRO2-303",
+"summary": "[EVT-1:ME] Ensure Recording Quality",
+"type": "Subtask",
+"status": "To Do",
+"scat": "new",
+"assignee": "Nguyen Trung Tin",
+"reporter": "Duy Nguyen",
+"start": "2026-11-02",
+"due": "2026-11-30",
+"sprints": [
+[
+"[EVT-1] Sprint 10",
+"future"
+]
+],
+"parent": "PRO2-433",
+"subtasks": [],
+"links": [],
+"created": "2026-07-16",
+"updated": "2026-10-07",
+"resolved": null,
+"labels": [
+"Acoustic"
+]
+},
+{
+"key": "PRO2-304",
+"summary": "[EVT-1] 5/6 Design Refinement",
+"type": "Story",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Chico Ly",
+"reporter": "Chico Ly",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-172",
+"subtasks": [
+"PRO2-308",
+"PRO2-395",
+"PRO2-237",
+"PRO2-234",
+"PRO2-455"
+],
+"links": [],
+"created": "2026-07-17",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": [
+"Industrial_Design"
+]
+},
+{
+"key": "PRO2-305",
+"summary": "Finish Draft Products PRO-V0",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Chico Ly",
+"reporter": "Chico Ly",
+"start": "2026-06-14",
+"due": "2026-06-24",
+"sprints": [
+[
+"[POC] Sprint 2",
+"active"
+]
+],
+"parent": "PRO2-40",
+"subtasks": [],
+"links": [],
+"created": "2026-07-17",
+"updated": "2026-10-07",
+"resolved": "2026-07-17",
+"labels": []
+},
+{
+"key": "PRO2-306",
+"summary": "Tone and Mood of Products CMF V1",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Bui Minh Tuan (Steve .Bui)",
+"reporter": "Chico Ly",
+"start": "2026-06-14",
+"due": "2026-07-20",
+"sprints": [
+[
+"[POC] Sprint 2",
+"active"
+]
+],
+"parent": "PRO2-40",
+"subtasks": [],
+"links": [],
+"created": "2026-07-17",
+"updated": "2026-10-07",
+"resolved": "2026-10-07",
+"labels": []
+},
+{
+"key": "PRO2-307",
+"summary": "Finish Demo Products PRO-V1",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Chico Ly",
+"reporter": "Chico Ly",
+"start": "2026-06-14",
+"due": "2026-06-24",
+"sprints": [
+[
+"[POC] Sprint 2",
+"active"
+]
+],
+"parent": "PRO2-40",
+"subtasks": [],
+"links": [],
+"created": "2026-07-17",
+"updated": "2026-10-07",
+"resolved": "2026-07-17",
+"labels": []
+},
+{
+"key": "PRO2-308",
+"summary": "PRO V3 Model Design",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Khanh Duong",
+"reporter": "Chico Ly",
+"start": "2026-09-21",
+"due": "2026-10-05",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-304",
+"subtasks": [],
+"links": [],
+"created": "2026-07-17",
+"updated": "2026-10-07",
+"resolved": "2026-08-31",
+"labels": [
+"IndustrialDesign"
+]
+},
+{
+"key": "PRO2-309",
+"summary": "ID 3D Printing Quotation",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Bui Minh Tuan (Steve .Bui)",
+"reporter": "Chico Ly",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-173",
+"subtasks": [],
+"links": [],
+"created": "2026-07-17",
+"updated": "2026-07-27",
+"resolved": "2026-07-20",
+"labels": []
+},
+{
+"key": "PRO2-310",
+"summary": "[ME] Get the 1st 3D Printing Model of PSU to finding these assembly conflict to improve the design.",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Trung Tin",
+"reporter": "Duy Nguyen",
+"start": "2026-07-13",
+"due": "2026-07-27",
+"sprints": [
+[
+"[POC] Sprint 3",
+"active"
+]
+],
+"parent": "PRO2-285",
+"subtasks": [],
+"links": [],
+"created": "2026-07-17",
+"updated": "2026-10-07",
+"resolved": "2026-08-10",
+"labels": [
+"Mechanical"
+]
+},
+{
+"key": "PRO2-311",
+"summary": "Sourcing for 3D Printing Solution",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Bui Minh Tuan (Steve .Bui)",
+"reporter": "Chico Ly",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-173",
+"subtasks": [],
+"links": [],
+"created": "2026-07-17",
+"updated": "2026-07-27",
+"resolved": "2026-07-20",
+"labels": []
+},
+{
+"key": "PRO2-312",
+"summary": "[ME] 3D Modelling of Mechanical Housing for Power Adapter - 2nd",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Trung Tin",
+"reporter": "Duy Nguyen",
+"start": "2026-07-13",
+"due": "2026-07-27",
+"sprints": [
+[
+"[POC] Sprint 3",
+"active"
+]
+],
+"parent": "PRO2-285",
+"subtasks": [],
+"links": [],
+"created": "2026-07-17",
+"updated": "2026-10-07",
+"resolved": "2026-08-07",
+"labels": [
+"Mechanical"
+]
+},
+{
+"key": "PRO2-313",
+"summary": "[TO BE DELETED] [ME] 3D Modelling of the Microphone Panel - 2nd POC Prototype",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-08-10",
+"due": "2026-08-24",
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-246",
+"subtasks": [],
+"links": [],
+"created": "2026-07-21",
+"updated": "2026-10-07",
+"resolved": "2026-08-13",
+"labels": []
+},
+{
+"key": "PRO2-314",
+"summary": "[ME] 3D Modelling of the Directional Speaker Panel - 2nd POC Prototype, [TO BE DELETED] ",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-07-27",
+"due": "2026-08-10",
+"sprints": [
+[
+"[POC] Sprint 3",
+"active"
+]
+],
+"parent": "PRO2-250",
+"subtasks": [],
+"links": [],
+"created": "2026-07-21",
+"updated": "2026-10-07",
+"resolved": "2026-08-13",
+"labels": []
+},
+{
+"key": "PRO2-315",
+"summary": "[ME] Model the K-slot steel insert sleeve pocket in the base shell CAD",
+"type": "Subtask",
+"status": "To Do",
+"scat": "new",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-10-19",
+"due": "2026-10-23",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-300",
+"subtasks": [],
+"links": [],
+"created": "2026-07-21",
+"updated": "2026-10-07",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-316",
+"summary": "[ME] Confirm pocket position does not conflict with internal PCB components",
+"type": "Subtask",
+"status": "To Do",
+"scat": "new",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-10-19",
+"due": "2026-10-23",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-300",
+"subtasks": [],
+"links": [],
+"created": "2026-07-21",
+"updated": "2026-10-07",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-317",
+"summary": "[ME] Verify rear chassis wall thickness at pocket location via simulation",
+"type": "Subtask",
+"status": "To Do",
+"scat": "new",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-10-19",
+"due": "2026-10-23",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-300",
+"subtasks": [],
+"links": [],
+"created": "2026-07-21",
+"updated": "2026-10-07",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-318",
+"summary": "[ME] Touch and LED Integration on PCB Rev 1",
+"type": "Subtask",
+"status": "To Do",
+"scat": "new",
+"assignee": null,
+"reporter": "Duy Nguyen",
+"start": "2026-11-09",
+"due": "2026-11-13",
+"sprints": [
+[
+"[EVT-1] Sprint 11",
+"future"
+]
+],
+"parent": "PRO2-299",
+"subtasks": [],
+"links": [],
+"created": "2026-07-21",
+"updated": "2026-10-07",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-319",
+"summary": "[EE] Design DC input & power entry",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-07-13",
+"due": "2026-07-27",
+"sprints": [
+[
+"[POC] Sprint 2",
+"active"
+]
+],
+"parent": "PRO2-286",
+"subtasks": [],
+"links": [],
+"created": "2026-07-21",
+"updated": "2026-10-07",
+"resolved": "2026-07-21",
+"labels": []
+},
+{
+"key": "PRO2-320",
+"summary": "[EE] Design voltage rails / power tree",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-07-13",
+"due": "2026-07-27",
+"sprints": [
+[
+"[POC] Sprint 2",
+"active"
+]
+],
+"parent": "PRO2-286",
+"subtasks": [],
+"links": [],
+"created": "2026-07-21",
+"updated": "2026-10-07",
+"resolved": "2026-07-21",
+"labels": []
+},
+{
+"key": "PRO2-321",
+"summary": "[EE] Distribute power to all subsystems",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-07-13",
+"due": "2026-07-27",
+"sprints": [
+[
+"[POC] Sprint 2",
+"active"
+]
+],
+"parent": "PRO2-286",
+"subtasks": [],
+"links": [],
+"created": "2026-07-21",
+"updated": "2026-10-07",
+"resolved": "2026-07-21",
+"labels": []
+},
+{
+"key": "PRO2-322",
+"summary": "[EE] Design PoE backup power path",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-07-13",
+"due": "2026-07-27",
+"sprints": [
+[
+"[POC] Sprint 2",
+"active"
+]
+],
+"parent": "PRO2-286",
+"subtasks": [],
+"links": [],
+"created": "2026-07-21",
+"updated": "2026-10-07",
+"resolved": "2026-07-21",
+"labels": []
+},
+{
+"key": "PRO2-323",
+"summary": "[EE] Design power source selection / priority",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-07-13",
+"due": "2026-07-27",
+"sprints": [
+[
+"[POC] Sprint 2",
+"active"
+]
+],
+"parent": "PRO2-286",
+"subtasks": [],
+"links": [],
+"created": "2026-07-21",
+"updated": "2026-10-07",
+"resolved": "2026-07-21",
+"labels": []
+},
+{
+"key": "PRO2-324",
+"summary": "[EE] Design decoupling & stability across boards",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-07-13",
+"due": "2026-07-27",
+"sprints": [
+[
+"[POC] Sprint 2",
+"active"
+]
+],
+"parent": "PRO2-286",
+"subtasks": [],
+"links": [],
+"created": "2026-07-21",
+"updated": "2026-10-07",
+"resolved": "2026-07-21",
+"labels": []
+},
+{
+"key": "PRO2-326",
+"summary": "[ME] Print housing's top control plate in FDM PLA with 3 touch zones marked — embossed dot (power), ridge (mute), recessed area (mode). ",
+"type": "Subtask",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-10-19",
+"due": "2026-10-23",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-298",
+"subtasks": [],
+"links": [],
+"created": "2026-07-21",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-327",
+"summary": "[ME] Confirm Copper touch plate thickness within capacitive touch IC detection range ",
+"type": "Subtask",
+"status": "To Do",
+"scat": "new",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-10-19",
+"due": "2026-10-23",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-298",
+"subtasks": [],
+"links": [],
+"created": "2026-07-21",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-328",
+"summary": "[ME] Research candidate materials for touch-sensing surface",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-10-19",
+"due": "2026-10-20",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-298",
+"subtasks": [],
+"links": [],
+"created": "2026-07-21",
+"updated": "2026-10-19",
+"resolved": "2026-10-19",
+"labels": []
+},
+{
+"key": "PRO2-329",
+"summary": "[ME] Evaluate capacitive touch performance of candidate materials",
+"type": "Subtask",
+"status": "To Do",
+"scat": "new",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-11-02",
+"due": "2026-11-13",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-298",
+"subtasks": [],
+"links": [],
+"created": "2026-07-21",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-330",
+"summary": "[ME] Analyze manufacturability and cost of selected materials",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-10-19",
+"due": "2026-10-23",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-298",
+"subtasks": [],
+"links": [],
+"created": "2026-07-21",
+"updated": "2026-10-19",
+"resolved": "2026-10-19",
+"labels": []
+},
+{
+"key": "PRO2-331",
+"summary": "[ME] Recommend final material selection for touch-sensing surface",
+"type": "Subtask",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-11-09",
+"due": "2026-11-13",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-298",
+"subtasks": [],
+"links": [],
+"created": "2026-07-21",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-332",
+"summary": "[ME] Evaluate candidate diffuser materials and surface finishes",
+"type": "Subtask",
+"status": "To Do",
+"scat": "new",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-11-02",
+"due": "2026-11-06",
+"sprints": [
+[
+"[EVT-1] Sprint 11",
+"future"
+]
+],
+"parent": "PRO2-299",
+"subtasks": [],
+"links": [],
+"created": "2026-07-21",
+"updated": "2026-10-07",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-333",
+"summary": "[ME] Develop the initial diffuser geometry and integration concept",
+"type": "Subtask",
+"status": "To Do",
+"scat": "new",
+"assignee": null,
+"reporter": "Duy Nguyen",
+"start": "2026-11-02",
+"due": "2026-11-06",
+"sprints": [
+[
+"[EVT-1] Sprint 11",
+"future"
+]
+],
+"parent": "PRO2-299",
+"subtasks": [],
+"links": [],
+"created": "2026-07-21",
+"updated": "2026-10-07",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-334",
+"summary": "[ME] Simulate or review LED light distribution through the diffuser design",
+"type": "Subtask",
+"status": "To Do",
+"scat": "new",
+"assignee": null,
+"reporter": "Duy Nguyen",
+"start": "2026-11-09",
+"due": "2026-11-13",
+"sprints": [
+[
+"[EVT-1] Sprint 11",
+"future"
+]
+],
+"parent": "PRO2-299",
+"subtasks": [],
+"links": [],
+"created": "2026-07-21",
+"updated": "2026-10-07",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-335",
+"summary": "[EE] Design USB-C interface (USB 3.2 + PD out)",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-07-13",
+"due": "2026-07-27",
+"sprints": [
+[
+"[POC] Sprint 2",
+"active"
+]
+],
+"parent": "PRO2-288",
+"subtasks": [],
+"links": [],
+"created": "2026-07-21",
+"updated": "2026-10-07",
+"resolved": "2026-07-21",
+"labels": []
+},
+{
+"key": "PRO2-336",
+"summary": "[EE] Design USB-A interface (5 V + debug/update, USB 2.0)",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-07-13",
+"due": "2026-07-27",
+"sprints": [
+[
+"[POC] Sprint 2",
+"active"
+]
+],
+"parent": "PRO2-288",
+"subtasks": [],
+"links": [],
+"created": "2026-07-21",
+"updated": "2026-10-07",
+"resolved": "2026-07-21",
+"labels": []
+},
+{
+"key": "PRO2-337",
+"summary": "[EE] Design USB power delivery & protection",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-07-13",
+"due": "2026-07-27",
+"sprints": [
+[
+"[POC] Sprint 2",
+"active"
+]
+],
+"parent": "PRO2-288",
+"subtasks": [],
+"links": [],
+"created": "2026-07-21",
+"updated": "2026-10-07",
+"resolved": "2026-07-21",
+"labels": []
+},
+{
+"key": "PRO2-338",
+"summary": "[EE] USB high-speed signal integrity & layout",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-07-13",
+"due": "2026-07-27",
+"sprints": [
+[
+"[POC] Sprint 2",
+"active"
+]
+],
+"parent": "PRO2-288",
+"subtasks": [],
+"links": [],
+"created": "2026-07-21",
+"updated": "2026-10-07",
+"resolved": "2026-07-21",
+"labels": []
+},
+{
+"key": "PRO2-339",
+"summary": "[EE] Connect USB to Main controller",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-07-13",
+"due": "2026-07-27",
+"sprints": [
+[
+"[POC] Sprint 2",
+"active"
+]
+],
+"parent": "PRO2-288",
+"subtasks": [],
+"links": [],
+"created": "2026-07-21",
+"updated": "2026-10-07",
+"resolved": "2026-07-21",
+"labels": []
+},
+{
+"key": "PRO2-340",
+"summary": "[EE] Design RJ45 Gigabit Ethernet interface",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-07-13",
+"due": "2026-07-27",
+"sprints": [
+[
+"[POC] Sprint 2",
+"active"
+]
+],
+"parent": "PRO2-295",
+"subtasks": [],
+"links": [],
+"created": "2026-07-21",
+"updated": "2026-10-07",
+"resolved": "2026-07-21",
+"labels": []
+},
+{
+"key": "PRO2-341",
+"summary": "[EE] Ethernet signal integrity & layout",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-07-13",
+"due": "2026-07-27",
+"sprints": [
+[
+"[POC] Sprint 2",
+"active"
+]
+],
+"parent": "PRO2-295",
+"subtasks": [],
+"links": [],
+"created": "2026-07-21",
+"updated": "2026-10-07",
+"resolved": "2026-07-21",
+"labels": []
+},
+{
+"key": "PRO2-343",
+"summary": "[POC] Main enclosure for main PCB",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-06-29",
+"due": "2026-09-21",
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-8",
+"subtasks": [
+"PRO2-345",
+"PRO2-348",
+"PRO2-346",
+"PRO2-347",
+"PRO2-349",
+"PRO2-350",
+"PRO2-361",
+"PRO2-353",
+"PRO2-356",
+"PRO2-357",
+"PRO2-358",
+"PRO2-359",
+"PRO2-360"
+],
+"links": [],
+"created": "2026-07-22",
+"updated": "2026-10-12",
+"resolved": "2026-08-24",
+"labels": [
+"Mechanical"
+]
+},
+{
+"key": "PRO2-344",
+"summary": "[EVT-1] Thermal management & Air vent",
+"type": "Story",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-8",
+"subtasks": [
+"PRO2-365",
+"PRO2-366",
+"PRO2-367",
+"PRO2-368"
+],
+"links": [],
+"created": "2026-07-22",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": [
+"Mechanical"
+]
+},
+{
+"key": "PRO2-345",
+"summary": "[ME] Research candidate materials for POC enclosure",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-343",
+"subtasks": [],
+"links": [],
+"created": "2026-07-22",
+"updated": "2026-07-22",
+"resolved": "2026-07-22",
+"labels": []
+},
+{
+"key": "PRO2-346",
+"summary": "[ME] Assess durability and environmental resistance of enclosure materials",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-343",
+"subtasks": [],
+"links": [],
+"created": "2026-07-22",
+"updated": "2026-07-22",
+"resolved": "2026-07-22",
+"labels": []
+},
+{
+"key": "PRO2-347",
+"summary": "[ME] Evaluate mechanical and structural properties of candidate materials",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-343",
+"subtasks": [],
+"links": [],
+"created": "2026-07-22",
+"updated": "2026-07-22",
+"resolved": "2026-07-22",
+"labels": []
+},
+{
+"key": "PRO2-348",
+"summary": "[ME] Recommend final material selection for POC enclosure",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-343",
+"subtasks": [],
+"links": [],
+"created": "2026-07-22",
+"updated": "2026-07-22",
+"resolved": "2026-07-22",
+"labels": []
+},
+{
+"key": "PRO2-349",
+"summary": "[ME] Collect minimum inputs: PCB envelope from Electronic Engineering; rear port positions and cutout sizes from Electrical; LED strip width. Do not open CAD until all three confirmed.",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-343",
+"subtasks": [],
+"links": [],
+"created": "2026-07-22",
+"updated": "2026-07-22",
+"resolved": "2026-07-22",
+"labels": []
+},
+{
+"key": "PRO2-350",
+"summary": " [ME] Model base shell: internal cavity at PCB envelope + 3 mm clearance; 3 mm wall; 8 rear port cutouts; LED ring channel at confirmed strip width + 0.5 mm; no thermal geometry, no IP30 sealing, no Kensington slot at this stage.",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-343",
+"subtasks": [],
+"links": [],
+"created": "2026-07-22",
+"updated": "2026-07-22",
+"resolved": "2026-07-22",
+"labels": []
+},
+{
+"key": "PRO2-353",
+"summary": "[ME] 3D-print the 1st prototype for Main Housing",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-343",
+"subtasks": [],
+"links": [],
+"created": "2026-07-22",
+"updated": "2026-08-12",
+"resolved": "2026-08-12",
+"labels": []
+},
+{
+"key": "PRO2-356",
+"summary": "[ME] Assemble the 3D-printed main housing & evaluate with team",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-343",
+"subtasks": [],
+"links": [],
+"created": "2026-07-22",
+"updated": "2026-08-17",
+"resolved": "2026-08-17",
+"labels": []
+},
+{
+"key": "PRO2-357",
+"summary": "[TO BE DELETED] [ME] 3D Modelling of the Main Body - 2nd prototype",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-343",
+"subtasks": [],
+"links": [],
+"created": "2026-07-22",
+"updated": "2026-08-13",
+"resolved": "2026-08-13",
+"labels": []
+},
+{
+"key": "PRO2-358",
+"summary": "[TO BE DELETED] [ME] Add structural support features to Panels & Main housing - 2nd Prototype",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-343",
+"subtasks": [],
+"links": [],
+"created": "2026-07-22",
+"updated": "2026-08-13",
+"resolved": "2026-08-13",
+"labels": []
+},
+{
+"key": "PRO2-359",
+"summary": "[TO BE DELETED] [ME] Airflow Vent Geometry (Thermal) for the Main Housing - 2nd Prototype",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-343",
+"subtasks": [],
+"links": [],
+"created": "2026-07-22",
+"updated": "2026-08-13",
+"resolved": "2026-08-13",
+"labels": []
+},
+{
+"key": "PRO2-360",
+"summary": "[TO BE DELETED] [ME] Perform structural calculations (load limits, deflection, displacement) - 2nd Prototype",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-343",
+"subtasks": [],
+"links": [],
+"created": "2026-07-22",
+"updated": "2026-08-13",
+"resolved": "2026-08-13",
+"labels": []
+},
+{
+"key": "PRO2-361",
+"summary": "[ME] Perform structural calculations (load limits, deflection, displacement) - 1st Prototype",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-343",
+"subtasks": [],
+"links": [],
+"created": "2026-07-22",
+"updated": "2026-08-10",
+"resolved": "2026-08-10",
+"labels": []
+},
+{
+"key": "PRO2-365",
+"summary": "[ME] Lay out vent geometry and placement on the mic panel, speaker panel, and main housing",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-10-12",
+"due": "2026-10-16",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-344",
+"subtasks": [],
+"links": [],
+"created": "2026-07-22",
+"updated": "2026-10-16",
+"resolved": "2026-10-16",
+"labels": []
+},
+{
+"key": "PRO2-366",
+"summary": "[ME] Run thermal analysis of the enclosure vent concept under peak and normal load",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-09-21",
+"due": "2026-10-02",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-344",
+"subtasks": [],
+"links": [],
+"created": "2026-07-22",
+"updated": "2026-10-07",
+"resolved": "2026-10-02",
+"labels": []
+},
+{
+"key": "PRO2-367",
+"summary": "[ME] Validate vent performance on the 1st prototype hardware",
+"type": "Subtask",
+"status": "To Do",
+"scat": "new",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-11-09",
+"due": "2026-11-13",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-344",
+"subtasks": [],
+"links": [],
+"created": "2026-07-22",
+"updated": "2026-10-07",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-368",
+"summary": "[ME] Assess acoustic impact of the vent design on microphone capture and speaker output",
+"type": "Subtask",
+"status": "To Do",
+"scat": "new",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-11-09",
+"due": "2026-11-13",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-344",
+"subtasks": [],
+"links": [],
+"created": "2026-07-22",
+"updated": "2026-10-07",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-369",
+"summary": "[TO BE DELETED] [ME] 3D-print the 2nd prototype for the Mic Panel",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-08-10",
+"due": "2026-08-24",
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-246",
+"subtasks": [],
+"links": [],
+"created": "2026-07-22",
+"updated": "2026-10-07",
+"resolved": "2026-08-13",
+"labels": []
+},
+{
+"key": "PRO2-370",
+"summary": "[ME] 3D-print the 2nd prototype for the Speaker Panel, [TO BE DELETED]",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-07-27",
+"due": "2026-08-10",
+"sprints": [
+[
+"[POC] Sprint 3",
+"active"
+]
+],
+"parent": "PRO2-250",
+"subtasks": [],
+"links": [],
+"created": "2026-07-22",
+"updated": "2026-10-07",
+"resolved": "2026-08-13",
+"labels": []
+},
+{
+"key": "PRO2-371",
+"summary": "[EVT-1] Drop Test Survivability",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"[EVT-1] Sprint 11",
+"future"
+]
+],
+"parent": "PRO2-8",
+"subtasks": [],
+"links": [],
+"created": "2026-07-22",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [
+"Mechanical"
+]
+},
+{
+"key": "PRO2-372",
+"summary": "[TO BE REMOVED] [EVT-1] Ingress Protection IP30",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"[EVT-1] Sprint 11",
+"future"
+]
+],
+"parent": "PRO2-8",
+"subtasks": [],
+"links": [],
+"created": "2026-07-22",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [
+"Mechanical"
+]
+},
+{
+"key": "PRO2-374",
+"summary": "Setup environment and evaluate ONNX inference time on laptop",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Phi Tuong",
+"reporter": "Phi Tuong",
+"start": "2026-08-10",
+"due": "2026-08-24",
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-245",
+"subtasks": [],
+"links": [],
+"created": "2026-07-23",
+"updated": "2026-10-07",
+"resolved": "2026-07-23",
+"labels": []
+},
+{
+"key": "PRO2-375",
+"summary": "Evaluate ONNX inference time on Raspberry Pi 5 on first version",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Phi Tuong",
+"reporter": "Phi Tuong",
+"start": "2026-08-10",
+"due": "2026-08-24",
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-245",
+"subtasks": [],
+"links": [],
+"created": "2026-07-23",
+"updated": "2026-10-07",
+"resolved": "2026-07-23",
+"labels": []
+},
+{
+"key": "PRO2-376",
+"summary": "Evaluate TSE model performance on laptop vs Raspberry Pi 5 on first version",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Phi Tuong",
+"reporter": "Phi Tuong",
+"start": "2026-08-10",
+"due": "2026-08-24",
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-245",
+"subtasks": [],
+"links": [],
+"created": "2026-07-23",
+"updated": "2026-10-07",
+"resolved": "2026-09-22",
+"labels": []
+},
+{
+"key": "PRO2-377",
+"summary": "Evaluation criteria for TSE model",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Phi Tuong",
+"reporter": "Phi Tuong",
+"start": "2026-08-10",
+"due": "2026-08-24",
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-245",
+"subtasks": [],
+"links": [],
+"created": "2026-07-23",
+"updated": "2026-10-07",
+"resolved": "2026-07-24",
+"labels": []
+},
+{
+"key": "PRO2-378",
+"summary": "PRO-v1 series FA & CMF rendering output",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Chico Ly",
+"reporter": "Chico Ly",
+"start": "2026-07-13",
+"due": "2026-10-27",
+"sprints": [
+[
+"[POC] Sprint 2",
+"active"
+]
+],
+"parent": "PRO2-219",
+"subtasks": [],
+"links": [],
+"created": "2026-07-30",
+"updated": "2026-10-07",
+"resolved": "2026-10-07",
+"labels": [
+"Design"
+]
+},
+{
+"key": "PRO2-380",
+"summary": "[FW] Extract target voice out in mix ",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "KhuongNguyen",
+"reporter": "KhuongNguyen",
+"start": "2026-08-10",
+"due": "2026-08-24",
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-245",
+"subtasks": [],
+"links": [],
+"created": "2026-07-31",
+"updated": "2026-10-07",
+"resolved": "2026-09-21",
+"labels": []
+},
+{
+"key": "PRO2-381",
+"summary": "[EE] Select touch controller IC and supporting components",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-298",
+"subtasks": [],
+"links": [],
+"created": "2026-08-03",
+"updated": "2026-10-06",
+"resolved": "2026-10-06",
+"labels": []
+},
+{
+"key": "PRO2-382",
+"summary": "[EE] Design touch controller circuit (I²C to SoM)",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-298",
+"subtasks": [],
+"links": [],
+"created": "2026-08-03",
+"updated": "2026-10-06",
+"resolved": "2026-10-06",
+"labels": []
+},
+{
+"key": "PRO2-383",
+"summary": "[EE] Design touch sense pads and header to enclosure",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-298",
+"subtasks": [],
+"links": [],
+"created": "2026-08-03",
+"updated": "2026-10-06",
+"resolved": "2026-10-06",
+"labels": []
+},
+{
+"key": "PRO2-384",
+"summary": "[EE] Touch routing & sensitivity layout",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-298",
+"subtasks": [],
+"links": [],
+"created": "2026-08-03",
+"updated": "2026-10-06",
+"resolved": "2026-10-06",
+"labels": []
+},
+{
+"key": "PRO2-385",
+"summary": "[EE] Bring-up & test touch channels",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-298",
+"subtasks": [],
+"links": [],
+"created": "2026-08-03",
+"updated": "2026-10-06",
+"resolved": "2026-10-06",
+"labels": []
+},
+{
+"key": "PRO2-386",
+"summary": "[EE] Verify LED strip drive and power budget",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[EVT-1] Sprint 11",
+"future"
+]
+],
+"parent": "PRO2-299",
+"subtasks": [],
+"links": [],
+"created": "2026-08-03",
+"updated": "2026-10-06",
+"resolved": "2026-10-06",
+"labels": []
+},
+{
+"key": "PRO2-387",
+"summary": "[EE] Design LED ring output pads and control",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[EVT-1] Sprint 11",
+"future"
+]
+],
+"parent": "PRO2-299",
+"subtasks": [],
+"links": [],
+"created": "2026-08-03",
+"updated": "2026-10-06",
+"resolved": "2026-10-06",
+"labels": []
+},
+{
+"key": "PRO2-388",
+"summary": "[EE] LED power & pad layout",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[EVT-1] Sprint 11",
+"future"
+]
+],
+"parent": "PRO2-299",
+"subtasks": [],
+"links": [],
+"created": "2026-08-03",
+"updated": "2026-10-06",
+"resolved": "2026-10-06",
+"labels": []
+},
+{
+"key": "PRO2-389",
+"summary": "[EE] Bring-up & test LED ring",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[EVT-1] Sprint 11",
+"future"
+]
+],
+"parent": "PRO2-299",
+"subtasks": [],
+"links": [],
+"created": "2026-08-03",
+"updated": "2026-10-06",
+"resolved": "2026-10-06",
+"labels": []
+},
+{
+"key": "PRO2-391",
+"summary": "[ME] 3D-print the adjustable mechanism - 1st Prototype",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-07-27",
+"due": "2026-08-10",
+"sprints": [
+[
+"[POC] Sprint 3",
+"active"
+]
+],
+"parent": "PRO2-250",
+"subtasks": [],
+"links": [],
+"created": "2026-08-10",
+"updated": "2026-10-07",
+"resolved": "2026-08-12",
+"labels": []
+},
+{
+"key": "PRO2-394",
+"summary": "Study and build Yocto on UCM-iMX95 dev board",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Phi Tuong",
+"reporter": "Phi Tuong",
+"start": "2026-08-10",
+"due": "2026-08-24",
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-245",
+"subtasks": [],
+"links": [],
+"created": "2026-08-11",
+"updated": "2026-10-07",
+"resolved": "2026-08-20",
+"labels": []
+},
+{
+"key": "PRO2-395",
+"summary": "PRO V4 New ME Solution",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Trung Tin",
+"reporter": "Chico Ly",
+"start": "2026-09-21",
+"due": "2026-10-05",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-304",
+"subtasks": [],
+"links": [],
+"created": "2026-08-19",
+"updated": "2026-10-07",
+"resolved": "2026-09-04",
+"labels": []
+},
+{
+"key": "PRO2-396",
+"summary": "[AC] Optimize Microphone Placement for Agent Voice Capture",
+"type": "Subtask",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Nguyen Binh Minh",
+"reporter": "Cang Le",
+"start": "2026-10-05",
+"due": "2026-10-16",
+"sprints": [
+[
+"[POC] Sprint 3",
+"active"
+]
+],
+"parent": "PRO2-244",
+"subtasks": [],
+"links": [],
+"created": "2026-08-20",
+"updated": "2026-10-07",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-397",
+"summary": "[AC] Outbound Audio TSE Integration & Optimization",
+"type": "Subtask",
+"status": "To Do",
+"scat": "new",
+"assignee": "Nguyen Binh Minh",
+"reporter": "Cang Le",
+"start": "2026-10-19",
+"due": "2026-10-27",
+"sprints": [
+[
+"[POC] Sprint 2",
+"active"
+]
+],
+"parent": "PRO2-249",
+"subtasks": [],
+"links": [],
+"created": "2026-08-20",
+"updated": "2026-10-07",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-398",
+"summary": "Study and setup env for building Yocto for ZenaPro dev board",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Phi Tuong",
+"reporter": "Phi Tuong",
+"start": "2026-08-10",
+"due": "2026-08-24",
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-245",
+"subtasks": [],
+"links": [],
+"created": "2026-08-21",
+"updated": "2026-10-07",
+"resolved": "2026-08-29",
+"labels": []
+},
+{
+"key": "PRO2-399",
+"summary": "[POC] Images Production, AUG BROCHURE",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Chico Ly",
+"reporter": "Chico Ly",
+"start": "2026-06-29",
+"due": "2026-09-21",
+"sprints": [
+[
+"[POC] Sprint 6",
+"future"
+]
+],
+"parent": "PRO2-172",
+"subtasks": [
+"PRO2-400",
+"PRO2-401"
+],
+"links": [
+{
+"dir": "out",
+"label": "tests",
+"type": "AgileTest",
+"key": "MK-3",
+"scat": "done"
+}
+],
+"created": "2026-08-24",
+"updated": "2026-10-12",
+"resolved": "2026-09-14",
+"labels": [
+"Industrial_Design"
+]
+},
+{
+"key": "PRO2-400",
+"summary": "POC FA models files x4",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Phan Thi Anh Nhut",
+"reporter": "Chico Ly",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 6",
+"future"
+]
+],
+"parent": "PRO2-399",
+"subtasks": [],
+"links": [],
+"created": "2026-08-24",
+"updated": "2026-08-28",
+"resolved": "2026-08-28",
+"labels": []
+},
+{
+"key": "PRO2-401",
+"summary": "Rendering links",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Chico Ly",
+"reporter": "Chico Ly",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 6",
+"future"
+]
+],
+"parent": "PRO2-399",
+"subtasks": [],
+"links": [],
+"created": "2026-08-24",
+"updated": "2026-08-28",
+"resolved": "2026-08-28",
+"labels": []
+},
+{
+"key": "PRO2-402",
+"summary": "Build and port driver, DTB for ADAU7118 audio on ZenaPro PCB",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Phi Tuong",
+"reporter": "Phi Tuong",
+"start": "2026-08-10",
+"due": "2026-08-24",
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-245",
+"subtasks": [],
+"links": [],
+"created": "2026-08-29",
+"updated": "2026-10-07",
+"resolved": "2026-08-29",
+"labels": []
+},
+{
+"key": "PRO2-403",
+"summary": "Build and port driver for Hailo AI accelerator on ZenaPro PCB",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Phi Tuong",
+"reporter": "Phi Tuong",
+"start": "2026-08-10",
+"due": "2026-08-24",
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-245",
+"subtasks": [],
+"links": [],
+"created": "2026-08-31",
+"updated": "2026-10-07",
+"resolved": "2026-09-14",
+"labels": []
+},
+{
+"key": "PRO2-404",
+"summary": "[POC] PoC Documentation Package",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-06-29",
+"due": "2026-09-21",
+"sprints": [
+[
+"[POC] Sprint 5",
+"future"
+]
+],
+"parent": "PRO2-8",
+"subtasks": [
+"PRO2-405",
+"PRO2-406",
+"PRO2-407",
+"PRO2-408",
+"PRO2-409",
+"PRO2-410",
+"PRO2-411",
+"PRO2-412"
+],
+"links": [],
+"created": "2026-09-03",
+"updated": "2026-10-12",
+"resolved": "2026-09-09",
+"labels": [
+"Mechanical"
+]
+},
+{
+"key": "PRO2-405",
+"summary": " [ME] Design Definition Package: CAD, Drawings, STEP files...",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 5",
+"future"
+]
+],
+"parent": "PRO2-404",
+"subtasks": [],
+"links": [],
+"created": "2026-09-03",
+"updated": "2026-09-07",
+"resolved": "2026-09-07",
+"labels": []
+},
+{
+"key": "PRO2-406",
+"summary": "[ME] Design Rationale / Assumptions Record",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 5",
+"future"
+]
+],
+"parent": "PRO2-404",
+"subtasks": [],
+"links": [],
+"created": "2026-09-03",
+"updated": "2026-09-08",
+"resolved": "2026-09-08",
+"labels": []
+},
+{
+"key": "PRO2-407",
+"summary": "[ME] As-Built / Test Evidence",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 5",
+"future"
+]
+],
+"parent": "PRO2-404",
+"subtasks": [],
+"links": [],
+"created": "2026-09-03",
+"updated": "2026-09-09",
+"resolved": "2026-09-09",
+"labels": []
+},
+{
+"key": "PRO2-408",
+"summary": "[ME] Mechanical Interfaces",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 5",
+"future"
+]
+],
+"parent": "PRO2-404",
+"subtasks": [],
+"links": [],
+"created": "2026-09-03",
+"updated": "2026-09-08",
+"resolved": "2026-09-08",
+"labels": []
+},
+{
+"key": "PRO2-409",
+"summary": "[ME] Mechanical BOM",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 5",
+"future"
+]
+],
+"parent": "PRO2-404",
+"subtasks": [],
+"links": [],
+"created": "2026-09-03",
+"updated": "2026-09-08",
+"resolved": "2026-09-08",
+"labels": []
+},
+{
+"key": "PRO2-410",
+"summary": "[ME] Open Issues / Known Gaps",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 5",
+"future"
+]
+],
+"parent": "PRO2-404",
+"subtasks": [],
+"links": [],
+"created": "2026-09-03",
+"updated": "2026-09-09",
+"resolved": "2026-09-09",
+"labels": []
+},
+{
+"key": "PRO2-411",
+"summary": "[ME] Build / Assembly Notes",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 5",
+"future"
+]
+],
+"parent": "PRO2-404",
+"subtasks": [],
+"links": [],
+"created": "2026-09-03",
+"updated": "2026-09-08",
+"resolved": "2026-09-08",
+"labels": []
+},
+{
+"key": "PRO2-412",
+"summary": "[ME] Specification Compliance & Deviation Tracking",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[POC] Sprint 5",
+"future"
+]
+],
+"parent": "PRO2-404",
+"subtasks": [],
+"links": [],
+"created": "2026-09-03",
+"updated": "2026-09-09",
+"resolved": "2026-09-09",
+"labels": []
+},
+{
+"key": "PRO2-413",
+"summary": "Build and port Yocto, driver, DTB for ADAU7118 on Variscite dev board",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Phi Tuong",
+"reporter": "Phi Tuong",
+"start": "2026-08-10",
+"due": "2026-08-24",
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-245",
+"subtasks": [],
+"links": [],
+"created": "2026-09-04",
+"updated": "2026-10-07",
+"resolved": "2026-09-08",
+"labels": []
+},
+{
+"key": "PRO2-414",
+"summary": "Configure and setup M7 core on ZenaPro PCB to running firmware speaker control",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Phi Tuong",
+"reporter": "Phi Tuong",
+"start": "2026-08-10",
+"due": "2026-08-24",
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-245",
+"subtasks": [],
+"links": [],
+"created": "2026-09-06",
+"updated": "2026-10-07",
+"resolved": "2026-09-08",
+"labels": []
+},
+{
+"key": "PRO2-415",
+"summary": "Study Hailo AI model running on device",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Phi Tuong",
+"reporter": "Phi Tuong",
+"start": "2026-08-10",
+"due": "2026-08-24",
+"sprints": [
+[
+"[POC] Sprint 4",
+"active"
+]
+],
+"parent": "PRO2-245",
+"subtasks": [],
+"links": [],
+"created": "2026-09-08",
+"updated": "2026-10-07",
+"resolved": "2026-09-11",
+"labels": []
+},
+{
+"key": "PRO2-416",
+"summary": "[EVT-1] New Hinge mechanism for the compact EVT-1 PRO version",
+"type": "Story",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-8",
+"subtasks": [
+"PRO2-421",
+"PRO2-417",
+"PRO2-418",
+"PRO2-419",
+"PRO2-420"
+],
+"links": [],
+"created": "2026-09-22",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": [
+"Mechanical"
+]
+},
+{
+"key": "PRO2-417",
+"summary": "[ME] Compute required holding torque",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-09-21",
+"due": "2026-09-23",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-416",
+"subtasks": [],
+"links": [],
+"created": "2026-09-22",
+"updated": "2026-10-07",
+"resolved": "2026-10-05",
+"labels": []
+},
+{
+"key": "PRO2-418",
+"summary": "[ME] Design the cable-routing solution across",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-09-28",
+"due": "2026-10-16",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-416",
+"subtasks": [],
+"links": [],
+"created": "2026-09-22",
+"updated": "2026-10-19",
+"resolved": "2026-10-19",
+"labels": []
+},
+{
+"key": "PRO2-419",
+"summary": "[ME] Source 1–2 candidate catalog torque hinges",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-09-28",
+"due": "2026-10-02",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-416",
+"subtasks": [],
+"links": [],
+"created": "2026-09-22",
+"updated": "2026-10-07",
+"resolved": "2026-10-05",
+"labels": []
+},
+{
+"key": "PRO2-420",
+"summary": "[ME] Bench-test",
+"type": "Subtask",
+"status": "To Do",
+"scat": "new",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-11-02",
+"due": "2026-11-06",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-416",
+"subtasks": [],
+"links": [],
+"created": "2026-09-22",
+"updated": "2026-10-07",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-421",
+"summary": "[ME] Background research on different types of hinges: torque hinge, laptop hinges, frictional hinges...",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-09-21",
+"due": "2026-09-25",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-416",
+"subtasks": [],
+"links": [],
+"created": "2026-09-22",
+"updated": "2026-10-07",
+"resolved": "2026-09-22",
+"labels": []
+},
+{
+"key": "PRO2-422",
+"summary": "[EVT-1] Mechanical Design for Product Enclosure",
+"type": "Story",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Duy Nguyen",
+"reporter": "Cang Le",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-8",
+"subtasks": [
+"PRO2-438",
+"PRO2-439",
+"PRO2-440",
+"PRO2-441",
+"PRO2-442",
+"PRO2-539",
+"PRO2-540",
+"PRO2-541",
+"PRO2-542",
+"PRO2-543",
+"PRO2-544",
+"PRO2-545",
+"PRO2-546"
+],
+"links": [],
+"created": "2026-10-01",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": [
+"Mechanical"
+]
+},
+{
+"key": "PRO2-423",
+"summary": "[EVT-1] Hinge Validation",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Duy Nguyen",
+"reporter": "Cang Le",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"[EVT-1] Sprint 11",
+"future"
+]
+],
+"parent": "PRO2-8",
+"subtasks": [],
+"links": [],
+"created": "2026-10-01",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [
+"Mechanical"
+]
+},
+{
+"key": "PRO2-424",
+"summary": "[EVT-1] Build & Fit Checks [3D Print]",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Duy Nguyen",
+"reporter": "Cang Le",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"[EVT-1] Sprint 10",
+"future"
+]
+],
+"parent": "PRO2-8",
+"subtasks": [],
+"links": [],
+"created": "2026-10-01",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [
+"Mechanical"
+]
+},
+{
+"key": "PRO2-425",
+"summary": "[EVT-1] Material Selection Validation (per component) ",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Duy Nguyen",
+"reporter": "Cang Le",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-8",
+"subtasks": [],
+"links": [],
+"created": "2026-10-01",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": [
+"Mechanical"
+]
+},
+{
+"key": "PRO2-426",
+"summary": "[EVT-1] Acoustic Performance Impact ",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": null,
+"reporter": "Cang Le",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"[EVT-1] Sprint 11",
+"future"
+]
+],
+"parent": "PRO2-8",
+"subtasks": [],
+"links": [],
+"created": "2026-10-01",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [
+"Acoustic",
+"Mechanical"
+]
+},
+{
+"key": "PRO2-427",
+"summary": "[EVT-1] Port Cutout & Panel Design (per connector) ",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Cang Le",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"[EVT-1] Sprint 8",
+"future"
+]
+],
+"parent": "PRO2-8",
+"subtasks": [
+"PRO2-443",
+"PRO2-444",
+"PRO2-445",
+"PRO2-446",
+"PRO2-447",
+"PRO2-448"
+],
+"links": [],
+"created": "2026-10-01",
+"updated": "2026-10-19",
+"resolved": "2026-10-19",
+"labels": [
+"Mechanical"
+]
+},
+{
+"key": "PRO2-428",
+"summary": "[TO BE REMOVED] [EVT-1] Rear Panel Layout & Structural ",
+"type": "Story",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Duy Nguyen",
+"reporter": "Cang Le",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-8",
+"subtasks": [],
+"links": [],
+"created": "2026-10-01",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": [
+"Mechanical"
+]
+},
+{
+"key": "PRO2-429",
+"summary": "[EVT-1] Thermal / EMI Considerations (ME contribution to EE's design) ",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Cang Le",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"[EVT-1] Sprint 8",
+"future"
+]
+],
+"parent": "PRO2-3",
+"subtasks": [],
+"links": [],
+"created": "2026-10-01",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": [
+"Mechanical"
+]
+},
+{
+"key": "PRO2-430",
+"summary": "[EVT-1] Ingress Protection IP30 at Ports ",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Duy Nguyen",
+"reporter": "Cang Le",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"[EVT-1] Sprint 11",
+"future"
+]
+],
+"parent": "PRO2-8",
+"subtasks": [],
+"links": [],
+"created": "2026-10-01",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [
+"Mechanical"
+]
+},
+{
+"key": "PRO2-431",
+"summary": "[EVT-1] Labeling & Icon Silkscreen Mechanical Prep (Optional) ",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Duy Nguyen",
+"reporter": "Cang Le",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-8",
+"subtasks": [],
+"links": [],
+"created": "2026-10-01",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": [
+"Mechanical"
+]
+},
+{
+"key": "PRO2-432",
+"summary": "[EVT-1] Joint Deliverable for EVT ",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Duy Nguyen",
+"reporter": "Cang Le",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"[EVT-1] Sprint 16",
+"future"
+]
+],
+"parent": "PRO2-8",
+"subtasks": [],
+"links": [],
+"created": "2026-10-01",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [
+"Electronic_Electrical",
+"Mechanical"
+]
+},
+{
+"key": "PRO2-433",
+"summary": "[EVT-1] Test Fixture Design (ME's primary deliverable) ",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Duy Nguyen",
+"reporter": "Cang Le",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"[EVT-1] Sprint 10",
+"future"
+]
+],
+"parent": "PRO2-8",
+"subtasks": [
+"PRO2-303",
+"PRO2-451",
+"PRO2-452",
+"PRO2-453",
+"PRO2-454"
+],
+"links": [],
+"created": "2026-10-01",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [
+"Mechanical"
+]
+},
+{
+"key": "PRO2-434",
+"summary": "[EVT-1] Collaboration Deliverables",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Cang Le",
+"reporter": "Cang Le",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"[EVT-1] Sprint 11",
+"future"
+]
+],
+"parent": "PRO2-2",
+"subtasks": [],
+"links": [],
+"created": "2026-10-01",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [
+"Firmware",
+"Mechanical"
+]
+},
+{
+"key": "PRO2-435",
+"summary": "[EVT-1] Support other teams for testing ",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Cang Le",
+"reporter": "Cang Le",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"[EVT-1] Sprint 11",
+"future"
+]
+],
+"parent": "PRO2-2",
+"subtasks": [],
+"links": [],
+"created": "2026-10-01",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [
+"Acoustic",
+"Electronic_Electrical",
+"Firmware",
+"Industrial_Design",
+"Mechanical",
+"Software"
+]
+},
+{
+"key": "PRO2-436",
+"summary": "[EVT-1] Manual Feedback User Interface ",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Cang Le",
+"reporter": "Cang Le",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"[EVT-1] Sprint 11",
+"future"
+]
+],
+"parent": "PRO2-4",
+"subtasks": [],
+"links": [],
+"created": "2026-10-01",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [
+"Mechanical"
+]
+},
+{
+"key": "PRO2-437",
+"summary": "[EVT-1] Desk-Mounted Workstation Unit with New Version V3 ",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Duy Nguyen",
+"reporter": "Cang Le",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"[EVT-1] Sprint 12",
+"future"
+]
+],
+"parent": "PRO2-8",
+"subtasks": [],
+"links": [],
+"created": "2026-10-01",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [
+"Mechanical"
+]
+},
+{
+"key": "PRO2-438",
+"summary": "[ME] Hinge Mechanism",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-09-21",
+"due": "2026-10-02",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-422",
+"subtasks": [],
+"links": [],
+"created": "2026-10-02",
+"updated": "2026-10-16",
+"resolved": "2026-10-02",
+"labels": []
+},
+{
+"key": "PRO2-439",
+"summary": "[ME] Main Body",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-09-28",
+"due": "2026-10-16",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-422",
+"subtasks": [],
+"links": [],
+"created": "2026-10-02",
+"updated": "2026-10-19",
+"resolved": "2026-10-19",
+"labels": []
+},
+{
+"key": "PRO2-440",
+"summary": "[ME] Panel",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-09-28",
+"due": "2026-10-16",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-422",
+"subtasks": [],
+"links": [],
+"created": "2026-10-02",
+"updated": "2026-10-19",
+"resolved": "2026-10-19",
+"labels": []
+},
+{
+"key": "PRO2-441",
+"summary": "[ME] Microphone Arms",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-10-05",
+"due": "2026-10-23",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-422",
+"subtasks": [],
+"links": [],
+"created": "2026-10-02",
+"updated": "2026-10-19",
+"resolved": "2026-10-19",
+"labels": []
+},
+{
+"key": "PRO2-442",
+"summary": "[ME] Capacitive Touch",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-10-19",
+"due": "2026-10-23",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-422",
+"subtasks": [],
+"links": [],
+"created": "2026-10-02",
+"updated": "2026-10-19",
+"resolved": "2026-10-19",
+"labels": []
+},
+{
+"key": "PRO2-443",
+"summary": "DC IN Cutout",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-09-21",
+"due": null,
+"sprints": [
+[
+"[EVT-1] Sprint 8",
+"future"
+]
+],
+"parent": "PRO2-427",
+"subtasks": [],
+"links": [],
+"created": "2026-10-02",
+"updated": "2026-10-07",
+"resolved": "2026-10-02",
+"labels": []
+},
+{
+"key": "PRO2-444",
+"summary": "USB-C Cutout",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-09-21",
+"due": null,
+"sprints": [
+[
+"[EVT-1] Sprint 8",
+"future"
+]
+],
+"parent": "PRO2-427",
+"subtasks": [],
+"links": [],
+"created": "2026-10-02",
+"updated": "2026-10-07",
+"resolved": "2026-10-02",
+"labels": []
+},
+{
+"key": "PRO2-445",
+"summary": "USB-A Cutout",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-09-21",
+"due": "2026-09-21",
+"sprints": [
+[
+"[EVT-1] Sprint 8",
+"future"
+]
+],
+"parent": "PRO2-427",
+"subtasks": [],
+"links": [],
+"created": "2026-10-02",
+"updated": "2026-10-07",
+"resolved": "2026-10-02",
+"labels": []
+},
+{
+"key": "PRO2-446",
+"summary": "LAN cutout",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-09-21",
+"due": "2026-09-21",
+"sprints": [
+[
+"[EVT-1] Sprint 8",
+"future"
+]
+],
+"parent": "PRO2-427",
+"subtasks": [],
+"links": [],
+"created": "2026-10-02",
+"updated": "2026-10-07",
+"resolved": "2026-10-02",
+"labels": []
+},
+{
+"key": "PRO2-447",
+"summary": "Aux IN Cutout",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-09-21",
+"due": "2026-09-21",
+"sprints": [
+[
+"[EVT-1] Sprint 8",
+"future"
+]
+],
+"parent": "PRO2-427",
+"subtasks": [],
+"links": [],
+"created": "2026-10-02",
+"updated": "2026-10-07",
+"resolved": "2026-10-02",
+"labels": []
+},
+{
+"key": "PRO2-448",
+"summary": "[To be deleted] Kensington K-Slot",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-10-19",
+"due": "2026-10-23",
+"sprints": [
+[
+"[EVT-1] Sprint 8",
+"future"
+]
+],
+"parent": "PRO2-427",
+"subtasks": [],
+"links": [],
+"created": "2026-10-02",
+"updated": "2026-10-19",
+"resolved": "2026-10-19",
+"labels": []
+},
+{
+"key": "PRO2-449",
+"summary": "Pro application development",
+"type": "Epic",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Cang Le",
+"start": "2026-06-29",
+"due": "2027-11-15",
+"sprints": [],
+"parent": null,
+"subtasks": [],
+"links": [],
+"created": "2026-10-02",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-450",
+"summary": "Field Test+RC",
+"type": "Epic",
+"status": "To Do",
+"scat": "new",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Cang Le",
+"start": "2026-06-29",
+"due": "2027-11-15",
+"sprints": [],
+"parent": null,
+"subtasks": [],
+"links": [],
+"created": "2026-10-02",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-451",
+"summary": "[ME] Directional speaker arrays Test Fixture",
+"type": "Subtask",
+"status": "To Do",
+"scat": "new",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-11-02",
+"due": "2026-11-30",
+"sprints": [
+[
+"[EVT-1] Sprint 10",
+"future"
+]
+],
+"parent": "PRO2-433",
+"subtasks": [],
+"links": [],
+"created": "2026-10-07",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-452",
+"summary": "[ME] Manual Rotatable stand for Acoustic Zone Coverage test",
+"type": "Subtask",
+"status": "To Do",
+"scat": "new",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-11-02",
+"due": "2026-10-16",
+"sprints": [
+[
+"[EVT-1] Sprint 10",
+"future"
+]
+],
+"parent": "PRO2-433",
+"subtasks": [],
+"links": [],
+"created": "2026-10-07",
+"updated": "2026-10-07",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-453",
+"summary": "[ME] Distance-standoff fixture - Ultrasonic Carrier <120 dB at 10cm",
+"type": "Subtask",
+"status": "To Do",
+"scat": "new",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-11-02",
+"due": "2026-11-13",
+"sprints": [
+[
+"[EVT-1] Sprint 10",
+"future"
+]
+],
+"parent": "PRO2-433",
+"subtasks": [],
+"links": [],
+"created": "2026-10-07",
+"updated": "2026-10-07",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-454",
+"summary": "Distance-standoff fixture for Inbound ANC",
+"type": "Subtask",
+"status": "To Do",
+"scat": "new",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-11-02",
+"due": "2026-11-13",
+"sprints": [
+[
+"[EVT-1] Sprint 10",
+"future"
+]
+],
+"parent": "PRO2-433",
+"subtasks": [],
+"links": [],
+"created": "2026-10-07",
+"updated": "2026-10-07",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-455",
+"summary": "PRO V5 - The Portable Concept",
+"type": "Subtask",
+"status": "In Review",
+"scat": "indeterminate",
+"assignee": "Chico Ly",
+"reporter": "Chico Ly",
+"start": "2026-09-28",
+"due": "2027-02-08",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-304",
+"subtasks": [],
+"links": [],
+"created": "2026-10-07",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-456",
+"summary": "[EVT-1] Hardware architecture",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Cang Le",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [],
+"parent": "PRO2-3",
+"subtasks": [],
+"links": [],
+"created": "2026-10-08",
+"updated": "2026-10-12",
+"resolved": "2026-10-09",
+"labels": []
+},
+{
+"key": "PRO2-457",
+"summary": "[EVT-1] Power management for system and charge for output devices",
+"type": "Story",
+"status": "In Review",
+"scat": "indeterminate",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Cang Le",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [],
+"parent": "PRO2-3",
+"subtasks": [
+"PRO2-497",
+"PRO2-498",
+"PRO2-499",
+"PRO2-500"
+],
+"links": [],
+"created": "2026-10-08",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-458",
+"summary": "[EVT-1] USB-C for charging and transfering data, USB-A for debugging and connecting external module",
+"type": "Story",
+"status": "In Review",
+"scat": "indeterminate",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Cang Le",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [],
+"parent": "PRO2-3",
+"subtasks": [
+"PRO2-501",
+"PRO2-502",
+"PRO2-503"
+],
+"links": [],
+"created": "2026-10-08",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-459",
+"summary": "[EVT-1] Ethernet and wireless connectivity (WiFi, Bluetooth)",
+"type": "Story",
+"status": "In Review",
+"scat": "indeterminate",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Cang Le",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [],
+"parent": "PRO2-3",
+"subtasks": [
+"PRO2-504",
+"PRO2-505",
+"PRO2-506",
+"PRO2-507"
+],
+"links": [],
+"created": "2026-10-08",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-460",
+"summary": "[EVT-1] Memory storage",
+"type": "Story",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Cang Le",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-3",
+"subtasks": [
+"PRO2-508",
+"PRO2-509",
+"PRO2-510",
+"PRO2-511",
+"PRO2-512"
+],
+"links": [],
+"created": "2026-10-08",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-461",
+"summary": "[EVT-1] AI accelerator",
+"type": "Story",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Cang Le",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-3",
+"subtasks": [
+"PRO2-513",
+"PRO2-514"
+],
+"links": [],
+"created": "2026-10-08",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-462",
+"summary": "[EVT-1] Beamforming microphone",
+"type": "Story",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Cang Le",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-3",
+"subtasks": [
+"PRO2-520",
+"PRO2-521"
+],
+"links": [],
+"created": "2026-10-08",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-463",
+"summary": "[EVT-1] Beamforming speaker",
+"type": "Story",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Cang Le",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-3",
+"subtasks": [
+"PRO2-522",
+"PRO2-523",
+"PRO2-524",
+"PRO2-525"
+],
+"links": [],
+"created": "2026-10-08",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-464",
+"summary": "[EVT-1] Touch sensor",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Cang Le",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [],
+"parent": "PRO2-3",
+"subtasks": [
+"PRO2-515",
+"PRO2-516"
+],
+"links": [],
+"created": "2026-10-08",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-465",
+"summary": "[EVT-1] Status LED",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Cang Le",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [],
+"parent": "PRO2-3",
+"subtasks": [
+"PRO2-517"
+],
+"links": [],
+"created": "2026-10-08",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-466",
+"summary": "[EVT-1] Cooling fan",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Cang Le",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [],
+"parent": "PRO2-3",
+"subtasks": [
+"PRO2-518",
+"PRO2-519"
+],
+"links": [],
+"created": "2026-10-08",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-467",
+"summary": "[EVT-1] Modular TSE library and single zenatse binary",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"[POC] Sprint 6",
+"future"
+]
+],
+"parent": "PRO2-449",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-12",
+"resolved": "2026-10-09",
+"labels": [
+"architecture",
+"build",
+"zenaquiet-pro"
+]
+},
+{
+"key": "PRO2-468",
+"summary": "[EVT-1] Cross-compile for UCM-iMX95 with the Yocto SDK",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"[EVT-1] Sprint 8",
+"future"
+]
+],
+"parent": "PRO2-449",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-12",
+"resolved": "2026-10-09",
+"labels": [
+"build",
+"imx95",
+"zenaquiet-pro"
+]
+},
+{
+"key": "PRO2-469",
+"summary": "[EVT-1] Speaker enrollment (voiceprint)",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"[EVT-1] Sprint 8",
+"future"
+]
+],
+"parent": "PRO2-449",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-12",
+"resolved": "2026-10-09",
+"labels": [
+"enroll",
+"tse",
+"zenaquiet-pro"
+]
+},
+{
+"key": "PRO2-470",
+"summary": "[EVT-1] Target speaker extraction: realtime, file and benchmark",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"[EVT-1] Sprint 8",
+"future"
+]
+],
+"parent": "PRO2-449",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-12",
+"resolved": "2026-10-09",
+"labels": [
+"model",
+"tse",
+"zenaquiet-pro"
+]
+},
+{
+"key": "PRO2-471",
+"summary": "[EVT-1] EQ and AGC on the extracted voice",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"[EVT-1] Sprint 8",
+"future"
+]
+],
+"parent": "PRO2-449",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-12",
+"resolved": "2026-10-09",
+"labels": [
+"dsp",
+"tse",
+"zenaquiet-pro"
+]
+},
+{
+"key": "PRO2-472",
+"summary": "[EVT-1] Microphone array beamforming (delay-and-sum / MVDR)",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"[EVT-1] Sprint 8",
+"future"
+]
+],
+"parent": "PRO2-449",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-12",
+"resolved": "2026-10-09",
+"labels": [
+"audio",
+"beam",
+"zenaquiet-pro"
+]
+},
+{
+"key": "PRO2-473",
+"summary": "[EVT-1] GStreamer audio backend and processing chain",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"[POC] Sprint 6",
+"future"
+]
+],
+"parent": "PRO2-449",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-12",
+"resolved": "2026-10-09",
+"labels": [
+"audio",
+"gstreamer",
+"zenaquiet-pro"
+]
+},
+{
+"key": "PRO2-474",
+"summary": "[EVT-1] Service mode: record -> extract -> upload",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [],
+"parent": "PRO2-449",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-12",
+"resolved": "2026-10-09",
+"labels": [
+"node",
+"service",
+"zenaquiet-pro"
+]
+},
+{
+"key": "PRO2-475",
+"summary": "[EVT-1] MQTT cloud transport (command reference v1.2)",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [],
+"parent": "PRO2-449",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-12",
+"resolved": "2026-10-09",
+"labels": [
+"mqtt",
+"net",
+"zenaquiet-pro"
+]
+},
+{
+"key": "PRO2-476",
+"summary": "[EVT-1] OLIC-Z link to the zone Beacon (consent authority)",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"[EVT-1] Sprint 8",
+"future"
+]
+],
+"parent": "PRO2-449",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-12",
+"resolved": "2026-10-09",
+"labels": [
+"beacon",
+"net",
+"olicz",
+"zenaquiet-pro"
+]
+},
+{
+"key": "PRO2-477",
+"summary": "[EVT-1] WebRTC calls with the extracted voice",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [],
+"parent": "PRO2-449",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-12",
+"resolved": "2026-10-09",
+"labels": [
+"call",
+"rtc",
+"zenaquiet-pro"
+]
+},
+{
+"key": "PRO2-478",
+"summary": "[EVT-1] Ultrasonic output via the Cortex-M7",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [],
+"parent": "PRO2-449",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-12",
+"resolved": "2026-10-09",
+"labels": [
+"audio",
+"m7",
+"ultrasonic",
+"zenaquiet-pro"
+]
+},
+{
+"key": "PRO2-479",
+"summary": "[EVT-1] LEDs (WS2812 via M7, GPIO LEDs) and buzzer",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"[EVT-1] Sprint 8",
+"future"
+]
+],
+"parent": "PRO2-449",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-12",
+"resolved": "2026-10-09",
+"labels": [
+"hw",
+"m7",
+"zenaquiet-pro"
+]
+},
+{
+"key": "PRO2-480",
+"summary": "[EVT-1] OTA self-update with signed releases and rollback",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"[EVT-1] Sprint 8",
+"future"
+]
+],
+"parent": "PRO2-449",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-12",
+"resolved": "2026-10-09",
+"labels": [
+"ota",
+"security",
+"zenaquiet-pro"
+]
+},
+{
+"key": "PRO2-481",
+"summary": "[EVT-1] Sealed config and OTA key rotation",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"[EVT-1] Sprint 8",
+"future"
+]
+],
+"parent": "PRO2-449",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-12",
+"resolved": "2026-10-09",
+"labels": [
+"ota",
+"security",
+"zenaquiet-pro"
+]
+},
+{
+"key": "PRO2-482",
+"summary": "[EVT-1] ZQProTool Windows packager and LAN update server",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"[EVT-1] Sprint 8",
+"future"
+]
+],
+"parent": "PRO2-449",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-12",
+"resolved": "2026-10-09",
+"labels": [
+"ota",
+"tools",
+"zenaquiet-pro"
+]
+},
+{
+"key": "PRO2-483",
+"summary": "[EVT-1] Audio capture quality assessment on i.MX95",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"[EVT-1] Sprint 8",
+"future"
+]
+],
+"parent": "PRO2-449",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [
+"audio",
+"imx95",
+"zenaquiet-pro"
+]
+},
+{
+"key": "PRO2-484",
+"summary": "[EVT-1] CPU performance bring-up and benchmark on i.MX95",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"[EVT-1] Sprint 8",
+"future"
+]
+],
+"parent": "PRO2-449",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [
+"imx95",
+"perf",
+"zenaquiet-pro"
+]
+},
+{
+"key": "PRO2-485",
+"summary": "[EVT-1] System integration: clock, config path, storage, logging",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-449",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [
+"imx95",
+"system",
+"zenaquiet-pro"
+]
+},
+{
+"key": "PRO2-486",
+"summary": "[EVT-1] eIQ Neutron NPU spike",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-449",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [
+"npu",
+"perf",
+"spike",
+"zenaquiet-pro"
+]
+},
+{
+"key": "PRO2-487",
+"summary": "[EVT-1] Per-device certificate and credential provisioning",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-449",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [
+"provisioning",
+"security",
+"zenaquiet-pro"
+]
+},
+{
+"key": "PRO2-488",
+"summary": "[EVT-1] 24-hour soak test and port sign-off",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"[EVT-1] Sprint 10",
+"future"
+]
+],
+"parent": "PRO2-449",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [
+"imx95",
+"test",
+"zenaquiet-pro"
+]
+},
+{
+"key": "PRO2-489",
+"summary": "Pro field test plan and RC build definition",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": "2026-11-09",
+"due": "2026-11-13",
+"sprints": [
+[
+"[EVT-1] Sprint 10",
+"future"
+]
+],
+"parent": "PRO2-450",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [
+"field-test",
+"rc",
+"zenaquiet-pro"
+]
+},
+{
+"key": "PRO2-490",
+"summary": "Field test: enrollment, record, extract and upload end to end",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": "2026-11-16",
+"due": "2026-11-20",
+"sprints": [
+[
+"[EVT-1] Sprint 11",
+"future"
+]
+],
+"parent": "PRO2-450",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [
+"e2e",
+"field-test",
+"zenaquiet-pro"
+]
+},
+{
+"key": "PRO2-491",
+"summary": "Field test: speech quality in real rooms",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": "2026-11-16",
+"due": "2026-11-20",
+"sprints": [
+[
+"[EVT-1] Sprint 11",
+"future"
+]
+],
+"parent": "PRO2-450",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [
+"audio",
+"field-test",
+"zenaquiet-pro"
+]
+},
+{
+"key": "PRO2-492",
+"summary": "Field test: WebRTC calls on the customer network",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": "2026-11-16",
+"due": "2026-11-20",
+"sprints": [
+[
+"[EVT-1] Sprint 11",
+"future"
+]
+],
+"parent": "PRO2-450",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [
+"call",
+"field-test",
+"zenaquiet-pro"
+]
+},
+{
+"key": "PRO2-493",
+"summary": "Field test: consent withdrawal and voiceprint erasure",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": "2026-11-23",
+"due": "2026-11-27",
+"sprints": [
+[
+"[EVT-1] Sprint 11",
+"future"
+]
+],
+"parent": "PRO2-450",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [
+"consent",
+"field-test",
+"zenaquiet-pro"
+]
+},
+{
+"key": "PRO2-494",
+"summary": "Field test: extended operation and recovery",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": "2026-11-16",
+"due": "2026-11-27",
+"sprints": [
+[
+"[EVT-1] Sprint 11",
+"future"
+]
+],
+"parent": "PRO2-450",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [
+"field-test",
+"stability",
+"zenaquiet-pro"
+]
+},
+{
+"key": "PRO2-495",
+"summary": "Field test: OTA update and rollback on deployed units",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": "2026-11-23",
+"due": "2026-11-27",
+"sprints": [
+[
+"[EVT-1] Sprint 11",
+"future"
+]
+],
+"parent": "PRO2-450",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [
+"field-test",
+"ota",
+"zenaquiet-pro"
+]
+},
+{
+"key": "PRO2-496",
+"summary": "Pro RC validation report and Go/No-Go",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Nguyen Minh Thien",
+"start": "2026-11-30",
+"due": "2026-12-04",
+"sprints": [
+[
+"[EVT-1] Sprint 12",
+"future"
+]
+],
+"parent": "PRO2-450",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [
+"field-test",
+"rc",
+"zenaquiet-pro"
+]
+},
+{
+"key": "PRO2-497",
+"summary": "Design DC input stage",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-09-01",
+"due": "2026-10-09",
+"sprints": [],
+"parent": "PRO2-457",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-19",
+"resolved": "2026-10-19",
+"labels": []
+},
+{
+"key": "PRO2-498",
+"summary": "Design 24 V to 5 V system buck converter",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-09-01",
+"due": "2026-10-09",
+"sprints": [],
+"parent": "PRO2-457",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-19",
+"resolved": "2026-10-19",
+"labels": []
+},
+{
+"key": "PRO2-499",
+"summary": "Design processor power rails with PMIC",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-09-01",
+"due": "2026-10-09",
+"sprints": [],
+"parent": "PRO2-457",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-19",
+"resolved": "2026-10-19",
+"labels": []
+},
+{
+"key": "PRO2-500",
+"summary": "Design adjustable power stage for USB-C charging",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-09-01",
+"due": "2026-10-09",
+"sprints": [],
+"parent": "PRO2-457",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-19",
+"resolved": "2026-10-19",
+"labels": []
+},
+{
+"key": "PRO2-501",
+"summary": "Implement USB Power Delivery source controller",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-09-01",
+"due": "2026-10-09",
+"sprints": [],
+"parent": "PRO2-458",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-19",
+"resolved": "2026-10-19",
+"labels": []
+},
+{
+"key": "PRO2-502",
+"summary": "Design USB 3.0 SuperSpeed data path",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-09-01",
+"due": "2026-10-09",
+"sprints": [],
+"parent": "PRO2-458",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-19",
+"resolved": "2026-10-19",
+"labels": []
+},
+{
+"key": "PRO2-503",
+"summary": "Design USB-A debug port",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-09-01",
+"due": "2026-10-09",
+"sprints": [],
+"parent": "PRO2-458",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-19",
+"resolved": "2026-10-19",
+"labels": []
+},
+{
+"key": "PRO2-504",
+"summary": "Design Gigabit Ethernet PHY interface",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-09-01",
+"due": "2026-10-09",
+"sprints": [],
+"parent": "PRO2-459",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-19",
+"resolved": "2026-10-19",
+"labels": []
+},
+{
+"key": "PRO2-505",
+"summary": "Design RJ45 port",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-09-01",
+"due": "2026-10-09",
+"sprints": [],
+"parent": "PRO2-459",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-19",
+"resolved": "2026-10-19",
+"labels": []
+},
+{
+"key": "PRO2-506",
+"summary": "Design WiFi/Bluetooth module circuit",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-09-01",
+"due": "2026-10-09",
+"sprints": [],
+"parent": "PRO2-459",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-19",
+"resolved": "2026-10-19",
+"labels": []
+},
+{
+"key": "PRO2-507",
+"summary": "Design antenna interface",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-09-01",
+"due": "2026-10-09",
+"sprints": [],
+"parent": "PRO2-459",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-19",
+"resolved": "2026-10-19",
+"labels": []
+},
+{
+"key": "PRO2-508",
+"summary": "Design LPDDR4 memory subsystem",
+"type": "Subtask",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-10-19",
+"due": "2026-10-30",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-460",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-509",
+"summary": "Design eMMC storage",
+"type": "Subtask",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-10-19",
+"due": "2026-10-30",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-460",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-510",
+"summary": "Design microSD card slot",
+"type": "Subtask",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-10-19",
+"due": "2026-10-30",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-460",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-511",
+"summary": "Design configuration EEPROM",
+"type": "Subtask",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-10-19",
+"due": "2026-10-30",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-460",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-512",
+"summary": "Design real-time clock with battery backup",
+"type": "Subtask",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-10-19",
+"due": "2026-10-30",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-460",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-513",
+"summary": "Design M.2 Key E slot for AI module",
+"type": "Subtask",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-10-19",
+"due": "2026-10-30",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-461",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-514",
+"summary": "Connect PCIe interface",
+"type": "Subtask",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-10-19",
+"due": "2026-10-30",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-461",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-515",
+"summary": "Design capacitive touch controller circuit",
+"type": "Subtask",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-10-19",
+"due": "2026-10-30",
+"sprints": [],
+"parent": "PRO2-464",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-516",
+"summary": "Design buzzer feedback circuit",
+"type": "Subtask",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-10-19",
+"due": "2026-10-30",
+"sprints": [],
+"parent": "PRO2-464",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-517",
+"summary": "Allocate RGB LED control signal",
+"type": "Subtask",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-10-19",
+"due": "2026-10-30",
+"sprints": [],
+"parent": "PRO2-465",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-518",
+"summary": "Design PWM fan driver",
+"type": "Subtask",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-10-19",
+"due": "2026-10-30",
+"sprints": [],
+"parent": "PRO2-466",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-519",
+"summary": "Add heatsink provision",
+"type": "Subtask",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-10-19",
+"due": "2026-10-30",
+"sprints": [],
+"parent": "PRO2-466",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-520",
+"summary": "Design 4-channel digital microphone board with mirrored pinout",
+"type": "Subtask",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-10-12",
+"due": "2026-10-23",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-462",
+"subtasks": [],
+"links": [],
+"created": "2026-10-12",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-521",
+"summary": "Design PDM-to-TDM converter circuit",
+"type": "Subtask",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-10-12",
+"due": "2026-10-23",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-462",
+"subtasks": [],
+"links": [],
+"created": "2026-10-12",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-522",
+"summary": "Design transducer array",
+"type": "Subtask",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-10-12",
+"due": "2026-10-23",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-463",
+"subtasks": [],
+"links": [],
+"created": "2026-10-12",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-523",
+"summary": "Design half-bridge power stage",
+"type": "Subtask",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-10-12",
+"due": "2026-10-23",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-463",
+"subtasks": [],
+"links": [],
+"created": "2026-10-12",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-524",
+"summary": "Design beam control microcontroller circuit",
+"type": "Subtask",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-10-12",
+"due": "2026-10-23",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-463",
+"subtasks": [],
+"links": [],
+"created": "2026-10-12",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-525",
+"summary": "Define main board to audio unit interconnect",
+"type": "Subtask",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Hung Pham Nguyen",
+"reporter": "Hung Pham Nguyen",
+"start": "2026-10-12",
+"due": "2026-10-23",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-463",
+"subtasks": [],
+"links": [],
+"created": "2026-10-12",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-526",
+"summary": "[EVT-1] Enhance TSE Model for PRO",
+"type": "Story",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "KhuongNguyen",
+"reporter": "KhuongNguyen",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [],
+"parent": "PRO2-1",
+"subtasks": [
+"PRO2-532",
+"PRO2-533"
+],
+"links": [],
+"created": "2026-10-13",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-527",
+"summary": "[EVT-1] Power management for PRO",
+"type": "Story",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Phi Tuong",
+"reporter": "KhuongNguyen",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [],
+"parent": "PRO2-1",
+"subtasks": [
+"PRO2-529",
+"PRO2-530",
+"PRO2-538"
+],
+"links": [],
+"created": "2026-10-15",
+"updated": "2026-10-15",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-528",
+"summary": "[EVT-1] Secure voiceprint ",
+"type": "Story",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Phi Tuong",
+"reporter": "KhuongNguyen",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [],
+"parent": "PRO2-1",
+"subtasks": [
+"PRO2-531",
+"PRO2-534",
+"PRO2-535",
+"PRO2-536",
+"PRO2-537"
+],
+"links": [],
+"created": "2026-10-15",
+"updated": "2026-10-15",
+"resolved": null,
+"labels": [
+"Firmware"
+]
+},
+{
+"key": "PRO2-529",
+"summary": "Measure power consumption of a running TSE on PRO",
+"type": "Subtask",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Phi Tuong",
+"reporter": "Phi Tuong",
+"start": "2026-10-16",
+"due": "2026-11-10",
+"sprints": [],
+"parent": "PRO2-527",
+"subtasks": [],
+"links": [],
+"created": "2026-10-15",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-530",
+"summary": "Study power states, power domains, power management of iMX95 on A55 Linux and M7 core",
+"type": "Subtask",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Phi Tuong",
+"reporter": "Phi Tuong",
+"start": "2026-10-20",
+"due": "2026-11-10",
+"sprints": [],
+"parent": "PRO2-527",
+"subtasks": [],
+"links": [],
+"created": "2026-10-15",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-531",
+"summary": "Install middleware, plug-trust APIs of edgelock SE050 into Yocto",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Phi Tuong",
+"reporter": "Phi Tuong",
+"start": "2026-10-19",
+"due": "2026-10-23",
+"sprints": [],
+"parent": "PRO2-528",
+"subtasks": [],
+"links": [],
+"created": "2026-10-15",
+"updated": "2026-10-19",
+"resolved": "2026-10-19",
+"labels": []
+},
+{
+"key": "PRO2-532",
+"summary": "Fix same gender overlapping",
+"type": "Subtask",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "KhuongNguyen",
+"reporter": "KhuongNguyen",
+"start": "2026-10-01",
+"due": "2026-11-30",
+"sprints": [],
+"parent": "PRO2-526",
+"subtasks": [],
+"links": [],
+"created": "2026-10-15",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-533",
+"summary": "Fix latency on real time extraction",
+"type": "Subtask",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "KhuongNguyen",
+"reporter": "KhuongNguyen",
+"start": "2026-10-01",
+"due": "2026-12-31",
+"sprints": [],
+"parent": "PRO2-526",
+"subtasks": [],
+"links": [],
+"created": "2026-10-15",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-534",
+"summary": "Protect enrolled voice identities using edgelock on Linux",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Phi Tuong",
+"reporter": "Phi Tuong",
+"start": "2026-10-19",
+"due": "2026-10-23",
+"sprints": [],
+"parent": "PRO2-528",
+"subtasks": [],
+"links": [],
+"created": "2026-10-15",
+"updated": "2026-10-19",
+"resolved": "2026-10-19",
+"labels": []
+},
+{
+"key": "PRO2-535",
+"summary": "Install secured OTA packages and config partitions for OTA into Yocto",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Phi Tuong",
+"reporter": "Phi Tuong",
+"start": "2026-10-19",
+"due": "2026-10-23",
+"sprints": [],
+"parent": "PRO2-528",
+"subtasks": [],
+"links": [],
+"created": "2026-10-15",
+"updated": "2026-10-19",
+"resolved": "2026-10-19",
+"labels": []
+},
+{
+"key": "PRO2-536",
+"summary": "Secure OTA for new yocto images on Linux",
+"type": "Subtask",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Phi Tuong",
+"reporter": "Phi Tuong",
+"start": "2026-10-26",
+"due": "2026-11-06",
+"sprints": [],
+"parent": "PRO2-528",
+"subtasks": [],
+"links": [],
+"created": "2026-10-15",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-537",
+"summary": "Secure boot on Linux",
+"type": "Subtask",
+"status": "To Do",
+"scat": "new",
+"assignee": "Phi Tuong",
+"reporter": "Phi Tuong",
+"start": "2026-11-02",
+"due": "2026-11-20",
+"sprints": [],
+"parent": "PRO2-528",
+"subtasks": [],
+"links": [],
+"created": "2026-10-15",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-538",
+"summary": "Implement simple low power control",
+"type": "Subtask",
+"status": "To Do",
+"scat": "new",
+"assignee": "Phi Tuong",
+"reporter": "Phi Tuong",
+"start": "2026-11-17",
+"due": "2026-12-15",
+"sprints": [],
+"parent": "PRO2-527",
+"subtasks": [],
+"links": [],
+"created": "2026-10-15",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-539",
+"summary": "[ME] Upper & Lower Microphone Arms on Speaker Panel",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-422",
+"subtasks": [],
+"links": [],
+"created": "2026-10-16",
+"updated": "2026-10-19",
+"resolved": "2026-10-19",
+"labels": []
+},
+{
+"key": "PRO2-540",
+"summary": "[ME] 0° & 180° locking mechanism for Microphone Arms",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-422",
+"subtasks": [],
+"links": [],
+"created": "2026-10-16",
+"updated": "2026-10-19",
+"resolved": "2026-10-19",
+"labels": []
+},
+{
+"key": "PRO2-541",
+"summary": "[ME] Static Analysis: Hinge mounting base max allowable load",
+"type": "Subtask",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-10-19",
+"due": null,
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-422",
+"subtasks": [],
+"links": [],
+"created": "2026-10-19",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-542",
+"summary": "[ME] Static Analysis: Panel hard-stop at 15° rearward limit",
+"type": "Subtask",
+"status": "To Do",
+"scat": "new",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-10-19",
+"due": "2026-10-30",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-422",
+"subtasks": [],
+"links": [],
+"created": "2026-10-19",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-543",
+"summary": "[ME] Static Analysis: Microphone Arms over-rotation",
+"type": "Subtask",
+"status": "To Do",
+"scat": "new",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-10-19",
+"due": "2026-10-30",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-422",
+"subtasks": [],
+"links": [],
+"created": "2026-10-19",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-544",
+"summary": "[ME] Static Analysis: Equivalent-static drop screening",
+"type": "Subtask",
+"status": "To Do",
+"scat": "new",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-10-19",
+"due": "2026-10-30",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-422",
+"subtasks": [],
+"links": [],
+"created": "2026-10-19",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-545",
+"summary": "[ME] Static Analysis: Max allowable press force on capacitive touch pad",
+"type": "Subtask",
+"status": "To Do",
+"scat": "new",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-10-19",
+"due": "2026-10-30",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-422",
+"subtasks": [],
+"links": [],
+"created": "2026-10-19",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": []
+},
+{
+"key": "PRO2-546",
+"summary": "[ME] Static Analysis: Snap Fit max allowable deflection",
+"type": "Subtask",
+"status": "To Do",
+"scat": "new",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-10-19",
+"due": "2026-10-30",
+"sprints": [
+[
+"[EVT-1] Sprint 9",
+"future"
+]
+],
+"parent": "PRO2-422",
+"subtasks": [],
+"links": [],
+"created": "2026-10-19",
+"updated": "2026-10-19",
+"resolved": null,
+"labels": []
+}
+]
+}
