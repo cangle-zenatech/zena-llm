@@ -49,7 +49,8 @@ Each open Research Epic or Story should show which product it supports. Find it 
 - Only an issue link gives a **needed-by date**: the due date of the linked product ticket.
 - A title match tells you the product, never a date.
 - Unlinked items go on the clean-up list. Never guess the product.
-- As of 2026-10-12, no RS ticket links to a product ticket; a few name a product in the title.
+- As of 2026-10-15, one RS ticket links to a product ticket (RS-16 → BC-234, added 2026-10-15);
+  a few others name a product in the title. Check the weekly `diff` for new links.
 
 ## 4. Procedure
 

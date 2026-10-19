@@ -26,7 +26,8 @@ Paths below are bash paths; `WORK` is a temporary folder (e.g. `outputs/work-<ke
    → `summary.txt`, `results.json`, and ready-made tables: `register.md`, `hygiene.md`,
    `heatmap.md`, `epics.md`, `stages.md`, plus `notes.md` (worth a look, not rule hits).
 4. `python3 -I tools/wiki_jira.py diff --project <Folder> --work WORK`
-   → `diff.md`: issues added or removed, status and date changes since the last snapshot.
+   → `diff.md`: issues added or removed; status, date, title and assignee changes; issue links
+   added or removed (each link once, including links to other projects) since the last snapshot.
 5. Write the report from these outputs. The agent still writes the Executive Summary, Product
    Detail (Step 8), impact sentences that need judgment, and Recommendations.
 
@@ -36,7 +37,8 @@ Paths below are bash paths; `WORK` is a temporary folder (e.g. `outputs/work-<ke
   in its `INDEX.md`) are not in the script yet: apply them by hand. Its team load is in the
   script: open items of every type, team from the Jira label (else title prefix), current month →
   last due date.
-- `diff` reports added/removed issues and status, date, title and assignee changes.
+- `diff` reports added/removed issues; status, date, title and assignee changes; and added/removed
+  issue links.
 - If a project's `INDEX.md` changes a rule, the script does not know. Flag the difference in chat.
 - Field IDs default to `customfield_10015` (Start date) and `customfield_10020` (Sprint). Pass
   others if Step 1 finds different ones.

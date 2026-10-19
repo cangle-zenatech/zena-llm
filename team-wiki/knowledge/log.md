@@ -2,6 +2,17 @@
 
 One line per change, newest first.
 
+2026-10-15 · updated · tools/wiki_jira.py, tools/INDEX.md · human agreed: `diff` now lists issue links added and removed (checked: finds RS-16 → BC-234 in both the Research and Beacon diffs; other diff sections unchanged)
+2026-10-15 · updated · [[ZenaQuiet-Research/INDEX]] · human agreed: product-link note now says one RS ticket links to a product (RS-16 → BC-234)
+2026-10-15 · updated · [[reference]] · human agreed: Beacon line no longer cites deleted BC-106; adds sound masking (BC-234) and BC-107's new name; cluster-size sources now BC-101, BC-107, BC-56, BC-194 (12) vs BC-50 (16)
+
+2026-10-15 · created · [[portfolio/2026-10-15-rollup]] · weekly roll-up: 4 of 4 on track (all low confidence); no Story closed in any product since 2026-10-13; Mask POC forecast +208d, Headset +112d; no FLAG lines; updated [[overview]] (portfolio line and all five project paragraphs); online copy republished
+2026-10-15 · created · [[ZenaQuiet-Research/jira/2026-10-15-jira]], data/ZenaQuiet-Research/2026-10-15.json · weekly report (20 issues); first product link RS-16 → BC-234; chip decision RS-1/RS-2 due 2026-10-16; AMBER; updated [[ZenaQuiet-Research/overview]]
+2026-10-15 · created · [[ZenaQuiet-Beacon/jira/2026-10-15-jira]], data/ZenaQuiet-Beacon/2026-10-15.json · weekly report (133 issues, +1: Epic BC-234); EVT, 116 days to gate, readiness 44.4%, AMBER; BC-107 renamed and owned; updated [[ZenaQuiet-Beacon/overview]]
+2026-10-15 · created · [[ZenaQuiet-Headset/jira/2026-10-15-jira]], data/ZenaQuiet-Headset/2026-10-15.json · weekly report (558 issues, no change); POC, 116 days to gate, readiness 20.8% raw, AMBER; updated [[ZenaQuiet-Headset/overview]]
+2026-10-15 · created · [[ZenaQuiet-Mask/jira/2026-10-15-jira]], data/ZenaQuiet-Mask/2026-10-15.json · weekly report (38 issues, no change); POC, 116 days to gate, readiness 6.9%, AMBER; updated [[ZenaQuiet-Mask/overview]]
+2026-10-15 · created · [[ZenaQuiet-Pro2/jira/2026-10-15-jira]], data/ZenaQuiet-Pro2/2026-10-15.json · weekly report (329 issues, no change); EVT, 116 days to gate, readiness 27.9%, AMBER; first overdue item PRO2-23; updated [[ZenaQuiet-Pro2/overview]]
+
 2026-10-14 · created · [[portfolio/2026-10-14-rollup]] · weekly roll-up: 4 of 4 on track (all low confidence); Mask POC forecast +193d, Headset +101d; no FLAG lines; updated portfolio line in [[overview]]
 2026-10-14 · updated · [[reference]] · added Thang Pham (reporter of HS-47) under ## People, not in company directory
 2026-10-14 · created · [[ZenaQuiet-Research/jira/2026-10-14-jira]], data/ZenaQuiet-Research/2026-10-14.json · weekly report (20 issues, no change); 0 product links, RS-1/RS-2 chip decision due 2026-10-16, AMBER

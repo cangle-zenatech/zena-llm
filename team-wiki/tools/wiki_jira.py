@@ -568,6 +568,18 @@ def cmd_diff(a):
                   f'Status changes ({len(moved)}):'] + [f'- {x}' for x in moved] + [f'Date changes ({len(redated)}):'] + [f'- {x}' for x in redated]
                  + [f'Title changes ({len(retitled)}):'] + [f'- {x}' for x in retitled]
                  + [f'Assignee changes ({len(reassigned)}):'] + [f'- {x}' for x in reassigned])
+        # issue links, each counted once per pair and link type (a link inside the project shows on both issues)
+        def linkset(snap):
+            out = {}
+            for k, o in snap.items():
+                for l in o.get('links') or []:
+                    pair = tuple(sorted((k, l['key']), key=lambda x: (x.split('-')[0], int(x.split('-')[1]))))
+                    out.setdefault((pair, l['type']), f"{k} {l['label']} {l['key']}")
+            return out
+        lo, ln = linkset(old), linkset(new)
+        ladd = [ln[x] for x in sorted(set(ln) - set(lo))]
+        lrem = [lo[x] for x in sorted(set(lo) - set(ln))]
+        lines += [f'Links added ({len(ladd)}):'] + [f'- {x}' for x in ladd] + [f'Links removed ({len(lrem)}):'] + [f'- {x}' for x in lrem]
         msg = '\n'.join(lines)
     os.makedirs(a.work, exist_ok=True)
     open(os.path.join(a.work, 'diff.md'), 'w', encoding='utf-8').write(msg + '\n')

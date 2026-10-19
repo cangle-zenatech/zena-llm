@@ -79,8 +79,9 @@ Thang Pham is the reporter of HS-47.
     directional speaker. Layer 1 (PRO2-2) In Progress; directional-speaker POC leading.
 - [[ZenaQuiet-Beacon/overview|ZenaQuiet-Beacon]] —
   - Ceiling-mounted PoE coordinator for a floor cluster of Pro units: voiceprint consent, MQTT
-    relay to the cloud, zone coordination. Cluster size open: up to 12 Pros (BC-101, BC-106,
-    BC-107) vs up to 16 (BC-50). EVT.
+    relay to the cloud, zone coordination, sound masking (Epic BC-234). Pro-to-Beacon work sits
+    under BC-107 "Pro–Beacon device management & telemetry" (renamed 2026-10-14). Cluster size
+    open: up to 12 Pros (BC-101, BC-107, BC-56, BC-194) vs up to 16 (BC-50). EVT.
 - [[ZenaQuiet-Headset/overview|ZenaQuiet-Headset]] —
   - Call-centre (BPO) headset: voice capture for Voice Lock, hybrid ANC, magnetic Arc masking;
     USB-C and Bluetooth. POC.

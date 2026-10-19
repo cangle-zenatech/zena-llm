@@ -1,7 +1,7 @@
 ---
 type: overview
 project: ZenaQuiet-Mask
-updated: 2026-10-13
+updated: 2026-10-15
 ---
 
 # ZenaQuiet-Mask
@@ -19,7 +19,9 @@ to. The heavy voice processing runs on the paired smartphone, not in the mask it
 - **Stage:** POC (an early test to show the idea can work), 2026-09-21 → 2027-02-08
   ([[reference#Stage schedule (per product)]]).
 - **Progress:** 38 tickets in Jira; 2 Done and 2 In Progress, all in Industrial Design (the look,
-  fit and feel). Everything else is still To Do (Jira, read 2026-10-13; unchanged since 2026-10-12).
+  fit and feel). Everything else is still To Do (Jira, read 2026-10-15; no ticket updated since 2026-10-12).
+- **Health:** AMBER, 116 days to the POC → EVT gate (2027-02-08); 2 of 29 POC Stories done (6.9%).
+  See [[ZenaQuiet-Mask/jira/2026-10-15-jira]].
 - All Epics were created 1–2 Oct 2026, so the plan is very new.
 - **Dates changed 2026-10-12:** every Epic is now dated 2026-09-21 → 2027-11-15 and every Story
   (except MK-31) 2026-09-21 → 2027-02-08. These look like placeholders, not a real plan (inferred).
@@ -43,6 +45,8 @@ Due dates as of 2026-10-13; the value before the 2026-10-12 change is in bracket
 
 ## Recent changes
 
+- 2026-10-15 — Re-read Jira: no changes since 2026-10-13 (no tickets, statuses, dates or owners
+  changed). Status line updated to the 2026-10-15 report.
 - 2026-10-13 — Bulk date reset in Jira (made 2026-10-12) recorded above; old dates kept in brackets.
   Epic descriptions for MK-14, MK-21, MK-24, MK-29 now summarized.
 - 2026-10-12 — Overview written from live Jira; replaces the earlier stub.

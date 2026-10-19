@@ -1,7 +1,7 @@
 ---
 type: overview
 project: ZenaQuiet-Pro2
-updated: 2026-10-13
+updated: 2026-10-15
 ---
 
 # ZenaQuiet-Pro2
@@ -17,6 +17,9 @@ voice only to the agent's seat, so neighbours can't follow the call
 
 - **Stage:** EVT (engineering tests of early working units), 2026-09-21 → 2027-02-08
   ([[reference#Stage schedule (per product)]]).
+- **Health on 2026-10-15:** AMBER. 17 of 61 EVT Stories Done, 13 In Progress, 116 days to the
+  EVT → DVT gate (2027-02-08). No Jira edits since 2026-10-13; first overdue item (PRO2-23, 1 day
+  late) ([[ZenaQuiet-Pro2/jira/2026-10-15-jira|report]]).
 - **Health on 2026-10-13:** AMBER. 17 of 61 EVT Stories Done, 13 In Progress, 118 days to the
   EVT → DVT gate (2027-02-08). The jump from 1 of 39 comes from tagging 22 firmware Stories as
   EVT-1 (16 already Done), not from new finished work
@@ -39,6 +42,10 @@ voice only to the agent's seat, so neighbours can't follow the call
   Stories run Nov–Dec 2026. Contradiction flagged, not resolved.
 
 ## Recent changes
+
+- 2026-10-15 — Weekly report: no Jira changes since 2026-10-13 (0 added, removed, status or date
+  changes). PRO2-23 is now 1 day overdue; PRO2-396, PRO2-451 and PRO2-452 are due 2026-10-16.
+- 2026-10-14 — Weekly report: no changes; only the text of Epic PRO2-1 was edited (2026-10-13).
 
 - 2026-10-13 — Weekly report: no issues added or closed; 96 issues re-dated on 2026-10-12; EVT
   readiness 28% after the firmware Stories PRO2-467 to PRO2-488 were re-tagged EVT-1.
