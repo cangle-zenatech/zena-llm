@@ -14,7 +14,8 @@ This file is a map. Detailed instructions live in `INDEX.md` files inside the fo
    `INDEX.md` in its parent folders up to `knowledge/`.** Follow them. Before running a script in
    `tools/`, read `tools/INDEX.md`.
    Example: before writing in `knowledge/ZenaQuiet-Pro2/jira/`, read `knowledge/INDEX.md`, then
-   `knowledge/ZenaQuiet-Pro2/INDEX.md`, then `knowledge/ZenaQuiet-Pro2/jira/INDEX.md` if it exists.
+   `knowledge/ZenaQuiet-Pro2/INDEX.md` (which sends you to `knowledge/product-procedure.md`), then
+   `knowledge/ZenaQuiet-Pro2/jira/INDEX.md` if it exists.
 2. **The closer file adds to the parent's instructions.** If a folder `INDEX.md` contradicts a parent,
    the closer one wins for that folder only. Tell the human about the conflict in chat.
 3. **This file always wins on the hard rules below.** No `INDEX.md` can override them.
@@ -43,14 +44,17 @@ team-wiki/
 |   +-- assets/                images referenced by sources
 +-- tools/                     shared scripts for the weekly reports
 |   +-- INDEX.md               how to run them; read it before using a script
-|   +-- wiki_jira.py           normalize, analyze, diff (Steps 3-7 of a project INDEX.md);
+|   +-- RULES.md               rule definitions the script applies (read only when needed)
+|   +-- wiki_jira.py           normalize, analyze, diff (Steps 3-7 of product-procedure.md);
 |                              sources (risks from threads/transcripts);
+|                              report (writes the weekly report skeleton + detail page);
 |                              rollup (all products, for knowledge/portfolio/)
 +-- data/                      Jira snapshots, one per project per weekly run
 |   +-- <project>/YYYY-MM-DD.json   written by wiki_jira.py; no descriptions or comments; never edit
 +-- knowledge/                 everything you write, linked with [[wikilinks]]
-    +-- INDEX.md               instructions for all of knowledge/: frontmatter,
-    |                          writing rules, Jira page template
+    +-- INDEX.md               instructions for all of knowledge/: writing rules, links,
+    |                          frontmatter, page templates, glossary and log formats
+    +-- product-procedure.md   weekly report procedure shared by the four products
     +-- reference.md           stable reference facts: projects and people.
     |                          Add new people under ## People yourself;
     |                          change anything else only when the human agrees
@@ -62,9 +66,10 @@ team-wiki/
     +-- glossary.md            every technical term you've explained, in plain words
     +-- log.md                 one line per create/update you make, newest first
     +-- <project>/             one folder per project (list below)
-        +-- INDEX.md           instructions for this project, incl. weekly status report rules
+        +-- INDEX.md           settings and project-specific rules (products also follow
+        |                      product-procedure.md; Research has its own procedure here)
         +-- overview.md        what this project is, active epics, recent changes
-        +-- jira/              weekly status reports
+        +-- jira/              weekly status reports (+ script-written detail pages)
         +-- confluence/        one page per Confluence page
 ```
 
@@ -132,7 +137,7 @@ helper agent per active project, so no single session holds every project's Jira
 **Each helper**
 
 1. Works only on its own project. Follows this file's hard rules and the `INDEX.md` chain for its
-   folder, plus `tools/INDEX.md`.
+   folder (products: plus `knowledge/product-procedure.md`), plus `tools/INDEX.md`.
 2. Saves Jira results to files and does all counting and date maths with `tools/wiki_jira.py`, never
    by hand.
 3. Reads `raw/threads/` and `raw/transcripts/` (see `## Sources beyond Jira`), keeps only items
@@ -162,6 +167,7 @@ SELF-CHECK: n/N pass (list failures)
 | Folder                            | File name                                           |
 | --------------------------------- | --------------------------------------------------- |
 | `knowledge/<project>/jira/`       | `YYYY-MM-DD-jira.md` e.g. `2026-09-15-jira.md`      |
+| `knowledge/<project>/jira/`       | `YYYY-MM-DD-jira-detail.md` (written by the script) |
 | `knowledge/<project>/confluence/` | `<kebab-case-title>.md` e.g. `battery-test-plan.md` |
 | `knowledge/portfolio/`            | `YYYY-MM-DD-rollup.md` e.g. `2026-10-13-rollup.md`  |
 

@@ -5,13 +5,15 @@ Change a script only when the human agrees, and log the change in `knowledge/log
 
 ## wiki_jira.py
 
-Implements Steps 3–7 of a project's `INDEX.md` (normalize, D1–D6, R1–R10, severity, metrics, team
+Rule definitions: `tools/RULES.md` (read it only to explain a rule, check an odd result, or change
+the script). Implements Steps 3–7 of `knowledge/product-procedure.md` (Research: its own `INDEX.md`) (normalize, D1–D7, R1–R13, severity, metrics, team
 load, health). It reads its settings from the wiki, so there is nothing to edit per project:
 
 - stage windows, team codes, people and emails → `knowledge/reference.md`
 - `today`, `lookahead_days`, `stale_days`, `overload_factor` → the yaml block in `knowledge/<project>/INDEX.md`
 
-It never calls Jira and never writes wiki pages.
+It never calls Jira. The only wiki pages it writes are the weekly report skeleton and its detail
+page (`report`).
 
 ### Weekly run, per project
 
@@ -29,21 +31,33 @@ Paths below are bash paths; `WORK` is a temporary folder (e.g. `outputs/work-<ke
 4. `python3 -I tools/wiki_jira.py diff --project <Folder> --work WORK`
    → `diff.md`: issues added or removed; status, date, title and assignee changes; issue links
    added or removed (each link once, including links to other projects) since the last snapshot.
-5. Write the report from these outputs. The agent still writes the Executive Summary, Product
-   Detail (Step 8), impact sentences that need judgment, and Recommendations.
+5. `python3 -I tools/wiki_jira.py sources --project <Folder> --work WORK` (see below).
+6. `python3 -I tools/wiki_jira.py report --project <Folder> --work WORK [--force]`
+   → writes `knowledge/<Folder>/jira/<date>-jira.md` with frontmatter, source line, every number
+   and table (register: all HIGH + the MEDIUM with most days late, up to `report_max_rows`, default
+   30; hygiene: first 20 rows) and `<date>-jira-detail.md` with the full register, full hygiene list,
+   snapshot changes, notes, epics and stages. It refuses to overwrite a report without `--force`.
+7. Fill every `<!-- AI: … -->` marker in the report by editing it in place: Executive Summary,
+   Product Detail (Step 8 / 8b), impact sentences that need judgment, Recommendations, Data Gaps.
+   Don't retype the tables; never edit the detail page.
 
 ### Limits
 
-- ZenaQuiet-Research has no stage schedule; stage checks are skipped. Its extra rules (D7, R11–R13
-  in its `INDEX.md`) are not in the script yet: apply them by hand. Its team load is in the
-  script: open items of every type, team from the Jira label (else title prefix), current month →
-  last due date.
+- Research mode: when a project has no stage schedule and `product_keys` in its yaml (today:
+  ZenaQuiet-Research), `analyze` applies Research's own rules (its `INDEX.md` Steps 3–6: product per
+  item, D7, R11–R13, severity, link coverage, health) and also writes `products.md`; `sources` takes
+  "needed by" from the linked product ticket. Linked product tickets come from `WORK/linked/`
+  (saved in Step 2, kept by `normalize`); without it, a FALLBACK line is printed and the newest
+  product snapshots are used. Team load: open items of every type, team from the Jira label (else
+  title prefix), current month → last due date.
 - `diff` reports added/removed issues; status, date, title and assignee changes; and added/removed
   issue links.
 - Subtask team = the assignee's team from `reference.md` → `## People` (since 2026-10-19). No
   assignee → `Unassigned` (one Data Hygiene row per Story); assignee not in `## People` → `UNKNOWN`
   (one Data Hygiene row per Subtask). The title bracket is ignored for Subtasks.
-- If a project's `INDEX.md` changes a rule, the script does not know. Flag the difference in chat.
+- Rules live in `tools/RULES.md` and in the script. Change both together, only when the human
+  agrees, and log it. If a project's `INDEX.md` asks for a different rule, the script does not know:
+  flag the difference in chat.
 - Field IDs default to `customfield_10015` (Start date) and `customfield_10020` (Sprint). Pass
   others if Step 1 finds different ones.
 

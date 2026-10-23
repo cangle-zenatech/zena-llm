@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Shared Jira analysis for the team wiki weekly status reports.
 
-Implements the procedure in knowledge/<project>/INDEX.md (Steps 3-7): normalize, date checks D1-D6,
-risks R1-R10, severity, metrics, team load, health. It does NOT call Jira and does NOT write wiki
-pages: the agent pulls Jira, runs this, then writes the report from the outputs.
+Implements the procedure in knowledge/product-procedure.md (Steps 3-7; Research: its own INDEX.md):
+normalize, date checks D1-D7, risks R1-R13, severity, metrics, team load, health. It does NOT call
+Jira. The only wiki pages it writes are the weekly report skeleton and its detail page (`report`):
+the agent pulls Jira, runs the commands, then fills the <!-- AI: ... --> markers.
 
 Settings come from the wiki itself, never from this file:
   - stage windows, team codes, people/emails  -> knowledge/reference.md
@@ -20,12 +21,18 @@ Commands (run with python3 -I):
   analyze --project ZenaQuiet-Pro2 --work WORK [--date D]
       Reads the snapshot for D and writes to WORK: results.json, register.md, hygiene.md,
       heatmap.md, epics.md, stages.md, notes.md (things for a human look, not rule hits), summary.txt
+      Research mode (no stage schedule + product_keys in its INDEX.md yaml): product per item, D7,
+      R11-R13, Research severity and health, link coverage; also writes products.md
   diff --project ZenaQuiet-Pro2 --work WORK [--date D]
       Compares the snapshot for D with the newest earlier snapshot; writes WORK/diff.md
   sources --project ZenaQuiet-Pro2 --work WORK [--date D]
       Source risks P1-P5, S1 from WORK/sources.json (threads/transcripts items the helper extracted);
       working days and holidays from reference.md; writes sources_register.md, order_this_week.md,
       sources_summary.txt and adds source_risks + health_with_sources to WORK/results.json
+  report --project ZenaQuiet-Pro2 --work WORK [--date D] [--force]
+      After analyze, diff and sources: writes knowledge/<project>/jira/<D>-jira.md with every number and
+      table filled in (register: all HIGH + top MEDIUM up to report_max_rows, default 30; hygiene: first
+      20 rows) and <D>-jira-detail.md with the full lists. Refuses to overwrite without --force.
   rollup --work WORK [--date D]
       Portfolio roll-up across every active product with a stage schedule (settings: yaml block in
       knowledge/portfolio/INDEX.md); writes WORK/rollup*.md, rollup.json, rollup_summary.txt
@@ -103,6 +110,34 @@ def load_people_teams(teammap):
                 if len(r) > max(j, tcol):
                     out[r[j].strip()] = name2code.get(r[tcol].strip().lower(), 'UNKNOWN')
     return out
+
+
+def load_jira_projects():
+    """Jira key -> wiki folder, from reference.md ## Jira projects."""
+    text = open(os.path.join(KNOW, 'reference.md'), encoding='utf-8').read()
+    out = {}
+    for head, rows in md_tables(text):
+        if head.startswith('Jira projects') and rows and rows[0][0] == 'Jira key':
+            for r in rows[1:]:
+                out[r[0].strip()] = r[1].split(' ')[0].strip()
+    return out
+
+
+def load_linked(project, day):
+    """Product tickets that a support project links to: {key: {due, scat, summary}}.
+    From the snapshot (normalize stores WORK/linked/), else from the newest product snapshots."""
+    snap = json.load(open(os.path.join(DATA, project, f'{day}.json'), encoding='utf-8'))
+    if snap.get('linked'):
+        return snap['linked'], 'linked product tickets fetched in this run'
+    out, used = {}, []
+    for f in load_jira_projects().values():
+        sd = snap_on_or_before(f, day) if f != project else None
+        if not sd:
+            continue
+        for o in load_snapshot(f, sd):
+            out[o['key']] = dict(due=o['due'], scat=o['scat'], summary=o['summary'])
+        used.append(f'{f} {sd}')
+    return out, 'FALLBACK: no WORK/linked/ in this run; due dates from product snapshots ' + ', '.join(used)
 
 
 def load_config(folder):
@@ -192,12 +227,27 @@ def cmd_normalize(a):
             resolved=(f.get('resolutiondate') or '')[:10] or None, labels=f.get('labels') or [],
             desc=f.get('description') or '', comments=comments))
     out.sort(key=lambda o: int(o['key'].split('-')[1]))
+    # Research: linked product tickets saved by the helper in WORK/linked/ (search pages or single issues)
+    linked = {}
+    for fp in sorted(glob.glob(os.path.join(a.raw_dir, 'linked', '*.json'))):
+        try:
+            d = json.load(open(fp, encoding='utf-8'))
+        except Exception:
+            continue
+        iss = d.get('issues', [d]) if isinstance(d, dict) else []
+        if isinstance(iss, dict):
+            iss = iss.get('nodes')
+        for n in iss or []:
+            if isinstance(n, dict) and 'fields' in n:
+                g, st = n['fields'], (n['fields'].get('status') or {})
+                linked[n['key']] = dict(summary=redact(g.get('summary') or ''), status=st.get('name'),
+                                        scat=(st.get('statusCategory') or {}).get('key'), due=g.get('duedate'))
     json.dump(out, open(os.path.join(a.raw_dir, 'issues_full.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=0)
     snap = [dict({k: v for k, v in o.items() if k not in ('desc', 'comments')}, summary=redact(o['summary'])) for o in out]
     os.makedirs(os.path.join(DATA, a.project), exist_ok=True)
     sp = os.path.join(DATA, a.project, f'{a.date}.json')
     json.dump(dict(project=a.project, date=a.date, start_field=a.start_field, sprint_field=a.sprint_field,
-                   count=len(snap), issues=snap), open(sp, 'w', encoding='utf-8'), ensure_ascii=False, indent=0)
+                   count=len(snap), issues=snap, **({'linked': linked} if linked else {})), open(sp, 'w', encoding='utf-8'), ensure_ascii=False, indent=0)
     print(f'{len(out)} unique issues', dict(Counter(o['type'] for o in out)), '->', sp)
 
 
@@ -220,6 +270,8 @@ def cmd_analyze(a):
     TEAMS = set(TEAMMAP) or {'FW', 'ME', 'EE', 'SW', 'ID', 'AC', 'FA'}
     PTEAM = load_people_teams(TEAMMAP)   # Subtask team = assignee's team (reference.md ## People)
     has_stages = bool(STG)
+    PKEYS = [k.strip() for k in re.sub(r'[\[\]]', '', cfg.get('product_keys') or '').split(',') if k.strip()]
+    RESEARCH = not has_stages and bool(PKEYS)   # support project, measured against the products it serves
     I = load_snapshot(folder, a.date)
     by = {o['key']: o for o in I}
     kk = lambda x: int(x.split('-')[1])
@@ -227,7 +279,7 @@ def cmd_analyze(a):
         o['st'], o['du'], o['upd'], o['cr'] = D(o['start']), D(o['due']), D(o['updated']), D(o['created'])
         o['state'] = {'done': 'Done', 'indeterminate': 'In Progress', 'new': 'To Do'}[o['scat']]
     subtype = next((o['type'] for o in I if o['type'].lower().replace('-', '') == 'subtask'), 'Subtask')
-    hyg = []
+    hyg, notes = [], []
 
     def stage_of(title):
         tags = re.findall(r'\[([^\]]*)\]', title)
@@ -302,6 +354,49 @@ def cmd_analyze(a):
     epics = [o for o in I if o['type'] == 'Epic']
     for s in stories:
         s['kids'] = [by[k] for k in s['subtasks'] if k in by]
+    # Research: which product each item supports (ZenaQuiet-Research/INDEX.md section 3)
+    if RESEARCH:
+        K2F = load_jira_projects()
+        LINKED, linked_note = load_linked(folder, a.date)
+        PGATE = {}   # product key -> (current stage, its end = next gate), from reference.md ## Stage schedule
+        for pk in PKEYS:
+            pst = load_reference(K2F[pk])[0] if pk in K2F else {}
+            ins = [x for x in ORDER if x in pst and pst[x][0] <= TODAY <= pst[x][1]]
+            PGATE[pk] = (ins[0], pst[ins[0]][1]) if ins else (None, None)
+        NAMES = {pk: K2F[pk].replace('ZenaQuiet-', '') for pk in PKEYS if pk in K2F}
+
+        def name_rx(n):   # "Pro2" also matches "Pro 2"; whole word, so "Mask" does not match "masking"
+            m = re.match(r'^(.*?)(\d+)$', n)
+            return re.compile(r'\b' + (re.escape(m.group(1)) + r'\s?' + m.group(2) if m else re.escape(n)) + r'\b', re.I)
+        NRX = {pk: name_rx(n) for pk, n in NAMES.items()}
+
+        def chain_up(o):
+            out_, c_, seen = [], o, set()
+            while c_ and c_['key'] not in seen:
+                out_.append(c_); seen.add(c_['key']); c_ = by.get(c_['parent'])
+            return out_
+        for o in I:
+            up, lk, hits = chain_up(o), [], []
+            for x in up:   # 1. issue link on the item or a parent
+                lk = sorted({l['key'] for l in x['links'] if l['key'].split('-')[0] in PKEYS})
+                if lk: break
+            if not lk:
+                for x in up:   # 2. product named in the item's or a parent's title
+                    hits = [pk for pk, rx in NRX.items() if rx.search(x['summary'])]
+                    if hits: break
+            o['plinks'] = lk
+            o['plink'] = 'linked' if lk else ('inferred' if hits else 'Unlinked')
+            o['products'] = sorted({k.split('-')[0] for k in lk}) if lk else hits
+            o['ldues'] = sorted((D(LINKED[k]['due']), k) for k in lk if k in LINKED and LINKED[k].get('due'))
+            o['nb'], o['nb_key'] = o['ldues'][0] if o['ldues'] else (None, None)   # earliest needed-by
+            o['before_gate'] = any(PGATE[k.split('-')[0]][1] and d_ <= PGATE[k.split('-')[0]][1] for d_, k in o['ldues'])
+            o['pdisp'] = (', '.join(NAMES.get(p, p) for p in o['products']) + (' (inferred)' if o['plink'] == 'inferred' else '')) if o['products'] else 'Unlinked'
+            if o['state'] != 'Done' and o['type'] in ('Epic', 'Story'):
+                if o['plink'] == 'Unlinked':
+                    hyg.append((o['key'], 'Unlinked', 'No link to a ' + '/'.join(PKEYS) + ' ticket and no product in the title'))
+                miss = [k for k in lk if k not in LINKED]
+                if miss:
+                    notes.append((o['key'], 'linked-not-fetched', 'Linked product ticket(s) not fetched: ' + ', '.join(miss)))
     # team shown in the register, and the team used for load when there are no Subtasks to count.
     # Subtask: its title prefix. Story: its Subtasks' teams; else its team label; else its title prefix.
     # Epic: its team label, else '—'. Labels map to codes through reference.md ## Teams.
@@ -318,7 +413,6 @@ def cmd_analyze(a):
         else:
             o['tdisp'] = label_team(o) or '—'
     # notes: not D/R rules, but worth a human look; the agent decides what goes in the report
-    notes = []
     pkey = I[0]['key'].split('-')[0] if I else ''
     for e in epics:
         if not any(s['parent'] == e['key'] for s in stories):
@@ -374,6 +468,8 @@ def cmd_analyze(a):
             miss = 'start and due' if not o['st'] and not o['du'] else ('start' if not o['st'] else 'due')
             dd.append((k, 'D5', f'missing {miss}'))
         if MP_END and o['type'] == 'Epic' and o['du'] and o['du'] > MP_END: dd.append((k, 'D6', f"due {o['du']} > MP end {MP_END}"))
+        if RESEARCH and o['nb'] and o['du'] and o['du'] > o['nb']:
+            dd.append((k, 'D7', f"due {o['du']} > needed by {o['nb']} ({o['nb_key']}) (+{(o['du']-o['nb']).days}d)"))
 
     # Step 6 risks
     R, info, sev, dl = defaultdict(list), defaultdict(list), {}, {}
@@ -402,16 +498,29 @@ def cmd_analyze(a):
                            (f"; past {o['stage']} end {stg_end}" if stg_end and o['du'] > stg_end else ''))
         for l in o['links']:
             if l['label'] == 'is blocked by' and l['scat'] != 'done': R[k].append('R7'); info[k].append(f"Blocked by open {l['key']}")
-            if l['label'] == 'blocks' and l['scat'] != 'done': R[k].append('R8'); info[k].append(f"Blocks open {l['key']}")
+            if l['label'] == 'blocks' and l['scat'] != 'done' and not RESEARCH: R[k].append('R8'); info[k].append(f"Blocks open {l['key']}")
         if not o['assignee'] and (o['state'] == 'In Progress' or (o['du'] and o['du'] <= TODAY + timedelta(30))):
             R[k].append('R9'); info[k].append('No assignee')
         if has_stages and o['type'] == 'Story' and o['stage'] in (cur, nxt) and (STG[o['stage']][0] - TODAY).days <= 45:
             if not [s for s in o['kids'] if s['team'] in ('ME', 'EE', 'FA') and s['state'] != 'To Do']:
                 R[k].append('R10')
                 info[k].append(f"No ME/EE/FA Subtask started ({len(o['kids'])} Subtasks)" if o['kids'] else 'No Subtasks at all — work not broken down')
+        if RESEARCH:
+            if o['nb'] and ((o['du'] and o['du'] > o['nb']) or o['nb'] < TODAY):
+                R[k].append('R11'); info[k].append(f"Late for {o['nb_key']} (needed by {o['nb']})")
+            soon = [(d_, lk_) for d_, lk_ in o['ldues'] if TODAY <= d_ <= TODAY + timedelta(LOOK)]
+            if soon:
+                R[k].append('R12'); info[k].append('Product ticket due soon: ' + ', '.join(f'{lk_} {d_}' for d_, lk_ in soon))
+            if o['plink'] == 'Unlinked' and o['type'] in ('Epic', 'Story'):
+                R[k].append('R13'); info[k].append('No product link')
     for k, rs in R.items():
         R[k] = rs = list(dict.fromkeys(rs))
         o, s = by[k], 'LOW'
+        if RESEARCH:   # ZenaQuiet-Research/INDEX.md Step 5 severity
+            if (('R11' in rs or 'R12' in rs) and o['before_gate']) or ('R1' in rs and dl[k] > 7 and o['plink'] == 'linked'): s = 'HIGH'
+            elif any(r in rs for r in ('R1', 'R2', 'R3', 'R7', 'R11', 'R12')): s = 'MEDIUM'
+            sev[k] = s
+            continue
         if ('R1' in rs and dl[k] > 7) or 'R5' in rs: s = 'HIGH'
         if ('R7' in rs or 'R8' in rs) and o['du'] and gate and o['du'] < gate: s = 'HIGH'
         if 'R6' in rs and o.get('r6high'): s = 'HIGH'
@@ -488,6 +597,12 @@ def cmd_analyze(a):
     if hi_gate or behind > 25 or (dtg is not None and dtg < 21 and (M['gate_pct'] or 0) < 80): health = 'RED'
     elif highs or len(meds) > 3 or 15 <= behind <= 25: health = 'AMBER'
     else: health = 'GREEN'
+    if RESEARCH:   # ZenaQuiet-Research/INDEX.md Step 6: coverage over open Epics and Stories
+        ci = [o for o in openi if o['type'] in ('Epic', 'Story')]
+        nl = sum(o['plink'] == 'linked' for o in ci)
+        M['link_coverage'] = (nl, len(ci), pct(nl, len(ci)))
+        cov = M['link_coverage'][2]
+        health = 'RED' if highs else ('AMBER' if len(meds) > 3 or (cov is not None and cov < 50) else 'GREEN')
     people = sorted({p for o in I for p in (o['assignee'], o['reporter']) if p and p not in EMAIL})
 
     # ---- markdown fragments
@@ -503,6 +618,15 @@ def cmd_analyze(a):
 
     def impact(o):
         parts = list(info[o['key']])
+        if RESEARCH:
+            if o['plink'] != 'linked':
+                parts.append("product impact can't be traced (" + ('product named in a title only' if o['plink'] == 'inferred' else 'no product link') + ')')
+            for d_, lk_ in o['ldues']:
+                st_, g_ = PGATE[lk_.split('-')[0]]
+                parts.append(f"{lk_} due {d_}" + (f"; {NAMES.get(lk_.split('-')[0])} {st_} gate {g_}" + (', before the gate' if d_ <= g_ else ', after the gate') if g_ else ''))
+            if o['plink'] == 'linked' and not o['ldues']:
+                parts.append('linked product ticket has no due date')
+            return '; '.join(dict.fromkeys(parts))
         if sev[o['key']] in ('HIGH', 'MEDIUM') and o['type'] != 'Epic':
             e = epic_of(o)
             what = f"Story {o['parent']} / Epic {e}" if o['type'] == subtype else f'Epic {e}'
@@ -532,6 +656,7 @@ def cmd_analyze(a):
 
     def action(o, rs):
         a_ = o['assignee']
+        if 'R11' in rs or 'R12' in rs: return f"Agree a date with the owner of {o['nb_key']}; owner {a_ or 'unassigned'}"
         if 'R5' in rs: return 'Close, or move to a current-stage Story'
         if 'R6' in rs and o.get('r6high'): return f"Re-parent to an open Story or close; confirm with {a_ or 'owner'}"
         if 'R7' in rs or 'R8' in rs: return 'Resolve blocking link first'
@@ -542,20 +667,31 @@ def cmd_analyze(a):
         if 'R10' in rs: return 'Break down into dated [ME]/[EE] Subtasks' if not o.get('kids') else 'Start first long-lead Subtask'
         if 'R4' in rs: return 'Confirm still needed; update or close'
         if 'R9' in rs: return 'Assign owner'
+        if 'R13' in rs: return 'Link the product ticket it supports'
         return ''
 
     SO = {'HIGH': 0, 'MEDIUM': 1, 'LOW': 2}
     rows = sorted(R, key=lambda k: (SO[sev[k]], -dl.get(k, 0), kk(k)))
-    L = ['| Sev | Key | Title | Team | Stage | Rules | Days late | Story → Epic | Gate impact | Suggested action |', '| --- ' * 10 + '|']
+    L = ['| Sev | Key | Title | Team | ' + ('Product' if RESEARCH else 'Stage') + ' | Rules | Days late | Story → Epic | ' +
+         ('Product impact' if RESEARCH else 'Gate impact') + ' | Suggested action |', '| --- ' * 10 + '|']
+    reg_rows = []
     for k in rows:
         o = by[k]
-        L.append(f"| {sev[k]} | {url(k)} | {short(o['summary'])} | {o['tdisp']} | {o['stage']} | {', '.join(R[k])} | {dl.get(k, 0)} | {chain(o)} | {impact(o)} | {action(o, R[k])} |")
+        cells = [sev[k], url(k), short(o['summary']), o['tdisp'], o['pdisp'] if RESEARCH else o['stage'], ', '.join(R[k]),
+                 str(dl.get(k, 0)), chain(o), impact(o), action(o, R[k])]
+        reg_rows.append(dict(sev=sev[k], key=k, days=dl.get(k, 0), cells=cells))
+        L.append('| ' + ' | '.join(cells) + ' |')
     open(os.path.join(W, 'register.md'), 'w', encoding='utf-8').write('\n'.join(L) + '\n')
     em = lambda r: EMAIL.get(r, 'not in reference.md') if r else 'unknown'
-    H = ['| Key | Rule (D1–D6 / stage prefix / no assignee / assignee not in reference.md / orphan) | Detail | Reporter | Email | Assignee |', '| --- ' * 6 + '|']
+    H = ['| Key | ' + ('Problem (Unlinked / D1–D7 / no team / orphan)' if RESEARCH else
+                      'Rule (D1–D6 / stage prefix / no assignee / assignee not in reference.md / orphan)') +
+         ' | Detail | Reporter | Email | Assignee |', '| --- ' * 6 + '|']
+    hyg_rows = []
     for k, r, d in dd + hyg:
         o = by[k]
-        H.append(f"| {k} | {r} | {d} | {o['reporter'] or 'unknown'} | {em(o['reporter'])} | {o['assignee'] or 'Unassigned'} |")
+        cells = [k, r, d, o['reporter'] or 'unknown', em(o['reporter']), o['assignee'] or 'Unassigned']
+        hyg_rows.append(dict(key=k, rule=r, cells=cells))
+        H.append('| ' + ' | '.join(cells) + ' |')
     open(os.path.join(W, 'hygiene.md'), 'w', encoding='utf-8').write('\n'.join(H) + '\n')
     mon = [f'{calendar.month_abbr[mm]}-{str(yy)[2:]}' for yy, mm in months]
     T = ['| Team | ' + ' | '.join(mon) + ' | Avg | Open, undated |', '| --- ' * (len(mon) + 3) + '|']
@@ -575,6 +711,21 @@ def cmd_analyze(a):
     N = ['| Key | Note | Detail |', '| --- | --- | --- |'] + [f'| {k} | {r} | {d} |' for k, r, d in notes]
     open(os.path.join(W, 'notes.md'), 'w', encoding='utf-8').write('\n'.join(N) + '\n')
 
+    if RESEARCH:   # "Products waiting on Research" table
+        PR = ['| Product | Open items (linked / inferred) | Earliest needed-by | At risk |', '| --- | --- | --- | --- |']
+        ce = [o for o in openi if o['type'] in ('Epic', 'Story')]
+        keys = lambda xs: (' (' + ', '.join(o['key'] for o in xs) + ')') if xs else ''
+        for pk in PKEYS:
+            li = [o for o in ce if pk in o['products'] and o['plink'] == 'linked']
+            inf = [o for o in ce if pk in o['products'] and o['plink'] == 'inferred']
+            nbs = sorted((d_, lk_) for o in li for d_, lk_ in o['ldues'] if lk_.startswith(pk + '-'))
+            hit = [o['key'] for o in li if any(r in R.get(o['key'], []) for r in ('R11', 'R12'))]
+            risk = ('Yes: ' + ', '.join(hit)) if hit else ('No' if li else "Can't tell (no links)")
+            PR.append(f"| {K2F.get(pk, pk)} ({pk}) | {len(li)}{keys(li)} / {len(inf)}{keys(inf)} | " +
+                      (f'{nbs[0][0]} ({nbs[0][1]})' if nbs else 'n/a') + f' | {risk} |')
+        un = [o for o in ce if o['plink'] == 'Unlinked']
+        PR.append(f"| Unlinked | {len(un)} | — | Can't tell |")
+        open(os.path.join(a.work, 'products.md'), 'w', encoding='utf-8').write('\n'.join(PR) + '\n')
     res = dict(project=folder, date=a.date, config=dict(lookahead_days=LOOK, stale_days=STALE, overload_factor=OVF),
                has_stage_schedule=has_stages, current_stage=cur, next_stage=nxt, gate=gate, days_to_gate=dtg, health=health,
                high_on_gate=hi_gate, counts=Counter(o['type'] for o in I), severity=Counter(sev.values()), metrics=M,
@@ -582,19 +733,30 @@ def cmd_analyze(a):
                orphans=orph, notes=notes, people_not_in_reference=people, risk_rows=len(rows), hygiene_rows=len(dd) + len(hyg),
                open_by_assignee=Counter(o['assignee'] or 'Unassigned' for o in openi).most_common(),
                issue_stage={o['key']: o['stage'] for o in I},
-               risks={k: dict(sev=sev[k], rules=R[k], info=info[k]) for k in rows})
+               risks={k: dict(sev=sev[k], rules=R[k], info=info[k]) for k in rows},
+               register_header=L[0], register_list=reg_rows, hygiene_header=H[0], hygiene_list=hyg_rows)
+    if RESEARCH:
+        res['research'] = dict(link_coverage=M['link_coverage'], linked_source=linked_note,
+                               gates={pk: [g[0], str(g[1]) if g[1] else None] for pk, g in PGATE.items()},
+                               linked_due={k: v.get('due') for k, v in LINKED.items() if k.split('-')[0] in PKEYS},
+                               items={o['key']: dict(product=o['pdisp'], link=o['plink'], needed_by=str(o['nb']) if o['nb'] else None,
+                                                     needed_by_key=o['nb_key'], before_gate=o['before_gate']) for o in I})
     json.dump(res, open(os.path.join(W, 'results.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=1, default=str)
     sc = res['severity']
     summ = [
         f"PROJECT: {folder} · report: knowledge/{folder}/jira/{a.date}-jira.md",
-        f"ROW: {cur or 'n/a'} · gate {gate or 'n/a'} · {dtg if dtg is not None else 'n/a'}d · readiness {M['gate_pct']}% ({M['gate'][0]}/{M['gate'][1]}) · {health}",
+        (f"ROW: research · open {len(openi)} · link coverage {M['link_coverage'][2]}% ({M['link_coverage'][0]}/{M['link_coverage'][1]} Epics+Stories) · "
+         f"overdue {M['overdue'][0]} · due soon, not started {len(M['R3'])} · {health}" if RESEARCH else
+         f"ROW: {cur or 'n/a'} · gate {gate or 'n/a'} · {dtg if dtg is not None else 'n/a'}d · readiness {M['gate_pct']}% ({M['gate'][0]}/{M['gate'][1]}) · {health}"),
         f"COUNTS: {len(I)} issues " + ' / '.join(f'{v} {k}' for k, v in res['counts'].items()),
         f"RISKS: HIGH {sc.get('HIGH', 0)} · MEDIUM {sc.get('MEDIUM', 0)} · LOW {sc.get('LOW', 0)} · overdue {M['overdue'][0]}",
         f"PEOPLE NOT IN reference.md: {', '.join(people) or 'none'}",
     ]
     open(os.path.join(W, 'summary.txt'), 'w', encoding='utf-8').write('\n'.join(summ) + '\n')
     print('\n'.join(summ))
-    if not has_stages:
+    if RESEARCH:
+        print('MODE: research (product_keys ' + ', '.join(PKEYS) + '); D7, R11–R13 applied; LINKED: ' + linked_note)
+    elif not has_stages:
         print('NOTE: no stage schedule column for this project in reference.md; stage checks skipped.')
 
 
@@ -679,6 +841,7 @@ def cmd_sources(a):
     rp = os.path.join(W, 'results.json')
     res = json.load(open(rp, encoding='utf-8')) if os.path.exists(rp) else {}
     istage = res.get('issue_stage', {})
+    RS = res.get('research') or {}   # Research: needed-by = the product ticket's due date (Research INDEX rule D7)
     isw = lambda d: d.weekday() < 5 and d not in HOL
 
     def add_wd(d, n):
@@ -722,6 +885,15 @@ def cmd_sources(a):
         need_by = D(tgt['start'] or tgt['due']) if tgt and (tgt['start'] or tgt['due']) else None
         stage = istage.get(need_key) if need_key else None
         stage_end = STG[stage][1] if stage in STG else None
+        before_gate, is_pk = False, bool(RS and need_key and need_key.split('-')[0] in RS['gates'])
+        if RS and need_key:
+            ri = RS['items'].get(need_key)
+            if ri:   # an RS ticket: follow its product link
+                need_by, before_gate = (D(ri['needed_by']) if ri['needed_by'] else None), ri['before_gate']
+            elif is_pk:   # a product ticket named directly
+                need_by = D(RS['linked_due'][need_key]) if RS['linked_due'].get(need_key) else None
+                g_ = RS['gates'][need_key.split('-')[0]][1]
+                before_gate = bool(need_by and g_ and need_by <= D(g_))
         rules, notes, arr_min = [], [], None
         arr, waited, why_unknown = None, None, None
         if kind == 'purchase' and st != 'delivered':
@@ -759,9 +931,12 @@ def cmd_sources(a):
             if kind == 'purchase' and st == 'delivered': why_unknown = 'already delivered'
             if it.get('open_question') and kind == 'purchase': rules.append('P3')
         if not need_key: rules.append('P5')
-        elif need_key not in snap: rules.append('P5'); notes.append(f'{need_key} not in this snapshot')
+        elif need_key not in snap and not is_pk: rules.append('P5'); notes.append(f'{need_key} not in this snapshot')
         rules = list(dict.fromkeys(rules))
-        if 'P1' in rules and (('P3' in rules) or (stage_end and arr and arr > stage_end) or (pvt_start and arr and arr > pvt_start)):
+        if RS:   # Research severity: HIGH for P1 when the product ticket sits before its product's gate, or P1 + P3
+            sev = 'HIGH' if 'P1' in rules and ('P3' in rules or before_gate) else \
+                ('MEDIUM' if any(r in rules for r in ('P1', 'P2', 'P3', 'P4', 'S1')) else ('LOW' if rules else None))
+        elif 'P1' in rules and (('P3' in rules) or (stage_end and arr and arr > stage_end) or (pvt_start and arr and arr > pvt_start)):
             sev = 'HIGH'
         elif any(r in rules for r in ('P1', 'P2', 'P3', 'P4', 'S1')):
             sev = 'MEDIUM'
@@ -782,8 +957,8 @@ def cmd_sources(a):
                                'purchasing': 'waiting on a purchase', 'waiting approval': 'waiting for approval',
                                'supplier lead time': 'waiting on a supplier', 'not requested': 'nothing requested yet'
                                }.get((it.get('root_cause_step') or '').lower(), 'no date in the sources')
-            elif not need_key or need_key not in snap: why_unknown = 'no dated Jira item needs it yet'
-            elif not need_by: why_unknown = f'{need_key} has no dates'
+            elif not need_key or (need_key not in snap and not is_pk): why_unknown = 'no dated Jira item needs it yet'
+            elif not need_by: why_unknown = (f'{need_key} has no linked product ticket with a due date' if RS else f'{need_key} has no dates')
             else: why_unknown = 'not ordered yet, so no arrival date'
         rows.append(dict(ref=it.get('ref'), item=it.get('item'), kind=kind, status=st, needed_for=need_key,
                          needed_for_inferred=bool(it.get('needed_for_inferred')), stage=stage, needed_by=str(need_by) if need_by else None,
@@ -854,6 +1029,182 @@ def cmd_sources(a):
             f" · lead times {lead['approval']}+{lead['purchasing']}+{lead['supplier']} wd · holidays {len(HOL)} days")
     open(os.path.join(W, 'sources_summary.txt'), 'w', encoding='utf-8').write(summ + '\n')
     print(summ)
+
+
+# ----------------------------------------------------------------- report (page skeleton)
+def cmd_report(a):
+    """Writes knowledge/<project>/jira/<D>-jira.md with every number and table filled in, and
+    <D>-jira-detail.md with the full lists. The AI then replaces each <!-- AI: ... --> marker."""
+    folder, W = a.project, a.work
+    rp = os.path.join(W, 'results.json')
+    if not os.path.exists(rp):
+        sys.exit('No WORK/results.json. Run "analyze" (and "sources") first.')
+    res = json.load(open(rp, encoding='utf-8'))
+    if 'register_list' not in res:
+        sys.exit('results.json is from an older script version. Run "analyze" again.')
+    cfg = load_config(folder)
+    MAXR = int(cfg.get('report_max_rows') or 30)
+    LOOK = res['config']['lookahead_days']
+    TODAY = D(a.date)
+    STG = load_reference(folder)[0]
+    snapf = json.load(open(os.path.join(DATA, folder, f'{a.date}.json'), encoding='utf-8'))
+    I = snapf['issues']
+    KEY = I[0]['key'].split('-')[0] if I else (cfg.get('project_key') or '')
+    research = 'research' in res
+    jdir = os.path.join(KNOW, folder, 'jira')
+    os.makedirs(jdir, exist_ok=True)
+    out, det = os.path.join(jdir, f'{a.date}-jira.md'), os.path.join(jdir, f'{a.date}-jira-detail.md')
+    if os.path.exists(out) and not a.force:
+        sys.exit(f'{out} already exists. Use --force to rewrite it (everything the AI wrote in it is lost).')
+    prev = sorted(f[:10] for f in os.listdir(jdir) if re.fullmatch(r'\d{4}-\d{2}-\d{2}-jira\.md', f) and f[:10] < a.date)
+    detlink = f'[[{folder}/jira/{a.date}-jira-detail|detail page]]'
+
+    def rd(n):
+        p = os.path.join(W, n)
+        return open(p, encoding='utf-8').read().rstrip('\n') if os.path.exists(p) else None
+
+    AI = lambda t: f'<!-- AI: {t} -->'
+    url = lambda k: f'[{k}]({BROWSE}{k})' if k else '—'
+    M = res['metrics']
+    health = res.get('health_with_sources') or res['health']
+    has_src = 'source_risks' in res
+    SO = {'HIGH': 0, 'MEDIUM': 1, 'LOW': 2}
+
+    # register rows: Jira + source risks together, sorted by severity, then days late
+    rows = [dict(sev=r['sev'], days=r['days'], cells=r['cells']) for r in res['register_list']]
+    ritems = (res.get('research') or {}).get('items', {})
+    for r in res.get('source_risks', []):
+        if not r.get('sev'):
+            continue
+        if r['delay_max'] is not None:
+            imp = f"needed {r['needed_by']}, arrives {r['arrival']}" + (f", {r['delay_max']} wd late" if r['delay_max'] else ', on time')
+        else:
+            imp = f"delay unknown: {r['why_unknown'] or 'no dates'}"
+        if r.get('gate_hit'):
+            imp += '; arrives after its stage end'
+        if r.get('waited') is not None:
+            imp += f"; waiting for approval {r['waited']} wd"
+        nf = url(r['needed_for']) + (' (inferred)' if r['needed_for'] and r.get('needed_for_inferred') else '')
+        col5 = (ritems.get(r['needed_for'] or '', {}).get('product') or '—') if research else (r.get('stage') or '—')
+        rows.append(dict(sev=r['sev'], days=r['days_late'], cells=[r['sev'], f"`{r['ref']}`", r['item'] or '—', '—', col5,
+                                                                   ', '.join(r['rules']), str(r['days_late']), nf, imp, r.get('fix') or '—']))
+    rows.sort(key=lambda r: (SO[r['sev']], -r['days']))
+    highs = [r for r in rows if r['sev'] == 'HIGH']
+    meds = [r for r in rows if r['sev'] == 'MEDIUM']
+    shown = highs + meds[:max(0, MAXR - len(highs))]
+    hidden = Counter(r['sev'] for r in rows[len(shown):] if r not in shown)
+    reg_head = res['register_header'] + '\n' + '| --- ' * 10 + '|'
+    tbl = lambda rs: '\n'.join('| ' + ' | '.join(r['cells']) + ' |' for r in rs)
+    hy = res['hygiene_list']
+    hy_head = res['hygiene_header'] + '\n' + '| --- ' * 6 + '|'
+    hc = Counter(h['rule'] for h in hy)
+
+    diff = rd('diff.md') or 'No diff run.'
+    diff_short = '; '.join(re.sub(r'^([A-Z][\w ]*?) \((\d+)\):?.*$', r'\1: \2', l).rstrip('.:')
+                           for l in diff.splitlines() if l and not l.startswith('- ')) + '.'
+    src_line = (f"Source: live Jira, project `{KEY}` ({folder}), snapshot `data/{folder}/{a.date}.json` ({len(I)} issues), "
+                f"plus `raw/threads/` and `raw/transcripts/`. " +
+                ('Product stage windows from [[reference#Stage schedule (per product)]]. ' if research else
+                 'Stage windows and lead times from [[reference#Stage schedule (per product)]] and [[reference#Purchasing lead times]]. ') +
+                f"Previous report: " + (f'[[{folder}/jira/{prev[-1]}-jira|{prev[-1]}]]' if prev else 'none (first report)') +
+                f". Full risk register, hygiene list and snapshot changes: {detlink}.")
+    gaps = [f"- Snapshot `data/{folder}/{a.date}.json`: {len(I)} issues; field IDs: start date `{snapf.get('start_field')}`, sprint `{snapf.get('sprint_field')}`.",
+            '- ' + AI('JQL total vs retrieved count (Step 2), and comments that could not all be retrieved'),
+            '- Sources: ' + (rd('sources_summary.txt') or 'the sources step was not run, so there are no risks from threads or transcripts.')]
+    if research:
+        gaps.append(f"- Linked product tickets: {res['research']['linked_source']}.")
+    if res.get('notes'):
+        gaps.append(f"- {len(res['notes'])} items worth a human look (not rule hits) are on the {detlink}.")
+    gaps.append('- ' + AI('source files read; items that used default lead times; anything else that could not be retrieved or verified'))
+
+    fm = f'---\ntype: jira-report\nproject: {folder}\ndate: {a.date}\nsnapshot: data/{folder}/{a.date}.json\n---\n'
+    head = [fm, f'# {folder} Status Report — {a.date}', '', src_line, '',
+            f'**Since last report:** {diff_short}', '', AI('plain-words bullets on what changed since the last report (from the detail page), each with ticket keys; delete this line if nothing changed'), '']
+    risk_blocks = [AI('Top 3 risks: one block each — **N. Short name**, then - **What:** (one sentence, no keys), - **Tickets:** (one linked key per line, max 5), - **Impact:** (one sentence)'), '']
+
+    if not research:
+        cur, nxt, gate = res['current_stage'], res['next_stage'], res['gate']
+        s0, s1 = STG[cur] if cur in STG else (None, None)
+        g = M['gate']
+        ns = M['next']
+        row = (f"| {cur} ({s0} → {s1}) | {cur} → {nxt or '—'}, {gate} | {res['days_to_gate']} | "
+               f"{M['gate_pct']}% ({g[0]}/{g[1]} {cur} Stories Done; {g[2]} In Progress, {g[1]-g[0]-g[2]} To Do) | **{health}** |")
+        ev = M.get('expected_vs_actual')
+        metrics = ['| Metric | Value |', '| --- | --- |',
+                   f"| Story completion | {M['story'][0]}/{M['story'][1]} ({round(100*M['story'][0]/M['story'][1], 1) if M['story'][1] else '—'}%) |",
+                   f"| Subtask completion | {M['sub'][0]}/{M['sub'][1]} ({round(100*M['sub'][0]/M['sub'][1], 1) if M['sub'][1] else '—'}%) |",
+                   f"| Gate readiness ({cur}) | {M['gate_pct']}% ({g[0]}/{g[1]}) |",
+                   f"| Next-stage readiness ({nxt or '—'}) | {ns[0]}/{ns[1]} started |",
+                   f"| Overdue / avg days late | {M['overdue'][0]} / {M['overdue'][1]} |",
+                   f"| Due soon, not started | {len(M['R3'])} |", f"| Stale (no update ≥ {res['config']['stale_days']}d) | {len(M['R4'])} |",
+                   f"| Carryover (past-stage Stories open) | {len(M['R5'])} |", f"| Scope added after stage start | {len(M['scope_added'])} |"]
+        if ev:
+            metrics.append(f"| Expected vs actual progress | expected {ev[0]}%, actual {ev[1]}% ({'+' if ev[2] >= 0 else ''}{ev[2]} pts)" +
+                           (' ⚠ behind by > 15 pts' if ev[2] < -15 else '') + ' |')
+        epl = []
+        for e in res['epics']:
+            pc = round(100 * e['stories_done'] / e['stories']) if e['stories'] else 0
+            v = e['variance']
+            epl.append(f"- {e['key']} {e['title']} (due {e['due'] or 'unknown'}, {pc}% done, variance " +
+                       (('+' if v > 0 else '') + f'{v}d' if v is not None else 'n/a') + f", {e['state']})")
+        body = head + ['## 1. Executive Summary', '', '| Current Stage | Next Gate | Days to Gate | Gate Readiness | Health |',
+                       '| --- | --- | --- | --- | --- |', row, '', 'Health: ' + AI('one sentence on why'), '', '### Top 3 risks', ''] + risk_blocks + [
+            '### Key cross-team concern', '', AI('one block: **Short name**, - **What:**, - **Tickets:**, - **Impact:**'), '',
+            '## 2. Product Detail', '', '**Purpose:** ' + AI('2–3 sentences (Step 8)'), '', '**Technical requirements by Epic:**', ''] + epl + [
+            AI('under each Epic, 2–4 requirement sub-bullets tagged with teams, e.g. "  - requirement … [ME, AC]" (Step 8); Jira only, "No description in Jira" where empty'), '',
+            '**Engineering discussion (from Jira comments):**', '', AI('per Epic: Being discussed / Thinking so far / Decided / Still open, each cited (key, author, date) (Step 8b)'), '',
+            '**Metrics**', ''] + metrics + ['', rd('epics.md') or '', '', rd('stages.md') or '', '',
+            f"**Gate readiness:** {cur}: {g[0]}/{g[1]} Stories done ({g[2]} In Progress), gate {gate} in {res['days_to_gate']} days. "
+            f"{nxt or 'next stage'}: {ns[0]}/{ns[1]} Stories started.", '']
+        load_title, hyg_title = '## 4. Team Load Heatmap', '## 5. Data Hygiene'
+    else:
+        op = [o for o in I if o['scat'] != 'done']
+        ct = Counter(o['type'] for o in op)
+        soon = sorted([o['key'] for o in op if o['due'] and TODAY <= D(o['due']) <= TODAY + timedelta(LOOK)], key=lambda k: int(k.split('-')[1]))
+        lc = res['research']['link_coverage']
+        row = (f"| {len(op)} (" + ', '.join(f'{v} {k}' for k, v in ct.items()) + f") | {lc[2]}% ({lc[0]}/{lc[1]} Epics and Stories) | "
+               f"{M['overdue'][0]} | {len(soon)}" + (f" ({', '.join(soon)})" if 0 < len(soon) <= 10 else '') + f" | **{health}** |")
+        body = head + ['## 1. Executive Summary', '', f'| Open items | Link coverage | Overdue | Due in {LOOK} days | Health |',
+                       '| --- | --- | --- | --- | --- |', row, '', 'Health: ' + AI('one sentence on why'), '',
+                       '### Products waiting on Research', '', rd('products.md') or '', '', '### Top 3 risks', ''] + risk_blocks + [
+            '## 2. Research Detail', '', '**Purpose:** ' + AI('2–3 sentences (Step 7)'), '',
+            '**Research by product:** ' + AI('per product, the Epics supporting it, one line each (Step 7)'), '',
+            '**Engineering discussion (from Jira comments):**', '', AI('per Epic: Being discussed / Thinking so far / Decided / Still open, each cited (key, author, date) (Step 7b)'), '']
+        load_title, hyg_title = '## 4. Team Load', '## 5. Clean-up List'
+
+    more = ' · '.join(f'{v} {k}' for k, v in sorted(hidden.items(), key=lambda x: SO[x[0]]))
+    body += ['## 3. Risk Register', '',
+             f"{len(highs)} HIGH, {len(meds)} MEDIUM, {sum(r['sev'] == 'LOW' for r in rows)} LOW (Jira and source risks). "
+             f"Shown: all HIGH and the {len(shown) - len(highs)} MEDIUM with the most days late" + (f"; not shown: {more}, see the {detlink}." if more else '.'), '',
+             reg_head, tbl(shown) if shown else '| — | none | | | | | | | | |', '',
+             AI('check the impact sentences of the rows above; rewrite any that need judgment (see "What is still yours" in the procedure)'), '',
+             '### Risks from team threads (plain)', '', rd('sources_plain.md') or 'Sources step not run.', '',
+             '### Order this week', '', rd('order_this_week.md') or 'Sources step not run.', '',
+             load_title, '', rd('heatmap.md') or '', '',
+             hyg_title, '', f"{len(hy)} rows: " + (', '.join(f'{k} {v}' for k, v in hc.most_common()) or 'none') +
+             (f". First 20 below; all on the {detlink}." if len(hy) > 20 else '.'), '',
+             hy_head, '\n'.join('| ' + ' | '.join(h['cells']) + ' |' for h in hy[:20]) or '| — | none | | | | |', '',
+             AI('add any "comment vs field" rows found in Step 8b/7b, or delete this line'), '',
+             '## 6. Recommendations for TM', '', AI('3–5 concrete actions, each tied to ticket keys and owners'), '',
+             '## 7. Data Gaps & Assumptions', ''] + gaps + ['']
+    page = '\n'.join(body)
+    open(out, 'w', encoding='utf-8', newline='\n').write(page)
+
+    dfm = f'---\ntype: jira-detail\nproject: {folder}\ndate: {a.date}\nsnapshot: data/{folder}/{a.date}.json\n---\n'
+    dpage = [dfm, f'# {folder} — Full lists, {a.date}', '',
+             f'Written by `tools/wiki_jira.py report`; do not edit. Summary: [[{folder}/jira/{a.date}-jira|{a.date} report]].', '',
+             f'## Risk register (all {len(rows)} rows)', '', reg_head, tbl(rows) or '| — | none | | | | | | | | |', '',
+             f'## {"Clean-up list" if research else "Data hygiene"} (all {len(hy)} rows)', '', hy_head,
+             '\n'.join('| ' + ' | '.join(h['cells']) + ' |' for h in hy) or '| — | none | | | | |', '',
+             '## Changes since the previous snapshot', '', '\n'.join(('- ' + l if l and not l.startswith('- ') else l) for l in diff.splitlines()), '',
+             '## Worth a look (not rule hits)', '', rd('notes.md') or 'none', '']
+    if not research:
+        dpage += ['## Epics', '', rd('epics.md') or '', '', '## Stages', '', rd('stages.md') or '', '']
+    open(det, 'w', encoding='utf-8', newline='\n').write('\n'.join(dpage))
+    n_ai = page.count('<!-- AI:')
+    print(f'REPORT: {os.path.relpath(out, ROOT)} ({len(page.splitlines())} lines, {n_ai} AI markers to fill) · '
+          f'DETAIL: {os.path.relpath(det, ROOT)} · register {len(shown)}/{len(rows)} rows shown · hygiene {min(20, len(hy))}/{len(hy)} shown' +
+          ('' if has_src else ' · WARNING: sources step not run'))
 
 
 # ----------------------------------------------------------------- rollup
@@ -1155,7 +1506,7 @@ def cmd_rollup(a):
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sp = ap.add_subparsers(dest='cmd', required=True)
-    for name in ('normalize', 'analyze', 'diff', 'sources', 'rollup'):
+    for name in ('normalize', 'analyze', 'diff', 'sources', 'report', 'rollup'):
         p = sp.add_parser(name)
         if name != 'rollup':
             p.add_argument('--project', required=True, help='wiki folder name, e.g. ZenaQuiet-Pro2')
@@ -1166,6 +1517,8 @@ def main():
             p.add_argument('--sprint-field', default='customfield_10020')
         else:
             p.add_argument('--work', required=True)
+        if name == 'report':
+            p.add_argument('--force', action='store_true', help='rewrite an existing report (the AI-written parts are lost)')
     a = ap.parse_args()
     if a.cmd == 'rollup':
         a.date = a.date or load_config('portfolio').get('today') or date.today().isoformat()
@@ -1173,7 +1526,7 @@ def main():
     if not os.path.isdir(os.path.join(KNOW, a.project)):
         sys.exit(f'Unknown project folder: {a.project}')
     a.date = a.date or load_config(a.project).get('today') or date.today().isoformat()
-    {'normalize': cmd_normalize, 'analyze': cmd_analyze, 'diff': cmd_diff, 'sources': cmd_sources}[a.cmd](a)
+    {'normalize': cmd_normalize, 'analyze': cmd_analyze, 'diff': cmd_diff, 'sources': cmd_sources, 'report': cmd_report}[a.cmd](a)
 
 
 if __name__ == '__main__':
