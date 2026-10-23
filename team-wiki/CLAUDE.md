@@ -47,7 +47,7 @@ team-wiki/
 |                              sources (risks from threads/transcripts);
 |                              rollup (all products, for knowledge/portfolio/)
 +-- data/                      Jira snapshots, one per project per weekly run
-|   +-- <project>/YYYY-MM-DD.json   written by wiki_jira.py; no descriptions; never edit
+|   +-- <project>/YYYY-MM-DD.json   written by wiki_jira.py; no descriptions or comments; never edit
 +-- knowledge/                 everything you write, linked with [[wikilinks]]
     +-- INDEX.md               instructions for all of knowledge/: frontmatter,
     |                          writing rules, Jira page template

@@ -13,8 +13,10 @@ Commands (run with python3 -I):
   normalize --project ZenaQuiet-Pro2 --raw-dir WORK [--date D] [--start-field F] [--sprint-field F]
       Reads every *.json in WORK that holds Jira search results ({"issues": {"nodes": [...]}} or
       {"issues": [...]}) and writes:
-        WORK/issues_full.json            all fields incl. description (temporary, for Step 8 reading)
-        data/<project>/<D>.json          snapshot: no descriptions, secrets redacted (kept for diffs)
+        WORK/issues_full.json            all fields incl. description and comments (temporary, for Step 8/8b reading)
+        data/<project>/<D>.json          snapshot: no descriptions or comments, secrets redacted (kept for diffs)
+      Comments come from each issue's `comment` field, or from WORK/comments/<KEY>.json when the
+      search returned only some of them (Step 2).
   analyze --project ZenaQuiet-Pro2 --work WORK [--date D]
       Reads the snapshot for D and writes to WORK: results.json, register.md, hygiene.md,
       heatmap.md, epics.md, stages.md, notes.md (things for a human look, not rule hits), summary.txt
@@ -133,6 +135,19 @@ def redact(s):
 
 
 # ----------------------------------------------------------------- normalize
+def adf_text(node):
+    """Jira Cloud v3 returns rich text (ADF); v2 returns plain strings."""
+    if node is None: return ''
+    if isinstance(node, str): return node
+    if isinstance(node, list): return ''.join(adf_text(n) for n in node)
+    t = node.get('type')
+    if t == 'text': return node.get('text', '')
+    if t == 'mention': return node.get('attrs', {}).get('text', '')
+    if t == 'hardBreak': return '\n'
+    inner = adf_text(node.get('content'))
+    return inner + ('\n' if t in ('paragraph', 'heading', 'listItem', 'codeBlock', 'blockquote') else '')
+
+
 def cmd_normalize(a):
     nodes = []
     for f in sorted(glob.glob(os.path.join(a.raw_dir, '*.json'))):
@@ -160,6 +175,13 @@ def cmd_normalize(a):
                     o = l[side]
                     links.append(dict(dir=dirn, label=lab, type=t['name'], key=o['key'],
                                       scat=o['fields']['status']['statusCategory']['key']))
+        cm = f.get('comment') or {}
+        extra = os.path.join(a.raw_dir, 'comments', n['key'] + '.json')
+        if os.path.exists(extra):
+            cm = json.load(open(extra, encoding='utf-8'))
+        comments = [dict(author=nm(c.get('author')), created=(c.get('created') or '')[:10],
+                         body=redact(adf_text(c.get('body')).strip()))
+                    for c in cm.get('comments') or []]
         out.append(dict(
             key=n['key'], summary=f['summary'], type=f['issuetype']['name'], status=f['status']['name'],
             scat=f['status']['statusCategory']['key'], assignee=nm(f.get('assignee')), reporter=nm(f.get('reporter')),
@@ -168,10 +190,10 @@ def cmd_normalize(a):
             parent=(f.get('parent') or {}).get('key'), subtasks=[s['key'] for s in f.get('subtasks') or []],
             links=links, created=f['created'][:10], updated=f['updated'][:10],
             resolved=(f.get('resolutiondate') or '')[:10] or None, labels=f.get('labels') or [],
-            desc=f.get('description') or ''))
+            desc=f.get('description') or '', comments=comments))
     out.sort(key=lambda o: int(o['key'].split('-')[1]))
     json.dump(out, open(os.path.join(a.raw_dir, 'issues_full.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=0)
-    snap = [dict({k: v for k, v in o.items() if k != 'desc'}, summary=redact(o['summary'])) for o in out]
+    snap = [dict({k: v for k, v in o.items() if k not in ('desc', 'comments')}, summary=redact(o['summary'])) for o in out]
     os.makedirs(os.path.join(DATA, a.project), exist_ok=True)
     sp = os.path.join(DATA, a.project, f'{a.date}.json')
     json.dump(dict(project=a.project, date=a.date, start_field=a.start_field, sprint_field=a.sprint_field,

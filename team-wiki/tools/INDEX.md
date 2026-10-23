@@ -18,9 +18,10 @@ It never calls Jira and never writes wiki pages.
 Paths below are bash paths; `WORK` is a temporary folder (e.g. `outputs/work-<key>/`).
 
 1. Pull Jira (Steps 1–2 of the project `INDEX.md`). Save each raw search result page as a `.json`
-   file in `WORK`, unchanged.
+   file in `WORK`, unchanged. Issues whose comments were cut short go in `WORK/comments/<KEY>.json`
+   (the full comment response for that issue); `normalize` uses that file instead of the search's comments.
 2. `python3 -I tools/wiki_jira.py normalize --project <Folder> --raw-dir WORK [--start-field ID --sprint-field ID]`
-   → writes `WORK/issues_full.json` (with descriptions, for Step 8) and the snapshot
+   → writes `WORK/issues_full.json` (with descriptions and comments, for Steps 8 and 8b) and the snapshot
    `data/<Folder>/<date>.json`. Check that its issue count equals the JQL total.
 3. `python3 -I tools/wiki_jira.py analyze --project <Folder> --work WORK`
    → `summary.txt`, `results.json`, and ready-made tables: `register.md`, `hygiene.md`,
@@ -112,5 +113,5 @@ the stage schedule in `reference.md` (the plan slip is measured against) and the
 ## data/ (snapshots)
 
 `data/<Folder>/<YYYY-MM-DD>.json` — one per weekly run, written by `normalize`. Used only for
-week-on-week comparison. Descriptions are left out and likely secrets, non-company emails and phone
+week-on-week comparison. Descriptions and comments are left out and likely secrets, non-company emails and phone
 numbers in titles are replaced with `[redacted]`. Don't edit or delete old snapshots.
