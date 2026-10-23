@@ -258,6 +258,37 @@ Rules:
 - If a comment contradicts the ticket's fields (e.g. "this is done" while the
   status is To Do), add a Data Hygiene row with the rule "comment vs field".
 
+**Direction changes for the portfolio.** Also save `WORK/comment_signals.json`: one
+entry per comment thread that proposes, tests or decides a change of direction:
+
+- a different chip, part, supplier or AI model
+- a different technical approach or architecture
+- a test result that misses a requirement (e.g. a latency or accuracy target)
+- a scope change, a new purchase request, or a new dependency on another team or product
+
+Leave out routine progress ("done", "working on it").
+
+Each entry:
+
+```json
+{
+  "key": "RS-2", "epic": "RS-1", "authors": ["…"], "first": "2026-10-06", "last": "2026-10-23",
+  "type": "component | approach | test result | scope | purchase | dependency",
+  "change": "what is proposed or decided, one plain sentence",
+  "status": "proposed | under test | decided | rejected",
+  "replaces": "what it replaces, if a comment says so",
+  "parts": ["RK3576", "i.MX95"],
+  "products_named": [],
+  "stated": {"cost": "…", "time": "…", "technical": "…"},
+  "decision_owner": "who a comment says must decide, else null",
+  "quote": "one short sentence, only if the exact words matter"
+}
+```
+
+Put only what the comments say into `stated` and leave a field empty when a comment says
+nothing. A purchase request in a comment also goes into `WORK/sources.json` (Step 2b), with
+ref "Jira comment <KEY> · <date>". If there are no direction changes, save an empty list `[]`.
+
 ## 4. Output
 
 Save the report as `knowledge/ZenaQuiet-Beacon/jira/YYYY-MM-DD-jira.md` (date = `today`)
