@@ -86,6 +86,23 @@ def load_reference(folder):
     return stages, teams, email
 
 
+def load_people_teams(teammap):
+    """Jira name -> team code, from every table in reference.md ## People that has 'Jira name' and a Team column."""
+    text = open(os.path.join(KNOW, 'reference.md'), encoding='utf-8').read()
+    name2code = {v.lower(): k for k, v in teammap.items()}
+    name2code.update({k.lower(): k for k in teammap})
+    out = {}
+    for head, rows in md_tables(text):
+        hdr = rows[0] if rows else []
+        tcol = next((i for i, h in enumerate(hdr) if h.lower().startswith('team')), None)
+        if 'Jira name' in hdr and tcol is not None:
+            j = hdr.index('Jira name')
+            for r in rows[1:]:
+                if len(r) > max(j, tcol):
+                    out[r[j].strip()] = name2code.get(r[tcol].strip().lower(), 'UNKNOWN')
+    return out
+
+
 def load_config(folder):
     path = os.path.join(KNOW, folder, 'INDEX.md')
     text = open(path, encoding='utf-8').read()
@@ -179,6 +196,7 @@ def cmd_analyze(a):
     OVF = float(cfg.get('overload_factor') or 1.5)
     STG, TEAMMAP, EMAIL = load_reference(folder)
     TEAMS = set(TEAMMAP) or {'FW', 'ME', 'EE', 'SW', 'ID', 'AC', 'FA'}
+    PTEAM = load_people_teams(TEAMMAP)   # Subtask team = assignee's team (reference.md ## People)
     has_stages = bool(STG)
     I = load_snapshot(folder, a.date)
     by = {o['key']: o for o in I}
@@ -213,17 +231,20 @@ def cmd_analyze(a):
             s, i, tag = stage_of(t)
             o['stage'], o['team'] = s, 'Story'
             if s == 'UNKNOWN':
-                hyg.append((o['key'], 'prefix', 'No stage prefix in Story title'))
+                hyg.append((o['key'], 'stage prefix', 'No stage prefix in Story title'))
             elif i > 0 or not t.strip().startswith('[' + tag + ']'):
                 pre = re.match(r'\s*(\[[^\]]*\])', t)
-                hyg.append((o['key'], 'prefix', f'Title starts with "{pre.group(1) if pre else t[:15]}" before the stage tag'))
+                hyg.append((o['key'], 'stage prefix', f'Title starts with "{pre.group(1) if pre else t[:15]}" before the stage tag'))
         if o['type'] == subtype:
-            tm, clean = team_of(t)
-            o['team'] = tm
-            if tm == 'UNKNOWN':
-                hyg.append((o['key'], 'prefix', 'No team prefix in Subtask title'))
-            elif not clean:
-                hyg.append((o['key'], 'prefix', f'Team tag is not a clean leading [{tm}] prefix'))
+            a_ = o['assignee']
+            if not a_:
+                o['team'] = 'Unassigned'
+            elif a_ in PTEAM:
+                o['team'] = PTEAM[a_]
+            else:
+                o['team'] = 'UNKNOWN'
+                if o['state'] != 'Done':
+                    hyg.append((o['key'], 'assignee not in reference.md', f'Assignee "{a_}" is not in reference.md → ## People, so the team is unknown'))
         m = FLAG.search(t)
         if m:
             hyg.append((o['key'], 'flag-tag', f'Title tagged "{m.group(0)}" ' +
@@ -232,6 +253,15 @@ def cmd_analyze(a):
         if o['type'] == subtype:
             p = by.get(o['parent'])
             o['stage'] = p['stage'] if p else 'UNKNOWN'
+    # open Subtasks with no assignee: one hygiene row per parent Story
+    noass = defaultdict(list)
+    for o in I:
+        if o['type'] == subtype and o['team'] == 'Unassigned' and o['state'] != 'Done':
+            noass[o['parent'] or '—'].append(o['key'])
+    for pk, ks in sorted(noass.items(), key=lambda x: (x[0] == '—', int(x[0].split('-')[1]) if '-' in x[0] else 0)):
+        ks = sorted(ks, key=lambda k: int(k.split('-')[1]))
+        hyg.append((pk if pk in by else ks[0], 'no assignee',
+                    f"{len(ks)} open Subtask{'s' if len(ks) > 1 else ''} with no assignee, so no team: " + ', '.join(ks[:8]) + (' …' if len(ks) > 8 else '')))
     orph = []
     for o in I:
         p = by.get(o['parent'])
@@ -260,7 +290,7 @@ def cmd_analyze(a):
         if o['type'] == subtype:
             o['tdisp'] = o['team']
         elif o['type'] == 'Story':
-            kt = sorted({s['team'] for s in o['kids'] if s['team'] != 'UNKNOWN'})
+            kt = sorted({s['team'] for s in o['kids'] if s['team'] not in ('UNKNOWN', 'Unassigned')})
             pt = team_of(o['summary'])[0]
             o['tdisp'] = ', '.join(kt) if kt else (label_team(o) or (pt if pt != 'UNKNOWN' else '—'))
         else:
@@ -421,7 +451,7 @@ def cmd_analyze(a):
     while (y, m) <= (end.year, end.month):
         months.append((y, m)); m += 1
         if m == 13: y, m = y + 1, 1
-    teams = sorted(TEAMS) + ['UNKNOWN']
+    teams = sorted(TEAMS) + ['Unassigned', 'UNKNOWN']
     heat, undated, inverted = {t: [0] * len(months) for t in teams}, Counter(), []
     for s, tm in load_items:
         s = dict(s, team=tm)
@@ -474,7 +504,7 @@ def cmd_analyze(a):
                     g = f'threatens gate {gate} by {(last-gate).days}d' if last > gate else f'gate buffer {(gate-last).days}d → no gate threat'
                 parts.append(f'holds up {what}; ≈{slip}d slip; {g}')
             sib = by.get(o['parent']) if o['type'] == subtype else o
-            ts = sorted({s['team'] for s in sib.get('kids', []) if s['key'] != o['key'] and s['state'] != 'Done' and s['team'] not in (o['team'], 'UNKNOWN')}) if sib else []
+            ts = sorted({s['team'] for s in sib.get('kids', []) if s['key'] != o['key'] and s['state'] != 'Done' and s['team'] not in (o['team'], 'UNKNOWN', 'Unassigned')}) if sib else []
             if ts: parts.append('teams waiting: ' + ', '.join(ts))
         return '; '.join(dict.fromkeys(parts))
 
@@ -500,7 +530,7 @@ def cmd_analyze(a):
         L.append(f"| {sev[k]} | {url(k)} | {short(o['summary'])} | {o['tdisp']} | {o['stage']} | {', '.join(R[k])} | {dl.get(k, 0)} | {chain(o)} | {impact(o)} | {action(o, R[k])} |")
     open(os.path.join(W, 'register.md'), 'w', encoding='utf-8').write('\n'.join(L) + '\n')
     em = lambda r: EMAIL.get(r, 'not in reference.md') if r else 'unknown'
-    H = ['| Key | Rule (D1–D6 / prefix / orphan) | Detail | Reporter | Email | Assignee |', '| --- ' * 6 + '|']
+    H = ['| Key | Rule (D1–D6 / stage prefix / no assignee / assignee not in reference.md / orphan) | Detail | Reporter | Email | Assignee |', '| --- ' * 6 + '|']
     for k, r, d in dd + hyg:
         o = by[k]
         H.append(f"| {k} | {r} | {d} | {o['reporter'] or 'unknown'} | {em(o['reporter'])} | {o['assignee'] or 'Unassigned'} |")

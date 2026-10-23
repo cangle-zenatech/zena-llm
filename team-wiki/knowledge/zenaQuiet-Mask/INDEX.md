@@ -96,9 +96,11 @@ For each issue:
 
 - `stage` = the bracket prefix of a Story title (case-insensitive, ignore spaces).
   Subtasks inherit the stage of their parent Story.
-- `team` = the bracket prefix of a Subtask title. A Story's team set is the
-  set of its Subtasks' teams.
-- Unrecognized or missing prefix → `UNKNOWN` (log it in Data Hygiene).
+- `team` (Subtask) = the assignee's team from `reference.md` → `## People` (Team column, mapped to
+  the codes in `## Teams`). Ignore the title bracket for Subtasks.
+  - No assignee → `Unassigned`. Assignee not in `## People` → `UNKNOWN`.
+- A Story's team set is the set of its Subtasks' teams.
+- Missing stage prefix on a Story → `UNKNOWN` (log it in Data Hygiene).
 - `state` = Done | In Progress | To Do, from statusCategory, never from the
   status name.
 - Build the tree Epic → Story → Subtask. Log orphans.
@@ -198,7 +200,7 @@ Compute these for the product, per Epic and per stage:
 **Team load**
 For each team and calendar month from the current month to MP end: count the
 open MK Subtasks whose [start, due] range overlaps that month. Compute each
-team's monthly average. Flag cells > overload_factor × average. Pay special
+team's monthly average. Open Subtasks with no assignee are counted in an "Unassigned" row. Flag cells > overload_factor × average. Pay special
 attention to AC and FA during PVT/MP (Sep–Nov 2027).
 
 **Health rating**
@@ -278,8 +280,9 @@ linked Jira item.)
 | Team | {current month} | … | Nov-27 |   (mark overloaded cells with ⚠)
 
 ## 5. Data Hygiene
-| Key | Rule (D1–D6 / prefix / orphan) | Detail | Reporter | Email | Assignee |
-(one row per ticket and rule; write "Unassigned" if no assignee, "unknown" if no reporter.
+| Key | Rule (D1–D6 / stage prefix / no assignee / assignee not in reference.md / orphan) | Detail | Reporter | Email | Assignee |
+(one row per ticket and rule, except "no assignee": one row per Story with the count and keys of
+its open Subtasks that have no assignee; write "Unassigned" if no assignee, "unknown" if no reporter.
 Email = the Reporter's email: match the Jira name in reference.md → ## People;
 write "not in reference.md" if there's no match. Never guess an email.)
 

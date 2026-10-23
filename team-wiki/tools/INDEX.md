@@ -39,6 +39,9 @@ Paths below are bash paths; `WORK` is a temporary folder (e.g. `outputs/work-<ke
   last due date.
 - `diff` reports added/removed issues; status, date, title and assignee changes; and added/removed
   issue links.
+- Subtask team = the assignee's team from `reference.md` → `## People` (since 2026-10-19). No
+  assignee → `Unassigned` (one Data Hygiene row per Story); assignee not in `## People` → `UNKNOWN`
+  (one Data Hygiene row per Subtask). The title bracket is ignored for Subtasks.
 - If a project's `INDEX.md` changes a rule, the script does not know. Flag the difference in chat.
 - Field IDs default to `customfield_10015` (Start date) and `customfield_10020` (Sprint). Pass
   others if Step 1 finds different ones.

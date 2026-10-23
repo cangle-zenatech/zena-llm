@@ -2,6 +2,8 @@
 
 One line per change, newest first.
 
+2026-10-19 · updated · [[ZenaQuiet-Pro2/INDEX]], [[ZenaQuiet-Beacon/INDEX]], [[ZenaQuiet-Headset/INDEX]], [[ZenaQuiet-Mask/INDEX]], [[reference]], tools/INDEX.md, tools/wiki_jira.py · human decided: a Subtask's team comes from its assignee (reference ## People), not the title bracket; Data Hygiene drops Subtask prefix rows, adds "no assignee" (one row per Story) and "assignee not in reference.md"; team load gains an Unassigned row (tested on 2026-10-19 snapshots: prefix rows Pro2 41 → 0, Beacon 38 → 0, Mask 8 → 0; Headset 89 no-assignee rows for 402 Subtasks)
+
 2026-10-19 · updated · [[portfolio/2026-10-19-rollup]], [[overview]] · human asked for a redo in the new format: 6b rewritten as one plain sentence per risk (12 rows; Headset PCBs ~35 working days late, High); Beacon RED in Jira (BC-141 filed under an EVT Story with DVT dates); differences vs the morning in section 8; online copy republished
 2026-10-19 · updated · tools/wiki_jira.py · `sources`: clearer "delay unknown" reasons (e.g. "waiting on a decision" instead of "depends on other"); same wording applied to the five 2026-10-19 reports
 2026-10-19 · updated · [[ZenaQuiet-Pro2/jira/2026-10-19-jira]], [[ZenaQuiet-Beacon/jira/2026-10-19-jira]], [[ZenaQuiet-Headset/jira/2026-10-19-jira]], [[ZenaQuiet-Mask/jira/2026-10-19-jira]], [[ZenaQuiet-Research/jira/2026-10-19-jira]], data/<project>/2026-10-19.json, project overviews · human asked for a redo with plain-sentence risk tables; Jira re-read in the afternoon (Pro2 344 → 350; Beacon RED from BC-141; Headset RED with sources); changes vs the morning listed in each report's Data Gaps

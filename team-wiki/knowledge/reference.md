@@ -189,6 +189,11 @@ the official dates are set.
 Each Subtask names its team twice: the code as a title prefix (e.g. `[ME] …`) and the team name as a
 Jira label (e.g. `Mechanical`). Checked on [PRO2-252](https://epazz.atlassian.net/browse/PRO2-252).
 
+**Since 2026-10-19 the reports take a Subtask's team from its assignee** (the Team column in
+`## People`), not from the title prefix (human's decision). So `## People` must list everyone who
+works on tickets, with their team. Example: [PRO2-308](https://epazz.atlassian.net/browse/PRO2-308)
+is assigned to Khanh Duong → Industrial_Design (ID).
+
 | Code | Team (Jira label)     |
 | ---- | --------------------- |
 | FW   | Firmware              |
