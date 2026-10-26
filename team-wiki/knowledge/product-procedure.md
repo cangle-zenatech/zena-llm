@@ -192,15 +192,16 @@ ref "Jira comment <KEY> · <date>". If there are no direction changes, save an e
 
 Run `tools/wiki_jira.py report` after `analyze`, `diff` and `sources`. It writes
 `knowledge/{product}/jira/YYYY-MM-DD-jira.md` (date = `today`) with the frontmatter, the source line,
-every number and every table already filled in, plus `YYYY-MM-DD-jira-detail.md` with the full risk
-register, the full Data Hygiene list and the snapshot changes. The report shows all HIGH risks and
-the MEDIUM risks with the most days late, up to `report_max_rows`; the rest are on the detail page.
+every number and every table already filled in. Section 3 shows all HIGH risks and the MEDIUM
+risks with the most days late, up to `report_max_rows`; section 5 shows the first 20 Data Hygiene
+rows. The rest go in an Appendix at the end of the same page (A: risks, B: hygiene, C: notes worth
+a look). There is no separate detail page and no list of snapshot changes.
 
 Then **fill each `<!-- AI: … -->` marker in the report** by editing the file in place (replace the
 marker with your text): the "since last report" bullets, Health sentence, Top 3 risks, cross-team
 concern, Purpose, requirement sub-bullets under each Epic, Engineering discussion, any impact
 sentences that need judgment, "comment vs field" rows, Recommendations and the Data Gaps lines.
-Don't retype or reorder the script's tables. Never edit the detail page. If the report already
+Don't retype or reorder the script's tables. Never edit the Appendix. If the report already
 exists (a redo), run `report --force` only after saying so in chat: it replaces everything you wrote.
 
 The finished report has this structure:
@@ -290,7 +291,7 @@ These apply to section 1 only. Other sections keep plain ticket keys.
 ## 6. Self-check before delivering
 
 - [ ] Issue counts match the JQL totals
-- [ ] No `<!-- AI:` markers left in the report; the detail page is untouched
+- [ ] No `<!-- AI:` markers left in the report; the Appendix is untouched
 - [ ] Current stage and days to gate are stated
 - [ ] Every HIGH/MEDIUM risk has an impact-trace sentence
 - [ ] Every finding cites a ticket key

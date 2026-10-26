@@ -12,8 +12,7 @@ load, health). It reads its settings from the wiki, so there is nothing to edit 
 - stage windows, team codes, people and emails → `knowledge/reference.md`
 - `today`, `lookahead_days`, `stale_days`, `overload_factor` → the yaml block in `knowledge/<project>/INDEX.md`
 
-It never calls Jira. The only wiki pages it writes are the weekly report skeleton and its detail
-page (`report`).
+It never calls Jira. The only wiki page it writes is the weekly report skeleton (`report`).
 
 ### Weekly run, per project
 
@@ -35,11 +34,11 @@ Paths below are bash paths; `WORK` is a temporary folder (e.g. `outputs/work-<ke
 6. `python3 -I tools/wiki_jira.py report --project <Folder> --work WORK [--force]`
    → writes `knowledge/<Folder>/jira/<date>-jira.md` with frontmatter, source line, every number
    and table (register: all HIGH + the MEDIUM with most days late, up to `report_max_rows`, default
-   30; hygiene: first 20 rows) and `<date>-jira-detail.md` with the full register, full hygiene list,
-   snapshot changes, notes, epics and stages. It refuses to overwrite a report without `--force`.
+   30; hygiene: first 20 rows), then an Appendix with the rows not shown (A: risks, B: hygiene,
+   C: notes worth a look). No separate detail page, no list of snapshot changes. It refuses to overwrite a report without `--force`.
 7. Fill every `<!-- AI: … -->` marker in the report by editing it in place: Executive Summary,
    Product Detail (Step 8 / 8b), impact sentences that need judgment, Recommendations, Data Gaps.
-   Don't retype the tables; never edit the detail page.
+   Don't retype the tables; never edit the Appendix.
 
 ### Limits
 

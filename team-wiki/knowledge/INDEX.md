@@ -53,7 +53,6 @@ Every page you create starts with a YAML block. Keep `updated` current when you 
 | --- | --- |
 | Project overview | `type: overview` · `project: <folder>` · `updated: YYYY-MM-DD` |
 | Weekly Jira report | `type: jira-report` · `project: <folder>` · `date: YYYY-MM-DD` · `snapshot: data/<folder>/YYYY-MM-DD.json` (written by the script) |
-| Report detail page | `type: jira-detail` · same fields (written by the script; never edit) |
 | Confluence page | `type: confluence` · `project: <folder>` · `source: <Confluence URL or raw/docs/ file>` · `updated: YYYY-MM-DD` |
 | Portfolio roll-up | as in `portfolio/INDEX.md` → Output |
 | `overview.md`, `glossary.md` | `type: overview` / `type: glossary` · `updated: YYYY-MM-DD` |
@@ -77,7 +76,7 @@ snapshot: data/ZenaQuiet-Pro2/2026-10-26.json
 ### Weekly Jira report — `<project>/jira/YYYY-MM-DD-jira.md`
 
 `tools/wiki_jira.py report` writes the page (frontmatter, source line, link to the previous report,
-every number and table) and a `YYYY-MM-DD-jira-detail.md` page with the full lists. You fill the
+every number and table, plus an Appendix with the rows not shown in the body). You fill the
 `<!-- AI: … -->` markers. Structure, rules and self-check: `knowledge/product-procedure.md` (products)
 or the Research `INDEX.md` (→ Output). Never overwrite an earlier week's report; if you redo this
 week's, say so in one line under the title and list what changed in Data Gaps.

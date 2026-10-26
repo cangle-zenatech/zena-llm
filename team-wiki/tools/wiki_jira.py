@@ -3,7 +3,7 @@
 
 Implements the procedure in knowledge/product-procedure.md (Steps 3-7; Research: its own INDEX.md):
 normalize, date checks D1-D7, risks R1-R13, severity, metrics, team load, health. It does NOT call
-Jira. The only wiki pages it writes are the weekly report skeleton and its detail page (`report`):
+Jira. The only wiki page it writes is the weekly report skeleton (`report`):
 the agent pulls Jira, runs the commands, then fills the <!-- AI: ... --> markers.
 
 Settings come from the wiki itself, never from this file:
@@ -32,7 +32,7 @@ Commands (run with python3 -I):
   report --project ZenaQuiet-Pro2 --work WORK [--date D] [--force]
       After analyze, diff and sources: writes knowledge/<project>/jira/<D>-jira.md with every number and
       table filled in (register: all HIGH + top MEDIUM up to report_max_rows, default 30; hygiene: first
-      20 rows) and <D>-jira-detail.md with the full lists. Refuses to overwrite without --force.
+      20 rows), with the remaining rows in an appendix at the end. Refuses to overwrite without --force.
   rollup --work WORK [--date D]
       Portfolio roll-up across every active product with a stage schedule (settings: yaml block in
       knowledge/portfolio/INDEX.md); writes WORK/rollup*.md, rollup.json, rollup_summary.txt
@@ -1034,7 +1034,7 @@ def cmd_sources(a):
 # ----------------------------------------------------------------- report (page skeleton)
 def cmd_report(a):
     """Writes knowledge/<project>/jira/<D>-jira.md with every number and table filled in, and
-    <D>-jira-detail.md with the full lists. The AI then replaces each <!-- AI: ... --> marker."""
+    an appendix with the rows not shown above. The AI then replaces each <!-- AI: ... --> marker."""
     folder, W = a.project, a.work
     rp = os.path.join(W, 'results.json')
     if not os.path.exists(rp):
@@ -1053,11 +1053,10 @@ def cmd_report(a):
     research = 'research' in res
     jdir = os.path.join(KNOW, folder, 'jira')
     os.makedirs(jdir, exist_ok=True)
-    out, det = os.path.join(jdir, f'{a.date}-jira.md'), os.path.join(jdir, f'{a.date}-jira-detail.md')
+    out = os.path.join(jdir, f'{a.date}-jira.md')
     if os.path.exists(out) and not a.force:
         sys.exit(f'{out} already exists. Use --force to rewrite it (everything the AI wrote in it is lost).')
     prev = sorted(f[:10] for f in os.listdir(jdir) if re.fullmatch(r'\d{4}-\d{2}-\d{2}-jira\.md', f) and f[:10] < a.date)
-    detlink = f'[[{folder}/jira/{a.date}-jira-detail|detail page]]'
 
     def rd(n):
         p = os.path.join(W, n)
@@ -1107,19 +1106,19 @@ def cmd_report(a):
                 ('Product stage windows from [[reference#Stage schedule (per product)]]. ' if research else
                  'Stage windows and lead times from [[reference#Stage schedule (per product)]] and [[reference#Purchasing lead times]]. ') +
                 f"Previous report: " + (f'[[{folder}/jira/{prev[-1]}-jira|{prev[-1]}]]' if prev else 'none (first report)') +
-                f". Full risk register, hygiene list and snapshot changes: {detlink}.")
+                ". Rows not shown in sections 3 and 5 are in the Appendix at the end.")
     gaps = [f"- Snapshot `data/{folder}/{a.date}.json`: {len(I)} issues; field IDs: start date `{snapf.get('start_field')}`, sprint `{snapf.get('sprint_field')}`.",
             '- ' + AI('JQL total vs retrieved count (Step 2), and comments that could not all be retrieved'),
             '- Sources: ' + (rd('sources_summary.txt') or 'the sources step was not run, so there are no risks from threads or transcripts.')]
     if research:
         gaps.append(f"- Linked product tickets: {res['research']['linked_source']}.")
     if res.get('notes'):
-        gaps.append(f"- {len(res['notes'])} items worth a human look (not rule hits) are on the {detlink}.")
+        gaps.append(f"- {len(res['notes'])} items worth a human look (not rule hits) are in Appendix C.")
     gaps.append('- ' + AI('source files read; items that used default lead times; anything else that could not be retrieved or verified'))
 
     fm = f'---\ntype: jira-report\nproject: {folder}\ndate: {a.date}\nsnapshot: data/{folder}/{a.date}.json\n---\n'
     head = [fm, f'# {folder} Status Report — {a.date}', '', src_line, '',
-            f'**Since last report:** {diff_short}', '', AI('plain-words bullets on what changed since the last report (from the detail page), each with ticket keys; delete this line if nothing changed'), '']
+            f'**Since last report:** {diff_short}', '', AI('plain-words bullets on what changed since the last report, each with ticket keys (from WORK/diff.md); delete this line if nothing changed'), '']
     risk_blocks = [AI('Top 3 risks: one block each — **N. Short name**, then - **What:** (one sentence, no keys), - **Tickets:** (one linked key per line, max 5), - **Impact:** (one sentence)'), '']
 
     if not research:
@@ -1175,35 +1174,32 @@ def cmd_report(a):
     more = ' · '.join(f'{v} {k}' for k, v in sorted(hidden.items(), key=lambda x: SO[x[0]]))
     body += ['## 3. Risk Register', '',
              f"{len(highs)} HIGH, {len(meds)} MEDIUM, {sum(r['sev'] == 'LOW' for r in rows)} LOW (Jira and source risks). "
-             f"Shown: all HIGH and the {len(shown) - len(highs)} MEDIUM with the most days late" + (f"; not shown: {more}, see the {detlink}." if more else '.'), '',
+             f"Shown: all HIGH and the {len(shown) - len(highs)} MEDIUM with the most days late" + (f"; the other {more} are in Appendix A." if more else '.'), '',
              reg_head, tbl(shown) if shown else '| — | none | | | | | | | | |', '',
              AI('check the impact sentences of the rows above; rewrite any that need judgment (see "What is still yours" in the procedure)'), '',
              '### Risks from team threads (plain)', '', rd('sources_plain.md') or 'Sources step not run.', '',
              '### Order this week', '', rd('order_this_week.md') or 'Sources step not run.', '',
              load_title, '', rd('heatmap.md') or '', '',
              hyg_title, '', f"{len(hy)} rows: " + (', '.join(f'{k} {v}' for k, v in hc.most_common()) or 'none') +
-             (f". First 20 below; all on the {detlink}." if len(hy) > 20 else '.'), '',
+             (f". First 20 below; the rest in Appendix B." if len(hy) > 20 else '.'), '',
              hy_head, '\n'.join('| ' + ' | '.join(h['cells']) + ' |' for h in hy[:20]) or '| — | none | | | | |', '',
              AI('add any "comment vs field" rows found in Step 8b/7b, or delete this line'), '',
              '## 6. Recommendations for TM', '', AI('3–5 concrete actions, each tied to ticket keys and owners'), '',
              '## 7. Data Gaps & Assumptions', ''] + gaps + ['']
+    # appendix: the rows not shown above, so the page holds every row exactly once (no separate detail page)
+    rest = rows[len(shown):]
+    body += ['---', '', '## Appendix (written by the script; do not edit)', '',
+             f'### A. Remaining risks ({len(rest)} rows not shown in section 3)', '',
+             (reg_head + '\n' + tbl(rest)) if rest else 'None: every risk is shown in section 3.', '',
+             f'### B. Remaining {"Clean-up List" if research else "Data Hygiene"} rows ({max(0, len(hy) - 20)} rows not shown in section 5)', '',
+             (hy_head + '\n' + '\n'.join('| ' + ' | '.join(h['cells']) + ' |' for h in hy[20:])) if len(hy) > 20
+             else 'None: every row is shown in section 5.', '',
+             '### C. Worth a look (not rule hits)', '', rd('notes.md') or 'None.', '']
     page = '\n'.join(body)
     open(out, 'w', encoding='utf-8', newline='\n').write(page)
-
-    dfm = f'---\ntype: jira-detail\nproject: {folder}\ndate: {a.date}\nsnapshot: data/{folder}/{a.date}.json\n---\n'
-    dpage = [dfm, f'# {folder} — Full lists, {a.date}', '',
-             f'Written by `tools/wiki_jira.py report`; do not edit. Summary: [[{folder}/jira/{a.date}-jira|{a.date} report]].', '',
-             f'## Risk register (all {len(rows)} rows)', '', reg_head, tbl(rows) or '| — | none | | | | | | | | |', '',
-             f'## {"Clean-up list" if research else "Data hygiene"} (all {len(hy)} rows)', '', hy_head,
-             '\n'.join('| ' + ' | '.join(h['cells']) + ' |' for h in hy) or '| — | none | | | | |', '',
-             '## Changes since the previous snapshot', '', '\n'.join(('- ' + l if l and not l.startswith('- ') else l) for l in diff.splitlines()), '',
-             '## Worth a look (not rule hits)', '', rd('notes.md') or 'none', '']
-    if not research:
-        dpage += ['## Epics', '', rd('epics.md') or '', '', '## Stages', '', rd('stages.md') or '', '']
-    open(det, 'w', encoding='utf-8', newline='\n').write('\n'.join(dpage))
     n_ai = page.count('<!-- AI:')
     print(f'REPORT: {os.path.relpath(out, ROOT)} ({len(page.splitlines())} lines, {n_ai} AI markers to fill) · '
-          f'DETAIL: {os.path.relpath(det, ROOT)} · register {len(shown)}/{len(rows)} rows shown · hygiene {min(20, len(hy))}/{len(hy)} shown' +
+          f'register {len(shown)}/{len(rows)} rows in section 3, rest in Appendix A · hygiene {min(20, len(hy))}/{len(hy)} in section 5, rest in Appendix B' +
           ('' if has_src else ' · WARNING: sources step not run'))
 
 

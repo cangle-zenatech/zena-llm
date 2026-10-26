@@ -47,7 +47,7 @@ team-wiki/
 |   +-- RULES.md               rule definitions the script applies (read only when needed)
 |   +-- wiki_jira.py           normalize, analyze, diff (Steps 3-7 of product-procedure.md);
 |                              sources (risks from threads/transcripts);
-|                              report (writes the weekly report skeleton + detail page);
+|                              report (writes the weekly report skeleton, appendix included);
 |                              rollup (all products, for knowledge/portfolio/)
 +-- data/                      Jira snapshots, one per project per weekly run
 |   +-- <project>/YYYY-MM-DD.json   written by wiki_jira.py; no descriptions or comments; never edit
@@ -69,7 +69,7 @@ team-wiki/
         +-- INDEX.md           settings and project-specific rules (products also follow
         |                      product-procedure.md; Research has its own procedure here)
         +-- overview.md        what this project is, active epics, recent changes
-        +-- jira/              weekly status reports (+ script-written detail pages)
+        +-- jira/              weekly status reports
         +-- confluence/        one page per Confluence page
 ```
 
@@ -167,7 +167,6 @@ SELF-CHECK: n/N pass (list failures)
 | Folder                            | File name                                           |
 | --------------------------------- | --------------------------------------------------- |
 | `knowledge/<project>/jira/`       | `YYYY-MM-DD-jira.md` e.g. `2026-09-15-jira.md`      |
-| `knowledge/<project>/jira/`       | `YYYY-MM-DD-jira-detail.md` (written by the script) |
 | `knowledge/<project>/confluence/` | `<kebab-case-title>.md` e.g. `battery-test-plan.md` |
 | `knowledge/portfolio/`            | `YYYY-MM-DD-rollup.md` e.g. `2026-10-13-rollup.md`  |
 

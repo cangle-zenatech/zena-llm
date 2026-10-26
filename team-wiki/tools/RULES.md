@@ -185,5 +185,6 @@ date; ⚠ above `overload_factor` × the team's average.
 - Risk Register: all HIGH, then the MEDIUM with the most days late, up to `report_max_rows`
   (default 30); Jira and source risks together, sorted by severity then days late.
 - Data Hygiene / Clean-up List: counts per rule and the first 20 rows.
-- Everything else (full register, full hygiene list, snapshot changes, notes, epics, stages): the
-  `YYYY-MM-DD-jira-detail.md` page.
+- Appendix at the end of the same page: A. the remaining risk rows, B. the remaining hygiene rows,
+  C. notes worth a look. Every row appears exactly once. Snapshot changes are not listed (only the
+  one-line count under "Since last report"; the full list stays in `WORK/diff.md`).

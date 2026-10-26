@@ -186,9 +186,9 @@ ref "Jira comment <KEY> · <date>". If there are no direction changes, save an e
 
 Run `tools/wiki_jira.py report` after `analyze`, `diff` and `sources`. It writes
 `knowledge/ZenaQuiet-Research/jira/YYYY-MM-DD-jira.md` (date = `today`) with every number and table
-filled in (including "Products waiting on Research"), plus `YYYY-MM-DD-jira-detail.md` with the full
-lists. Fill each `<!-- AI: … -->` marker by editing the report in place; don't retype the script's
-tables and never edit the detail page. A redo needs `report --force`, which replaces everything you
+filled in (including "Products waiting on Research"), with an Appendix at the end holding the rows
+not shown in the body (A: risks, B: Clean-up List, C: notes worth a look). Fill each `<!-- AI: … -->` marker by editing the report in place; don't retype the script's
+tables and never edit the Appendix. A redo needs `report --force`, which replaces everything you
 wrote: say so in chat first. Add a line to `knowledge/log.md`. The finished report has this
 structure:
 
@@ -247,7 +247,7 @@ per block, then "+ N more (see Risk Register)".
 ## 7. Self-check before delivering
 
 - [ ] Issue counts match the JQL total
-- [ ] No `<!-- AI:` markers left in the report; the detail page is untouched
+- [ ] No `<!-- AI:` markers left in the report; the Appendix is untouched
 - [ ] Every open item has a product, marked linked / (inferred), or is on the clean-up list
 - [ ] Every HIGH/MEDIUM risk has an impact sentence
 - [ ] Every finding cites a ticket key

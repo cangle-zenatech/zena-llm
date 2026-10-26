@@ -1,37 +1,38 @@
-# ZenaQuiet-Beacon — Overview
+---
+type: overview
+project: ZenaQuiet-Beacon
+updated: 2026-10-26
+---
 
-Jira project `BC`. Stage schedule: same as ZenaQuiet-Pro2 (see [[reference#Stage schedule (per product)]]).
+# ZenaQuiet-Beacon
 
-## What it is
+## What this project is
 
-A ceiling-mounted, PoE-powered coordinator for a floor cluster of ZenaQuiet Pro units. It registers and monitors the Pros, enforces voiceprint consent, relays cloud commands over MQTT and coordinates zone settings. It also carries a room microphone, a 360° LED ring and a sound masking module, and uses the microphone to tell Pros how to adjust audio to room noise. (From Epics BC-50, BC-107, BC-164 and Stories BC-191, BC-233. Earlier versions also cited Epic BC-106, which is no longer in Jira since 2026-10-13.)
+A ceiling-mounted, PoE-powered (power over the network cable) coordinator for a floor cluster of ZenaQuiet Pro units. It registers and monitors the Pros, enforces voiceprint consent, relays cloud commands and coordinates zone settings. It also carries a room microphone, a 360° LED ring and a sound masking speaker, and senses room noise to tell the Pros how to adjust their audio (the Pro does the audio processing). Jira key `BC`; stage dates follow [[reference#Stage schedule (per product)]].
 
-## Active Epics
+## Where it stands
 
-| Epic | Feature | Owner |
-| --- | --- | --- |
-| BC-23 | Product Industrial Design | Chico Ly |
-| BC-38 | Connectivity & Ports (hardware/PCB) | Huynh Minh Tuan |
-| BC-50 | Mechanical Structure (Product Enclosure) | Nguyen Trung Tin |
-| BC-107 | Pro–Beacon device management & telemetry (renamed 2026-10-14 from "Connectivity between Pro & Beacon"; up to 16 Pros since 2026-10-15; all Stories Done; no open EVT work) | Nguyen Minh Thien (since 2026-10-14; was none) |
-| BC-164 | Beacon firmware development | Nguyen Minh Thien |
-| BC-165 | Field Test+RC | Nguyen Minh Thien |
-| BC-234 | Sound Masketing (sic) — new 2026-10-15, no Stories yet; linked to Research RS-16 | Huỳnh Thái Hòa |
+As of 2026-10-26: in [[glossary#EVT|EVT]] (first engineering-prototype stage), gate to DVT on 2027-02-08, 105 days away. Gate readiness 48.6% (18/37 EVT Stories done), ahead of the 25.0% expected. Health **RED**, only because ID Subtask [BC-141](https://epazz.atlassian.net/browse/BC-141) carries DVT dates (to 2027-09-06) under an EVT Story; most likely a filing issue (inferred). Top issues:
 
-BC-106 "Connectivity between Cloud & Beacon" (owner: none) was listed here until 2026-10-13; it and its Stories are no longer returned by Jira (deleted or hidden, not confirmed).
+1. BC-141 filed under EVT Story BC-153 (the only HIGH risk).
+2. Sound masking for the CTO visit (29–30 Oct or 2 Nov): EE board steps BC-230 to BC-232 due 2026-10-30 and not started; Epic BC-234 has no Stories; the ME speaker housing BC-250 is under way.
+3. Mechanical work: Nguyen Trung Tin holds 51 open items, ME load peaks at 34 Subtasks in Nov-26.
 
-## Current state (as of 2026-10-19)
+Open decisions for the visit: Pro or Beacon sound masking, and Beacon speaker vs a separate ceiling speaker; keep or drop the Beacon after EVT. Latest report: [[ZenaQuiet-Beacon/jira/2026-10-26-jira|2026-10-26 report]].
 
-In EVT (gate 2027-02-08, 112 days). POC is complete (21/21 Stories, 26/26 Subtasks). EVT gate readiness 47.2% (17/36). Health RED (report redone the afternoon of 2026-10-19; AMBER in the morning version): ID Subtask BC-141 was re-dated to 2027-02-08 → 2027-09-06 ("based on the DVT phase") but still sits under EVT Story BC-153, so it counts as a HIGH risk on the EVT gate; most likely a filing issue (inferred). Other concerns: Beacon sound masking was promised for 2026-10-19 and for the Sajjad Asif visit (29–30 Oct or 2 Nov) but has no board with mic and speaker and no Stories under BC-234; mechanical work sits with one engineer (39 open items, ME peak 27 Subtasks in Nov-26) who also agreed to support the Pro; the Beacon's future and the EVT spec sign-off are not tracked in Jira. 31 MEDIUM risks (24 Jira, 7 from meetings). Cluster size in Jira: BC-50, BC-107, BC-194 say 16 Pros; BC-56, BC-101 say 12. Details: [[ZenaQuiet-Beacon/jira/2026-10-19-jira|2026-10-19 report]] (earlier: [[ZenaQuiet-Beacon/jira/2026-10-15-jira|2026-10-15 report]]).
+## Active epics
+
+- [BC-23](https://epazz.atlassian.net/browse/BC-23) — Industrial design (look, LED ring, speaker) · In Progress · due 2027-11-15
+- [BC-38](https://epazz.atlassian.net/browse/BC-38) — Electronics boards and ports · In Progress · due 2027-11-15
+- [BC-50](https://epazz.atlassian.net/browse/BC-50) — Enclosure and mechanics (thermal, ports, antenna, speaker housing) · In Progress · due 2027-11-15
+- [BC-164](https://epazz.atlassian.net/browse/BC-164) — Beacon firmware · In Progress · due 2027-11-15
+- [BC-165](https://epazz.atlassian.net/browse/BC-165) — Field test and release candidate (DVT) · To Do · due 2027-11-15
+- [BC-234](https://epazz.atlassian.net/browse/BC-234) — Sound masking (Acoustic), no Stories, linked to Research RS-16 · To Do · due 2027-11-15
+- [BC-107](https://epazz.atlassian.net/browse/BC-107) — Pro–Beacon device management · Done this week
 
 ## Recent changes
 
-- 2026-10-19 (afternoon): BC-141 re-dated into the DVT window under EVT Story BC-153 (HIGH, health RED); BC-154 Done; start dates added to BC-172, BC-175 to BC-177, BC-229; BC-233 dated 2026-10-19 → 2026-11-30.
-- 2026-10-19: 13 new ME Subtasks (BC-236 to BC-248: material validation, ceiling fixture, PoE+ thermal) and ID Subtask BC-235 (design spec, CMF, BOM). BC-153 Design Refinement started; BC-142, BC-166, BC-207 Done. EE Subtasks BC-218 to BC-226 dated, four assigned. BC-128 (Done POC Subtask) no longer in Jira. BC-107 and BC-194 changed "up to 12" → "up to 16" Pros.
-
-- 2026-10-15: New Epic BC-234 "Sound Masketing" (owner Huỳnh Thái Hòa, no Stories), linked to Research RS-16. ID Subtask BC-142 started. EE layouts BC-220, BC-223, BC-226 got due 2026-10-30 (still unassigned).
-- 2026-10-14: Epic BC-107 renamed "Pro–Beacon device management & telemetry" and assigned to Nguyen Minh Thien; firmware Epic BC-164 moved to In Progress; EE power layout BC-229 due moved 2026-10-16 → 2026-10-21.
-- 2026-10-13: Epic BC-106 (3 Done POC Stories, 10 Done Subtasks) and the 4 unowned Pro–Beacon EVT Stories BC-113, BC-114, BC-115, BC-117 disappeared from Jira; BC-233 (room-noise sensing, same title as BC-117) created under BC-164.
-- 2026-10-13: Firmware release Stories BC-206, BC-207, BC-208, BC-210 started; BC-209 (production hardening) Done.
-- 2026-10-12 to 2026-10-13: 15 EE Subtasks added under the EVT board Stories (BC-218 to BC-232).
-- 2026-10-12: Jira re-plan (Story dates = stage windows; team tags removed from Story titles; firmware Stories tagged EVT-1, field test tagged DVT-1).
+- 2026-10-26: New ME Story BC-250 (modular sound-masking speaker housing) with BC-251 to BC-255; 15 more ME Subtasks for ports (BC-256 to BC-263) and antenna clearance (BC-265 to BC-271). Done: Epic BC-107, BC-210 (firmware update via web, USB DFU, ZenaTool), BC-249 (OTA image encryption), BC-229, BC-179, BC-235. BC-234 renamed "Sound Masking"; BC-233 moved to Huỳnh Thái Hòa and linked to RS-16.
+- 2026-10-19: BC-141 re-dated into the DVT window under EVT Story BC-153 (health RED); 13 ME Subtasks added (BC-236 to BC-248); BC-153 started. See [[ZenaQuiet-Beacon/jira/2026-10-19-jira|2026-10-19 report]].
+- 2026-10-15: New Epic BC-234 (sound masking), linked to Research RS-16.
+- 2026-10-13/14: Epic BC-106 and four Pro–Beacon EVT Stories left Jira; BC-107 renamed; firmware release Stories started.
