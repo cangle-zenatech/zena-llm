@@ -1,6 +1,6 @@
 ---
 type: glossary
-updated: 2026-11-02
+updated: 2026-11-03
 ---
 
 # Glossary
@@ -27,6 +27,10 @@ Board support package. The low-level software that lets an operating system run 
 
 Decibel. A unit for how loud a sound is. Every 10 dB lower sounds about half as loud. First seen: [[2026-06-18-PRO2-2|PRO2-2]].
 
+## DFMEA
+
+Design failure mode and effects analysis. A table of the ways a design could fail, each scored for how bad, how likely and how hard to spot it is, with the planned fix. First seen: [[ZenaQuiet-Pro2/jira/2026-11-03-jira|Pro2 report 2026-11-03]].
+
 ## Directional speaker
 
 A speaker that aims sound at one spot, like a flashlight, so only people in that spot hear it clearly. Also called a "sound bubble" or parametric speaker. First seen: [[2026-06-18-PRO2-2|PRO2-2]].
@@ -38,6 +42,10 @@ Design validation test. The stage after EVT that checks the final design is read
 ## EER
 
 Equal error rate. The point where the system wrongly accepts the wrong person as often as it wrongly rejects the right one. Lower is better. First seen: [[2026-06-18-PRO2-2|PRO2-2]].
+
+## EMI
+
+Electromagnetic interference. Electrical noise from one part of a device that disturbs another part, such as a fan motor disturbing a microphone signal. First seen: [[ZenaQuiet-Pro2/jira/2026-11-03-jira|Pro2 report 2026-11-03]].
 
 ## Epic
 
@@ -106,6 +114,10 @@ Storing an AI model's numbers with fewer digits (for example 8 or 16 bits) so it
 ## Revision A / Revision B
 
 Successive versions of a prototype within one stage. Revision A is the first EVT-1 build of the Pro; Revision B fixes what Revision A showed. First seen: [[ZenaQuiet-Pro2/jira/2026-10-26-jira|Pro2 report 2026-10-26]].
+
+## RPN
+
+Risk priority number. In a DFMEA, severity × likelihood × detection score; the higher the number, the more urgent the risk. First seen: [[ZenaQuiet-Pro2/jira/2026-11-03-jira|Pro2 report 2026-11-03]].
 
 ## SNR
 

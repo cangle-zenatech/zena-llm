@@ -1,7 +1,7 @@
 ---
 type: overview
 project: ZenaQuiet-Beacon
-updated: 2026-11-02
+updated: 2026-11-03
 ---
 
 # ZenaQuiet-Beacon
@@ -12,13 +12,13 @@ The Beacon is a ceiling-mounted coordinator for a floor cluster of ZenaQuiet Pro
 
 ## Where it stands
 
-As of 2026-11-02, the Beacon is in [[glossary#EVT|EVT]] (the first engineering-prototype stage). The gate to DVT is on 2027-02-08, 98 days away. Gate readiness is 48.6% (18/37 EVT Stories done), ahead of the 30.0% expected but unchanged for two weeks. Health is **RED** only because ID Subtask [BC-141](https://epazz.atlassian.net/browse/BC-141) carries DVT dates (to 2027-09-06) under an EVT Story, most likely a filing issue (inferred). Without it, health would be AMBER. Top issues:
+As of 2026-11-03, the Beacon is in [[glossary#EVT|EVT]] (the first engineering-prototype stage). The gate to DVT is on 2027-02-08, 97 days away. Gate readiness is 48.6% (18/37 EVT Stories done), ahead of the 30.7% expected but unchanged for over two weeks. Health is **RED** only because ID Subtask [BC-141](https://epazz.atlassian.net/browse/BC-141) carries DVT dates (to 2027-09-06) under an EVT Story, most likely a filing issue (inferred). Without it, health would be AMBER. Top issues:
 
-1. BC-141 is still filed under EVT Story BC-153 (the only HIGH risk).
-2. Sound masking: the EE board steps BC-230 to BC-232 were due 2026-10-30 and are not started. Epic BC-234 has no Stories. No CTO-visit decision on masking (Pro or Beacon, built-in or separate speaker) is in Jira yet.
-3. EE circuit-board layouts BC-220, BC-223 and BC-226 are 3 days late, and two of them have no owner. Mechanical work rests on one engineer (50 open items, ME peaks at 34 Subtasks in November).
+1. BC-141 is still filed under EVT Story BC-153 (the only HIGH risk), unchanged since 2026-10-19.
+2. Sound masking: the EE board steps BC-230 to BC-232 are 4 days late and not started. Epic BC-234 has no Stories. The CTO visit started on 2026-11-02, but no decision on masking (Pro or Beacon, built-in or separate speaker) is in Jira yet; the speaker housing BC-250 is due 2026-11-06.
+3. EE circuit-board layouts BC-220, BC-223 and BC-226 are 4 days late, and two have no owner. Mechanical work rests on one engineer (50 open items, ME peaks at 34 Subtasks in November).
 
-Also open: keep or drop the Beacon after EVT, and the EVT spec sign-off. Latest report: [[ZenaQuiet-Beacon/jira/2026-11-02-jira|2026-11-02 report]].
+Also open: keep or drop the Beacon after EVT, and the EVT spec sign-off. Latest report: [[ZenaQuiet-Beacon/jira/2026-11-03-jira|2026-11-03 report]].
 
 ## Active epics
 
@@ -32,7 +32,7 @@ Also open: keep or drop the Beacon after EVT, and the EVT spec sign-off. Latest 
 
 ## Recent changes
 
-- 2026-11-02: A quiet week. Reset-button access BC-258 is Done and panel CAD BC-262 has started. There were no new issues and no comments since 2026-10-22. Six EE Subtasks due 2026-10-30 are now overdue (BC-220, BC-223, BC-226, BC-230 to BC-232).
-- 2026-10-26: New ME Story BC-250 (modular sound-masking speaker housing) and 15 more ME Subtasks (ports, antenna). Epic BC-107 Done; firmware update BC-210 and OTA encryption BC-249 Done. See [[ZenaQuiet-Beacon/jira/2026-10-26-jira|2026-10-26 report]].
-- 2026-10-19: BC-141 re-dated into the DVT window under EVT Story BC-153 (health RED); 13 ME Subtasks added.
-- 2026-10-15: New Epic BC-234 (sound masking), linked to Research RS-16.
+- 2026-11-03: No Jira change since yesterday and no new comments; nothing from the CTO visit is recorded yet. ME Subtasks BC-182 and BC-244 passed their start dates without starting.
+- 2026-11-02: Reset-button access BC-258 Done, panel CAD BC-262 started. Six EE Subtasks due 2026-10-30 became overdue (BC-220, BC-223, BC-226, BC-230 to BC-232). See [[ZenaQuiet-Beacon/jira/2026-11-02-jira|2026-11-02 report]].
+- 2026-10-26: New ME Story BC-250 (modular sound-masking speaker housing) and 15 more ME Subtasks. Epic BC-107 Done; BC-210 and BC-249 Done.
+- 2026-10-19: BC-141 re-dated into the DVT window under EVT Story BC-153 (health RED).

@@ -194,8 +194,9 @@ Run `tools/wiki_jira.py report` after `analyze`, `diff` and `sources`. It writes
 `knowledge/{product}/jira/YYYY-MM-DD-jira.md` (date = `today`) with the frontmatter, the source line,
 every number and every table already filled in. Section 3 shows all HIGH risks and the MEDIUM
 risks with the most days late, up to `report_max_rows`; section 5 shows the first 20 Data Hygiene
-rows. The rest go in an Appendix at the end of the same page (A: risks, B: hygiene, C: notes worth
-a look). There is no separate detail page and no list of snapshot changes.
+rows. Section 5b lists every person with their open tickets. The rest go in an Appendix at the end
+of the same page (A: risks, B: hygiene, C: notes worth
+a look, D: tickets by person). There is no separate detail page and no list of snapshot changes.
 
 Then **fill each `<!-- AI: … -->` marker in the report** by editing the file in place (replace the
 marker with your text): the "since last report" bullets, Health sentence, Top 3 risks, cross-team
@@ -255,6 +256,12 @@ Health: one sentence on why.
 ## 3. Risk Register, ### Order this week, ## 4. Team Load Heatmap, ## 5. Data Hygiene
 Written by the script (rules: `tools/RULES.md`). Edit only: impact sentences that need judgment,
 and "comment vs field" rows in Data Hygiene (Step 8b).
+
+## 5b. People and tickets
+Written by the script: one workload table, one row per assignee (open tickets by type, total,
+Overdue, Due ≤14d; ⚠ above 40 open tickets). The ticket lists per person, assigned and reported,
+incl. Unassigned, are in Appendix D (one heading and one small table per person). Don't edit either;
+use them for owners in Recommendations.
 
 ## 6. Recommendations for TM
 3–5 concrete actions, each tied to specific ticket keys and owners.

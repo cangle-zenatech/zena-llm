@@ -44,7 +44,8 @@ today: "" # ISO date. If blank, use the system date.
    (`WORK` = a temporary folder, e.g. `outputs/work-rollup/`). It calls Jira for nothing; it reads
    snapshots, `reference.md`, `CLAUDE.md` and the yaml blocks. Outputs in `WORK`:
    `rollup_summary.txt`, `rollup.json`, `rollup_kpi.md`, `rollup_products.md`, `rollup_stages.md`,
-   `rollup_timeline.md`, `rollup_slip.md`, `rollup_people.md`, `rollup_support.md`.
+   `rollup_timeline.md`, `rollup_slip.md`, `rollup_shared.md`, `rollup_people.md`, `rollup_unowned.md`,
+   `rollup_support.md`, `rollup_people_lists.md`.
 3. Read each product's report for this week (`knowledge/<project>/jira/<today>-jira.md`) only for
    the judgment parts: why a product is behind, and its top risk. Never take numbers from the
    reports; numbers come from the script.
@@ -70,7 +71,7 @@ today: "" # ISO date. If blank, use the system date.
 | Dates moved this week | Open items whose start or due changed since the previous snapshot, and the ones now due later (worst 5). A warning, not slip |
 | Bulk re-date | More than `bulk_redate_share` of open items changed start or due since the previous snapshot |
 | Next stage planned | Next-stage Stories with an owner and at least one Subtask that has both dates / all next-stage Stories |
-| People across products | Assignees with open items in two or more products |
+| Who carries the work | Every assignee across all active projects (Research included): open tickets per project, total, Overdue, Due ≤14d; ⚠ = works on 3+ projects or holds more than 40 open tickets. Unassigned work is its own table (6.3). Ticket lists per person, assigned and reported, are in the page's Appendix |
 
 The script does not judge. If a number looks wrong, check the snapshot, then flag it; never edit the
 number on the page.
@@ -171,9 +172,21 @@ to its weekly report.
 {rollup_slip.md}
 
 ## 6. Cross-product
-- Shared gates: products whose current gate falls on the same date.
-- People across products: {rollup_people.md}
-- Research and other support work products wait on: {rollup_support.md}
+Four short subsections, each a flat table (never indented inside a bullet), then at most two
+sentences on what it means.
+
+### 6.1 Shared deadlines
+{rollup_shared.md}
+
+### 6.2 Who carries the work
+{rollup_people.md}
+One or two sentences: who carries the most, across which projects, and who has the most overdue.
+
+### 6.3 Work with no owner
+{rollup_unowned.md}
+
+### 6.4 Research items products wait on
+{rollup_support.md}
 
 ## 6b. Risks from team threads
 One row per risk, highest impact first. Plain sentences, no rule codes (P1–P5, S1 stay in the
@@ -220,6 +233,11 @@ when (the gate date).
 Snapshots used, the stage schedule used as the plan, stale or missing snapshots, `FLAG:` lines, low-confidence forecasts,
 and the MP forecast assumption (later stages keep their length). Helpers with no
 `comment_signals.json`; direction changes not placed.
+
+---
+
+## Appendix. Tickets by person (written by the script; do not edit)
+{rollup_people_lists.md}
 ```
 
 Writing rules: the reader may not be an engineer. Explain stage names the first time (link

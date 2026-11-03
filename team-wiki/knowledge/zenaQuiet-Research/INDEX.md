@@ -187,7 +187,9 @@ ref "Jira comment <KEY> · <date>". If there are no direction changes, save an e
 Run `tools/wiki_jira.py report` after `analyze`, `diff` and `sources`. It writes
 `knowledge/ZenaQuiet-Research/jira/YYYY-MM-DD-jira.md` (date = `today`) with every number and table
 filled in (including "Products waiting on Research"), with an Appendix at the end holding the rows
-not shown in the body (A: risks, B: Clean-up List, C: notes worth a look). Fill each `<!-- AI: … -->` marker by editing the report in place; don't retype the script's
+not shown in the body (A: risks, B: Clean-up List, C: notes worth a look, D: tickets by person).
+Section 5b "People and tickets" (every person with their open tickets, by type, linked) is also
+written by the script. Fill each `<!-- AI: … -->` marker by editing the report in place; don't retype the script's
 tables and never edit the Appendix. A redo needs `report --force`, which replaces everything you
 wrote: say so in chat first. Add a line to `knowledge/log.md`. The finished report has this
 structure:
@@ -224,6 +226,12 @@ Health: one sentence on why.
 ## 3. Risk Register, ### Order this week, ## 4. Team Load, ## 5. Clean-up List
 Written by the script (rules: `tools/RULES.md` → Research). Edit only: impact sentences that need
 judgment, and "comment vs field" rows in the Clean-up List (Step 7b).
+
+## 5b. People and tickets
+Written by the script: one workload table, one row per assignee (open tickets by type, total,
+Overdue, Due ≤14d; ⚠ above 40 open tickets). The ticket lists per person, assigned and reported,
+incl. Unassigned, are in Appendix D (one heading and one small table per person). Don't edit either;
+use them for owners in Recommendations.
 
 ## 6. Recommendations for TM
 3–5 concrete actions, each tied to ticket keys and owners.

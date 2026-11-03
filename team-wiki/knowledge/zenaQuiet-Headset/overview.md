@@ -1,7 +1,7 @@
 ---
 type: overview
 project: ZenaQuiet-Headset
-updated: 2026-11-02
+updated: 2026-11-03
 ---
 
 # ZenaQuiet-Headset
@@ -12,15 +12,15 @@ updated: 2026-11-02
 
 ## Where it stands
 
-As of 2026-11-02, the Headset is in the POC (proof-of-concept) stage. The gate to EVT is on 2027-02-08, 98 days away. 8 of 24 POC Stories are Done (33.3% vs 30.0% expected), but two of those are Arc Stories titled "[TO BE REMOVED]". Health is **RED** because of source risks. On Jira alone it is AMBER: 9 HIGH Epic-date risks, none on the POC gate.
+As of 2026-11-03, the Headset is in the POC (proof-of-concept) stage. The gate to EVT is on 2027-02-08, 97 days away. 8 of 24 POC Stories are Done (33.3% vs 30.7% expected), but two of those are Arc Stories titled "[TO BE REMOVED]". Health is **RED** because of source risks. On Jira alone it is AMBER: 9 HIGH Epic-date risks, none on the POC gate. Nothing changed in Jira since 2026-11-02.
 
 Top issues:
 
-1. The Headset PCB order is still stopped at the supplier until about $35 extra is paid for a wrong board option. Board work (HS-144) now starts about 45 working days late, with boards around 2026-11-23, after the CTO visit.
+1. The Headset PCB order is still stopped at the supplier until about $35 extra is paid for a wrong board option. Board work (HS-144) now starts about 46 working days late, with boards around 2026-11-24.
 2. The chip choice is not recorded. HS-164 still plans the NXP i.MX 95, while Research has dropped XMOS and proposes the Rockchip RK3576 (RS-2). The core voice and noise-cancelling POC Stories (HS-161, HS-48) have not started.
 3. Arc scope is still open. The HS-79 print test (2026-10-27) says the Arc cannot reach its 8–12 dB passive target. EE tickets are still missing, and 482 of 516 open items have no assignee.
 
-Latest report: [[ZenaQuiet-Headset/jira/2026-11-02-jira|2026-11-02 report]].
+Latest report: [[ZenaQuiet-Headset/jira/2026-11-03-jira|2026-11-03 report]].
 
 ## Active epics
 
@@ -38,12 +38,6 @@ Latest report: [[ZenaQuiet-Headset/jira/2026-11-02-jira|2026-11-02 report]].
 
 ## Recent changes
 
-- 2026-11-02:
-  - HS-79 (Arc print) closed with a comment that the passive target is not met.
-  - HS-335 (EVT-1 model update with EE features) and HS-586 (headband fit log) closed. The EE size inputs HS-336 and HS-337 are still unowned.
-  - HS-93 is now due 2026-12-01 and HS-584 is due 2026-11-16. HS-330 is 3 days overdue.
-  - POC Sprint 3 ended with 51 tickets still in it.
-  - No PCB, chip or EE-ticket update in HS.
-  - Report: [[ZenaQuiet-Headset/jira/2026-11-02-jira]].
-- 2026-10-26: HS-318, HS-86 and HS-127 closed (the last two are "[TO BE REMOVED]" Arc Stories). 55 POC tickets moved one sprint later, and team prefixes were removed from Subtask titles. Report: [[ZenaQuiet-Headset/jira/2026-10-26-jira]].
-- Earlier reports: [[ZenaQuiet-Headset/jira/2026-10-19-jira]], [[ZenaQuiet-Headset/jira/2026-10-15-jira]], [[ZenaQuiet-Headset/jira/2026-10-13-jira]], [[ZenaQuiet-Headset/jira/2026-10-12-jira]].
+- 2026-11-03: no Jira change since 2026-11-02 (no new comments either; nothing recorded yet from the CTO visit). HS-330 is now 4 days overdue, and the PCB forecast moves to 2026-11-24. Stale items jumped from 99 to 504 because the 2026-10-20 bulk edit is now 14 days old. Report: [[ZenaQuiet-Headset/jira/2026-11-03-jira]].
+- 2026-11-02: HS-79 (Arc print) closed with a comment that the passive target is not met. HS-335 and HS-586 closed. HS-93 re-dated to 2026-12-01, HS-584 to 2026-11-16. POC Sprint 3 ended with 51 tickets still in it. Report: [[ZenaQuiet-Headset/jira/2026-11-02-jira]].
+- Earlier reports: [[ZenaQuiet-Headset/jira/2026-10-26-jira]], [[ZenaQuiet-Headset/jira/2026-10-19-jira]], [[ZenaQuiet-Headset/jira/2026-10-15-jira]].

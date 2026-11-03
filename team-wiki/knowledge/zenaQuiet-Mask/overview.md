@@ -1,7 +1,7 @@
 ---
 type: overview
 project: ZenaQuiet-Mask
-updated: 2026-11-02
+updated: 2026-11-03
 ---
 
 # ZenaQuiet-Mask
@@ -17,10 +17,10 @@ Jira key: `MK`.
 
 ## Where it stands
 
-As of 2026-11-02: stage **POC** (an early test to show the idea can work,
-[[reference#Stage schedule (per product)]]). Next gate POC → EVT on 2027-02-08, 98 days away.
-Gate readiness 9.5% (2 of 21 POC Stories Done). Health **AMBER**: 34 medium risks and progress 20.5
-points behind the expected pace (was 15.5). Latest report: [[ZenaQuiet-Mask/jira/2026-11-02-jira]].
+As of 2026-11-03: stage **POC** (an early test to show the idea can work,
+[[reference#Stage schedule (per product)]]). Next gate POC → EVT on 2027-02-08, 97 days away.
+Gate readiness 9.5% (2 of 21 POC Stories Done). Health **AMBER**: 34 medium risks and progress 21.2
+points behind the expected pace (20.5 a day earlier). Latest report: [[ZenaQuiet-Mask/jira/2026-11-03-jira]].
 
 Top issues:
 
@@ -54,10 +54,11 @@ All dates are still placeholders: Stories 2026-09-21 → 2027-02-08, Epics → 2
 
 ## Recent changes
 
+- 2026-11-03 — no change in Jira and no new comments or source files since 2026-11-02 (CTO visit
+  under way). MK-31 and MK-36 passed 14 days without an update. See
+  [[ZenaQuiet-Mask/jira/2026-11-03-jira]].
 - 2026-11-02 — MK-33 (style direction), MK-35 (washable fabric) and MK-38 (chin area) Done on
   2026-10-30; ID Subtasks moved to "MK Sprint 4". No engineering ticket changed, the agreed board
   ticket is still missing, and there were no new comments, meetings or chats. See
   [[ZenaQuiet-Mask/jira/2026-11-02-jira]].
 - 2026-10-26 — MK-34, MK-39 and MK-40 Done; MK-37 started. See [[ZenaQuiet-Mask/jira/2026-10-26-jira]].
-- 2026-10-19 — first report to read meetings and chats (5 source risks). See
-  [[ZenaQuiet-Mask/jira/2026-10-19-jira]].

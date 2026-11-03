@@ -1031,6 +1031,95 @@ def cmd_sources(a):
     print(summ)
 
 
+# ----------------------------------------------------------------- people and tickets
+PTYPES = ('Epic', 'Story/Task', 'Subtask')
+UNASSIGNED, NOREPORTER = 'Unassigned', 'unknown reporter'
+
+
+def ptype(t):
+    """Jira issue type -> Epic | Story/Task | Subtask."""
+    t = (t or '').lower().replace('-', '')
+    return 'Epic' if t == 'epic' else ('Subtask' if t == 'subtask' else 'Story/Task')
+
+
+def people_index(I, today=None, look=14):
+    """Open tickets per person and role, from a snapshot: {name: {'assigned': {type: [keys]},
+    'reported': {type: [keys]}, 'done': n, 'overdue': n, 'soon': n}}. Overdue / due-soon count
+    open tickets the person is assigned (due < today / due within `look` days)."""
+    P = defaultdict(lambda: dict(assigned=defaultdict(list), reported=defaultdict(list), done=0, overdue=0, soon=0,
+                                 od=defaultdict(list)))
+    kk = lambda k: int(k.split('-')[1])
+    for o in sorted(I, key=lambda o: kk(o['key'])):
+        a, r = o['assignee'] or UNASSIGNED, o['reporter'] or NOREPORTER
+        if o['scat'] == 'done':
+            P[a]['done'] += 1
+            continue
+        P[a]['assigned'][ptype(o['type'])].append(o['key'])
+        P[r]['reported'][ptype(o['type'])].append(o['key'])
+        if today and o['due']:
+            du = D(o['due'])
+            if du < today:
+                P[a]['overdue'] += 1
+                P[a]['od'][ptype(o['type'])].append((o['key'], o['due'], (today - du).days))
+            elif du <= today + timedelta(look): P[a]['soon'] += 1
+    return P
+
+
+def _n(d): return sum(len(v) for v in d.values())
+
+
+def _links(keys):
+    return ', '.join(f'[{k}]({BROWSE}{k})' for k in keys)
+
+
+OVERLOAD_TICKETS, OVERLOAD_PRODUCTS = 40, 3   # ⚠ when a person holds more open tickets, or works on this many products
+
+
+def _order(P):
+    last = {UNASSIGNED: 1, NOREPORTER: 2}
+    return sorted(P, key=lambda n: (last.get(n, 0), -_n(P[n]['assigned']), -_n(P[n]['reported']), n.lower()))
+
+
+def _od(items):
+    """Overdue cell: linked key, due date and days late, most late first."""
+    return '; '.join(f'[{k}]({BROWSE}{k}) due {d} ({n}d late)' for k, d, n in sorted(items, key=lambda x: -x[2])) or '—'
+
+
+def person_lists(name, rows, reported):
+    """Appendix block for one person: heading, one table row per (product, role, type) with the
+    tickets and, for assigned rows, the overdue ones (due date, days late)."""
+    total = sum(len(r[3]) for r in rows if r[1] == 'Assigned')
+    nod = sum(len(r[4]) for r in rows if r[1] == 'Assigned')
+    L = [f'#### {name} — {total} open assigned' + (f', {nod} overdue' if nod else ''), '']
+    if rows:
+        L += ['| Product | Role | Type | Tickets | Overdue (due date, days late) |', '| --- | --- | --- | --- | --- |']
+        L += [f"| {prod} | {role} | {t} | {_links(keys)} | {_od(od) if role == 'Assigned' else '—'} |" for prod, role, t, keys, od in rows]
+    if reported:
+        L += ['', 'Reported (created), open: ' + reported]
+    return L + ['']
+
+
+def people_section(P, label='this project'):
+    """(body lines, appendix lines) for one project's report: a workload table in the body, the ticket
+    lists per person (assigned and reported, incl. Unassigned) in Appendix D."""
+    T = ['| Person | Epic | Story/Task | Subtask | Total | Overdue | Due ≤14d |', '| --- ' * 7 + '|']
+    A = []
+    for n in _order(P):
+        x = P[n]
+        ta = _n(x['assigned'])
+        if ta:
+            flag = ' ⚠' if n != UNASSIGNED and ta > OVERLOAD_TICKETS else ''
+            T.append(f'| {n}{flag} | ' + ' | '.join(str(len(x['assigned'].get(t, []))) for t in PTYPES) +
+                     f" | {ta} | {x['overdue']} | {x['soon']} |")
+        rows = [(label, role.capitalize(), t, x[role][t], x['od'].get(t, []) if role == 'assigned' else [])
+                for role in ('assigned', 'reported') for t in PTYPES if x[role].get(t)]
+        if rows:
+            A += person_lists(n, rows, '')
+    T += ['', f'⚠ = more than {OVERLOAD_TICKETS} open tickets. Open tickets only (not Done). '
+          'Ticket lists per person, and who created the open tickets: Appendix D.', '']
+    return T, A
+
+
 # ----------------------------------------------------------------- report (page skeleton)
 def cmd_report(a):
     """Writes knowledge/<project>/jira/<D>-jira.md with every number and table filled in, and
@@ -1183,7 +1272,11 @@ def cmd_report(a):
              hyg_title, '', f"{len(hy)} rows: " + (', '.join(f'{k} {v}' for k, v in hc.most_common()) or 'none') +
              (f". First 20 below; the rest in Appendix B." if len(hy) > 20 else '.'), '',
              hy_head, '\n'.join('| ' + ' | '.join(h['cells']) + ' |' for h in hy[:20]) or '| — | none | | | | |', '',
-             AI('add any "comment vs field" rows found in Step 8b/7b, or delete this line'), '',
+             AI('add any "comment vs field" rows found in Step 8b/7b, or delete this line'), '']
+    pbody, papp = people_section(people_index(I, TODAY, LOOK), folder.replace('ZenaQuiet-', ''))
+    body += ['## 5b. People and tickets', '',
+             'Open tickets only (not Done), from the snapshot. Assigned = working on it; Reported = created it. '
+             'Written by the script; do not edit.', ''] + pbody + [
              '## 6. Recommendations for TM', '', AI('3–5 concrete actions, each tied to ticket keys and owners'), '',
              '## 7. Data Gaps & Assumptions', ''] + gaps + ['']
     # appendix: the rows not shown above, so the page holds every row exactly once (no separate detail page)
@@ -1194,7 +1287,8 @@ def cmd_report(a):
              f'### B. Remaining {"Clean-up List" if research else "Data Hygiene"} rows ({max(0, len(hy) - 20)} rows not shown in section 5)', '',
              (hy_head + '\n' + '\n'.join('| ' + ' | '.join(h['cells']) + ' |' for h in hy[20:])) if len(hy) > 20
              else 'None: every row is shown in section 5.', '',
-             '### C. Worth a look (not rule hits)', '', rd('notes.md') or 'None.', '']
+             '### C. Worth a look (not rule hits)', '', rd('notes.md') or 'None.', '',
+             '### D. Tickets by person (open tickets, assigned and reported)', ''] + (papp or ['None.', ''])
     page = '\n'.join(body)
     open(out, 'w', encoding='utf-8', newline='\n').write(page)
     n_ai = page.count('<!-- AI:')
@@ -1473,19 +1567,68 @@ def cmd_rollup(a):
         X.append('')
     open(os.path.join(W, 'rollup_slip.md'), 'w', encoding='utf-8').write('\n'.join(X) + '\n')
 
+    # cross-product: 6.1 shared deadlines, 6.2 who carries the work, 6.3 work with no owner,
+    # 6.4 Research items products wait on; ticket lists per person go to the appendix (rollup_people_lists.md)
     short = lambda f: f.replace('ZenaQuiet-', '')
-    Q = ['| Person | Open items | By product |', '| --- | --- | --- |']
-    for n, d in multi:
-        Q.append(f"| {n} | {sum(d.values())} | " + ', '.join(f'{short(k)} {v}' for k, v in sorted(d.items(), key=lambda x: -x[1])) + ' |')
-    Q.append(''); Q.append('Unassigned open items: ' + ', '.join(f"{short(f)} {p['unassigned']}" for f, p in P.items()) + '.')
-    open(os.path.join(W, 'rollup_people.md'), 'w', encoding='utf-8').write('\n'.join(Q) + '\n')
+    S1 = ['| Product | Stage | Next gate | Days left | Stage status | MP outlook |', '| --- ' * 6 + '|']
+    for f, p in P.items():
+        cs = next((x for x in p['stages'] if x['stage'] == p['current']), {})
+        S1.append(f"| {short(f)} | {p['current']} | {p['gate']} | {p['days_to_gate']} | {cs.get('status', '—')}" +
+                  (f" ({'+' if (cs.get('forecast_slip') or 0) > 0 else ''}{cs['forecast_slip']}d forecast)" if cs.get('status') == 'Behind' and cs.get('forecast_slip') is not None else '') +
+                  f" | {p['outlook']} |")
+    open(os.path.join(W, 'rollup_shared.md'), 'w', encoding='utf-8').write('\n'.join(S1) + '\n')
 
+    PP = {}
+    for f in list(P) + list(sup):
+        sd = P[f]['snapshot'] if f in P else sup[f]['snapshot']
+        PP[f] = people_index(load_snapshot(f, sd), TODAY, LOOK)
+    cols = [f for f in PP]
+    names = set(n for d in PP.values() for n in d)
+    tot = lambda n, role: sum(_n(PP[f][n][role]) for f in PP if n in PP[f])
+    agg = lambda n, k: sum(PP[f][n][k] for f in PP if n in PP[f])
+    last = {UNASSIGNED: 1, NOREPORTER: 2}
+    order = sorted(names, key=lambda n: (last.get(n, 0), -tot(n, 'assigned'), -tot(n, 'reported'), n.lower()))
+    Q = ['| Person | ' + ' | '.join(short(f) for f in cols) + ' | Total | Overdue | Due ≤14d |', '| --- ' * (len(cols) + 4) + '|']
+    APP = []
+    for n in order:
+        if n == UNASSIGNED: continue
+        ta = tot(n, 'assigned')
+        if ta:
+            nprod = sum(1 for f in cols if n in PP[f] and _n(PP[f][n]['assigned']))
+            flag = ' ⚠' if ta > OVERLOAD_TICKETS or nprod >= OVERLOAD_PRODUCTS else ''
+            Q.append(f'| {n}{flag} | ' + ' | '.join((str(_n(PP[f][n]['assigned'])) if n in PP[f] and _n(PP[f][n]['assigned']) else '–') for f in cols) +
+                     f" | {ta} | {agg(n, 'overdue')} | {agg(n, 'soon')} |")
+        rows = [(short(f), role.capitalize(), t, PP[f][n][role][t], PP[f][n]['od'].get(t, []) if role == 'assigned' else [])
+                for f in cols if n in PP[f] for role in ('assigned', 'reported') for t in PTYPES if PP[f][n][role].get(t)]
+        if rows:
+            APP += person_lists(n, rows, '')
+    Q += ['', f'⚠ = works on {OVERLOAD_PRODUCTS} or more projects, or holds more than {OVERLOAD_TICKETS} open tickets. '
+          'Open tickets only (not Done); counts are tickets assigned. Ticket lists per person, and who created the open tickets: Appendix.']
+    open(os.path.join(W, 'rollup_people.md'), 'w', encoding='utf-8').write('\n'.join(Q) + '\n')
+    open(os.path.join(W, 'rollup_people_lists.md'), 'w', encoding='utf-8').write('\n'.join(APP) + '\n')
+
+    U = ['| Project | Epic | Story/Task | Subtask | Total |', '| --- ' * 5 + '|']
+    for f in cols:
+        x = PP[f].get(UNASSIGNED)
+        if x and _n(x['assigned']):
+            U.append(f'| {short(f)} | ' + ' | '.join(str(len(x['assigned'].get(t, []))) for t in PTYPES) + f" | {_n(x['assigned'])} |")
+    if len(U) == 2: U.append('| none | | | | |')
+    U += ['', 'Ticket lists: Appendix D of each project report.']
+    open(os.path.join(W, 'rollup_unowned.md'), 'w', encoding='utf-8').write('\n'.join(U) + '\n')
+
+    k2p = {p['key']: short(f) for f, p in P.items()}
     R_ = []
-    for f, s in sup.items():
-        R_.append(f"### {f} (snapshot {s['snapshot']})")
-        R_.append(f"Open {s['open']}; linked to a product ticket {s['linked']}; unlinked {s['unlinked']}.")
-        for k, d_, t in s['overdue']: R_.append(f'- Overdue: {url(k)} due {d_} — {t}')
-        for k, d_, t in s['due_soon']: R_.append(f'- Due within {LOOK}d: {url(k)} due {d_} — {t}')
+    for f, s_ in sup.items():
+        snap = {o['key']: o for o in load_snapshot(f, s_['snapshot'])}
+        R_ += [f"{short(f)} (snapshot {s_['snapshot']}): {s_['open']} open, {s_['linked']} linked to a product ticket, {s_['unlinked']} not linked.", '',
+               '| Key | What | Due | Status | Waiting product |', '| --- ' * 5 + '|']
+        for k, d_, t in sorted(s_['overdue'], key=lambda x: x[1]) + sorted(s_['due_soon'], key=lambda x: x[1]):
+            dd = (D(d_) - TODAY).days
+            st = f'overdue {-dd}d' if dd < 0 else f'due in {dd}d'
+            prods = sorted({k2p[l['key'].split('-')[0]] for l in snap[k]['links'] if l['key'].split('-')[0] in k2p})
+            R_.append(f"| {url(k)} | {t.replace('|', '/')[:70]} | {d_} | {st} | {', '.join(prods) or 'not linked'} |")
+        if not s_['overdue'] and not s_['due_soon']:
+            R_.append(f'| — | nothing overdue or due within {LOOK}d | | | |')
         R_.append('')
     open(os.path.join(W, 'rollup_support.md'), 'w', encoding='utf-8').write('\n'.join(R_) + '\n')
 

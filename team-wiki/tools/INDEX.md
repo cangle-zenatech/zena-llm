@@ -35,7 +35,8 @@ Paths below are bash paths; `WORK` is a temporary folder (e.g. `outputs/work-<ke
    → writes `knowledge/<Folder>/jira/<date>-jira.md` with frontmatter, source line, every number
    and table (register: all HIGH + the MEDIUM with most days late, up to `report_max_rows`, default
    30; hygiene: first 20 rows), then an Appendix with the rows not shown (A: risks, B: hygiene,
-   C: notes worth a look). No separate detail page, no list of snapshot changes. It refuses to overwrite a report without `--force`.
+   C: notes worth a look, D: tickets by person) and section 5b "People and tickets" (workload table:
+   open tickets per assignee by type, Overdue, Due ≤14d). No separate detail page, no list of snapshot changes. It refuses to overwrite a report without `--force`.
 7. Fill every `<!-- AI: … -->` marker in the report by editing it in place: Executive Summary,
    Product Detail (Step 8 / 8b), impact sentences that need judgment, Recommendations, Data Gaps.
    Don't retype the tables; never edit the Appendix.
@@ -120,7 +121,9 @@ Reads the newest snapshot (on or before D) of every active project that has a st
 the stage schedule in `reference.md` (the plan slip is measured against) and the settings in the yaml block of `knowledge/portfolio/INDEX.md`. It re-runs
 `analyze` per product into `WORK/<project>/` and writes `rollup_summary.txt`, `rollup.json`,
 `rollup_kpi.md`, `rollup_products.md`, `rollup_stages.md`, `rollup_timeline.md` (Mermaid gantt),
-`rollup_slip.md`, `rollup_people.md` and `rollup_support.md` (Research). Metric definitions are in
+`rollup_slip.md`, `rollup_shared.md` (6.1), `rollup_people.md` (6.2 workload table),
+`rollup_unowned.md` (6.3), `rollup_support.md` (6.4 Research table) and `rollup_people_lists.md`
+(appendix: ticket lists per person). Metric definitions are in
 `knowledge/portfolio/INDEX.md`. Lines starting `FLAG:` must go on the page and in chat.
 
 ## data/ (snapshots)

@@ -185,6 +185,16 @@ date; ⚠ above `overload_factor` × the team's average.
 - Risk Register: all HIGH, then the MEDIUM with the most days late, up to `report_max_rows`
   (default 30); Jira and source risks together, sorted by severity then days late.
 - Data Hygiene / Clean-up List: counts per rule and the first 20 rows.
+- Section 5b "People and tickets": one workload table, one row per assignee: open (not Done) tickets
+  by type — Epic, Story/Task (Story, Task and any other type), Subtask — total, Overdue (due before
+  today) and Due ≤14d (due within `lookahead_days`); sorted by tickets assigned. ⚠ = more than 40 open
+  tickets. Reported tickets are not in the table (creating a ticket is not workload); they are listed
+  with the assigned ones in Appendix D.
+- Roll-up section 6: 6.1 shared deadlines (`rollup_shared.md`), 6.2 who carries the work — one column
+  per project, total, Overdue, Due ≤14d; ⚠ = works on 3+ projects or holds more than 40 open tickets
+  (`rollup_people.md`), 6.3 work with no owner by project and type (`rollup_unowned.md`), 6.4 Research
+  items overdue or due within `lookahead_days`, with the product they link to (`rollup_support.md`).
+  Ticket lists per person across projects go in the roll-up's Appendix (`rollup_people_lists.md`).
 - Appendix at the end of the same page: A. the remaining risk rows, B. the remaining hygiene rows,
-  C. notes worth a look. Every row appears exactly once. Snapshot changes are not listed (only the
+  C. notes worth a look, D. tickets by person (one heading and one table per person: project, role, type, linked keys, and for assigned rows the overdue tickets with due date and days late; the heading shows the overdue count). The roll-up Appendix uses the same table. Every row appears exactly once. Snapshot changes are not listed (only the
   one-line count under "Since last report"; the full list stays in `WORK/diff.md`).
