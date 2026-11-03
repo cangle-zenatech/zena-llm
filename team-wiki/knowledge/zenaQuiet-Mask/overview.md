@@ -1,7 +1,7 @@
 ---
 type: overview
 project: ZenaQuiet-Mask
-updated: 2026-10-26
+updated: 2026-11-02
 ---
 
 # ZenaQuiet-Mask
@@ -17,32 +17,32 @@ Jira key: `MK`.
 
 ## Where it stands
 
-As of 2026-10-26: stage **POC** (an early test to show the idea can work,
-[[reference#Stage schedule (per product)]]). Next gate POC → EVT on 2027-02-08, 105 days away.
-Gate readiness 9.5% (2 of 21 POC Stories Done). Health **AMBER**: 35 medium risks and progress 15.5
-points behind the expected pace. Latest report: [[ZenaQuiet-Mask/jira/2026-10-26-jira]].
+As of 2026-11-02: stage **POC** (an early test to show the idea can work,
+[[reference#Stage schedule (per product)]]). Next gate POC → EVT on 2027-02-08, 98 days away.
+Gate readiness 9.5% (2 of 21 POC Stories Done). Health **AMBER**: 34 medium risks and progress 20.5
+points behind the expected pace (was 15.5). Latest report: [[ZenaQuiet-Mask/jira/2026-11-02-jira]].
 
 Top issues:
 
-1. **Engineering not started:** no Mechanical, Electronics or Acoustic Story has an owner or has
-   started, and the mask technical spec is not written
+1. **Engineering not started (third week):** no Mechanical, Electronics or Acoustic Story has an
+   owner or has started, and the mask technical spec is not written
    ([MK-7](https://epazz.atlassian.net/browse/MK-7), [MK-8](https://epazz.atlassian.net/browse/MK-8),
    [MK-22](https://epazz.atlassian.net/browse/MK-22), [MK-11](https://epazz.atlassian.net/browse/MK-11)).
 2. **Board and chip outside Jira:** a mask POC circuit board is ordered and paid but has no ticket,
-   and the processor choice is not recorded. Jira still says "no AI chip on the mask" (MK-22,
+   and no processor decision is recorded in MK. Jira still says "no AI chip on the mask" (MK-22,
    [MK-13](https://epazz.atlassian.net/browse/MK-13)).
-3. **Industrial Design ahead of its inputs:** shell layout, battery placement and moisture
-   protection were closed on 2026-10-23 before the fan, filter, battery and board were chosen
-   ([MK-34](https://epazz.atlassian.net/browse/MK-34), MK-39, MK-40) (inferred rework risk).
+3. **Industrial Design ahead of its inputs:** 6 of 8 design Subtasks are Done, including the chin
+   area that should be checked against face sizes still To Do
+   ([MK-38](https://epazz.atlassian.net/browse/MK-38), [MK-36](https://epazz.atlassian.net/browse/MK-36),
+   [MK-34](https://epazz.atlassian.net/browse/MK-34)) (inferred rework risk).
 
-The CTO sees the mask as an optional add-on and approved continued research (2026-09-30 meeting).
 All dates are still placeholders: Stories 2026-09-21 → 2027-02-08, Epics → 2027-11-15 (inferred).
 
 ## Active epics
 
 | Epic | In plain words | Status | Due |
 | --- | --- | --- | --- |
-| [MK-1](https://epazz.atlassian.net/browse/MK-1) | Industrial Design: style per age group, shell, washable fabric, two sizes, battery safety (2/4 Stories, 3/8 Subtasks done) | To Do | 2027-11-15 |
+| [MK-1](https://epazz.atlassian.net/browse/MK-1) | Industrial Design: style per age group, shell, washable fabric, two sizes, battery safety (2/4 Stories, 6/8 Subtasks done) | To Do | 2027-11-15 |
 | [MK-6](https://epazz.atlassian.net/browse/MK-6) | Air Filtration: KN95-class filter, easy breathing, ~30-day filter, one fan | To Do | 2027-11-15 |
 | [MK-10](https://epazz.atlassian.net/browse/MK-10) | Sound Dampening & Voice Privacy: voice 3–6 dB quieter to people nearby | To Do | 2027-11-15 |
 | [MK-14](https://epazz.atlassian.net/browse/MK-14) | Mechanical Comfort & Wearability: 60–80 g, comfortable 4–6+ hours | To Do | 2027-11-15 |
@@ -54,11 +54,10 @@ All dates are still placeholders: Stories 2026-09-21 → 2027-02-08, Epics → 2
 
 ## Recent changes
 
-- 2026-10-26 — MK-34, MK-39 and MK-40 Done (2026-10-23); MK-37 started; MK-33 moved back to To Do
-  (no reason in Jira). `[POC]` prefixes removed from the Subtask titles. No engineering ticket
-  changed, and the agreed board ticket is still missing. No new meetings or chats since 2026-10-19.
-  See [[ZenaQuiet-Mask/jira/2026-10-26-jira]].
-- 2026-10-19 — MK-33 to MK-40 became Subtasks of MK-4; first report to read meetings and chats
-  (5 source risks). See [[ZenaQuiet-Mask/jira/2026-10-19-jira]].
-- 2026-10-12/13 — Bulk date reset in Jira to placeholder windows. See
-  [[ZenaQuiet-Mask/jira/2026-10-13-jira]].
+- 2026-11-02 — MK-33 (style direction), MK-35 (washable fabric) and MK-38 (chin area) Done on
+  2026-10-30; ID Subtasks moved to "MK Sprint 4". No engineering ticket changed, the agreed board
+  ticket is still missing, and there were no new comments, meetings or chats. See
+  [[ZenaQuiet-Mask/jira/2026-11-02-jira]].
+- 2026-10-26 — MK-34, MK-39 and MK-40 Done; MK-37 started. See [[ZenaQuiet-Mask/jira/2026-10-26-jira]].
+- 2026-10-19 — first report to read meetings and chats (5 source risks). See
+  [[ZenaQuiet-Mask/jira/2026-10-19-jira]].

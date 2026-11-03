@@ -2,6 +2,13 @@
 
 One line per change, newest first.
 
+2026-11-02 · created · [[portfolio/2026-11-02-rollup]] · updated · [[overview]] (portfolio line and all five paragraphs), [[glossary]] (ABS / ABS-PC, NRC, PLA, SNR) · weekly roll-up: 2 of 4 on track; Headset Behind +36d (MP forecast 2027-12-21) and RED with sources; Mask At risk (−20.5 pts); Pro2 and Beacon RED only from one date each (PRO2-553 due 2028-02-08, BC-141); CTO-visit decisions not yet in Jira
+2026-11-02 · created · [[ZenaQuiet-Research/jira/2026-11-02-jira]], data/ZenaQuiet-Research/2026-11-02.json · updated · [[ZenaQuiet-Research/overview]] · weekly report (20 issues); 5 overdue; chip decision RS-1 13 days late; RS-3 → PRO2-463 link; AMBER
+2026-11-02 · created · [[ZenaQuiet-Mask/jira/2026-11-02-jira]], data/ZenaQuiet-Mask/2026-11-02.json · updated · [[ZenaQuiet-Mask/overview]] · weekly report (38 issues); 3 ID Subtasks Done, no engineering movement; −20.5 pts vs expected; AMBER
+2026-11-02 · created · [[ZenaQuiet-Headset/jira/2026-11-02-jira]], data/ZenaQuiet-Headset/2026-11-02.json · updated · [[ZenaQuiet-Headset/overview]] · weekly report (556 issues); Behind +36d; PCBs still held (arrival ~2026-11-23); HS-79 confirms Arc target missed; RED with sources
+2026-11-02 · created · [[ZenaQuiet-Beacon/jira/2026-11-02-jira]], data/ZenaQuiet-Beacon/2026-11-02.json · updated · [[ZenaQuiet-Beacon/overview]] · weekly report (168 issues, quiet week); 6 EE Subtasks overdue; still RED from BC-141
+2026-11-02 · created · [[ZenaQuiet-Pro2/jira/2026-11-02-jira]], data/ZenaQuiet-Pro2/2026-11-02.json · updated · [[ZenaQuiet-Pro2/overview]] · weekly report (348 issues, +2); RED from PRO2-553 due 2028-02-08 (likely typo); PRO2-501 to PRO2-512 reopened
+
 2026-10-26 · created · [[portfolio/2026-10-26-rollup]] · updated · [[overview]] (portfolio line and all five paragraphs), [[glossary]] (11 terms: ANC, BOM, BSP, Kensington slot, MCUboot, NPU, OTA, PoE, Quantization, Revision A / Revision B, Sprint) · weekly roll-up: 2 of 4 on track; Headset Behind (+7d) and RED with sources; Mask At risk; Beacon RED (BC-141); first section 6c: RK3576 chip proposal (RS-2) High for Pro2, Headset, Mask; 6 conflicts flagged
 2026-10-26 · created · [[ZenaQuiet-Research/jira/2026-10-26-jira]], data/ZenaQuiet-Research/2026-10-26.json · updated · [[ZenaQuiet-Research/overview]] · weekly report (20 issues); chip decision RS-1 overdue, XMOS ruled out, RK3576 proposed; first Pro2 links (PRO2-461, PRO2-486 → RS-2); link coverage 2/19; AMBER
 2026-10-26 · created · [[ZenaQuiet-Mask/jira/2026-10-26-jira]], data/ZenaQuiet-Mask/2026-10-26.json · updated · [[ZenaQuiet-Mask/overview]] · weekly report (38 issues); POC, 105 days to gate, readiness 9.5%, 15.5 pts behind expected; AMBER

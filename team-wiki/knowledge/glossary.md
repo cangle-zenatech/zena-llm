@@ -1,11 +1,15 @@
 ---
 type: glossary
-updated: 2026-10-26
+updated: 2026-11-02
 ---
 
 # Glossary
 
 Technical terms explained in plain words, A–Z.
+
+## ABS / ABS-PC
+
+Common tough plastics used for injection-moulded product housings; ABS-PC is a blend that is stronger and more heat-resistant. First seen: [[ZenaQuiet-Pro2/jira/2026-11-02-jira|Pro2 report 2026-11-02]].
 
 ## ANC
 
@@ -75,9 +79,17 @@ A small secure start-up program that checks a firmware update is genuine before 
 
 Neural processing unit. A part of a chip built to run AI models fast and with little power. First seen: [[ZenaQuiet-Research/jira/2026-10-26-jira|Research report 2026-10-26]].
 
+## NRC
+
+Noise reduction coefficient. A number from 0 to 1 for how much sound a surface absorbs instead of reflecting; 0.70 means it absorbs about 70%. First seen: [[ZenaQuiet-Headset/jira/2026-11-02-jira|Headset report 2026-11-02]].
+
 ## OTA
 
 Over the air. Sending a software update to a device through the network instead of plugging it in. First seen: [[ZenaQuiet-Beacon/jira/2026-10-26-jira|Beacon report 2026-10-26]].
+
+## PLA
+
+A plastic used in 3D printers; good for quick prototype parts, not for the final product. First seen: [[ZenaQuiet-Pro2/jira/2026-11-02-jira|Pro2 report 2026-11-02]].
 
 ## PoC
 
@@ -94,6 +106,10 @@ Storing an AI model's numbers with fewer digits (for example 8 or 16 bits) so it
 ## Revision A / Revision B
 
 Successive versions of a prototype within one stage. Revision A is the first EVT-1 build of the Pro; Revision B fixes what Revision A showed. First seen: [[ZenaQuiet-Pro2/jira/2026-10-26-jira|Pro2 report 2026-10-26]].
+
+## SNR
+
+Signal-to-noise ratio. How much louder the wanted sound (for example a voice) is than the background noise, in dB; higher is better. First seen: [[ZenaQuiet-Headset/jira/2026-11-02-jira|Headset report 2026-11-02]].
 
 ## Sprint
 
