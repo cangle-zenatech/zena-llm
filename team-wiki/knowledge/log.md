@@ -2,6 +2,13 @@
 
 One line per change, newest first.
 
+2026-11-09 · created · [[portfolio/2026-11-09-rollup]] · updated · [[overview]] (portfolio line and all five paragraphs), [[glossary]] (dB(A), Shore A, EVT-1 / EVT-2, PCB, Schematic, Anodizing, Injection moulding) · weekly roll-up: 2 of 4 on track, Pro2 margin gone (forecast 0d); Headset +66d (MP 2028-01-20); Mask now Behind; all five projects RED; no CTO-visit decision in Jira; Hailo 8L ruled out, RS-2 closed
+2026-11-09 · created · [[ZenaQuiet-Research/jira/2026-11-09-jira]], data/ZenaQuiet-Research/2026-11-09.json · updated · [[ZenaQuiet-Research/overview]] · weekly report; RS-2 Done, RS-1 re-dated and overdue; RED from RS-16 (10 days late)
+2026-11-09 · created · [[ZenaQuiet-Mask/jira/2026-11-09-jira]], data/ZenaQuiet-Mask/2026-11-09.json · updated · [[ZenaQuiet-Mask/overview]] · weekly report; MK-5 and MK-11 started; Behind, −25.5 pts; RED
+2026-11-09 · created · [[ZenaQuiet-Headset/jira/2026-11-09-jira]], data/ZenaQuiet-Headset/2026-11-09.json · updated · [[ZenaQuiet-Headset/overview]] · weekly report; almost no change; PCBs ~50 working days late; Behind +66d; RED with sources
+2026-11-09 · created · [[ZenaQuiet-Beacon/jira/2026-11-09-jira]], data/ZenaQuiet-Beacon/2026-11-09.json · updated · [[ZenaQuiet-Beacon/overview]] · weekly report; 7 items Done (masking parts, schematic, speaker housing); RED from 3 late board layouts and BC-141
+2026-11-09 · created · [[ZenaQuiet-Pro2/jira/2026-11-09-jira]], data/ZenaQuiet-Pro2/2026-11-09.json · updated · [[ZenaQuiet-Pro2/overview]] · weekly report (350 issues, +1 PRO2-556); RED from PRO2-553 date; PRO2-420 past due
+
 2026-11-03 · updated · tools/wiki_jira.py, tools/RULES.md, [[portfolio/2026-11-03-rollup]], the five 2026-11-03 project reports · human asked: the per-person ticket tables (roll-up Appendix, project Appendix D) get a column "Overdue (due date, days late)" listing the assigned tickets past their due date; heading shows the overdue count; today's appendices rebuilt, other text unchanged
 
 2026-11-03 · updated · [[portfolio/2026-11-03-rollup]], [[ZenaQuiet-Pro2/jira/2026-11-03-jira]], [[ZenaQuiet-Beacon/jira/2026-11-03-jira]], [[ZenaQuiet-Headset/jira/2026-11-03-jira]], [[ZenaQuiet-Mask/jira/2026-11-03-jira]], [[ZenaQuiet-Research/jira/2026-11-03-jira]] · human asked: re-layout of today's pages only (no new Jira pull): section 5b and Appendix D rebuilt in the new layout in all five reports; roll-up section 6 rebuilt as 6.1–6.4 plus a new Appendix with ticket lists per person; all other text unchanged

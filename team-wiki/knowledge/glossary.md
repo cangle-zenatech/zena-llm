@@ -1,6 +1,6 @@
 ---
 type: glossary
-updated: 2026-11-03
+updated: 2026-11-09
 ---
 
 # Glossary
@@ -15,6 +15,10 @@ Common tough plastics used for injection-moulded product housings; ABS-PC is a b
 
 Active noise cancelling. Microphones pick up outside noise and the speaker plays the opposite sound wave to cancel it. First seen: [[ZenaQuiet-Research/jira/2026-10-26-jira|Research report 2026-10-26]].
 
+## Anodizing
+
+A surface treatment for aluminium that adds a hard, coloured protective layer. First seen: [[ZenaQuiet-Beacon/jira/2026-11-09-jira|Beacon report 2026-11-09]].
+
 ## BOM
 
 Bill of materials. The full list of parts in a product, usually with the cost of each; an "engineering BOM" is the early version kept by the design team. First seen: [[ZenaQuiet-Pro2/jira/2026-10-26-jira|Pro2 report 2026-10-26]].
@@ -26,6 +30,10 @@ Board support package. The low-level software that lets an operating system run 
 ## dB
 
 Decibel. A unit for how loud a sound is. Every 10 dB lower sounds about half as loud. First seen: [[2026-06-18-PRO2-2|PRO2-2]].
+
+## dB(A)
+
+Decibels "A-weighted": a sound level adjusted to how loud it seems to human ears. First seen: [[ZenaQuiet-Pro2/jira/2026-11-09-jira|Pro2 report 2026-11-09]].
 
 ## DFMEA
 
@@ -55,9 +63,17 @@ A large piece of work in Jira, split into smaller tickets (stories). First seen:
 
 Engineering validation test. The stage after PoC that checks early working units meet the specification. First seen: [[2026-06-18-PRO2-2|PRO2-2]].
 
+## EVT-1 / EVT-2
+
+The first and second engineering-prototype builds within the EVT stage. First seen: [[ZenaQuiet-Pro2/jira/2026-11-09-jira|Pro2 report 2026-11-09]].
+
 ## Far-end speaker
 
 The person at the other end of the call (here, the customer). First seen: [[2026-06-18-PRO2-2|PRO2-2]].
+
+## Injection moulding
+
+Making plastic parts by pressing melted plastic into a metal mould; cheap per part, but the mould is costly. First seen: [[ZenaQuiet-Beacon/jira/2026-11-09-jira|Beacon report 2026-11-09]].
 
 ## Kensington slot
 
@@ -95,6 +111,10 @@ Noise reduction coefficient. A number from 0 to 1 for how much sound a surface a
 
 Over the air. Sending a software update to a device through the network instead of plugging it in. First seen: [[ZenaQuiet-Beacon/jira/2026-10-26-jira|Beacon report 2026-10-26]].
 
+## PCB
+
+Printed circuit board. The flat board that holds and connects a device's electronic parts. First seen: [[ZenaQuiet-Beacon/jira/2026-11-09-jira|Beacon report 2026-11-09]].
+
 ## PLA
 
 A plastic used in 3D printers; good for quick prototype parts, not for the final product. First seen: [[ZenaQuiet-Pro2/jira/2026-11-02-jira|Pro2 report 2026-11-02]].
@@ -118,6 +138,14 @@ Successive versions of a prototype within one stage. Revision A is the first EVT
 ## RPN
 
 Risk priority number. In a DFMEA, severity × likelihood × detection score; the higher the number, the more urgent the risk. First seen: [[ZenaQuiet-Pro2/jira/2026-11-03-jira|Pro2 report 2026-11-03]].
+
+## Schematic
+
+The circuit drawing that shows how the electronic parts connect, made before the board layout. First seen: [[ZenaQuiet-Beacon/jira/2026-11-09-jira|Beacon report 2026-11-09]].
+
+## Shore A
+
+A scale for how hard a soft rubber or silicone part is; higher numbers are harder. First seen: [[ZenaQuiet-Pro2/jira/2026-11-09-jira|Pro2 report 2026-11-09]].
 
 ## SNR
 
