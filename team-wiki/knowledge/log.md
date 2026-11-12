@@ -2,6 +2,8 @@
 
 One line per change, newest first.
 
+2026-11-12 · created · zena-llm/.gitignore (ignores .env, raw/jira-attachments/, caches), zena-llm/.env.example, tools/jira_attachments.py · updated · CLAUDE.md (hard rule: never open .env; folder map; "Jira attachments (approved exception)"), [[product-procedure]] and [[ZenaQuiet-Research/INDEX]] (field `attachment`, Step 8c / 7c, self-check), tools/INDEX.md, tools/wiki_jira.py (attachment metadata in snapshots; report table "Attachments on open tickets" + manifest freshness in Data Gaps) · human approved reading Jira attachments: the human runs the downloader with a read-only token in .env on their own PC; the AI only reads the downloaded files. Tested against a fake local Jira (downloads, skips, wrong token, login not forwarded to the media link); no real token used
+
 2026-11-09 · created · [[portfolio/2026-11-09-rollup]] · updated · [[overview]] (portfolio line and all five paragraphs), [[glossary]] (dB(A), Shore A, EVT-1 / EVT-2, PCB, Schematic, Anodizing, Injection moulding) · weekly roll-up: 2 of 4 on track, Pro2 margin gone (forecast 0d); Headset +66d (MP 2028-01-20); Mask now Behind; all five projects RED; no CTO-visit decision in Jira; Hailo 8L ruled out, RS-2 closed
 2026-11-09 · created · [[ZenaQuiet-Research/jira/2026-11-09-jira]], data/ZenaQuiet-Research/2026-11-09.json · updated · [[ZenaQuiet-Research/overview]] · weekly report; RS-2 Done, RS-1 re-dated and overdue; RED from RS-16 (10 days late)
 2026-11-09 · created · [[ZenaQuiet-Mask/jira/2026-11-09-jira]], data/ZenaQuiet-Mask/2026-11-09.json · updated · [[ZenaQuiet-Mask/overview]] · weekly report; MK-5 and MK-11 started; Behind, −25.5 pts; RED

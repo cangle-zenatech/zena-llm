@@ -225,7 +225,10 @@ def cmd_normalize(a):
             parent=(f.get('parent') or {}).get('key'), subtasks=[s['key'] for s in f.get('subtasks') or []],
             links=links, created=f['created'][:10], updated=f['updated'][:10],
             resolved=(f.get('resolutiondate') or '')[:10] or None, labels=f.get('labels') or [],
-            desc=f.get('description') or '', comments=comments))
+            desc=f.get('description') or '', comments=comments,
+            attachments=[dict(id=str(x.get('id')), filename=(x.get('filename') or '').replace('|', '/'), created=(x.get('created') or '')[:10],
+                              author=nm(x.get('author')), size=x.get('size'), mime=x.get('mimeType'))
+                         for x in f.get('attachment') or []]))
     out.sort(key=lambda o: int(o['key'].split('-')[1]))
     # Research: linked product tickets saved by the helper in WORK/linked/ (search pages or single issues)
     linked = {}
@@ -1203,6 +1206,25 @@ def cmd_report(a):
         gaps.append(f"- Linked product tickets: {res['research']['linked_source']}.")
     if res.get('notes'):
         gaps.append(f"- {len(res['notes'])} items worth a human look (not rule hits) are in Appendix C.")
+    # Jira attachments: what was uploaded recently on open tickets, and whether the human's download has it
+    mp = os.path.join(ROOT, 'raw', 'jira-attachments', 'manifest.json')
+    man = json.load(open(mp, encoding='utf-8')) if os.path.exists(mp) else None
+    got = {f['attachment_id']: f for f in (man or {}).get('files', [])}
+    recent = sorted([(o['key'], x) for o in I if o['scat'] != 'done' for x in o.get('attachments') or []
+                     if x.get('created') and (TODAY - D(x['created'])).days <= LOOK], key=lambda t: t[1]['created'], reverse=True)
+    att_tbl = ['| Ticket | File | Uploaded | By | Type | Size | Downloaded |', '| --- ' * 7 + '|']
+    for k, x in recent:
+        f_ = got.get(x['id'])
+        att_tbl.append(f"| {url(k)} | {x['filename'].replace('|', '/')} | {x['created']} | {x.get('author') or '—'} | {x.get('mime') or '—'} | "
+                       f"{round((x.get('size') or 0) / 1024)} KB | {('`raw/jira-attachments/' + f_['path'] + '`') if f_ and f_.get('path') else 'no'} |")
+    if not recent:
+        att_tbl.append(f'| — | no attachments uploaded on open tickets in the last {LOOK} days | | | | | |')
+    if man is None:
+        gaps.append('- Jira attachments: not refreshed (no `raw/jira-attachments/manifest.json`; the human runs `tools/jira_attachments.py` before the weekly run).')
+    else:
+        age = (TODAY - D(man.get('updated', '1970-01-01'))).days
+        gaps.append(f"- Jira attachments: manifest updated {man.get('updated', '?')[:10]}" + (' (more than 3 days old: attachments not refreshed)' if age > 3 else '') +
+                    f"; {sum(1 for k, x in recent if got.get(x['id']))} of {len(recent)} recent attachments downloaded.")
     gaps.append('- ' + AI('source files read; items that used default lead times; anything else that could not be retrieved or verified'))
 
     fm = f'---\ntype: jira-report\nproject: {folder}\ndate: {a.date}\nsnapshot: data/{folder}/{a.date}.json\n---\n'
@@ -1241,6 +1263,8 @@ def cmd_report(a):
             '## 2. Product Detail', '', '**Purpose:** ' + AI('2–3 sentences (Step 8)'), '', '**Technical requirements by Epic:**', ''] + epl + [
             AI('under each Epic, 2–4 requirement sub-bullets tagged with teams, e.g. "  - requirement … [ME, AC]" (Step 8); Jira only, "No description in Jira" where empty'), '',
             '**Engineering discussion (from Jira comments):**', '', AI('per Epic: Being discussed / Thinking so far / Decided / Still open, each cited (key, author, date) (Step 8b)'), '',
+            f'**Attachments on open tickets (last {LOOK} days)**', ''] + att_tbl + ['',
+            AI('what the downloaded attachments show, in plain words, cited (key, file name, upload date) (Step 8c); "No new attachments" if none'), '',
             '**Metrics**', ''] + metrics + ['', rd('epics.md') or '', '', rd('stages.md') or '', '',
             f"**Gate readiness:** {cur}: {g[0]}/{g[1]} Stories done ({g[2]} In Progress), gate {gate} in {res['days_to_gate']} days. "
             f"{nxt or 'next stage'}: {ns[0]}/{ns[1]} Stories started.", '']
@@ -1257,7 +1281,9 @@ def cmd_report(a):
                        '### Products waiting on Research', '', rd('products.md') or '', '', '### Top 3 risks', ''] + risk_blocks + [
             '## 2. Research Detail', '', '**Purpose:** ' + AI('2–3 sentences (Step 7)'), '',
             '**Research by product:** ' + AI('per product, the Epics supporting it, one line each (Step 7)'), '',
-            '**Engineering discussion (from Jira comments):**', '', AI('per Epic: Being discussed / Thinking so far / Decided / Still open, each cited (key, author, date) (Step 7b)'), '']
+            '**Engineering discussion (from Jira comments):**', '', AI('per Epic: Being discussed / Thinking so far / Decided / Still open, each cited (key, author, date) (Step 7b)'), '',
+            f'**Attachments on open tickets (last {LOOK} days)**', ''] + att_tbl + ['',
+            AI('what the downloaded attachments show, in plain words, cited (key, file name, upload date) (Step 7c); "No new attachments" if none'), '']
         load_title, hyg_title = '## 4. Team Load', '## 5. Clean-up List'
 
     more = ' · '.join(f'{v} {k}' for k, v in sorted(hidden.items(), key=lambda x: SO[x[0]]))

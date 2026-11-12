@@ -14,11 +14,28 @@ load, health). It reads its settings from the wiki, so there is nothing to edit 
 
 It never calls Jira. The only wiki page it writes is the weekly report skeleton (`report`).
 
+### Before the weekly run: Jira attachments (the HUMAN runs this, never the AI)
+
+`tools/jira_attachments.py` downloads attachments of open tickets updated in the last 14 days into
+`raw/jira-attachments/<KEY>/` and updates `raw/jira-attachments/manifest.json`. It reads the Jira
+login from `zena-llm/.env` (copy `zena-llm/.env.example`; git-ignored) and never prints or writes the
+token. Run it on your own PC from the `team-wiki` folder:
+
+```
+py tools\jira_attachments.py              (Windows)
+py tools\jira_attachments.py --dry-run    (list only)
+```
+
+Options: `--days 14`, `--max-mb 20`, `--max-per-project 100`, `--projects PRO2,BC`. Allowed types:
+images, PDF, Word, Excel, PowerPoint, CSV/TXT/MD/JSON; others are listed as skipped. A 401/403 means
+the token is wrong or expired. The AI only reads the downloaded files (Step 8c / 7c); `report` adds
+an "Attachments on open tickets" table and a Data Gaps line saying how fresh the manifest is.
+
 ### Weekly run, per project
 
 Paths below are bash paths; `WORK` is a temporary folder (e.g. `outputs/work-<key>/`).
 
-1. Pull Jira (Steps 1–2 of the project `INDEX.md`). Save each raw search result page as a `.json`
+1. Pull Jira (Steps 1–2 of the procedure; fields include `comment` and `attachment`). Save each raw search result page as a `.json`
    file in `WORK`, unchanged. Issues whose comments were cut short go in `WORK/comments/<KEY>.json`
    (the full comment response for that issue); `normalize` uses that file instead of the search's comments.
 2. `python3 -I tools/wiki_jira.py normalize --project <Folder> --raw-dir WORK [--start-field ID --sprint-field ID]`

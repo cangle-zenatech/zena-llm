@@ -16,6 +16,11 @@
 
 ### Tasks
 
+**Before the weekly reports (you, in PowerShell):** download new Jira attachments so the AI can read
+them. From `C:\Users\Admin\Documents\zena-llm\team-wiki` run `py tools\jira_attachments.py`
+(add `--dry-run` to only list them). It uses the token in `zena-llm\.env`; never put the token
+anywhere else.
+
 | Goal                    | What to type                                                                |
 | ----------------------- | --------------------------------------------------------------------------- |
 | Weekly reports          | `write weekly status reports` (all projects marked Yes, then the portfolio roll-up) |
@@ -30,6 +35,14 @@
 |                         | `who is overloaded across all projects?`                                    |
 |                         | `what is blocking the Headset POC gate?`                                    |
 |                         | `explain why Headset is RED`                                                |
+|                         | `who has the most overdue tickets?` (uses the People and tickets tables)    |
+|                         | `what are the engineers discussing on Pro2?` (from Jira comments)           |
+|                         | `did the CTO agree to <decision>?` (searches transcripts and Jira)          |
+|                         | `what does the attachment on PRO2-553 show?` (after you run the downloader) |
+| Add new sources         | Attach a meeting file: `this is the <date> standup, put it in raw/transcripts` |
+|                         | Attach a chat or email export: `put this in raw/threads`                    |
+| Share with the team     | `make the stage timeline image for Teams` (PNG to paste in a chat)          |
+|                         | Attach a slide: `put the completion % for each project in this slide`       |
 | Turn sources into pages | `turn the new files in raw/ into wiki pages`                                |
 |                         | `summarize PRO2-142 in plain language`                                      |
 |                         | `summarize this Confluence page: <link>`                                    |
@@ -43,11 +56,15 @@
 |                         | `update the script so it <change>` (I'll show you the change before saving) |
 |                         | `count same-day-closed Stories as progress` (portfolio setting)             |
 |                         | `change the stage schedule for Mask` (edits reference.md; I'll ask first)   |
+|                         | `change the overload flag to 50 tickets` (⚠ in the People and tickets tables) |
+|                         | `show more risk rows in the report` (report_max_rows, default 30)           |
+| Fix a report layout     | `rebuild today's reports in the new layout` (no new Jira pull)              |
 | Automate                | `run the weekly reports every Monday at 8am`                                |
 | Understand it           | `explain how the health rating works`                                       |
 |                         | `which file controls <thing>?`                                              |
 |                         | `explain how slip is measured`                                              |
 |                         | `explain the roll-up columns`                                               |
+|                         | `which rules does the script apply?` (tools/RULES.md)                       |
 
 ---
 
