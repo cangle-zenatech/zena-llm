@@ -202,13 +202,34 @@ are in `raw/jira-attachments/`.
    one line in Data Gaps. If the manifest is missing or older than 3 days, the report already says
    "attachments not refreshed": carry on without them.
 
+### Step 7d: Sprint review (for the Executive Summary)
+
+`report` writes a "Last sprint" block under the Health line: the last sprint and the current sprint
+(chosen by their **dates**, never by Jira's sprint state, which the team doesn't maintain), a
+per-person table with **Stories and Subtasks counted separately** (done inside the sprint dates /
+in the sprint, closed outside the dates, still open, carried into the current sprint, overdue,
+open for 2+ sprints), no pace line (Research has no gate of its own), and the ticket lists per person in Appendix E. Rules:
+`tools/RULES.md` → Sprint review. Don't recount anything.
+
+Under the block, write 3–6 bullets in plain words:
+
+- **Who worked on what:** per person (or per team when several people share the work), the main
+  pieces of work in the sprint, with ticket keys from Appendix E.
+- **What they accomplished:** what was finished, in plain words. Use comments (Step 8b / 7b) and
+  attachments (Step 8c / 7c) for actual results (test outcomes, designs, decisions), cited.
+- **What slipped:** work still open or closed outside the sprint dates, and why if a comment says.
+- **Effect on the deadline:** use the pace line: on pace or behind, and what that means for the gate.
+
+If a sprint has very few tickets (the team may plan outside sprints), say so in one line instead of
+over-reading the numbers. Facts from Jira; your reading of them is (inferred).
+
 ## 5. Output
 
 Run `tools/wiki_jira.py report` after `analyze`, `diff` and `sources`. It writes
 `knowledge/ZenaQuiet-Research/jira/YYYY-MM-DD-jira.md` (date = `today`) with every number and table
 filled in (including "Products waiting on Research"), with an Appendix at the end holding the rows
-not shown in the body (A: risks, B: Clean-up List, C: notes worth a look, D: tickets by person).
-Section 5b "People and tickets" (every person with their open tickets, by type, linked) is also
+not shown in the body (A: risks, B: Clean-up List, C: notes worth a look, D: tickets by person, E: last sprint tickets by person).
+Section 4b "People and tickets" (every person with their open tickets, by type, linked) is also
 written by the script. Fill each `<!-- AI: … -->` marker by editing the report in place; don't retype the script's
 tables and never edit the Appendix. A redo needs `report --force`, which replaces everything you
 wrote: say so in chat first. Add a line to `knowledge/log.md`. The finished report has this
@@ -221,6 +242,8 @@ structure:
 | Open items | Link coverage | Overdue | Due in 14 days | Health |
 
 Health: one sentence on why.
+
+### Last sprint: {sprint name} ({start} → {end})   (script table + current sprint; your 3–6 bullets, Step 7d)
 
 ### Products waiting on Research
 | Product | Open items (linked / inferred) | Earliest needed-by | At risk |
@@ -243,20 +266,20 @@ Health: one sentence on why.
   - Still open: … (waiting on {name})
 (Write "No comments in the last {stale_days} days" if there are none.)
 
-## 3. Risk Register, ### Order this week, ## 4. Team Load, ## 5. Clean-up List
+## 3. Risk Register, ### Order this week, ## 4. Clean-up List
 Written by the script (rules: `tools/RULES.md` → Research). Edit only: impact sentences that need
 judgment, and "comment vs field" rows in the Clean-up List (Step 7b).
 
-## 5b. People and tickets
+## 4b. People and tickets
 Written by the script: one workload table, one row per assignee (open tickets by type, total,
 Overdue, Due ≤14d; ⚠ above 40 open tickets). The ticket lists per person, assigned and reported,
 incl. Unassigned, are in Appendix D (one heading and one small table per person). Don't edit either;
 use them for owners in Recommendations.
 
-## 6. Recommendations for TM
+## 5. Recommendations for TM
 3–5 concrete actions, each tied to ticket keys and owners.
 
-## 7. Data Gaps & Assumptions
+## 6. Data Gaps & Assumptions
 - Source files read, and which items used default lead times instead of dates from the source.
 ```
 
@@ -282,5 +305,6 @@ per block, then "+ N more (see Risk Register)".
 - [ ] Data Gaps section is filled in, even if it says "None"
 - [ ] Comments read for every open issue; every discussion point cites key, author and date
 - [ ] Downloaded attachments in the report table read and summarized (Step 7c), or the gap stated
+- [ ] Sprint review bullets written under the Last sprint block (Step 7d)
 - [ ] Every file in `raw/threads/` and `raw/transcripts/` was read; every source risk cites file
       and message

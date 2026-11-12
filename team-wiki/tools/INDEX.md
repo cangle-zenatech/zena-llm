@@ -52,7 +52,8 @@ Paths below are bash paths; `WORK` is a temporary folder (e.g. `outputs/work-<ke
    → writes `knowledge/<Folder>/jira/<date>-jira.md` with frontmatter, source line, every number
    and table (register: all HIGH + the MEDIUM with most days late, up to `report_max_rows`, default
    30; hygiene: first 20 rows), then an Appendix with the rows not shown (A: risks, B: hygiene,
-   C: notes worth a look, D: tickets by person) and section 5b "People and tickets" (workload table:
+   C: notes worth a look, D: tickets by person, E: last sprint tickets by person), a "Last sprint"
+   block in the Executive Summary (per-person Stories/Subtasks, pace for the gate, current sprint), and section 4b "People and tickets" (workload table:
    open tickets per assignee by type, Overdue, Due ≤14d). No separate detail page, no list of snapshot changes. It refuses to overwrite a report without `--force`.
 7. Fill every `<!-- AI: … -->` marker in the report by editing it in place: Executive Summary,
    Product Detail (Step 8 / 8b), impact sentences that need judgment, Recommendations, Data Gaps.

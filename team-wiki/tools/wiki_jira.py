@@ -222,6 +222,8 @@ def cmd_normalize(a):
             scat=f['status']['statusCategory']['key'], assignee=nm(f.get('assignee')), reporter=nm(f.get('reporter')),
             start=f.get(a.start_field), due=f.get('duedate'),
             sprints=[[s.get('name'), s.get('state')] for s in (f.get(a.sprint_field) or [])],
+            sprint_info=[dict(id=s.get('id'), name=s.get('name'), state=s.get('state'), start=(s.get('startDate') or '')[:10] or None,
+                              end=(s.get('endDate') or '')[:10] or None, goal=(s.get('goal') or '').strip()) for s in (f.get(a.sprint_field) or [])],
             parent=(f.get('parent') or {}).get('key'), subtasks=[s['key'] for s in f.get('subtasks') or []],
             links=links, created=f['created'][:10], updated=f['updated'][:10],
             resolved=(f.get('resolutiondate') or '')[:10] or None, labels=f.get('labels') or [],
@@ -259,6 +261,130 @@ def load_snapshot(project, day):
     if not os.path.exists(p):
         sys.exit(f'No snapshot {p}. Run "normalize" for this project and date first.')
     return json.load(open(p, encoding='utf-8'))['issues']
+
+
+# ----------------------------------------------------------------- sprint review
+def sprint_review(I, today, stage=None, stage_open=None, gate=None, stage_of_key=None):
+    """Last and current sprint chosen by DATES (Jira sprint states are not maintained), per-person
+    Stories and Subtasks committed / done in the sprint window / done outside it / still open, carried
+    into the current sprint, overdue; plus the stage pace needed to reach the gate."""
+    sp = {}
+    for o in I:
+        for s in o.get('sprint_info') or []:
+            if s.get('id') is not None and s.get('start') and s.get('end'):
+                sp[s['id']] = s
+    if not sp:
+        return dict(available=False, reason='no sprint dates in the snapshot (older snapshot or no sprints in Jira)')
+    cur_l = [s for s in sp.values() if D(s['start']) <= today <= D(s['end'])]
+    cur = max(cur_l, key=lambda s: s['start']) if cur_l else None
+    past = [s for s in sp.values() if D(s['end']) < today and (not cur or s['id'] != cur['id'])]
+    last = max(past, key=lambda s: (s['end'], s['start'])) if past else None
+    stale = sorted(s['name'] for s in sp.values() if (D(s['end']) < today and s['state'] != 'closed') or
+                   (D(s['start']) <= today <= D(s['end']) and s['state'] != 'active') or
+                   (D(s['start']) > today and s['state'] == 'active'))
+    out = dict(available=True, state_mismatch=stale, current=None, last=None)
+    kk = lambda k: int(k.split('-')[1])
+    def kind(o):
+        t = ptype(o['type']); return 'Subtask' if t == 'Subtask' else ('Story' if t == 'Story/Task' else 'Epic')
+    if cur:
+        items = [o for o in I if any(s.get('id') == cur['id'] for s in o.get('sprint_info') or [])]
+        per = defaultdict(Counter)
+        for o in items:
+            per[o['assignee'] or UNASSIGNED][kind(o)] += 1
+        out['current'] = dict(name=cur['name'], start=cur['start'], end=cur['end'], goal=cur.get('goal') or '',
+                              tickets=len(items), people={n: dict(c) for n, c in per.items()})
+    if last:
+        s0, s1 = D(last['start']), D(last['end'])
+        items = sorted([o for o in I if any(s.get('id') == last['id'] for s in o.get('sprint_info') or [])], key=lambda o: kk(o['key']))
+        P = defaultdict(lambda: defaultdict(lambda: defaultdict(list)))
+        for o in items:
+            n, k = o['assignee'] or UNASSIGNED, kind(o)
+            done = o['scat'] == 'done'
+            r = D(o['resolved']) if o.get('resolved') else None
+            P[n][k]['committed'].append(o['key'])
+            if done and r and s0 <= r <= s1: P[n][k]['done'].append(o['key'])
+            elif done: P[n][k]['done_outside'].append(o['key'])
+            else:
+                P[n][k]['open'].append(o['key'])
+                if cur and any(s.get('id') == cur['id'] for s in o.get('sprint_info') or []): P[n][k]['carried'].append(o['key'])
+                if o.get('due') and D(o['due']) < today: P[n][k]['overdue'].append(o['key'])
+                past_sp = [s for s in o.get('sprint_info') or [] if s.get('end') and D(s['end']) < today]
+                if len(past_sp) >= 2: P[n][k]['carried_2plus'].append(o['key'])
+        titles = {o['key']: o['summary'].strip() for o in items}
+        tot = lambda key: sum(len(P[n][k][key]) for n in P for k in P[n])
+        out['last'] = dict(name=last['name'], start=last['start'], end=last['end'], goal=last.get('goal') or '',
+                           committed=tot('committed'), done=tot('done'), done_outside=tot('done_outside'), open=tot('open'),
+                           carried=tot('carried'), overdue=tot('overdue'),
+                           people={n: {k: {m: v for m, v in d.items()} for k, d in P[n].items()} for n in P}, titles=titles)
+        if stage and stage_of_key is not None and gate:
+            closed = sorted(k for k, st in stage_of_key.items() if st['stage'] == stage and st['type'] == 'Story' and st['resolved']
+                            and s0 <= D(st['resolved']) <= s1)
+            length = max((s1 - s0).days, 1)
+            left = max(1, -(-max((gate - today).days, 0) // length))
+            need = round(stage_open / left, 1) if stage_open is not None else None
+            out['pace'] = dict(stage=stage, closed_in_sprint=len(closed), closed_keys=closed, open_now=stage_open,
+                               sprints_left=left, sprint_days=length, needed_per_sprint=need,
+                               verdict=('on pace' if need is not None and len(closed) >= need else 'behind the pace needed for the gate'))
+    return out
+
+
+def sprint_block(sr, research=False):
+    """Markdown for the Executive Summary: last sprint per person (Stories and Subtasks separately), pace, current sprint."""
+    url = lambda k: f'[{k}]({BROWSE}{k})'
+    if not sr or not sr.get('available'):
+        return ['### Last sprint', '', f"Not available: {(sr or {}).get('reason', 'no sprint data')}.", '']
+    L = []
+    la = sr.get('last')
+    if not la:
+        L += ['### Last sprint', '', 'No sprint ended before the run date.', '']
+    else:
+        L += [f"### Last sprint: {la['name']} ({la['start']} → {la['end']})", '']
+        if la['goal']: L += [f"Sprint goal: {la['goal']}", '']
+        L += [f"{la['committed']} tickets in the sprint: {la['done']} done inside the sprint dates, {la['done_outside']} closed outside them, "
+              f"{la['open']} still open ({la['carried']} carried into the current sprint, {la['overdue']} overdue).", '']
+        L += ['| Person | Stories done / in sprint | Subtasks done / in sprint | Closed outside sprint dates | Still open | Carried to current sprint | Overdue | Open 2+ sprints |',
+              '| --- ' * 8 + '|']
+        last_ = {UNASSIGNED: 1}
+        def g(d, k, m): return len(d.get(k, {}).get(m, []))
+        for n in sorted(la['people'], key=lambda n: (last_.get(n, 0), -sum(g(la['people'][n], k, 'committed') for k in la['people'][n]), n.lower())):
+            d = la['people'][n]
+            row = [n, f"{g(d, 'Story', 'done')} / {g(d, 'Story', 'committed')}", f"{g(d, 'Subtask', 'done')} / {g(d, 'Subtask', 'committed')}"]
+            row += [str(sum(g(d, k, m) for k in d)) for m in ('done_outside', 'open', 'carried', 'overdue', 'carried_2plus')]
+            L.append('| ' + ' | '.join(row) + ' |')
+        L.append('')
+        pc = sr.get('pace')
+        if pc and not research:
+            L += [f"**Pace for the {pc['stage']} gate:** {pc['closed_in_sprint']} {pc['stage']} Stories closed during this sprint; {pc['open_now']} still open with "
+                  f"{pc['sprints_left']} sprints of {pc['sprint_days']} days left, so about {pc['needed_per_sprint']} must close per sprint. Verdict: **{pc['verdict']}**.", '']
+        L += ['Ticket lists per person for this sprint: Appendix E.', '']
+    cu = sr.get('current')
+    if cu:
+        ppl = ', '.join(f"{n} {sum(c.values())}" for n, c in sorted(cu['people'].items(), key=lambda x: -sum(x[1].values())))
+        L += [f"**Current sprint:** {cu['name']} ({cu['start']} → {cu['end']}), {cu['tickets']} tickets" + (f": {ppl}" if ppl else '') + '.' +
+              (f" Goal: {cu['goal']}" if cu['goal'] else ''), '']
+    else:
+        L += ['**Current sprint:** none (no sprint covers the run date).', '']
+    if sr.get('state_mismatch'):
+        L += [f"Note: Jira sprint states don't match the sprint dates ({len(sr['state_mismatch'])} sprints, e.g. {', '.join(sr['state_mismatch'][:3])}); "
+              'last and current sprint are chosen by date.', '']
+    return L
+
+
+def sprint_appendix(sr):
+    la = (sr or {}).get('last')
+    if not la:
+        return ['None.', '']
+    url = lambda k: f'[{k}]({BROWSE}{k})'
+    L = []
+    for n in sorted(la['people'], key=lambda n: (n == UNASSIGNED, n.lower())):
+        L += [f'#### {n}', '', '| Type | Done in sprint | Closed outside sprint dates | Still open |', '| --- ' * 4 + '|']
+        for k in ('Story', 'Subtask', 'Epic'):
+            d = la['people'][n].get(k)
+            if not d: continue
+            cell = lambda m: '; '.join(f"{url(x)} {la['titles'].get(x, '')[:60].replace('|', '/')}" for x in d.get(m, [])) or '—'
+            L.append(f'| {k} | {cell("done")} | {cell("done_outside")} | {cell("open")} |')
+        L.append('')
+    return L
 
 
 # ----------------------------------------------------------------- analyze
@@ -738,6 +864,9 @@ def cmd_analyze(a):
                issue_stage={o['key']: o['stage'] for o in I},
                risks={k: dict(sev=sev[k], rules=R[k], info=info[k]) for k in rows},
                register_header=L[0], register_list=reg_rows, hygiene_header=H[0], hygiene_list=hyg_rows)
+    st_open = sum(1 for o in stories if o['stage'] == cur and o['state'] != 'Done') if cur else None
+    res['sprint'] = sprint_review(I, TODAY, stage=cur, stage_open=st_open, gate=gate,
+                                  stage_of_key={o['key']: dict(stage=o['stage'], type=o['type'], resolved=o.get('resolved')) for o in I})
     if RESEARCH:
         res['research'] = dict(link_coverage=M['link_coverage'], linked_source=linked_note,
                                gates={pk: [g[0], str(g[1]) if g[1] else None] for pk, g in PGATE.items()},
@@ -1258,7 +1387,9 @@ def cmd_report(a):
             epl.append(f"- {e['key']} {e['title']} (due {e['due'] or 'unknown'}, {pc}% done, variance " +
                        (('+' if v > 0 else '') + f'{v}d' if v is not None else 'n/a') + f", {e['state']})")
         body = head + ['## 1. Executive Summary', '', '| Current Stage | Next Gate | Days to Gate | Gate Readiness | Health |',
-                       '| --- | --- | --- | --- | --- |', row, '', 'Health: ' + AI('one sentence on why'), '', '### Top 3 risks', ''] + risk_blocks + [
+                       '| --- | --- | --- | --- | --- |', row, '', 'Health: ' + AI('one sentence on why'), ''] + sprint_block(res.get('sprint')) + [
+                       AI('sprint review (Step 8d): 3–6 bullets — who worked on what, what they finished (keys), what slipped, and how that affects the gate (use the pace line); cite comments/attachments for results'), '',
+                       '### Top 3 risks', ''] + risk_blocks + [
             '### Key cross-team concern', '', AI('one block: **Short name**, - **What:**, - **Tickets:**, - **Impact:**'), '',
             '## 2. Product Detail', '', '**Purpose:** ' + AI('2–3 sentences (Step 8)'), '', '**Technical requirements by Epic:**', ''] + epl + [
             AI('under each Epic, 2–4 requirement sub-bullets tagged with teams, e.g. "  - requirement … [ME, AC]" (Step 8); Jira only, "No description in Jira" where empty'), '',
@@ -1268,7 +1399,7 @@ def cmd_report(a):
             '**Metrics**', ''] + metrics + ['', rd('epics.md') or '', '', rd('stages.md') or '', '',
             f"**Gate readiness:** {cur}: {g[0]}/{g[1]} Stories done ({g[2]} In Progress), gate {gate} in {res['days_to_gate']} days. "
             f"{nxt or 'next stage'}: {ns[0]}/{ns[1]} Stories started.", '']
-        load_title, hyg_title = '## 4. Team Load Heatmap', '## 5. Data Hygiene'
+        hyg_title = '## 4. Data Hygiene'
     else:
         op = [o for o in I if o['scat'] != 'done']
         ct = Counter(o['type'] for o in op)
@@ -1277,14 +1408,15 @@ def cmd_report(a):
         row = (f"| {len(op)} (" + ', '.join(f'{v} {k}' for k, v in ct.items()) + f") | {lc[2]}% ({lc[0]}/{lc[1]} Epics and Stories) | "
                f"{M['overdue'][0]} | {len(soon)}" + (f" ({', '.join(soon)})" if 0 < len(soon) <= 10 else '') + f" | **{health}** |")
         body = head + ['## 1. Executive Summary', '', f'| Open items | Link coverage | Overdue | Due in {LOOK} days | Health |',
-                       '| --- | --- | --- | --- | --- |', row, '', 'Health: ' + AI('one sentence on why'), '',
+                       '| --- | --- | --- | --- | --- |', row, '', 'Health: ' + AI('one sentence on why'), ''] + sprint_block(res.get('sprint'), research=True) + [
+                       AI('sprint review (Step 7d): 3–6 bullets — who worked on what, what they finished (keys), what slipped, and which product tickets that affects'), '',
                        '### Products waiting on Research', '', rd('products.md') or '', '', '### Top 3 risks', ''] + risk_blocks + [
             '## 2. Research Detail', '', '**Purpose:** ' + AI('2–3 sentences (Step 7)'), '',
             '**Research by product:** ' + AI('per product, the Epics supporting it, one line each (Step 7)'), '',
             '**Engineering discussion (from Jira comments):**', '', AI('per Epic: Being discussed / Thinking so far / Decided / Still open, each cited (key, author, date) (Step 7b)'), '',
             f'**Attachments on open tickets (last {LOOK} days)**', ''] + att_tbl + ['',
             AI('what the downloaded attachments show, in plain words, cited (key, file name, upload date) (Step 7c); "No new attachments" if none'), '']
-        load_title, hyg_title = '## 4. Team Load', '## 5. Clean-up List'
+        hyg_title = '## 4. Clean-up List'
 
     more = ' · '.join(f'{v} {k}' for k, v in sorted(hidden.items(), key=lambda x: SO[x[0]]))
     body += ['## 3. Risk Register', '',
@@ -1294,32 +1426,32 @@ def cmd_report(a):
              AI('check the impact sentences of the rows above; rewrite any that need judgment (see "What is still yours" in the procedure)'), '',
              '### Risks from team threads (plain)', '', rd('sources_plain.md') or 'Sources step not run.', '',
              '### Order this week', '', rd('order_this_week.md') or 'Sources step not run.', '',
-             load_title, '', rd('heatmap.md') or '', '',
              hyg_title, '', f"{len(hy)} rows: " + (', '.join(f'{k} {v}' for k, v in hc.most_common()) or 'none') +
              (f". First 20 below; the rest in Appendix B." if len(hy) > 20 else '.'), '',
              hy_head, '\n'.join('| ' + ' | '.join(h['cells']) + ' |' for h in hy[:20]) or '| — | none | | | | |', '',
              AI('add any "comment vs field" rows found in Step 8b/7b, or delete this line'), '']
     pbody, papp = people_section(people_index(I, TODAY, LOOK), folder.replace('ZenaQuiet-', ''))
-    body += ['## 5b. People and tickets', '',
+    body += ['## 4b. People and tickets', '',
              'Open tickets only (not Done), from the snapshot. Assigned = working on it; Reported = created it. '
              'Written by the script; do not edit.', ''] + pbody + [
-             '## 6. Recommendations for TM', '', AI('3–5 concrete actions, each tied to ticket keys and owners'), '',
-             '## 7. Data Gaps & Assumptions', ''] + gaps + ['']
+             '## 5. Recommendations for TM', '', AI('3–5 concrete actions, each tied to ticket keys and owners'), '',
+             '## 6. Data Gaps & Assumptions', ''] + gaps + ['']
     # appendix: the rows not shown above, so the page holds every row exactly once (no separate detail page)
     rest = rows[len(shown):]
     body += ['---', '', '## Appendix (written by the script; do not edit)', '',
              f'### A. Remaining risks ({len(rest)} rows not shown in section 3)', '',
              (reg_head + '\n' + tbl(rest)) if rest else 'None: every risk is shown in section 3.', '',
-             f'### B. Remaining {"Clean-up List" if research else "Data Hygiene"} rows ({max(0, len(hy) - 20)} rows not shown in section 5)', '',
+             f'### B. Remaining {"Clean-up List" if research else "Data Hygiene"} rows ({max(0, len(hy) - 20)} rows not shown in section 4)', '',
              (hy_head + '\n' + '\n'.join('| ' + ' | '.join(h['cells']) + ' |' for h in hy[20:])) if len(hy) > 20
-             else 'None: every row is shown in section 5.', '',
+             else 'None: every row is shown in section 4.', '',
              '### C. Worth a look (not rule hits)', '', rd('notes.md') or 'None.', '',
-             '### D. Tickets by person (open tickets, assigned and reported)', ''] + (papp or ['None.', ''])
+             '### D. Tickets by person (open tickets, assigned and reported)', ''] + (papp or ['None.', '']) + [
+             '### E. Last sprint tickets by person', ''] + sprint_appendix(res.get('sprint'))
     page = '\n'.join(body)
     open(out, 'w', encoding='utf-8', newline='\n').write(page)
     n_ai = page.count('<!-- AI:')
     print(f'REPORT: {os.path.relpath(out, ROOT)} ({len(page.splitlines())} lines, {n_ai} AI markers to fill) · '
-          f'register {len(shown)}/{len(rows)} rows in section 3, rest in Appendix A · hygiene {min(20, len(hy))}/{len(hy)} in section 5, rest in Appendix B' +
+          f'register {len(shown)}/{len(rows)} rows in section 3, rest in Appendix A · hygiene {min(20, len(hy))}/{len(hy)} in section 4, rest in Appendix B' +
           ('' if has_src else ' · WARNING: sources step not run'))
 
 

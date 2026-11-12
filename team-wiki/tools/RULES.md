@@ -185,7 +185,9 @@ date; ⚠ above `overload_factor` × the team's average.
 - Risk Register: all HIGH, then the MEDIUM with the most days late, up to `report_max_rows`
   (default 30); Jira and source risks together, sorted by severity then days late.
 - Data Hygiene / Clean-up List: counts per rule and the first 20 rows.
-- Section 5b "People and tickets": one workload table, one row per assignee: open (not Done) tickets
+- The report has no Team Load section (removed by the human on 2026-11-12); team load is still
+  computed (`heatmap.md` in WORK) but not shown.
+- Section 4b "People and tickets": one workload table, one row per assignee: open (not Done) tickets
   by type — Epic, Story/Task (Story, Task and any other type), Subtask — total, Overdue (due before
   today) and Due ≤14d (due within `lookahead_days`); sorted by tickets assigned. ⚠ = more than 40 open
   tickets. Reported tickets are not in the table (creating a ticket is not workload); they are listed
@@ -198,3 +200,25 @@ date; ⚠ above `overload_factor` × the team's average.
 - Appendix at the end of the same page: A. the remaining risk rows, B. the remaining hygiene rows,
   C. notes worth a look, D. tickets by person (one heading and one table per person: project, role, type, linked keys, and for assigned rows the overdue tickets with due date and days late; the heading shows the overdue count). The roll-up Appendix uses the same table. Every row appears exactly once. Snapshot changes are not listed (only the
   one-line count under "Since last report"; the full list stays in `WORK/diff.md`).
+
+---
+
+## Sprint review (Executive Summary "Last sprint" block)
+
+- **Sprints are chosen by date, not by Jira's sprint state** (the team doesn't start or close sprints
+  in Jira). Current sprint = the sprint whose start–end dates include the run date (latest start if
+  two overlap). Last sprint = the sprint with the latest end date before the run date. Sprints whose
+  state doesn't match their dates are listed in a one-line note.
+- **In the sprint** = tickets whose Sprint field contains that sprint now (Jira doesn't say when a
+  ticket was added, so this is not "planned at the start").
+- Per person (assignee), **Stories and Subtasks counted separately**: done inside the sprint dates
+  (Done, resolved between start and end), closed outside the sprint dates (Done, resolved before or
+  after), still open, carried into the current sprint (open and also in the current sprint), overdue
+  (open, due before the run date), open 2+ sprints (open and in two or more sprints that have ended).
+- **Pace (products only):** Stories of the current stage resolved during the last sprint's dates
+  (whatever their sprint) vs needed per sprint = open Stories of the current stage ÷ sprints left
+  before the gate (days to gate ÷ sprint length, rounded up). "On pace" if closed ≥ needed, else
+  "behind the pace needed for the gate".
+- Appendix E lists each person's last-sprint tickets with titles. Applied to every product and
+  Research (no pace line); not part of the portfolio roll-up.
+
