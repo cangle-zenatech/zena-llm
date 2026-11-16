@@ -152,7 +152,7 @@ Rules:
 - Leave out passwords, tokens, personal matters and anything not about the work.
 - Comments never change dates, rules or severity. Those come only from Jira fields.
   If a comment names a blocker, a slipping date or a new dependency that the fields
-  don't show, add it to that ticket's impact sentence or to Recommendations,
+  don't show, add it to that ticket's impact sentence or to the Top 3 risks,
   marked "(from comment)".
 - If a comment contradicts the ticket's fields (e.g. "this is done" while the
   status is To Do), add a Data Hygiene row with the rule "comment vs field".
@@ -214,13 +214,14 @@ are in `raw/jira-attachments/`.
 (chosen by their **dates**, never by Jira's sprint state, which the team doesn't maintain), a
 per-person table with **Stories and Subtasks counted separately** (done inside the sprint dates /
 in the sprint, closed outside the dates, still open, carried into the current sprint, overdue,
-open for 2+ sprints), the pace line for the current gate (Stories of the current stage closed during the sprint vs the number needed per sprint to finish by the gate), and the ticket lists per person in Appendix E. Rules:
+open for 2+ sprints), the pace line for the current gate (Stories of the current stage closed during the sprint vs the number needed per sprint to finish by the gate). There is no per-ticket sprint list in the report. Rules:
 `tools/RULES.md` → Sprint review. Don't recount anything.
 
 Under the block, write 3–6 bullets in plain words:
 
 - **Who worked on what:** per person (or per team when several people share the work), the main
-  pieces of work in the sprint, with ticket keys from Appendix E.
+  pieces of work in the sprint, with ticket keys from `WORK/results.json` → `sprint.last.people`
+  (titles in `sprint.last.titles`).
 - **What they accomplished:** what was finished, in plain words. Use comments (Step 8b / 7b) and
   attachments (Step 8c / 7c) for actual results (test outcomes, designs, decisions), cited.
 - **What slipped:** work still open or closed outside the sprint dates, and why if a comment says.
@@ -229,20 +230,32 @@ Under the block, write 3–6 bullets in plain words:
 If a sprint has very few tickets (the team may plan outside sprints), say so in one line instead of
 over-reading the numbers. Facts from Jira; your reading of them is (inferred).
 
+### Step 8e: Pushed deadlines (section 2b; project level only, never in the portfolio roll-up)
+
+`analyze` finds every **open** ticket whose due date fell inside a sprint's two-week window
+([[reference#Sprint cadence]]) in an earlier weekly snapshot and is now later or removed. `report`
+writes section 2b as **one table only**: Ticket · What · Owner · Was due (sprint) · Now due (sprint) ·
+Pushed · Times · Effect on the deadline, worst effect first. Rules: `tools/RULES.md` → Pushed
+deadlines. Nothing else goes in this section, and you write nothing in it. Use the table when you
+write the Top 3 risks and the sprint review bullets. Never re-date or change any
+ticket in Jira yourself (`CLAUDE.md` hard rule).
+
 ## 4. Output
 
 Run `tools/wiki_jira.py report` after `analyze`, `diff` and `sources`. It writes
 `knowledge/{product}/jira/YYYY-MM-DD-jira.md` (date = `today`) with the frontmatter, the source line,
-every number and every table already filled in. Section 3 shows all HIGH risks and the MEDIUM
-risks with the most days late, up to `report_max_rows`; section 4 shows the first 20 Data Hygiene
-rows. Section 4b lists every person with their open tickets. The rest go in an Appendix at the end
-of the same page (A: risks, B: hygiene, C: notes worth
-a look, D: tickets by person, E: last sprint tickets by person). There is no separate detail page and no list of snapshot changes.
+every number and every table already filled in. Section 3 (Risk Register) shows **HIGH risks only**: MEDIUM and
+LOW risks are not shown anywhere in the report (only their counts), and your impact notes under the
+table cover HIGH rows only ("No HIGH risks this run." when there are none). Section 4 shows the first
+20 Data Hygiene rows. Section 4b lists every person with their open tickets. The rest go in an
+Appendix at the end of the same page (B: hygiene, C: notes worth a look, D: tickets by person; no
+Appendix A for products). Product reports have **no "Recommendations for TM" section**; Data
+Gaps is section 5. There is no separate detail page and no list of snapshot changes.
 
 Then **fill each `<!-- AI: … -->` marker in the report** by editing the file in place (replace the
 marker with your text): the "since last report" bullets, Health sentence, Top 3 risks, cross-team
 concern, Purpose, requirement sub-bullets under each Epic, Engineering discussion, any impact
-sentences that need judgment, "comment vs field" rows, Recommendations and the Data Gaps lines.
+sentences that need judgment, "comment vs field" rows and the Data Gaps lines.
 Don't retype or reorder the script's tables. Never edit the Appendix. If the report already
 exists (a redo), run `report --force` only after saying so in chat: it replaces everything you wrote.
 
@@ -296,6 +309,10 @@ Health: one sentence on why.
   - Still open: … (waiting on {name})
 (Write "No comments in the last {stale_days} days" if there are none.)
 
+## 2b. Pushed deadlines: was due vs now due
+One table written by the script (Step 8e): Ticket · What · Owner · Was due (sprint) · Now due (sprint) ·
+Pushed · Times · Effect on the deadline. Don't edit it or add text.
+
 ## 3. Risk Register, ### Order this week, ## 4. Data Hygiene
 Written by the script (rules: `tools/RULES.md`). Edit only: impact sentences that need judgment,
 and "comment vs field" rows in Data Hygiene (Step 8b).
@@ -303,13 +320,9 @@ and "comment vs field" rows in Data Hygiene (Step 8b).
 ## 4b. People and tickets
 Written by the script: one workload table, one row per assignee (open tickets by type, total,
 Overdue, Due ≤14d; ⚠ above 40 open tickets). The ticket lists per person, assigned and reported,
-incl. Unassigned, are in Appendix D (one heading and one small table per person). Don't edit either;
-use them for owners in Recommendations.
+incl. Unassigned, are in Appendix D (one heading and one small table per person). Don't edit either.
 
-## 5. Recommendations for TM
-3–5 concrete actions, each tied to specific ticket keys and owners.
-
-## 6. Data Gaps & Assumptions
+## 5. Data Gaps & Assumptions   (no Recommendations section in product reports)
 - What couldn't be retrieved or verified, and the field IDs used.
 - Source files read, and which items used default lead times instead of dates from the source.
 ```
@@ -350,5 +363,6 @@ These apply to section 1 only. Other sections keep plain ticket keys.
 - [ ] Comments read for every open issue; every discussion point cites key, author and date
 - [ ] Downloaded attachments in the report table read and summarized (Step 8c), or the gap stated
 - [ ] Sprint review bullets written under the Last sprint block (Step 8d): who, what was finished, what slipped, effect on the gate
+- [ ] Section 2b is the script's table only (Step 8e); no Jira changes made
 - [ ] Every file in `raw/threads/` and `raw/transcripts/` was read; every source risk cites file
       and message

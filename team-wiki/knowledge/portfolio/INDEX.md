@@ -14,6 +14,9 @@ Beacon from 2026-06-29, Mask and Headset from 2026-09-21, all ending 2027-11-15)
 measured against those planned stage end dates, never against a Jira snapshot, so re-dating tickets
 in Jira cannot hide slip. Changing the schedule is a `reference.md` change and needs the human's OK.
 
+**No pushed-deadline table here.** Section 2b (pushed deadlines: was due vs now due) is only in
+each project report. Don't copy it into the roll-up.
+
 ## 1. Configuration
 
 Update this block only when the human agrees. `tools/wiki_jira.py rollup` reads it.

@@ -140,6 +140,17 @@ Each window is `start → end`. A stage's end date is the next stage's start dat
 Headset uses the same schedule as Mask; Beacon uses the same schedule as Pro2. ZenaQuiet-Research has
 no stage schedule. All four products are in PVT/MP together from Sep to Nov 2027.
 
+Product focus (from the technical manager's roadmap, 2026-11-16): **Pro2 and Beacon** serve communal
+and professional settings; **Mask and Headset** serve eSports and physical activity.
+
+## Sprint cadence
+
+The technical manager plans work in **two-week sprints** in Jira (all projects). Jira's own sprint
+states (active, future, closed) are not maintained, and a sprint's start date can be reset to the day
+someone clicked "Start sprint". The script therefore uses each sprint's **two-week window**: it ends
+on the sprint's end date and starts on the previous sprint's end date, or 14 days earlier if that is
+later (rules: `tools/RULES.md` → Sprint review).
+
 ---
 
 ## Purchasing lead times

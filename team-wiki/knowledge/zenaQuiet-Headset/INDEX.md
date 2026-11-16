@@ -18,7 +18,7 @@ today: "" # ISO date, e.g. 2026-10-07. If blank, use the system date.
 lookahead_days: 14 # "due soon" window
 stale_days: 14 # no update for this many days = stale
 overload_factor: 1.5 # team load above this × its average = overloaded
-report_max_rows: 30 # risk rows shown in the report; all HIGH are always shown
+report_max_rows: 30 # not used for products: the Risk Register shows HIGH only
 ```
 
 Stage windows: `reference.md` → `## Stage schedule`, ZenaQuiet-Headset column.

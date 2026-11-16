@@ -1,6 +1,6 @@
 ---
 type: glossary
-updated: 2026-11-09
+updated: 2026-11-13
 ---
 
 # Glossary
@@ -19,6 +19,14 @@ Active noise cancelling. Microphones pick up outside noise and the speaker plays
 
 A surface treatment for aluminium that adds a hard, coloured protective layer. First seen: [[ZenaQuiet-Beacon/jira/2026-11-09-jira|Beacon report 2026-11-09]].
 
+## Audio codec
+
+The chip that converts sound between analogue (microphones, speakers) and digital. First seen: [[ZenaQuiet-Headset/jira/2026-11-12-jira|Headset report 2026-11-12]].
+
+## Beamforming
+
+Combining several microphones so they pick up sound mainly from one direction. First seen: [[ZenaQuiet-Research/jira/2026-11-12-jira|Research report 2026-11-12]].
+
 ## BOM
 
 Bill of materials. The full list of parts in a product, usually with the cost of each; an "engineering BOM" is the early version kept by the design team. First seen: [[ZenaQuiet-Pro2/jira/2026-10-26-jira|Pro2 report 2026-10-26]].
@@ -27,6 +35,14 @@ Bill of materials. The full list of parts in a product, usually with the cost of
 
 Board support package. The low-level software that lets an operating system run on one specific circuit board. First seen: [[ZenaQuiet-Headset/jira/2026-10-26-jira|Headset report 2026-10-26]].
 
+## Crush ribs
+
+Small ribs on a plastic part that hold another part in place by squeezing it. First seen: [[ZenaQuiet-Pro2/jira/2026-11-12-jira|Pro2 report 2026-11-12]].
+
+## Crystal (oscillator)
+
+The small part that sets the timing ("clock") for a chip; a board without it can't run some functions. First seen: [[ZenaQuiet-Headset/jira/2026-11-13-jira|Headset report 2026-11-13]].
+
 ## dB
 
 Decibel. A unit for how loud a sound is. Every 10 dB lower sounds about half as loud. First seen: [[2026-06-18-PRO2-2|PRO2-2]].
@@ -34,6 +50,10 @@ Decibel. A unit for how loud a sound is. Every 10 dB lower sounds about half as 
 ## dB(A)
 
 Decibels "A-weighted": a sound level adjusted to how loud it seems to human ears. First seen: [[ZenaQuiet-Pro2/jira/2026-11-09-jira|Pro2 report 2026-11-09]].
+
+## dBA
+
+Decibels "A-weighted", the same as dB(A): a sound level adjusted to how loud it seems to human ears. First seen: [[ZenaQuiet-Research/jira/2026-11-12-jira|Research report 2026-11-12]].
 
 ## DFMEA
 
@@ -71,6 +91,10 @@ The first and second engineering-prototype builds within the EVT stage. First se
 
 The person at the other end of the call (here, the customer). First seen: [[2026-06-18-PRO2-2|PRO2-2]].
 
+## FxLMS
+
+A self-adjusting noise-cancelling method that keeps tuning itself while it runs. First seen: [[ZenaQuiet-Headset/jira/2026-11-12-jira|Headset report 2026-11-12]].
+
 ## Injection moulding
 
 Making plastic parts by pressing melted plastic into a metal mould; cheap per part, but the mould is costly. First seen: [[ZenaQuiet-Beacon/jira/2026-11-09-jira|Beacon report 2026-11-09]].
@@ -95,9 +119,17 @@ The small area where the agent can hear the directional speaker. Outside it, spe
 
 A soft background sound, like a gentle rush of air, played so that nearby people can't make out speech. First seen: [[2026-06-18-PRO2-2|PRO2-2]].
 
+## Mass law
+
+The rule that a barrier blocks about 6 dB more sound each time its weight or the sound's frequency doubles. First seen: [[ZenaQuiet-Mask/jira/2026-11-12-jira|Mask report 2026-11-12]].
+
 ## MCUboot
 
 A small secure start-up program that checks a firmware update is genuine before running it, and can swap back to the old version if the update fails. First seen: [[ZenaQuiet-Beacon/jira/2026-10-26-jira|Beacon report 2026-10-26]].
+
+## MLV
+
+Mass-loaded vinyl: a heavy, flexible sheet used to block sound. First seen: [[ZenaQuiet-Mask/jira/2026-11-12-jira|Mask report 2026-11-12]].
 
 ## NPU
 
@@ -135,6 +167,10 @@ Storing an AI model's numbers with fewer digits (for example 8 or 16 bits) so it
 
 Successive versions of a prototype within one stage. Revision A is the first EVT-1 build of the Pro; Revision B fixes what Revision A showed. First seen: [[ZenaQuiet-Pro2/jira/2026-10-26-jira|Pro2 report 2026-10-26]].
 
+## RFQ
+
+Request for quotation: asking suppliers for a price and delivery time. First seen: [[ZenaQuiet-Mask/jira/2026-11-12-jira|Mask report 2026-11-12]].
+
 ## RPN
 
 Risk priority number. In a DFMEA, severity × likelihood × detection score; the higher the number, the more urgent the risk. First seen: [[ZenaQuiet-Pro2/jira/2026-11-03-jira|Pro2 report 2026-11-03]].
@@ -151,9 +187,21 @@ A scale for how hard a soft rubber or silicone part is; higher numbers are harde
 
 Signal-to-noise ratio. How much louder the wanted sound (for example a voice) is than the background noise, in dB; higher is better. First seen: [[ZenaQuiet-Headset/jira/2026-11-02-jira|Headset report 2026-11-02]].
 
+## SoM
+
+System-on-module: a small plug-in computer board that carries the main chip and memory. First seen: [[ZenaQuiet-Headset/jira/2026-11-12-jira|Headset report 2026-11-12]].
+
+## Sound masking
+
+Playing a soft background sound so nearby voices can't be understood; planned for the Beacon instead of the Pro since November 2026. First seen: [[ZenaQuiet-Pro2/jira/2026-11-12-jira|Pro2 report 2026-11-12]].
+
 ## Sprint
 
 A fixed work period in Jira (here two weeks). Tickets planned for a sprint should be finished by its end. First seen: [[ZenaQuiet-Headset/jira/2026-10-26-jira|Headset report 2026-10-26]].
+
+## STI
+
+Speech transmission index: a 0–1 score for how clearly speech can be understood. First seen: [[ZenaQuiet-Headset/jira/2026-11-12-jira|Headset report 2026-11-12]].
 
 ## TPS
 
@@ -162,3 +210,7 @@ Not spelled out in the source. This likely means a technical product specificati
 ## TSE
 
 Target Speaker Extraction. Software that picks out one person's voice and removes background noise and other voices. The team uses an open-source model called Mask2Flow-TSE. First seen: [[2026-06-18-PRO2-2|PRO2-2]].
+
+## Yocto
+
+A toolkit for building a custom Linux system for a specific circuit board. First seen: [[ZenaQuiet-Headset/jira/2026-11-12-jira|Headset report 2026-11-12]].

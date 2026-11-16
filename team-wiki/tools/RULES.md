@@ -182,8 +182,10 @@ date; ⚠ above `overload_factor` × the team's average.
 
 ## What `report` puts in the page
 
-- Risk Register: all HIGH, then the MEDIUM with the most days late, up to `report_max_rows`
-  (default 30); Jira and source risks together, sorted by severity then days late.
+- Risk Register, **products: HIGH only** (Jira and source risks); MEDIUM and LOW are counted in
+  the line above the table but not shown anywhere in the report (no Appendix A).
+  Research: all HIGH, then the MEDIUM with the most days late, up to `report_max_rows` (default 30),
+  the rest in Appendix A.
 - Data Hygiene / Clean-up List: counts per rule and the first 20 rows.
 - The report has no Team Load section (removed by the human on 2026-11-12); team load is still
   computed (`heatmap.md` in WORK) but not shown.
@@ -206,9 +208,18 @@ date; ⚠ above `overload_factor` × the team's average.
 ## Sprint review (Executive Summary "Last sprint" block)
 
 - **Sprints are chosen by date, not by Jira's sprint state** (the team doesn't start or close sprints
-  in Jira). Current sprint = the sprint whose start–end dates include the run date (latest start if
-  two overlap). Last sprint = the sprint with the latest end date before the run date. Sprints whose
-  state doesn't match their dates are listed in a one-line note.
+  in Jira). Current sprint = the sprint whose window holds the run date (start ≤ run date < end;
+  latest start if two overlap; a sprint ending on the run date counts only if none starts that
+  day). Last sprint = the other sprint with the latest end date on or before the run date. Sprints
+  whose state doesn't match their dates are listed in a one-line note.
+- **Sprints and their tickets across snapshots** (`sprint_registry`): every sprint seen in this or
+  an earlier weekly snapshot counts (a closed sprint can vanish from every ticket when Jira moves
+  them). A sprint's tickets = those carrying it now, plus those that carried it in the latest
+  earlier snapshot that lists it.
+- **Two-week window** (`sprint_windows`, cadence 14 days, [[reference#Sprint cadence]]): a sprint
+  shorter than 11 days in Jira had its start date reset by "Start sprint", so its window starts at
+  the previous sprint's end date, or 14 days before its own end if that is later. Jira's own start
+  date is kept as `jira_start` and shown in section 2b. All sprint counts and the pace use the window.
 - **In the sprint** = tickets whose Sprint field contains that sprint now (Jira doesn't say when a
   ticket was added, so this is not "planned at the start").
 - Per person (assignee), **Stories and Subtasks counted separately**: done inside the sprint dates
@@ -219,6 +230,31 @@ date; ⚠ above `overload_factor` × the team's average.
   (whatever their sprint) vs needed per sprint = open Stories of the current stage ÷ sprints left
   before the gate (days to gate ÷ sprint length, rounded up). "On pace" if closed ≥ needed, else
   "behind the pace needed for the gate".
-- Appendix E lists each person's last-sprint tickets with titles. Applied to every product and
-  Research (no pace line); not part of the portfolio roll-up.
+- Applied to every product and Research (no pace line); not part of the portfolio roll-up. There is
+  no per-ticket sprint appendix (removed 2026-11-16); the ticket keys per person are in
+  `WORK/results.json` → `sprint.last.people`, with titles in `sprint.last.titles`.
+
+## Pushed deadlines (section 2b; `sprint_check` in `analyze`, written by `report`)
+
+Project level only (products and Research); never in the portfolio roll-up. Results are in
+`WORK/results.json` → `sprint_check.pushed`. Section 2b is this one table and nothing else.
+
+- **Pushed deadline:** in two consecutive weekly snapshots (`data/<project>/*.json` up to the run
+  date), the due date got later or was removed, **and** the old due date fell inside some sprint's
+  window (sprints from `sprint_registry`). Open tickets only; finished ones are only counted.
+- **Columns:** Ticket ("(new)" when the latest push was seen in this run) · What · Owner · Was due
+  (the first in-sprint due date that was pushed, and its sprint) · Now due (current due date and the
+  sprint whose window holds it, or "no sprint planned yet") · Pushed (days) · Times (number of
+  pushes) · Effect on the deadline.
+- **Effect** (first that applies; the "gate" is the end of the ticket's stage in
+  [[reference#Stage schedule (per product)]]; Epics and items with no stage use the final deadline,
+  the end of MP; Research has no gate and uses the parent's due date):
+  1. due date removed → "no longer tracked against a deadline";
+  2. after the gate → "past the {stage} stage end by N days: moves the gate unless cut or re-planned";
+  3. after the parent's due date → "past its parent by N days";
+  4. on the gate day itself → "no margin left";
+  5. before the run date → "missed again: N days overdue after being pushed";
+  6. otherwise → "absorbed: N working days left before the gate" (working days skip weekends and
+     [[reference#Holidays]]).
+- Rows are sorted by effect (worst first), then by fewest working days left. All rows are shown.
 

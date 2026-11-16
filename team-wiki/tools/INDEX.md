@@ -50,13 +50,16 @@ Paths below are bash paths; `WORK` is a temporary folder (e.g. `outputs/work-<ke
 5. `python3 -I tools/wiki_jira.py sources --project <Folder> --work WORK` (see below).
 6. `python3 -I tools/wiki_jira.py report --project <Folder> --work WORK [--force]`
    → writes `knowledge/<Folder>/jira/<date>-jira.md` with frontmatter, source line, every number
-   and table (register: all HIGH + the MEDIUM with most days late, up to `report_max_rows`, default
-   30; hygiene: first 20 rows), then an Appendix with the rows not shown (A: risks, B: hygiene,
-   C: notes worth a look, D: tickets by person, E: last sprint tickets by person), a "Last sprint"
+   and table (register: products HIGH only; Research all HIGH + the MEDIUM with most days late, up to
+   `report_max_rows`, default 30; hygiene: first 20 rows), then an Appendix with the rows not shown
+   (A: risks, Research only; B: hygiene,
+   C: notes worth a look, D: tickets by person), section 2b "Pushed deadlines" (one table:
+   was due vs now due and the effect; project level only), a "Last sprint"
    block in the Executive Summary (per-person Stories/Subtasks, pace for the gate, current sprint), and section 4b "People and tickets" (workload table:
    open tickets per assignee by type, Overdue, Due ≤14d). No separate detail page, no list of snapshot changes. It refuses to overwrite a report without `--force`.
 7. Fill every `<!-- AI: … -->` marker in the report by editing it in place: Executive Summary,
-   Product Detail (Step 8 / 8b), impact sentences that need judgment, Recommendations, Data Gaps.
+   Product Detail (Step 8 / 8b), impact sentences that need judgment, Data Gaps (and Recommendations
+   for Research only; product reports have no Recommendations section).
    Don't retype the tables; never edit the Appendix.
 
 ### Limits

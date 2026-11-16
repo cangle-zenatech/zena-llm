@@ -31,7 +31,7 @@ Commands (run with python3 -I):
       sources_summary.txt and adds source_risks + health_with_sources to WORK/results.json
   report --project ZenaQuiet-Pro2 --work WORK [--date D] [--force]
       After analyze, diff and sources: writes knowledge/<project>/jira/<D>-jira.md with every number and
-      table filled in (register: all HIGH + top MEDIUM up to report_max_rows, default 30; hygiene: first
+      table filled in (register: products HIGH only; Research all HIGH + top MEDIUM up to report_max_rows; hygiene: first
       20 rows), with the remaining rows in an appendix at the end. Refuses to overwrite without --force.
   rollup --work WORK [--date D]
       Portfolio roll-up across every active product with a stage schedule (settings: yaml block in
@@ -264,20 +264,170 @@ def load_snapshot(project, day):
 
 
 # ----------------------------------------------------------------- sprint review
-def sprint_review(I, today, stage=None, stage_open=None, gate=None, stage_of_key=None):
-    """Last and current sprint chosen by DATES (Jira sprint states are not maintained), per-person
-    Stories and Subtasks committed / done in the sprint window / done outside it / still open, carried
-    into the current sprint, overdue; plus the stage pace needed to reach the gate."""
+CADENCE = 14  # two-week sprints (reference.md ## Sprint cadence)
+
+
+def sprint_windows(I, cadence=CADENCE, extra=None):
+    """{sprint id: sprint} with 'start' replaced by the two-week window start. Jira resets a sprint's
+    start date to the day it is started, so a sprint shorter than cadence-3 days starts at the previous
+    sprint's end, or `cadence` days before its own end if that is later. 'jira_start' keeps Jira's date.
+    `extra`: sprints seen in older snapshots (a closed sprint can vanish from every ticket)."""
     sp = {}
+    for s in extra or []:
+        if s.get('id') is not None and s.get('start') and s.get('end'):
+            sp[s['id']] = dict(s, jira_start=s['start'])
     for o in I:
         for s in o.get('sprint_info') or []:
             if s.get('id') is not None and s.get('start') and s.get('end'):
-                sp[s['id']] = s
+                sp[s['id']] = dict(s, jira_start=s['start'])
+    prev_end = None
+    for s in sorted(sp.values(), key=lambda s: (s['end'], s['start'])):
+        a, b = D(s['start']), D(s['end'])
+        if (b - a).days < cadence - 3:
+            w = b - timedelta(days=cadence)
+            if prev_end and prev_end > w and prev_end < b:
+                w = prev_end
+            s['start'] = str(w)
+        prev_end = b
+    return sp
+
+
+def sprint_registry(I, folder=None, today=None):
+    """(windows, members): every sprint seen in this snapshot or an earlier weekly snapshot of the
+    project, and the tickets in each sprint = tickets carrying it now, plus those that carried it in
+    the latest earlier snapshot that lists it (Jira moves tickets when a sprint is closed)."""
+    mem = defaultdict(set)
+    for o in I:
+        for s in o.get('sprint_info') or []:
+            if s.get('id') is not None:
+                mem[s['id']].add(o['key'])
+    extra, seen_old = [], {}
+    if folder:
+        snaps = sorted(os.path.basename(f)[:10] for f in glob.glob(os.path.join(DATA, folder, '*.json')))
+        for d in [d for d in snaps if not today or d < str(today)]:
+            for o in load_snapshot(folder, d):
+                for s in o.get('sprint_info') or []:
+                    if s.get('id') is None: continue
+                    extra.append(s)
+                    seen_old.setdefault(s['id'], {}).setdefault(d, set()).add(o['key'])
+    for sid, by_d in seen_old.items():
+        mem[sid] |= by_d[max(by_d)]
+    return sprint_windows(I, extra=extra), mem
+
+
+def workdays(a, b, hol):
+    """Working days after a up to and including b (negative if b < a)."""
+    if a is None or b is None:
+        return None
+    sign, (x, y) = (1, (a, b)) if b >= a else (-1, (b, a))
+    n, d = 0, x
+    while d < y:
+        d += timedelta(days=1)
+        if d.weekday() < 5 and d not in hol:
+            n += 1
+    return sign * n
+
+
+def sprint_check(folder, I, today, sr, stages, hol):
+    """Pushed deadlines (section 2b, Step 8e / 7e): every open ticket whose due date fell inside a
+    sprint's window in an earlier weekly snapshot and is now later (or removed): was due vs now due,
+    and the effect on the deadline (parent, stage gate, final deadline)."""
+    if not sr or not sr.get('available'):
+        return dict(available=False, reason=(sr or {}).get('reason', 'no sprint data'))
+    win, mem = sprint_registry(I, folder, today)
+    kk = lambda k: int(k.split('-')[1])
+    by = {o['key']: o for o in I}
+    kind = lambda o: {'Subtask': 'Subtask', 'Story/Task': 'Story'}.get(ptype(o['type']), 'Epic')
+    out = dict(available=True, pushed=[], pushed_done=0)
+    snaps = sorted(os.path.basename(f)[:10] for f in glob.glob(os.path.join(DATA, folder, '*.json')))
+    snaps = [d for d in snaps if d <= str(today)]
+    hist = defaultdict(list)
+    for d in snaps:
+        for o in load_snapshot(folder, d):
+            hist[o['key']].append((d, o.get('due')))
+    W = sorted(win.values(), key=lambda s: s['start'])
+    def sprint_of(d):
+        if not d: return None
+        x = D(d)
+        hit = [s for s in W if D(s['start']) <= x <= D(s['end'])]
+        return hit[-1]['name'] if hit else None
+    prev_snap = snaps[-2] if len(snaps) >= 2 else None
+    for k, h in hist.items():
+        if k not in by: continue
+        pushes = [(h[i - 1][0], h[i][0], h[i - 1][1], h[i][1]) for i in range(1, len(h))
+                  if h[i - 1][1] and h[i - 1][1] != h[i][1] and (not h[i][1] or D(h[i][1]) > D(h[i - 1][1])) and sprint_of(h[i - 1][1])]
+        if not pushes: continue
+        o = by[k]
+        if o['scat'] == 'done':
+            out['pushed_done'] += 1; continue
+        first = pushes[0]
+        now = o.get('due')
+        st = o.get('stage')
+        gate = stages[st][1] if st in stages else None
+        if gate is None and stages:  # Epics and undated-stage items: compare with the final deadline (end of MP)
+            st, gate = 'final deadline (MP end)', max(b for a, b in stages.values())
+        final = bool(st) and st.startswith('final')
+        par = by.get(o.get('parent') or '')
+        pdue = D(par['due']) if par and par.get('due') else None
+        n = D(now) if now else None
+        if n is None:
+            eff, rank = 'due date removed: no longer tracked against a deadline', 1
+        elif gate and n > gate:
+            eff, rank = (f'past the {st} ({gate}) by {(n - gate).days} days' if final else
+                         f'past the {st} stage end ({gate}) by {(n - gate).days} days: moves the {st} gate unless the work is cut or re-planned'), 0
+        elif pdue and n > pdue:
+            eff, rank = f"past its parent {par['key']} (due {pdue}) by {(n - pdue).days} days: the parent slips unless re-planned", 1
+        elif gate and n == gate:
+            eff, rank = (f'due on the {st} itself: no margin left' if final else f'due on the {st} gate day itself: no margin left'), 2
+        elif n < today:
+            eff, rank = f'missed again: {(today - n).days} days overdue after being pushed', 1
+        else:
+            m = workdays(n, gate, hol) if gate else (workdays(n, pdue, hol) if pdue else None)
+            eff = ((f'absorbed: {m} working days left before the {st}' if final else f'absorbed: {m} working days left before the {st} gate') if gate else
+                   f'absorbed: {m} working days before its parent is due' if pdue else 'absorbed: no parent or stage date to compare')
+            rank = 3
+        out['pushed'].append(dict(key=k, type=kind(o), title=(o.get('summary') or '').strip(), owner=o['assignee'] or UNASSIGNED,
+                                  was=first[2], was_sprint=sprint_of(first[2]), now=now, now_sprint=sprint_of(now) if now else None,
+                                  days=(n - D(first[2])).days if n else None, pushes=len(pushes),
+                                  new_this_run=bool(prev_snap and pushes[-1][1] == snaps[-1]), effect=eff, rank=rank,
+                                  margin=(workdays(n, gate, hol) if n and gate else None)))
+    out['pushed'].sort(key=lambda r: (r['rank'], r['margin'] if r['margin'] is not None else 10**6, kk(r['key'])))
+    out['history'] = f"{len(snaps)} weekly snapshots, {snaps[0] if snaps else '—'} → {snaps[-1] if snaps else '—'}"
+    return out
+
+
+def sprint_check_md(sc, research=False):
+    """Section 2b: one table, was due vs now due, for every open ticket whose in-sprint due date was pushed."""
+    url = lambda k: f'[{k}]({BROWSE}{k})'
+    cut = lambda s, n=50: (s or '').replace('|', '/')[:n]
+    if not sc or not sc.get('available'):
+        return [f"Not available: {(sc or {}).get('reason', 'no sprint data')}.", '']
+    P = sc.get('pushed', [])
+    L = [f"Open tickets whose due date fell inside a sprint and was pushed later, worst effect first. From the weekly "
+         f"snapshots ({sc.get('history')}); (new) = pushed since the last run. Written by the script; do not edit.", '']
+    if not P:
+        return L + ['No open ticket had a due date inside a sprint pushed later.', '']
+    L += ['| Ticket | What | Owner | Was due (sprint) | Now due (sprint) | Pushed | Times | Effect on the deadline |', '| --- ' * 8 + '|']
+    for r in P:
+        L.append(f"| {url(r['key'])}{' (new)' if r['new_this_run'] else ''} | {cut(r['title'])} | {r['owner']} | {r['was']} ({r['was_sprint'] or '—'}) | "
+                 f"{r['now'] or 'no date'} ({r['now_sprint'] or ('no sprint planned yet' if r['now'] else '—')}) | "
+                 f"{('+' + str(r['days']) + 'd') if r['days'] is not None else '—'} | {r['pushes']} | {r['effect']} |")
+    return L + ['']
+
+
+def sprint_review(I, today, stage=None, stage_open=None, gate=None, stage_of_key=None, folder=None):
+    """Last and current sprint chosen by DATES (Jira sprint states are not maintained), per-person
+    Stories and Subtasks committed / done in the sprint window / done outside it / still open, carried
+    into the current sprint, overdue; plus the stage pace needed to reach the gate."""
+    sp, mem = sprint_registry(I, folder, today)
+    in_sp = lambda o, sid: o['key'] in mem.get(sid, ())
     if not sp:
         return dict(available=False, reason='no sprint dates in the snapshot (older snapshot or no sprints in Jira)')
-    cur_l = [s for s in sp.values() if D(s['start']) <= today <= D(s['end'])]
+    # current = window holds the run date (a sprint ending today counts only if none starts today);
+    # last = latest end on or before the run date
+    cur_l = [s for s in sp.values() if D(s['start']) <= today < D(s['end'])] or [s for s in sp.values() if D(s['end']) == today]
     cur = max(cur_l, key=lambda s: s['start']) if cur_l else None
-    past = [s for s in sp.values() if D(s['end']) < today and (not cur or s['id'] != cur['id'])]
+    past = [s for s in sp.values() if D(s['end']) <= today and (not cur or s['id'] != cur['id'])]
     last = max(past, key=lambda s: (s['end'], s['start'])) if past else None
     stale = sorted(s['name'] for s in sp.values() if (D(s['end']) < today and s['state'] != 'closed') or
                    (D(s['start']) <= today <= D(s['end']) and s['state'] != 'active') or
@@ -287,15 +437,16 @@ def sprint_review(I, today, stage=None, stage_open=None, gate=None, stage_of_key
     def kind(o):
         t = ptype(o['type']); return 'Subtask' if t == 'Subtask' else ('Story' if t == 'Story/Task' else 'Epic')
     if cur:
-        items = [o for o in I if any(s.get('id') == cur['id'] for s in o.get('sprint_info') or [])]
+        items = [o for o in I if in_sp(o, cur['id'])]
         per = defaultdict(Counter)
         for o in items:
             per[o['assignee'] or UNASSIGNED][kind(o)] += 1
-        out['current'] = dict(name=cur['name'], start=cur['start'], end=cur['end'], goal=cur.get('goal') or '',
+        out['current'] = dict(id=cur['id'], state=cur.get('state'), jira_start=cur.get('jira_start'),
+                              name=cur['name'], start=cur['start'], end=cur['end'], goal=cur.get('goal') or '',
                               tickets=len(items), people={n: dict(c) for n, c in per.items()})
     if last:
         s0, s1 = D(last['start']), D(last['end'])
-        items = sorted([o for o in I if any(s.get('id') == last['id'] for s in o.get('sprint_info') or [])], key=lambda o: kk(o['key']))
+        items = sorted([o for o in I if in_sp(o, last['id'])], key=lambda o: kk(o['key']))
         P = defaultdict(lambda: defaultdict(lambda: defaultdict(list)))
         for o in items:
             n, k = o['assignee'] or UNASSIGNED, kind(o)
@@ -306,13 +457,14 @@ def sprint_review(I, today, stage=None, stage_open=None, gate=None, stage_of_key
             elif done: P[n][k]['done_outside'].append(o['key'])
             else:
                 P[n][k]['open'].append(o['key'])
-                if cur and any(s.get('id') == cur['id'] for s in o.get('sprint_info') or []): P[n][k]['carried'].append(o['key'])
+                if cur and in_sp(o, cur['id']): P[n][k]['carried'].append(o['key'])
                 if o.get('due') and D(o['due']) < today: P[n][k]['overdue'].append(o['key'])
                 past_sp = [s for s in o.get('sprint_info') or [] if s.get('end') and D(s['end']) < today]
                 if len(past_sp) >= 2: P[n][k]['carried_2plus'].append(o['key'])
         titles = {o['key']: o['summary'].strip() for o in items}
         tot = lambda key: sum(len(P[n][k][key]) for n in P for k in P[n])
-        out['last'] = dict(name=last['name'], start=last['start'], end=last['end'], goal=last.get('goal') or '',
+        out['last'] = dict(id=last['id'], state=last.get('state'), jira_start=last.get('jira_start'),
+                           name=last['name'], start=last['start'], end=last['end'], goal=last.get('goal') or '',
                            committed=tot('committed'), done=tot('done'), done_outside=tot('done_outside'), open=tot('open'),
                            carried=tot('carried'), overdue=tot('overdue'),
                            people={n: {k: {m: v for m, v in d.items()} for k, d in P[n].items()} for n in P}, titles=titles)
@@ -356,7 +508,6 @@ def sprint_block(sr, research=False):
         if pc and not research:
             L += [f"**Pace for the {pc['stage']} gate:** {pc['closed_in_sprint']} {pc['stage']} Stories closed during this sprint; {pc['open_now']} still open with "
                   f"{pc['sprints_left']} sprints of {pc['sprint_days']} days left, so about {pc['needed_per_sprint']} must close per sprint. Verdict: **{pc['verdict']}**.", '']
-        L += ['Ticket lists per person for this sprint: Appendix E.', '']
     cu = sr.get('current')
     if cu:
         ppl = ', '.join(f"{n} {sum(c.values())}" for n, c in sorted(cu['people'].items(), key=lambda x: -sum(x[1].values())))
@@ -367,23 +518,6 @@ def sprint_block(sr, research=False):
     if sr.get('state_mismatch'):
         L += [f"Note: Jira sprint states don't match the sprint dates ({len(sr['state_mismatch'])} sprints, e.g. {', '.join(sr['state_mismatch'][:3])}); "
               'last and current sprint are chosen by date.', '']
-    return L
-
-
-def sprint_appendix(sr):
-    la = (sr or {}).get('last')
-    if not la:
-        return ['None.', '']
-    url = lambda k: f'[{k}]({BROWSE}{k})'
-    L = []
-    for n in sorted(la['people'], key=lambda n: (n == UNASSIGNED, n.lower())):
-        L += [f'#### {n}', '', '| Type | Done in sprint | Closed outside sprint dates | Still open |', '| --- ' * 4 + '|']
-        for k in ('Story', 'Subtask', 'Epic'):
-            d = la['people'][n].get(k)
-            if not d: continue
-            cell = lambda m: '; '.join(f"{url(x)} {la['titles'].get(x, '')[:60].replace('|', '/')}" for x in d.get(m, [])) or '—'
-            L.append(f'| {k} | {cell("done")} | {cell("done_outside")} | {cell("open")} |')
-        L.append('')
     return L
 
 
@@ -865,8 +999,9 @@ def cmd_analyze(a):
                risks={k: dict(sev=sev[k], rules=R[k], info=info[k]) for k in rows},
                register_header=L[0], register_list=reg_rows, hygiene_header=H[0], hygiene_list=hyg_rows)
     st_open = sum(1 for o in stories if o['stage'] == cur and o['state'] != 'Done') if cur else None
-    res['sprint'] = sprint_review(I, TODAY, stage=cur, stage_open=st_open, gate=gate,
+    res['sprint'] = sprint_review(I, TODAY, stage=cur, stage_open=st_open, gate=gate, folder=folder,
                                   stage_of_key={o['key']: dict(stage=o['stage'], type=o['type'], resolved=o.get('resolved')) for o in I})
+    res['sprint_check'] = sprint_check(folder, I, TODAY, res['sprint'], STG, load_purchasing()[1])
     if RESEARCH:
         res['research'] = dict(link_coverage=M['link_coverage'], linked_source=linked_note,
                                gates={pk: [g[0], str(g[1]) if g[1] else None] for pk, g in PGATE.items()},
@@ -1311,7 +1446,8 @@ def cmd_report(a):
     rows.sort(key=lambda r: (SO[r['sev']], -r['days']))
     highs = [r for r in rows if r['sev'] == 'HIGH']
     meds = [r for r in rows if r['sev'] == 'MEDIUM']
-    shown = highs + meds[:max(0, MAXR - len(highs))]
+    # products: section 3 shows HIGH only (MEDIUM and LOW are not in the report); Research: HIGH + top MEDIUM
+    shown = highs if not research else highs + meds[:max(0, MAXR - len(highs))]
     hidden = Counter(r['sev'] for r in rows[len(shown):] if r not in shown)
     reg_head = res['register_header'] + '\n' + '| --- ' * 10 + '|'
     tbl = lambda rs: '\n'.join('| ' + ' | '.join(r['cells']) + ' |' for r in rs)
@@ -1327,7 +1463,7 @@ def cmd_report(a):
                 ('Product stage windows from [[reference#Stage schedule (per product)]]. ' if research else
                  'Stage windows and lead times from [[reference#Stage schedule (per product)]] and [[reference#Purchasing lead times]]. ') +
                 f"Previous report: " + (f'[[{folder}/jira/{prev[-1]}-jira|{prev[-1]}]]' if prev else 'none (first report)') +
-                ". Rows not shown in sections 3 and 5 are in the Appendix at the end.")
+                ". Rows not shown in sections 3 and 4 are in the Appendix at the end" + ("." if research else "; MEDIUM and LOW risks are not shown."))
     gaps = [f"- Snapshot `data/{folder}/{a.date}.json`: {len(I)} issues; field IDs: start date `{snapf.get('start_field')}`, sprint `{snapf.get('sprint_field')}`.",
             '- ' + AI('JQL total vs retrieved count (Step 2), and comments that could not all be retrieved'),
             '- Sources: ' + (rd('sources_summary.txt') or 'the sources step was not run, so there are no risks from threads or transcripts.')]
@@ -1398,7 +1534,8 @@ def cmd_report(a):
             AI('what the downloaded attachments show, in plain words, cited (key, file name, upload date) (Step 8c); "No new attachments" if none'), '',
             '**Metrics**', ''] + metrics + ['', rd('epics.md') or '', '', rd('stages.md') or '', '',
             f"**Gate readiness:** {cur}: {g[0]}/{g[1]} Stories done ({g[2]} In Progress), gate {gate} in {res['days_to_gate']} days. "
-            f"{nxt or 'next stage'}: {ns[0]}/{ns[1]} Stories started.", '']
+            f"{nxt or 'next stage'}: {ns[0]}/{ns[1]} Stories started.", '',
+            '## 2b. Pushed deadlines: was due vs now due', ''] + sprint_check_md(res.get('sprint_check'))
         hyg_title = '## 4. Data Hygiene'
     else:
         op = [o for o in I if o['scat'] != 'done']
@@ -1415,15 +1552,18 @@ def cmd_report(a):
             '**Research by product:** ' + AI('per product, the Epics supporting it, one line each (Step 7)'), '',
             '**Engineering discussion (from Jira comments):**', '', AI('per Epic: Being discussed / Thinking so far / Decided / Still open, each cited (key, author, date) (Step 7b)'), '',
             f'**Attachments on open tickets (last {LOOK} days)**', ''] + att_tbl + ['',
-            AI('what the downloaded attachments show, in plain words, cited (key, file name, upload date) (Step 7c); "No new attachments" if none'), '']
+            AI('what the downloaded attachments show, in plain words, cited (key, file name, upload date) (Step 7c); "No new attachments" if none'), '',
+            '## 2b. Pushed deadlines: was due vs now due', ''] + sprint_check_md(res.get('sprint_check'), research=True)
         hyg_title = '## 4. Clean-up List'
 
     more = ' · '.join(f'{v} {k}' for k, v in sorted(hidden.items(), key=lambda x: SO[x[0]]))
     body += ['## 3. Risk Register', '',
-             f"{len(highs)} HIGH, {len(meds)} MEDIUM, {sum(r['sev'] == 'LOW' for r in rows)} LOW (Jira and source risks). "
-             f"Shown: all HIGH and the {len(shown) - len(highs)} MEDIUM with the most days late" + (f"; the other {more} are in Appendix A." if more else '.'), '',
+             f"{len(highs)} HIGH, {len(meds)} MEDIUM, {sum(r['sev'] == 'LOW' for r in rows)} LOW (Jira and source risks). " +
+             (f"Shown: HIGH only. MEDIUM and LOW risks are not shown in this report." if not research else
+              f"Shown: all HIGH and the {len(shown) - len(highs)} MEDIUM with the most days late" + (f"; the other {more} are in Appendix A." if more else '.')), '',
              reg_head, tbl(shown) if shown else '| — | none | | | | | | | | |', '',
-             AI('check the impact sentences of the rows above; rewrite any that need judgment (see "What is still yours" in the procedure)'), '',
+             AI('check the impact sentences of the rows above; rewrite any that need judgment (see "What is still yours" in the procedure)' +
+                ('' if research else '. HIGH rows only; write "No HIGH risks this run." if the table is empty. Do not discuss MEDIUM or LOW risks here')), '',
              '### Risks from team threads (plain)', '', rd('sources_plain.md') or 'Sources step not run.', '',
              '### Order this week', '', rd('order_this_week.md') or 'Sources step not run.', '',
              hyg_title, '', f"{len(hy)} rows: " + (', '.join(f'{k} {v}' for k, v in hc.most_common()) or 'none') +
@@ -1434,24 +1574,23 @@ def cmd_report(a):
     body += ['## 4b. People and tickets', '',
              'Open tickets only (not Done), from the snapshot. Assigned = working on it; Reported = created it. '
              'Written by the script; do not edit.', ''] + pbody + [
-             '## 5. Recommendations for TM', '', AI('3–5 concrete actions, each tied to ticket keys and owners'), '',
-             '## 6. Data Gaps & Assumptions', ''] + gaps + ['']
+             ] + (['## 5. Recommendations for TM', '', AI('3–5 concrete actions, each tied to ticket keys and owners'), '',
+                   '## 6. Data Gaps & Assumptions', ''] if research else ['## 5. Data Gaps & Assumptions', '']) + gaps + ['']  # products: no Recommendations
     # appendix: the rows not shown above, so the page holds every row exactly once (no separate detail page)
     rest = rows[len(shown):]
-    body += ['---', '', '## Appendix (written by the script; do not edit)', '',
-             f'### A. Remaining risks ({len(rest)} rows not shown in section 3)', '',
-             (reg_head + '\n' + tbl(rest)) if rest else 'None: every risk is shown in section 3.', '',
+    body += ['---', '', '## Appendix (written by the script; do not edit)', ''] + (
+            [f'### A. Remaining risks ({len(rest)} rows not shown in section 3)', '',
+             (reg_head + '\n' + tbl(rest)) if rest else 'None: every risk is shown in section 3.', ''] if research else []) + [
              f'### B. Remaining {"Clean-up List" if research else "Data Hygiene"} rows ({max(0, len(hy) - 20)} rows not shown in section 4)', '',
              (hy_head + '\n' + '\n'.join('| ' + ' | '.join(h['cells']) + ' |' for h in hy[20:])) if len(hy) > 20
              else 'None: every row is shown in section 4.', '',
              '### C. Worth a look (not rule hits)', '', rd('notes.md') or 'None.', '',
-             '### D. Tickets by person (open tickets, assigned and reported)', ''] + (papp or ['None.', '']) + [
-             '### E. Last sprint tickets by person', ''] + sprint_appendix(res.get('sprint'))
+             '### D. Tickets by person (open tickets, assigned and reported)', ''] + (papp or ['None.', ''])
     page = '\n'.join(body)
     open(out, 'w', encoding='utf-8', newline='\n').write(page)
     n_ai = page.count('<!-- AI:')
     print(f'REPORT: {os.path.relpath(out, ROOT)} ({len(page.splitlines())} lines, {n_ai} AI markers to fill) · '
-          f'register {len(shown)}/{len(rows)} rows in section 3, rest in Appendix A · hygiene {min(20, len(hy))}/{len(hy)} in section 4, rest in Appendix B' +
+          f'register {len(shown)}/{len(rows)} rows in section 3' + (', rest in Appendix A' if research else ' (HIGH only)') + f' · hygiene {min(20, len(hy))}/{len(hy)} in section 4, rest in Appendix B' +
           ('' if has_src else ' · WARNING: sources step not run'))
 
 

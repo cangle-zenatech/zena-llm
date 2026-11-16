@@ -1,0 +1,1542 @@
+{
+"project": "ZenaQuiet-Mask",
+"date": "2026-11-12",
+"start_field": "customfield_10015",
+"sprint_field": "customfield_10020",
+"count": 46,
+"issues": [
+{
+"key": "MK-1",
+"summary": "MASK Industrial Design",
+"type": "Epic",
+"status": "To Do",
+"scat": "new",
+"assignee": "Chico Ly",
+"reporter": "Cang Le",
+"start": "2026-09-21",
+"due": "2027-11-15",
+"sprints": [
+[
+"MK Sprint 1",
+"future"
+]
+],
+"sprint_info": [
+{
+"id": 7265,
+"name": "MK Sprint 1",
+"state": "future",
+"start": "2026-09-21",
+"end": "2026-10-05",
+"goal": ""
+}
+],
+"parent": null,
+"subtasks": [],
+"links": [],
+"created": "2026-10-01",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [
+"IndustrialDesign"
+],
+"attachments": [
+{
+"id": "98564",
+"filename": "industrial_design_process.png",
+"created": "2026-10-01",
+"author": "Cang Le",
+"size": 568705,
+"mime": "image/png"
+},
+{
+"id": "99274",
+"filename": "Screenshot 2026-10-09 150911.png",
+"created": "2026-10-09",
+"author": "Cang Le",
+"size": 233761,
+"mime": "image/png"
+}
+]
+},
+{
+"key": "MK-2",
+"summary": "[POC] 1/6 Translate Brief",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Chico Ly",
+"reporter": "Cang Le",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [],
+"sprint_info": [],
+"parent": "MK-1",
+"subtasks": [],
+"links": [
+{
+"dir": "in",
+"label": "is tested by",
+"type": "AgileTest",
+"key": "PRO2-1",
+"scat": "indeterminate"
+}
+],
+"created": "2026-10-01",
+"updated": "2026-10-12",
+"resolved": "2026-10-01",
+"labels": [
+"Industrial_Design"
+],
+"attachments": [
+{
+"id": "98568",
+"filename": "image-20261001-081434.png",
+"created": "2026-10-01",
+"author": "Chico Ly",
+"size": 360240,
+"mime": "image/png"
+}
+]
+},
+{
+"key": "MK-3",
+"summary": "[POC] 2/6 Concept Development",
+"type": "Story",
+"status": "Done",
+"scat": "done",
+"assignee": "Chico Ly",
+"reporter": "Cang Le",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [],
+"sprint_info": [],
+"parent": "MK-1",
+"subtasks": [],
+"links": [
+{
+"dir": "in",
+"label": "is tested by",
+"type": "AgileTest",
+"key": "PRO2-399",
+"scat": "done"
+}
+],
+"created": "2026-10-01",
+"updated": "2026-10-12",
+"resolved": "2026-10-01",
+"labels": [
+"Industrial_Design"
+],
+"attachments": [
+{
+"id": "98571",
+"filename": "MSKv3a vd1.png",
+"created": "2026-10-01",
+"author": "Chico Ly",
+"size": 575507,
+"mime": "image/png"
+},
+{
+"id": "98582",
+"filename": "MSKv3a vd1 (1fde9ee7-21d5-49da-84d3-c79d4ed5b6d2).png",
+"created": "2026-10-01",
+"author": "Chico Ly",
+"size": 575507,
+"mime": "image/png"
+},
+{
+"id": "98570",
+"filename": "MSKv3a vd2.png",
+"created": "2026-10-01",
+"author": "Chico Ly",
+"size": 590202,
+"mime": "image/png"
+},
+{
+"id": "98581",
+"filename": "MSKv3a vd2 (81901be1-934f-4f81-b3d8-b8ef2957a81a).png",
+"created": "2026-10-01",
+"author": "Chico Ly",
+"size": 590202,
+"mime": "image/png"
+}
+]
+},
+{
+"key": "MK-4",
+"summary": "[POC] 3/6 Design Development",
+"type": "Story",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Elly Nhi Nguyen",
+"reporter": "Cang Le",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"MK Sprint 4",
+"active"
+]
+],
+"sprint_info": [
+{
+"id": 7292,
+"name": "MK Sprint 4",
+"state": "active",
+"start": "2026-11-12",
+"end": "2026-11-16",
+"goal": ""
+}
+],
+"parent": "MK-1",
+"subtasks": [
+"MK-33",
+"MK-34",
+"MK-35",
+"MK-36",
+"MK-37",
+"MK-38",
+"MK-39",
+"MK-40"
+],
+"links": [],
+"created": "2026-10-01",
+"updated": "2026-11-02",
+"resolved": null,
+"labels": [
+"Industrial_Design"
+],
+"attachments": [
+{
+"id": "98584",
+"filename": "MASKv3a grey.png",
+"created": "2026-10-01",
+"author": "Chico Ly",
+"size": 5097805,
+"mime": "image/png"
+}
+]
+},
+{
+"key": "MK-5",
+"summary": "[POC] 4/6 Design Prototyping",
+"type": "Story",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Elly Nhi Nguyen",
+"reporter": "Cang Le",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"MK Sprint 4",
+"active"
+]
+],
+"sprint_info": [
+{
+"id": 7292,
+"name": "MK Sprint 4",
+"state": "active",
+"start": "2026-11-12",
+"end": "2026-11-16",
+"goal": ""
+}
+],
+"parent": "MK-1",
+"subtasks": [
+"MK-41",
+"MK-42",
+"MK-43",
+"MK-44",
+"MK-45",
+"MK-46",
+"MK-47"
+],
+"links": [],
+"created": "2026-10-01",
+"updated": "2026-11-03",
+"resolved": null,
+"labels": [
+"Industrial_Design"
+],
+"attachments": []
+},
+{
+"key": "MK-6",
+"summary": "Air Filtration System",
+"type": "Epic",
+"status": "To Do",
+"scat": "new",
+"assignee": null,
+"reporter": "Duy Nguyen",
+"start": "2026-09-21",
+"due": "2027-11-15",
+"sprints": [],
+"sprint_info": [],
+"parent": null,
+"subtasks": [],
+"links": [],
+"created": "2026-10-02",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [],
+"attachments": []
+},
+{
+"key": "MK-7",
+"summary": "[POC] Replaceable Filter Cartridge",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": null,
+"reporter": "Duy Nguyen",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [],
+"sprint_info": [],
+"parent": "MK-6",
+"subtasks": [],
+"links": [],
+"created": "2026-10-02",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [
+"Mechanical"
+],
+"attachments": []
+},
+{
+"key": "MK-8",
+"summary": "[POC] Active Fan-Assisted Airflow",
+"type": "Story",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"MK Sprint 4",
+"active"
+]
+],
+"sprint_info": [
+{
+"id": 7292,
+"name": "MK Sprint 4",
+"state": "active",
+"start": "2026-11-12",
+"end": "2026-11-16",
+"goal": ""
+}
+],
+"parent": "MK-6",
+"subtasks": [],
+"links": [],
+"created": "2026-10-02",
+"updated": "2026-11-10",
+"resolved": null,
+"labels": [
+"Mechanical"
+],
+"attachments": []
+},
+{
+"key": "MK-9",
+"summary": "[POC] Filtration Certification",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": null,
+"reporter": "Duy Nguyen",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [],
+"sprint_info": [],
+"parent": "MK-6",
+"subtasks": [],
+"links": [],
+"created": "2026-10-02",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [
+"Mechanical"
+],
+"attachments": []
+},
+{
+"key": "MK-10",
+"summary": "Sound Dampening & Voice Privacy",
+"type": "Epic",
+"status": "To Do",
+"scat": "new",
+"assignee": "Huỳnh Thái Hòa",
+"reporter": "Duy Nguyen",
+"start": "2026-09-21",
+"due": "2027-11-15",
+"sprints": [],
+"sprint_info": [],
+"parent": null,
+"subtasks": [],
+"links": [],
+"created": "2026-10-02",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [],
+"attachments": []
+},
+{
+"key": "MK-11",
+"summary": "[POC] Passive Voice Dampening",
+"type": "Story",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Duy Nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"MK Sprint 4",
+"active"
+]
+],
+"sprint_info": [
+{
+"id": 7292,
+"name": "MK Sprint 4",
+"state": "active",
+"start": "2026-11-12",
+"end": "2026-11-16",
+"goal": ""
+}
+],
+"parent": "MK-10",
+"subtasks": [],
+"links": [],
+"created": "2026-10-02",
+"updated": "2026-11-10",
+"resolved": null,
+"labels": [
+"Mechanical"
+],
+"attachments": [
+{
+"id": "102344",
+"filename": "image-20261110-014321.png",
+"created": "2026-11-10",
+"author": "Duy Nguyen",
+"size": 377056,
+"mime": "image/png"
+},
+{
+"id": "102345",
+"filename": "image-20261110-015021.png",
+"created": "2026-11-10",
+"author": "Duy Nguyen",
+"size": 377056,
+"mime": "image/png"
+},
+{
+"id": "101771",
+"filename": "ZenaMask_Dampening_Materials.xlsx",
+"created": "2026-11-03",
+"author": "Duy Nguyen",
+"size": 42502,
+"mime": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+},
+{
+"id": "101772",
+"filename": "ZenaMask_Dampening_Materials (18603338-b552-4824-ac1e-da81580486d4).xlsx",
+"created": "2026-11-03",
+"author": "Duy Nguyen",
+"size": 42502,
+"mime": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+}
+]
+},
+{
+"key": "MK-12",
+"summary": "[POC] Integrated Microphone & Call Quality",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": null,
+"reporter": "Duy Nguyen",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [],
+"sprint_info": [],
+"parent": "MK-10",
+"subtasks": [],
+"links": [],
+"created": "2026-10-02",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [
+"Mechanical"
+],
+"attachments": []
+},
+{
+"key": "MK-13",
+"summary": "[POC] Bluetooth Connectivity & Phone-Offloaded Voice Processing",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": null,
+"reporter": "Duy Nguyen",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [],
+"sprint_info": [],
+"parent": "MK-10",
+"subtasks": [],
+"links": [],
+"created": "2026-10-02",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [
+"Firmware",
+"Mechanical",
+"Software"
+],
+"attachments": []
+},
+{
+"key": "MK-14",
+"summary": "Mechanical Comfort & Wearability",
+"type": "Epic",
+"status": "To Do",
+"scat": "new",
+"assignee": null,
+"reporter": "Duy Nguyen",
+"start": "2026-09-21",
+"due": "2027-11-15",
+"sprints": [],
+"sprint_info": [],
+"parent": null,
+"subtasks": [],
+"links": [],
+"created": "2026-10-02",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [],
+"attachments": []
+},
+{
+"key": "MK-16",
+"summary": "[POC] Strap System",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": null,
+"reporter": "Duy Nguyen",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [],
+"sprint_info": [],
+"parent": "MK-14",
+"subtasks": [],
+"links": [],
+"created": "2026-10-02",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [
+"Mechanical"
+],
+"attachments": []
+},
+{
+"key": "MK-17",
+"summary": "[POC] Weight & Form Factor",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": null,
+"reporter": "Duy Nguyen",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [],
+"sprint_info": [],
+"parent": "MK-14",
+"subtasks": [],
+"links": [],
+"created": "2026-10-02",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [
+"Mechanical"
+],
+"attachments": []
+},
+{
+"key": "MK-19",
+"summary": "Exhale System",
+"type": "Epic",
+"status": "To Do",
+"scat": "new",
+"assignee": null,
+"reporter": "Duy Nguyen",
+"start": "2026-09-21",
+"due": "2027-11-15",
+"sprints": [],
+"sprint_info": [],
+"parent": null,
+"subtasks": [],
+"links": [],
+"created": "2026-10-02",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [],
+"attachments": []
+},
+{
+"key": "MK-20",
+"summary": "[POC] Acoustically-Treated Exhale Vent",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": null,
+"reporter": "Duy Nguyen",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [],
+"sprint_info": [],
+"parent": "MK-19",
+"subtasks": [],
+"links": [],
+"created": "2026-10-02",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [
+"Mechanical"
+],
+"attachments": []
+},
+{
+"key": "MK-21",
+"summary": "Electronics & Power",
+"type": "Epic",
+"status": "To Do",
+"scat": "new",
+"assignee": "Phong.ngoc.nguyen",
+"reporter": "Duy Nguyen",
+"start": "2026-09-21",
+"due": "2027-11-15",
+"sprints": [],
+"sprint_info": [],
+"parent": null,
+"subtasks": [],
+"links": [],
+"created": "2026-10-02",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [],
+"attachments": []
+},
+{
+"key": "MK-22",
+"summary": "[POC] Main PCBA (BT Relay Architecture)",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": null,
+"reporter": "Duy Nguyen",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [],
+"sprint_info": [],
+"parent": "MK-21",
+"subtasks": [],
+"links": [],
+"created": "2026-10-02",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [
+"Electronic_Electrical"
+],
+"attachments": []
+},
+{
+"key": "MK-23",
+"summary": "[POC] Battery System",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": null,
+"reporter": "Duy Nguyen",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [],
+"sprint_info": [],
+"parent": "MK-21",
+"subtasks": [],
+"links": [],
+"created": "2026-10-02",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [
+"Electronic_Electrical"
+],
+"attachments": []
+},
+{
+"key": "MK-24",
+"summary": "Product Line Rollout",
+"type": "Epic",
+"status": "To Do",
+"scat": "new",
+"assignee": null,
+"reporter": "Duy Nguyen",
+"start": "2026-09-21",
+"due": "2027-11-15",
+"sprints": [],
+"sprint_info": [],
+"parent": null,
+"subtasks": [],
+"links": [],
+"created": "2026-10-02",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [],
+"attachments": []
+},
+{
+"key": "MK-25",
+"summary": "[POC] Standard Variant — Office Workers (Phase 1)",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": null,
+"reporter": "Duy Nguyen",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [],
+"sprint_info": [],
+"parent": "MK-24",
+"subtasks": [],
+"links": [],
+"created": "2026-10-02",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [
+"Mechanical"
+],
+"attachments": []
+},
+{
+"key": "MK-26",
+"summary": "[POC] Civilian / Lifestyle Variant (Phase 2 — Deferred)",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": null,
+"reporter": "Duy Nguyen",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [],
+"sprint_info": [],
+"parent": "MK-24",
+"subtasks": [],
+"links": [],
+"created": "2026-10-02",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [
+"Mechanical"
+],
+"attachments": []
+},
+{
+"key": "MK-27",
+"summary": "[POC] Sport Variant (Phase 3 — Deferred)",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": null,
+"reporter": "Duy Nguyen",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [],
+"sprint_info": [],
+"parent": "MK-24",
+"subtasks": [],
+"links": [],
+"created": "2026-10-02",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [
+"Mechanical"
+],
+"attachments": []
+},
+{
+"key": "MK-28",
+"summary": "[POC] eSport Variant (Phase 4 — Deferred)",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": null,
+"reporter": "Duy Nguyen",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [],
+"sprint_info": [],
+"parent": "MK-24",
+"subtasks": [],
+"links": [],
+"created": "2026-10-02",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [
+"Mechanical"
+],
+"attachments": []
+},
+{
+"key": "MK-29",
+"summary": "Certification & Compliance",
+"type": "Epic",
+"status": "To Do",
+"scat": "new",
+"assignee": null,
+"reporter": "Duy Nguyen",
+"start": "2026-09-21",
+"due": "2027-11-15",
+"sprints": [],
+"sprint_info": [],
+"parent": null,
+"subtasks": [],
+"links": [],
+"created": "2026-10-02",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [],
+"attachments": []
+},
+{
+"key": "MK-30",
+"summary": "[POC] Battery Safety Certification",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": null,
+"reporter": "Duy Nguyen",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [],
+"sprint_info": [],
+"parent": "MK-29",
+"subtasks": [],
+"links": [],
+"created": "2026-10-02",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [
+"Electronic_Electrical"
+],
+"attachments": []
+},
+{
+"key": "MK-31",
+"summary": "[POC] Regulatory Labeling & Claims Review",
+"type": "Story",
+"status": "To Do",
+"scat": "new",
+"assignee": null,
+"reporter": "Duy Nguyen",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [],
+"sprint_info": [],
+"parent": "MK-29",
+"subtasks": [],
+"links": [],
+"created": "2026-10-02",
+"updated": "2026-10-20",
+"resolved": null,
+"labels": [
+"Acoustic",
+"Electronic_Electrical",
+"Firmware",
+"Industrial_Design",
+"Mechanical",
+"Software"
+],
+"attachments": []
+},
+{
+"key": "MK-32",
+"summary": "Field Test+RC",
+"type": "Epic",
+"status": "To Do",
+"scat": "new",
+"assignee": "Nguyen Minh Thien",
+"reporter": "Cang Le",
+"start": "2026-09-21",
+"due": "2027-11-15",
+"sprints": [],
+"sprint_info": [],
+"parent": null,
+"subtasks": [],
+"links": [],
+"created": "2026-10-02",
+"updated": "2026-10-12",
+"resolved": null,
+"labels": [],
+"attachments": []
+},
+{
+"key": "MK-33",
+"summary": "1/8 [Mask – Everyday] Define style direction for each age group",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Elly Nhi Nguyen",
+"reporter": "Cang Le",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"MK Sprint 4",
+"active"
+]
+],
+"sprint_info": [
+{
+"id": 7292,
+"name": "MK Sprint 4",
+"state": "active",
+"start": "2026-11-12",
+"end": "2026-11-16",
+"goal": ""
+}
+],
+"parent": "MK-4",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-30",
+"resolved": "2026-10-30",
+"labels": [
+"Industrial_Design"
+],
+"attachments": []
+},
+{
+"key": "MK-34",
+"summary": "2/8 [Mask – Everyday] Optimize shell size and internal layout",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Elly Nhi Nguyen",
+"reporter": "Cang Le",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"MK Sprint 4",
+"active"
+]
+],
+"sprint_info": [
+{
+"id": 7292,
+"name": "MK Sprint 4",
+"state": "active",
+"start": "2026-11-12",
+"end": "2026-11-16",
+"goal": ""
+}
+],
+"parent": "MK-4",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-23",
+"resolved": "2026-10-23",
+"labels": [
+"Industrial_Design"
+],
+"attachments": [
+{
+"id": "100966",
+"filename": "image-20261023-091441.png",
+"created": "2026-10-23",
+"author": "Elly Nhi Nguyen",
+"size": 492325,
+"mime": "image/png"
+},
+{
+"id": "100965",
+"filename": "image-20261023-091545.png",
+"created": "2026-10-23",
+"author": "Elly Nhi Nguyen",
+"size": 365047,
+"mime": "image/png"
+}
+]
+},
+{
+"key": "MK-35",
+"summary": "3/8 [Mask – Everyday] Select and design a detachable, washable fabric layer",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Elly Nhi Nguyen",
+"reporter": "Cang Le",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"MK Sprint 4",
+"active"
+]
+],
+"sprint_info": [
+{
+"id": 7292,
+"name": "MK Sprint 4",
+"state": "active",
+"start": "2026-11-12",
+"end": "2026-11-16",
+"goal": ""
+}
+],
+"parent": "MK-4",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-30",
+"resolved": "2026-10-30",
+"labels": [
+"Industrial_Design"
+],
+"attachments": [
+{
+"id": "100968",
+"filename": "image-20261023-091952.png",
+"created": "2026-10-23",
+"author": "Elly Nhi Nguyen",
+"size": 2729604,
+"mime": "image/png"
+},
+{
+"id": "101057",
+"filename": "image-20261026-043143.png",
+"created": "2026-10-26",
+"author": "Elly Nhi Nguyen",
+"size": 2261857,
+"mime": "image/png"
+},
+{
+"id": "101058",
+"filename": "image-20261026-043304.png",
+"created": "2026-10-26",
+"author": "Elly Nhi Nguyen",
+"size": 3180273,
+"mime": "image/png"
+}
+]
+},
+{
+"key": "MK-36",
+"summary": "4/8 [Mask – Everyday] Research face dimensions and define S/M and M/L sizes",
+"type": "Subtask",
+"status": "To Do",
+"scat": "new",
+"assignee": "Elly Nhi Nguyen",
+"reporter": "Cang Le",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"MK Sprint 4",
+"active"
+]
+],
+"sprint_info": [
+{
+"id": 7292,
+"name": "MK Sprint 4",
+"state": "active",
+"start": "2026-11-12",
+"end": "2026-11-16",
+"goal": ""
+}
+],
+"parent": "MK-4",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-20",
+"resolved": null,
+"labels": [
+"Industrial_Design"
+],
+"attachments": []
+},
+{
+"key": "MK-37",
+"summary": "5/8 [Mask – Everyday] Select shell plastics and skin-safe materials",
+"type": "Subtask",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Elly Nhi Nguyen",
+"reporter": "Cang Le",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"MK Sprint 4",
+"active"
+]
+],
+"sprint_info": [
+{
+"id": 7292,
+"name": "MK Sprint 4",
+"state": "active",
+"start": "2026-11-12",
+"end": "2026-11-16",
+"goal": ""
+}
+],
+"parent": "MK-4",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-23",
+"resolved": null,
+"labels": [
+"Industrial_Design"
+],
+"attachments": []
+},
+{
+"key": "MK-38",
+"summary": "6/8 [Mask – Everyday] Design chin area for seal, comfort and look",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Elly Nhi Nguyen",
+"reporter": "Cang Le",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"MK Sprint 4",
+"active"
+]
+],
+"sprint_info": [
+{
+"id": 7292,
+"name": "MK Sprint 4",
+"state": "active",
+"start": "2026-11-12",
+"end": "2026-11-16",
+"goal": ""
+}
+],
+"parent": "MK-4",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-30",
+"resolved": "2026-10-30",
+"labels": [
+"Industrial_Design"
+],
+"attachments": [
+{
+"id": "100971",
+"filename": "image-20261023-092137.png",
+"created": "2026-10-23",
+"author": "Elly Nhi Nguyen",
+"size": 314554,
+"mime": "image/png"
+},
+{
+"id": "100970",
+"filename": "image-20261023-092209.png",
+"created": "2026-10-23",
+"author": "Elly Nhi Nguyen",
+"size": 6665639,
+"mime": "image/png"
+}
+]
+},
+{
+"key": "MK-39",
+"summary": "7/8 [Mask – Everyday] Define battery safety and placement",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Elly Nhi Nguyen",
+"reporter": "Cang Le",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"MK Sprint 4",
+"active"
+]
+],
+"sprint_info": [
+{
+"id": 7292,
+"name": "MK Sprint 4",
+"state": "active",
+"start": "2026-11-12",
+"end": "2026-11-16",
+"goal": ""
+}
+],
+"parent": "MK-4",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-23",
+"resolved": "2026-10-23",
+"labels": [
+"Industrial_Design"
+],
+"attachments": [
+{
+"id": "100974",
+"filename": "image-20261023-092722.png",
+"created": "2026-10-23",
+"author": "Elly Nhi Nguyen",
+"size": 190806,
+"mime": "image/png"
+}
+]
+},
+{
+"key": "MK-40",
+"summary": "8/8 [Mask – Everyday] Protect PCB from breath moisture",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Elly Nhi Nguyen",
+"reporter": "Cang Le",
+"start": "2026-09-21",
+"due": "2027-02-08",
+"sprints": [
+[
+"MK Sprint 4",
+"active"
+]
+],
+"sprint_info": [
+{
+"id": 7292,
+"name": "MK Sprint 4",
+"state": "active",
+"start": "2026-11-12",
+"end": "2026-11-16",
+"goal": ""
+}
+],
+"parent": "MK-4",
+"subtasks": [],
+"links": [],
+"created": "2026-10-09",
+"updated": "2026-10-23",
+"resolved": "2026-10-23",
+"labels": [
+"Industrial_Design"
+],
+"attachments": [
+{
+"id": "100977",
+"filename": "image-20261023-093742.png",
+"created": "2026-10-23",
+"author": "Elly Nhi Nguyen",
+"size": 194171,
+"mime": "image/png"
+}
+]
+},
+{
+"key": "MK-41",
+"summary": "3D print first mockup",
+"type": "Subtask",
+"status": "Done",
+"scat": "done",
+"assignee": "Elly Nhi Nguyen",
+"reporter": "Elly Nhi Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"MK Sprint 4",
+"active"
+]
+],
+"sprint_info": [
+{
+"id": 7292,
+"name": "MK Sprint 4",
+"state": "active",
+"start": "2026-11-12",
+"end": "2026-11-16",
+"goal": ""
+}
+],
+"parent": "MK-5",
+"subtasks": [],
+"links": [],
+"created": "2026-11-09",
+"updated": "2026-11-09",
+"resolved": "2026-11-09",
+"labels": [],
+"attachments": [
+{
+"id": "102273",
+"filename": "image-20261109-023334.png",
+"created": "2026-11-09",
+"author": "Elly Nhi Nguyen",
+"size": 2998442,
+"mime": "image/png"
+}
+]
+},
+{
+"key": "MK-42",
+"summary": "Make fabric ear band and chin cover",
+"type": "Subtask",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Elly Nhi Nguyen",
+"reporter": "Elly Nhi Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"MK Sprint 4",
+"active"
+]
+],
+"sprint_info": [
+{
+"id": 7292,
+"name": "MK Sprint 4",
+"state": "active",
+"start": "2026-11-12",
+"end": "2026-11-16",
+"goal": ""
+}
+],
+"parent": "MK-5",
+"subtasks": [],
+"links": [],
+"created": "2026-11-09",
+"updated": "2026-11-09",
+"resolved": null,
+"labels": [],
+"attachments": []
+},
+{
+"key": "MK-43",
+"summary": "Assemble electronic components (battery, PCB, fan)",
+"type": "Subtask",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Elly Nhi Nguyen",
+"reporter": "Elly Nhi Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"MK Sprint 4",
+"active"
+]
+],
+"sprint_info": [
+{
+"id": 7292,
+"name": "MK Sprint 4",
+"state": "active",
+"start": "2026-11-12",
+"end": "2026-11-16",
+"goal": ""
+}
+],
+"parent": "MK-5",
+"subtasks": [],
+"links": [],
+"created": "2026-11-09",
+"updated": "2026-11-09",
+"resolved": null,
+"labels": [],
+"attachments": []
+},
+{
+"key": "MK-44",
+"summary": "Install air filter",
+"type": "Subtask",
+"status": "In Progress",
+"scat": "indeterminate",
+"assignee": "Elly Nhi Nguyen",
+"reporter": "Elly Nhi Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"MK Sprint 4",
+"active"
+]
+],
+"sprint_info": [
+{
+"id": 7292,
+"name": "MK Sprint 4",
+"state": "active",
+"start": "2026-11-12",
+"end": "2026-11-16",
+"goal": ""
+}
+],
+"parent": "MK-5",
+"subtasks": [],
+"links": [],
+"created": "2026-11-09",
+"updated": "2026-11-09",
+"resolved": null,
+"labels": [],
+"attachments": []
+},
+{
+"key": "MK-45",
+"summary": "Test airflow (blowing function)",
+"type": "Subtask",
+"status": "To Do",
+"scat": "new",
+"assignee": "Elly Nhi Nguyen",
+"reporter": "Elly Nhi Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"MK Sprint 4",
+"active"
+]
+],
+"sprint_info": [
+{
+"id": 7292,
+"name": "MK Sprint 4",
+"state": "active",
+"start": "2026-11-12",
+"end": "2026-11-16",
+"goal": ""
+}
+],
+"parent": "MK-5",
+"subtasks": [],
+"links": [],
+"created": "2026-11-09",
+"updated": "2026-11-09",
+"resolved": null,
+"labels": [],
+"attachments": []
+},
+{
+"key": "MK-46",
+"summary": "Test air filtration",
+"type": "Subtask",
+"status": "To Do",
+"scat": "new",
+"assignee": "Elly Nhi Nguyen",
+"reporter": "Elly Nhi Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"MK Sprint 4",
+"active"
+]
+],
+"sprint_info": [
+{
+"id": 7292,
+"name": "MK Sprint 4",
+"state": "active",
+"start": "2026-11-12",
+"end": "2026-11-16",
+"goal": ""
+}
+],
+"parent": "MK-5",
+"subtasks": [],
+"links": [],
+"created": "2026-11-09",
+"updated": "2026-11-09",
+"resolved": null,
+"labels": [],
+"attachments": []
+},
+{
+"key": "MK-47",
+"summary": "Test voice leakage",
+"type": "Subtask",
+"status": "To Do",
+"scat": "new",
+"assignee": "Elly Nhi Nguyen",
+"reporter": "Elly Nhi Nguyen",
+"start": null,
+"due": null,
+"sprints": [
+[
+"MK Sprint 4",
+"active"
+]
+],
+"sprint_info": [
+{
+"id": 7292,
+"name": "MK Sprint 4",
+"state": "active",
+"start": "2026-11-12",
+"end": "2026-11-16",
+"goal": ""
+}
+],
+"parent": "MK-5",
+"subtasks": [],
+"links": [],
+"created": "2026-11-09",
+"updated": "2026-11-09",
+"resolved": null,
+"labels": [],
+"attachments": []
+},
+{
+"key": "MK-48",
+"summary": "Layer 3 — Inbound TSE",
+"type": "Epic",
+"status": "To Do",
+"scat": "new",
+"assignee": "KhuongNguyen",
+"reporter": "Cang Le",
+"start": "2026-09-21",
+"due": "2027-11-15",
+"sprints": [],
+"sprint_info": [],
+"parent": null,
+"subtasks": [],
+"links": [],
+"created": "2026-11-09",
+"updated": "2026-11-09",
+"resolved": null,
+"labels": [],
+"attachments": []
+}
+]
+}

@@ -208,13 +208,14 @@ are in `raw/jira-attachments/`.
 (chosen by their **dates**, never by Jira's sprint state, which the team doesn't maintain), a
 per-person table with **Stories and Subtasks counted separately** (done inside the sprint dates /
 in the sprint, closed outside the dates, still open, carried into the current sprint, overdue,
-open for 2+ sprints), no pace line (Research has no gate of its own), and the ticket lists per person in Appendix E. Rules:
+open for 2+ sprints), no pace line (Research has no gate of its own). There is no per-ticket sprint list in the report. Rules:
 `tools/RULES.md` → Sprint review. Don't recount anything.
 
 Under the block, write 3–6 bullets in plain words:
 
 - **Who worked on what:** per person (or per team when several people share the work), the main
-  pieces of work in the sprint, with ticket keys from Appendix E.
+  pieces of work in the sprint, with ticket keys from `WORK/results.json` → `sprint.last.people`
+  (titles in `sprint.last.titles`).
 - **What they accomplished:** what was finished, in plain words. Use comments (Step 8b / 7b) and
   attachments (Step 8c / 7c) for actual results (test outcomes, designs, decisions), cited.
 - **What slipped:** work still open or closed outside the sprint dates, and why if a comment says.
@@ -223,12 +224,19 @@ Under the block, write 3–6 bullets in plain words:
 If a sprint has very few tickets (the team may plan outside sprints), say so in one line instead of
 over-reading the numbers. Facts from Jira; your reading of them is (inferred).
 
+### Step 7e: Pushed deadlines (section 2b; project level only, never in the portfolio roll-up)
+
+Same as products (`knowledge/product-procedure.md` → Step 8e; rules: `tools/RULES.md` → Pushed
+deadlines): one script table, was due vs now due, for open items whose in-sprint due date was pushed.
+Research has no stage gate, so the effect is measured against the item's parent. You write nothing
+in this section. Never change anything in Jira.
+
 ## 5. Output
 
 Run `tools/wiki_jira.py report` after `analyze`, `diff` and `sources`. It writes
 `knowledge/ZenaQuiet-Research/jira/YYYY-MM-DD-jira.md` (date = `today`) with every number and table
 filled in (including "Products waiting on Research"), with an Appendix at the end holding the rows
-not shown in the body (A: risks, B: Clean-up List, C: notes worth a look, D: tickets by person, E: last sprint tickets by person).
+not shown in the body (A: risks, B: Clean-up List, C: notes worth a look, D: tickets by person).
 Section 4b "People and tickets" (every person with their open tickets, by type, linked) is also
 written by the script. Fill each `<!-- AI: … -->` marker by editing the report in place; don't retype the script's
 tables and never edit the Appendix. A redo needs `report --force`, which replaces everything you
@@ -265,6 +273,9 @@ Health: one sentence on why.
   - Decided: …
   - Still open: … (waiting on {name})
 (Write "No comments in the last {stale_days} days" if there are none.)
+
+## 2b. Pushed deadlines: was due vs now due
+One table written by the script (Step 7e). Don't edit it or add text.
 
 ## 3. Risk Register, ### Order this week, ## 4. Clean-up List
 Written by the script (rules: `tools/RULES.md` → Research). Edit only: impact sentences that need
@@ -306,5 +317,6 @@ per block, then "+ N more (see Risk Register)".
 - [ ] Comments read for every open issue; every discussion point cites key, author and date
 - [ ] Downloaded attachments in the report table read and summarized (Step 7c), or the gap stated
 - [ ] Sprint review bullets written under the Last sprint block (Step 7d)
+- [ ] Section 2b is the script's table only (Step 7e); no Jira changes made
 - [ ] Every file in `raw/threads/` and `raw/transcripts/` was read; every source risk cites file
       and message
