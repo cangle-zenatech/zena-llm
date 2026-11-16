@@ -2,6 +2,7 @@
 
 One line per change, newest first.
 
+2026-11-16 · deleted · 63 old weekly reports and roll-ups (kept 2026-11-13 and 2026-11-16 per project and for the portfolio); all were committed in git and can be restored from history (human request)
 2026-11-16 · sent · overdue-ticket emails (from the 2026-11-16 roll-up Appendix) to Duy Nguyen (10 tickets), Huỳnh Thái Hòa (5), Chico Ly (2), Nguyen Binh Minh (1), approved by the human
 2026-11-16 · updated · CLAUDE.md · new section "Overdue-ticket emails": every weekly run drafts one email per person with overdue tickets (ticket links included), shows them in chat, and sends from Outlook only after the human approves (human request)
 2026-11-16 · updated · [[portfolio/2026-11-16-rollup]], [[overview]] · second redo (human request): Pro2 back to At risk after PRO2-461 closed; Beacon layouts closed 3 days late, no board order; 2 of 4 on track
