@@ -23,7 +23,7 @@ anywhere else.
 
 | Goal                    | What to type                                                                |
 | ----------------------- | --------------------------------------------------------------------------- |
-| Weekly reports          | `write weekly status reports` (all projects marked Yes, then the portfolio roll-up) |
+| Weekly reports          | `write weekly status reports` (all projects marked Yes, then the portfolio roll-up, then draft emails to everyone with overdue tickets; I send only after you say `send`) |
 |                         | `write the status report for Pro2 only`                                     |
 |                         | `redo today's Mask report` (replaces it, lists what changed, refreshes the roll-up) |
 | Portfolio roll-up       | `write the portfolio roll-up` (all 4 products vs the stage schedule; uses this week's snapshots) |
@@ -41,6 +41,8 @@ anywhere else.
 |                         | `what does the attachment on PRO2-553 show?` (after you run the downloader) |
 | Add new sources         | Attach a meeting file: `this is the <date> standup, put it in raw/transcripts` |
 |                         | Attach a chat or email export: `put this in raw/threads`                    |
+| Email overdue owners    | `email the people with overdue tickets` (from the roll-up Appendix; drafts first, one per person, with ticket links) |
+|                         | `send` / `send only to Duy and Hoa` (after you've read the drafts)          |
 | Share with the team     | `make the stage timeline image for Teams` (PNG to paste in a chat)          |
 |                         | Attach a slide: `put the completion % for each project in this slide`       |
 | Turn sources into pages | `turn the new files in raw/ into wiki pages`                                |
@@ -57,7 +59,7 @@ anywhere else.
 |                         | `count same-day-closed Stories as progress` (portfolio setting)             |
 |                         | `change the stage schedule for Mask` (edits reference.md; I'll ask first)   |
 |                         | `change the overload flag to 50 tickets` (⚠ in the People and tickets tables) |
-|                         | `show more risk rows in the report` (report_max_rows, default 30)           |
+|                         | `show MEDIUM risks again in the product reports` (now HIGH only)            |
 | Fix a report layout     | `rebuild today's reports in the new layout` (no new Jira pull)              |
 | Automate                | `run the weekly reports every Monday at 8am`                                |
 | Understand it           | `explain how the health rating works`                                       |
@@ -80,7 +82,9 @@ anywhere else.
    - `raw/` is read-only.
    - No passwords, keys, tokens or customer personal data in the wiki.
    - No silent overwrites; contradictions get flagged.
-   - README files are your private notes, and I never touch them.
+   - README files are your private notes, and I never touch them (except when you grant a one-time exception).
+   - `.env` files hold your Jira token; I never open them.
+   - Jira is read-only: I never change anything in Jira unless you tell me to in chat.
 4. **What lives where.** A folder map: `raw/` for sources, `tools/` for the script, `data/` for
    snapshots, `knowledge/` for the pages I write. `knowledge/portfolio/` holds the weekly
    cross-product roll-up (`YYYY-MM-DD-rollup.md`); its rules and settings are in its `INDEX.md`.
@@ -90,6 +94,13 @@ anywhere else.
    sends back a short summary in a fixed format, and the main session updates the shared files and
    gives you one combined answer. It then writes the portfolio roll-up, which checks every product
    against the stage schedule and the Nov 15, 2027 deadline.
+7. **What a product report contains now.** Executive Summary with the Last sprint block; Product
+   Detail; **2b. Pushed deadlines** (one table: was due vs now due, and the effect on the deadline);
+   Risk Register with **HIGH risks only**; Data Hygiene; People and tickets; Data Gaps; Appendix.
+   No Recommendations section (Research keeps its own layout). The roll-up has no pushed-deadline table.
+8. **Overdue-ticket emails.** After each weekly run I read the roll-up's "Tickets by person"
+   Appendix, draft one email per person with overdue tickets (each ticket with its link), show you the
+   drafts, and send them from your Outlook only after you say `send`. Then I check Sent Items and log it.
 
 ---
 
